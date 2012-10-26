@@ -1,64 +1,44 @@
-Here at GitHub, we're no strangers to hosting or sponsoring hackathons. With the growing number of games and game development resources on GitHub, we thought it was about time to throw our very own game jam!
+# Octocarina of time
 
-## The Challenge
+This is just brainstorming at this point, but here is my idea. This drawing of Octocat dressed as Link, at the bottom of the [challenge page](https://github.com/blog/1303-github-game-off), was the source of my inspiration.
 
-You have the entire month of November to create a **web-based** game *loosely* built around one or more of the following themes:
+![](https://a248.e.akamai.net/camo.github.com/216c9ac4f3485cd4717ae5cabb33b1b39293f45d/687474703a2f2f692e696d6775722e636f6d2f536c644d772e6a7067)
 
-* forking (or forks)
-* branching (or branches)
-* cloning (or clones)
-* pushing
-* pulling
+## Origin
 
-What do we mean by **loosely** based on these concepts? We literally mean, *loosely* based. Some examples might be a FPS where you throw forks at water balloons, an educational game about DNA cloning, or perhaps a platformer where you push and pull objects.
+I immediately thought of a Zelda clone, featuring Octocat as Link. To fit the theme, I decided that Octocat should carry a fork instead of a sword. I thought that "Octocarina of Time" would be a nice parody name.
 
-Your game. Your rules. You can participate as an individual or as a team. You're encouraged to use open source libraries, frameworks, graphics, and sounds.
+I then went to the whiteboard and wrote down ideas for the game. In the original [Ocarina of Time](http://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time), the timeline splits into two (the "young Link" and "old Link" timelines) when Link picks up the Master Sword. I thought that this was another great opportunity to cater to the theme: Octocat shall *fork* the timeline by picking up the Master Fork.
 
-## Prizes
+I tried to imagine how the two forked timeline should interact, and I knew at once that I didn't want to make yet another [Chronotron](http://www.kongregate.com/games/Scarybug/chronotron) / [The Company of Myself](http://www.kongregate.com/games/2DArray/the-company-of-myself) / [P.B. Winterbottom](http://www.winterbottomgame.com/) clone. The different timelines should interact with each other, but the character should not interact with past clones of itself (even though "clones" is one of the themes). Trying to see if other GitHub concepts could be applied, I tried to come up with a way in which actions or objects in one timeline could be pushed or pulled between timelines. I came up with the following puzzle mechanics.
 
-We have 5 shiny new iPads with Retina displays (64GB wifi models) to give to our winners (or Apple Store Credit equivalent). Runners up will receive GitHub swag of their choice ($100 credit for the [GitHub Shop](http://shop.github.com/)). If you have a team submission, we'll give you Apple Store credit equal to the value of the iPad. You can split it with your teammates as appropriate.
+## Game mechanic: Pushing changes between timelines
 
-All of the winners and runners up will be showcased on our blog.
+This would be much, much clearer with pictures. I'll work on that next.
 
-<img src="http://i.imgur.com/lxZrD.png" style="border:0;">
+1. First, split the timeline.
+2. In timeline A, Octocat moves block 1. This blocks his passage, but allows block 2 to be moved.
+3. In timeline B, the blocks are still in their original locations.
+4. Octocat A moves block 2, and pushes that move to timeline B.
+5. In timeline B, block 2 moves, even though block 1 is still in its original location.  
+   Without the ability to push changes between timelines, this configuration would be impossible, because block 1 is still in the way.
+6. With block 2 out of the way, block 1 can be moved in a different direction.
+7. Octocat B moves block 1. When moved in that direction, the block does not block the passage.
+8. Octocat B proceeds through the passage and pushes block 1's move to timeline A.
+9. In timeline A, block 1 had already been moved, so it's in a different location when timeline B's move is being applied.  
+   Without the ability to push changes between timelines, this move would again be impossible, because Octocat A can't push block 1 from his side of the passage.
+10. Now that block 1 no longer blocks the passage, Octocat A also proceeds through the passage.
+11. The two Octocats proceed to the goal tile, merge, and move on to the next level.
 
-### Everyone's a winner!
+That's it! That mechanic summarises the entire gameplay. Like [Escape from Puppy Death Factory](http://armorgames.com/play/12210/escape-from-puppy-death-factory)'s swap gun, this is probably a power which is very powerful, but which you must learn to adopt one step at a time, learning new tricks gradually as you encounter harder and harder obstacles.
 
-All particpants will receive a limited edition [Coderwall](http://www.coderwall.com) badge as shown above. Winners and runners up will also get their own special version of it.
+## Details
 
-## Judging
+A few more details about the mechanic:
 
-We have a number of awesome judges who graciously volunteered to take a look at all the entries!
+* Changes to individual objects can be pushed individually; you don't need to push the entire timeline's changes.
+* Changes to the same object, however, are linked together. When you push an object's changes to another timeline, you push all of the object's changes since the last change from that object which that timeline saw.
+* If a change cannot be applied (because in that timeline, there is a wall in the way or something), then there is a conflict, and no more changes can be pushed from that object to that timeline.
+* All forked Octocats must reach the goal tile.
 
-* [David Czarnecki](http://twitter.com/CzarneckiD), Lead Engineer at Agora Games
-* [Eric Preisz](https://twitter.com/epreisz), CEO of GarageGames
-* [Matt Hackett](https://twitter.com/#!/richtaur), Co-founder of Lost Decade Games
-* [Lee Reilly](http://twitter.com/leereilly), Gamer Dad and Software Developer at GitHub
-* [Romana Ramzan](https://twitter.com/Manak/), Denki's Player Champion. PhD Researcher. Organiser of Scottish Game Jam.
-
-## Rules
-
-* To qualify for entry as an **individual** you must fork the [github/game-off-2012](https://github.com/github/game-off-2012) repository to your individual account
-* To quality for entry as a **team** you must fork the [github/game-off-2012](https://github.com/github/game-off-2012) to a [free organization account](https://github.com/settings/organizations)
-* All entries must be web-based i.e. playable in a browser. HTML5, WebGL, Unity, Torque 3D, Node JS, Flash is all possible - just be sure the source is made available on your fork.
-* You must be over the age of 13
-
-## Instructions
-
-* If you don't already have a GitHub account, [sign up now](https://github.com/signup/free) - it's free!
-* Fork the [github/game-off-2012](https://github.com/github/game-off-2012) repository to your individual account (or to a free organization account)
-* Be sure to follow @github on Twitter for updates
-* Make sure your code is pushed to the master branch of before Dec 1st!
-* Make sure you have a README file with a brief description, what open source projects (if any) you used, and a screenshot.
-* Your repo should have a brief description and a URL where the game is playable entered into the fields shown below (this will make our judging process easier):
-
-![](https://img.skitch.com/20121010-x2ecpu95fi91us6hbfehg2dgit.png)
-
-Winners will be announced before Christmas :santa:
-
-# Comments / Questions / Help
-
-* New to Git, GitHub, and/or version control? Check out our [help documentation](https://help.github.com/) to get started!
-* Questions about Git/GitHub? Please email support@github.com and be sure to include 'GitHub Game Off' in the subject.
-* Questions specific to the GitHub Game Off? Please [create an issue](https://github.com/github/game-off-2012/issues/new). That will be the offical FAQ.
-* The official Twitter hashtag is [#ggo12](https://twitter.com/search/realtime?q=%23ggo12).
+I'm not sure how to deal with nested forks yet, maybe they shouldn't be allowed.
