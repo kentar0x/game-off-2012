@@ -6,6 +6,7 @@ h1 {
   width: 800px;
   height: 650px;
   margin: auto;
+  overflow: hidden;
 }
 
 #splash {
@@ -22,6 +23,7 @@ h1 {
   width: 101px;
   height: 171px;
   background-image: url('../img/sprites.png');
+  float: left;
 }
 .preloader {
   display: none;
