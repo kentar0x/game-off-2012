@@ -55,3 +55,7 @@ A few more details about the mechanic:
 * All forked Octocats must reach the goal tile.
 
 I'm not sure how to deal with nested forks yet, maybe they shouldn't be allowed.
+
+## Special Thanks
+
+I am using PlanetCute, a [free tileset](http://www.lostgarden.com/2007/05/dancs-miraculously-flexible-game.html) generously offered by Daniel Cook for the express purpose of *not* making yet another Sokoban clone. Sorry, Danc! Anyway, [his blog](http://www.lostgarden.com/) is a great source of insight for independent games developers.
