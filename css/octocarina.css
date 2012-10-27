@@ -1,4 +1,5 @@
 h1 {
+  text-align: center;
   color: #57a250;
 }
 #content {
@@ -6,6 +7,7 @@ h1 {
   height: 650px;
   margin: auto;
 }
+
 #splash {
   text-align: center;
 }
@@ -14,4 +16,25 @@ h1 {
   display: block;
   margin: auto;
   margin-bottom: 1em;
+}
+
+.sprite {
+  width: 101px;
+  height: 171px;
+  background-image: url('../img/sprites.png');
+}
+.empty-tile {
+  background-position: 0px;
+}
+.wall-tile {
+  background-position: -101px;
+}
+.block-sprite {
+  background-position: -202px;
+}
+.goal-sprite {
+  background-position: -303px;
+}
+.player-sprite {
+  background-position: -404px;
 }
