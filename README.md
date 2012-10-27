@@ -51,6 +51,8 @@ Now that you understand the mechanic, can you solve the next level?
 
 ![](https://raw.github.com/gelisam/game-off-2012/master/img/README/level2.png)  
 
+If you're feeling adventurous, you can try the latest development snapshot [here](http://gelisam.com/game-off-2012/). We'll put a more prominent link once we reach a playable state.
+
 ## Details
 
 A few more details about the mechanic:
