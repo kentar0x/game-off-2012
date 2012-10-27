@@ -45,6 +45,12 @@ I tried to imagine how the two forked timeline should interact, and I knew at on
 
 That's it! That mechanic summarises the entire gameplay. Like [Escape from Puppy Death Factory](http://armorgames.com/play/12210/escape-from-puppy-death-factory)'s swap gun, this is probably a power which is very powerful, but which you must learn to adopt one step at a time, learning new tricks gradually as you encounter harder and harder obstacles.
 
+## More
+
+Now that you understand the mechanic, can you solve the next level?
+
+![](https://raw.github.com/gelisam/game-off-2012/master/img/README/level2.png)  
+
 ## Details
 
 A few more details about the mechanic:
