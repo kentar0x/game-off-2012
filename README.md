@@ -2,7 +2,7 @@
 
 This is just brainstorming at this point, but here is my idea. This drawing of Octocat dressed as Link, at the bottom of the [challenge page](https://github.com/blog/1303-github-game-off), was the source of my inspiration.
 
-![](https://a248.e.akamai.net/camo.github.com/216c9ac4f3485cd4717ae5cabb33b1b39293f45d/687474703a2f2f692e696d6775722e636f6d2f536c644d772e6a7067)
+![](https://raw.github.com/gelisam/game-off-2012/master/img/README/octocat-link-small.jpg)
 
 ## Origin
 
