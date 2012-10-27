@@ -1,3 +1,16 @@
 h1 {
   color: #57a250;
 }
+#content {
+  width: 800px;
+  margin: auto;
+}
+#splash {
+  text-align: center;
+}
+.splash-img {
+  width: 600px;
+  display: block;
+  margin: auto;
+  margin-bottom: 1em;
+}
