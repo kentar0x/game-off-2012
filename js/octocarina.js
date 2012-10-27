@@ -13,8 +13,6 @@ $(function() {
       current_tile.removeClass(tile_types[current_tile_type]);
       current_tile_type = new_type;
       current_tile.addClass(tile_types[current_tile_type]);
-      
-      console.log(tile_types[current_tile_type]);
     }
     
     function add_tile(tile_type) {
@@ -26,6 +24,7 @@ $(function() {
     }
     
     
+    var keyHandler;
     function handleKey(key) {
       switch (key) {
       case keycodes.left: /* falls through */
@@ -44,11 +43,17 @@ $(function() {
       }
     }
     
-    $('#begin').click(function() {
-      toplevel_container.addClass('well').empty();
-    });
     
+    function begin() {
+      toplevel_container.addClass('well').empty();
+      keyHandler = handleKey;
+    }
+    
+    $('#begin').click(begin);
+    
+    // first keypress begins the game
+    keyHandler = begin;
     $(document).keydown(function(e) {
-      handleKey(e['keyCode']);
+      keyHandler(e['keyCode']);
     });
 });
