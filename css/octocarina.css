@@ -23,6 +23,11 @@ h1 {
   height: 171px;
   background-image: url('../img/sprites.png');
 }
+.preloader {
+  display: none;
+  width: 1px;
+  height: 1px;
+}
 .empty-tile {
   background-position: 0px;
 }
