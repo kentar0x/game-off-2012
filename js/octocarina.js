@@ -5,12 +5,11 @@ $(function() {
     
     var level_number = 0;
     var level_model;
-    var level_view;
     
     function load_level(i) {
       level_number = i;
       level_model = Level_Model.load(level_number);
-      level_view = Level_View.create(sprite_container, level_model);
+      Level_View.monitor(sprite_container, level_model);
     }
     
     function try_again() {
