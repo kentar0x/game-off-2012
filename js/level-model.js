@@ -6,10 +6,7 @@ var Level_Model = {
     // convert the tile symbols into tile types
     var tiles = new Array(n);
     for(var i=0; i<n; ++i) {
-      var tile_symbol = level_data[i];
-      var tile_type = Level_Data.type_for_tile_symbol(tile_symbol);
-      
-      tiles[i] = tile_type;
+      tiles[i] = Tile.from_symbol(level_data[i]);
     }
     
     return {

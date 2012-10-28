@@ -26,14 +26,5 @@ var Level_Data = {
   
   load: function(level_number) {
     return this.levels[level_number];
-  },
-  
-  
-  class_for_tile_type: function(tile_type) {
-    return tile_type.sprite;
-  },
-  
-  type_for_tile_symbol: function(tile_symbol) {
-    return Tile.from_symbol(tile_symbol);
   }
 };

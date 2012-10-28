@@ -10,7 +10,7 @@ var Level_View = {
       return current_layer;
     }
     function add_tile(tile_type) {
-      var cls = Level_Data.class_for_tile_type(tile_type);
+      var cls = tile_type.sprite;
       var tile = $('<div class="sprite"/>').addClass(cls);
       
       current_layer.append(tile);
@@ -40,8 +40,8 @@ var Level_View = {
     // monitor type changes
     level_model.when_type_changes(function(tile_index, old_type, new_type) {
       var tile = tiles[tile_index];
-      var old_class = Level_Data.class_for_tile_type(old_type);
-      var new_class = Level_Data.class_for_tile_type(new_type);
+      var old_class = old_type.sprite;
+      var new_class = new_type.sprite;
       
       tile.removeClass(old_class).addClass(new_class);
     });
