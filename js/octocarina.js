@@ -3,32 +3,22 @@ $(function() {
     var sprite_container = toplevel_container;
     
     
-    function add_tile(tile_type) {
-      var cls = level_loader.class_for_tile_type(tile_type);
-      var tile = $('<div class="sprite"/>').addClass(cls);
-      
-      sprite_container.append(tile);
-      return tile;
-    }
+    var level_number = 0;
+    var level_model;
+    var level_view;
     
-    
-    var current_level = 0;
-    
-    function load_level(level) {
-      current_level = level;
-      sprite_container.empty();
-      var data = level_loader.load_level_data(current_level);
-      for(var i=0; i<data.length; ++i) {
-        add_tile(level_loader.parse_tile_type(data[i]));
-      }
+    function load_level(i) {
+      level_number = i;
+      level_model = Level_Model.load(level_number);
+      level_view = Level_View.create(sprite_container, level_model);
     }
     
     function try_again() {
-      load_level(current_level);
+      load_level(level_number);
     }
     
     function next_level() {
-      load_level(current_level + 1);
+      load_level(level_number + 1);
     }
     
     
