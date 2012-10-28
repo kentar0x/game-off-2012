@@ -24,6 +24,8 @@ h1 {
   height: 171px;
   background-image: url('../img/sprites.png');
   float: left;
+  margin-right: -1px;
+  margin-bottom: -91px;
 }
 .preloader {
   display: none;
