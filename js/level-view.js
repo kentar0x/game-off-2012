@@ -12,11 +12,18 @@ var Level_View = {
       }
     };
     
-    // convert the tile types into tile sprites
     var tile_types = level_model.tiles;
+    
+    var floor = Level_Data.type_for_tile_symbol('.');
+    var empty = Level_Data.type_for_tile_symbol(' ');
+    
+    // convert the tile types into tile sprites
     for(var i=0; i<tile_types.length; ++i) {
       var tile_type = tile_types[i];
       
+      if (tile_type == floor) {
+        tile_type = empty;
+      }
       view.add_tile(tile_type);
     }
     

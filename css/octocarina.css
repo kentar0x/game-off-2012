@@ -29,7 +29,8 @@ h1 {
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
   background-image: url('../img/sprites.png');
-  float: left;
+  background-repeat: no-repeat;
+  display: inline-block;
   margin-right: -1px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
 }
@@ -39,6 +40,9 @@ h1 {
   height: 1px;
 }
 .empty-tile {
+  background-position: 101px;
+}
+.floor-tile {
   background-position: 0px;
 }
 .wall-tile {

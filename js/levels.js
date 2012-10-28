@@ -10,8 +10,8 @@
 //   It consists of several layers of tile sprites.
 
 var Level_Data = {
-  tile_symbols:           "."+         "#"+            "b"+           "*"+             "C",
-  tile_classes: ["empty-tile", "wall-tile", "block-sprite", "goal-sprite", "player-sprite"],
+  tile_symbols:           " "+          "."+         "#"+            "b"+           "*"+             "C",
+  tile_classes: ["empty-tile", "floor-tile", "wall-tile", "block-sprite", "goal-sprite", "player-sprite"],
   
   levels: [
     "........"+
