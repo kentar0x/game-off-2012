@@ -1,5 +1,5 @@
 // http://unixpapa.com/js/key.html
-var keycodes = {
+var Keycode = {
   left: 37,
   up: 38,
   right: 39,
@@ -9,6 +9,6 @@ var keycodes = {
 (function() {
   var s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(var i=0; i<26; ++i) {
-    keycodes[s[i]] = s.charCodeAt(i);
+    Keycode[s[i]] = s.charCodeAt(i);
   }
 })();

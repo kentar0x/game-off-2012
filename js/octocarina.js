@@ -33,10 +33,10 @@ $(function() {
     var keyHandler;
     function handleKey(key) {
       switch(key) {
-      case keycodes.left:  return move_player(player_index - 1);
-      case keycodes.right: return move_player(player_index + 1);
-      case keycodes.up:    return move_player(player_index - 8);
-      case keycodes.down:  return move_player(player_index + 8);
+      case Keycode.left:  return move_player(player_index - 1);
+      case Keycode.right: return move_player(player_index + 1);
+      case Keycode.up:    return move_player(player_index - 8);
+      case Keycode.down:  return move_player(player_index + 8);
       }
     }
     
