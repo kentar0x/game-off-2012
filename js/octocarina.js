@@ -22,8 +22,23 @@ $(function() {
     }
     
     
+    var player_index = 33;
+    function move_player(new_index) {
+      level_model.change_tile_type(player_index, Tile.empty);
+      
+      player_index = new_index;
+      
+      level_model.change_tile_type(player_index, Tile.player);
+    }
+    
     var keyHandler;
     function handleKey(key) {
+      switch(key) {
+      case keycodes.left:  return move_player(player_index - 1);
+      case keycodes.right: return move_player(player_index + 1);
+      case keycodes.up:    return move_player(player_index - 8);
+      case keycodes.down:  return move_player(player_index + 8);
+      }
     }
     
     
