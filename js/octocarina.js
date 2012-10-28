@@ -4,8 +4,13 @@ $(function() {
     
     
     var current_tile_type = 0;
+    var tile_symbols =         "."+         "#"+            "b"+           "*"+             "C";
     var tile_types = ["empty-tile", "wall-tile", "block-sprite", "goal-sprite", "player-sprite"];
     var current_tile = $('<div class="sprite"/>');
+    
+    function parse_tile_type(tile) {
+      return tile_symbols.indexOf(tile);
+    }
     
     function change_tile_type(new_type) {
       new_type = (new_type + tile_types.length) % tile_types.length;
@@ -21,6 +26,26 @@ $(function() {
       sprite_container.append(current_tile);
       
       return current_tile;
+    }
+    
+    
+    var current_level = 0;
+    
+    function load_level(level) {
+      current_level = level;
+      sprite_container.empty();
+      var data = levels[current_level];
+      for(var i=0; i<data.length; ++i) {
+        add_tile(parse_tile_type(data[i]));
+      }
+    }
+    
+    function try_again() {
+      load_level(current_level);
+    }
+    
+    function next_level() {
+      load_level(current_level + 1);
     }
     
     
@@ -46,6 +71,7 @@ $(function() {
     
     function begin() {
       toplevel_container.addClass('well').empty();
+      load_level(0);
       keyHandler = handleKey;
     }
     
