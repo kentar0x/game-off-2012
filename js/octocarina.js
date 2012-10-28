@@ -3,15 +3,8 @@ $(function() {
     var sprite_container = toplevel_container;
     
     
-    var tile_symbols =         "."+         "#"+            "b"+           "*"+             "C";
-    var tile_types = ["empty-tile", "wall-tile", "block-sprite", "goal-sprite", "player-sprite"];
-    
-    function parse_tile_type(tile) {
-      return tile_symbols.indexOf(tile);
-    }
-    
     function add_tile(tile_type) {
-      var cls = tile_types[tile_type];
+      var cls = level_loader.class_for_tile_type(tile_type);
       var tile = $('<div class="sprite"/>').addClass(cls);
       
       sprite_container.append(tile);
@@ -24,9 +17,9 @@ $(function() {
     function load_level(level) {
       current_level = level;
       sprite_container.empty();
-      var data = levels[current_level];
+      var data = level_loader.load_level_data(current_level);
       for(var i=0; i<data.length; ++i) {
-        add_tile(parse_tile_type(data[i]));
+        add_tile(level_loader.parse_tile_type(data[i]));
       }
     }
     
