@@ -25,6 +25,11 @@ h1 {
  * 
  * All blocks have the same height: 40px. This allows them to stack nicely.
  */
+.layer {
+  font-size: 0px; /* no gap between rows */
+  height: 480px; /* 6*80px depth */
+  margin-bottom: -520px; /* 6*80px depth + 40px stacking height */
+}
 .sprite {
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
