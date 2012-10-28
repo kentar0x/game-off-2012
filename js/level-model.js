@@ -13,7 +13,19 @@ var Level_Model = {
     }
     
     return {
-      tiles: tiles
+      tiles: tiles,
+      
+      when_type_changes_callbacks: $.Callbacks(),
+      when_type_changes: function(callback) {
+        this.when_type_changes_callbacks.add(callback);
+      },
+      
+      change_tile_type: function(tile_index, new_type) {
+        var old_type = this.tiles[tile_index];
+        this.when_type_changes_callbacks.fire(tile_index, old_type, new_type);
+        
+        this.tiles[tile_index] = new_type;
+      }
     };
   }
 };

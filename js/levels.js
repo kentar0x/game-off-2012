@@ -42,3 +42,11 @@ var Level_Data = {
     return this.tile_symbols.indexOf(tile_symbol);
   },
 };
+
+var Tile = {
+  empty: Level_Data.type_for_tile_symbol('.'),
+  floor: Level_Data.type_for_tile_symbol('f'),
+  wall: Level_Data.type_for_tile_symbol('#'),
+  goal: Level_Data.type_for_tile_symbol('*'),
+  player: Level_Data.type_for_tile_symbol('C')
+};
