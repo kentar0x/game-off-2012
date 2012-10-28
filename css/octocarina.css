@@ -19,13 +19,19 @@ h1 {
   margin-bottom: 1em;
 }
 
+/* Each sprite has a width of 100px, plus a 1px border on the right which
+ * overlaps with the next tile. A sprite also has a depth of 80px and a height
+ * of up to 90px, for a total of 170px plus an overlapping bottom border.
+ * 
+ * All blocks have the same height: 40px. This allows them to stack nicely.
+ */
 .sprite {
-  width: 101px;
-  height: 171px;
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
   background-image: url('../img/sprites.png');
   float: left;
-  margin-right: -1px;
-  margin-bottom: -91px;
+  margin-right: -1px; /* 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
 }
 .preloader {
   display: none;
