@@ -29,6 +29,8 @@ h1 {
   font-size: 0px; /* no gap between rows */
   height: 480px; /* 6*80px depth */
   margin-bottom: -520px; /* 6*80px depth + 40px stacking height */
+  position: relative;
+  top: 40px; /* 1*40px stacking height */
 }
 .sprite {
   width: 101px; /* 100px width + 1px border */
