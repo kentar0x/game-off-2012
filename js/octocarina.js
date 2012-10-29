@@ -33,7 +33,9 @@ $(function() {
       var target = room.tile_at(new_index);
       var target2 = room.tile_at(new_index2);
       
-      if (target == Tile.block && !target2.solid) {
+      if (target == Tile.goal) {
+        next_level();
+      } else if (target == Tile.block && !target2.solid) {
         room.move_tile(new_index, new_index2);
         room.move_player(new_index);
       } else if (!target.solid) {
