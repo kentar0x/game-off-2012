@@ -21,22 +21,33 @@ $(function() {
     }
     
     
-    var player_index = 33;
-    function move_player(new_index) {
-      if (!room.tile_at(new_index).solid) {
-        player_index = new_index;
-        
-        room.move_player(player_index);
+    function move(old_index, dx, dy) {
+      return old_index + dx + 8*dy;
+    }
+    
+    function move_player(dx, dy) {
+      var old_index = room.player_index();
+      var new_index = move(old_index, dx, dy);
+      var new_index2 = move(old_index, 2*dx, 2*dy);
+      
+      var target = room.tile_at(new_index);
+      var target2 = room.tile_at(new_index2);
+      
+      if (target == Tile.block && !target2.solid) {
+        room.move_tile(new_index, new_index2);
+        room.move_player(new_index);
+      } else if (!target.solid) {
+        room.move_player(new_index);
       }
     }
     
     var keyHandler;
     function handleKey(key) {
       switch(key) {
-      case Keycode.left:  return move_player(player_index - 1);
-      case Keycode.right: return move_player(player_index + 1);
-      case Keycode.up:    return move_player(player_index - 8);
-      case Keycode.down:  return move_player(player_index + 8);
+      case Keycode.left:  return move_player(-1, 0);
+      case Keycode.right: return move_player( 1, 0);
+      case Keycode.up:    return move_player( 0,-1);
+      case Keycode.down:  return move_player( 0, 1);
       }
     }
     

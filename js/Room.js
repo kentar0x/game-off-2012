@@ -41,15 +41,20 @@ var Room = {
         tiles[index] = new_tile;
       },
       
+      move_tile: function(old_index, new_index) {
+        var tile = tiles[old_index];
+        
+        this.change_tile(old_index, Tile.empty);
+        this.change_tile(new_index, tile);
+      },
+      
       player_index: function() {
         return player_index;
       },
       move_player: function(new_index) {
-        this.change_tile(player_index, Tile.empty);
+        this.move_tile(player_index, new_index);
         
         player_index = new_index;
-        
-        this.change_tile(player_index, Tile.player);
       }
     };
   }
