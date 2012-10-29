@@ -50,6 +50,9 @@ $(function() {
       case Keycode.right: return move_player( 1, 0);
       case Keycode.up:    return move_player( 0,-1);
       case Keycode.down:  return move_player( 0, 1);
+      
+      case Keycode.esc: /* falls through */
+      case Keycode.R: return try_again();
       }
     }
     
