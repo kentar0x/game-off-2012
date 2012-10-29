@@ -38,10 +38,21 @@ var Table = {
         return (index.x >= 0 && index.y >= 0 && index.x < w && index.y < h);
       },
       
+      each: function(body) {
+        var self = this;
+        Pos.each(self.w, self.h, function(index) {
+          body(index, self.at(index));
+        });
+      },
       map: function(body) {
         var self = this;
         return Table.create(self.w, self.h, function(index) {
           return body(index, self.at(index));
+        });
+      },
+      copy: function() {
+        return this.map(function(index, value) {
+          return value;
         });
       }
     };

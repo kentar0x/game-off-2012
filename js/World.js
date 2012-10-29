@@ -40,6 +40,6 @@ var World = {
       return level[index.y][index.x];
     });
     
-    return Room.create(tile_symbols);
+    return Room.from_symbols(tile_symbols);
   }
 };

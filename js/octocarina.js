@@ -84,7 +84,7 @@ $(function() {
         is_fork_allowed = false;
         
         second_container = create_room_container();
-        room = second_room = World.load_room(level);
+        room = second_room = first_room.fork();
         Cake.display(second_container, second_room);
         
         first_container.transition({scale: 0.5, x: -410});

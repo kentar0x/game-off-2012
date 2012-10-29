@@ -2,21 +2,16 @@
 // tiles can change type, and you can listen for those changes.
 
 var Room = {
-  create: function(tile_symbols) {
-    var w = tile_symbols.w;
-    var h = tile_symbols.h;
+  from_tiles: function(tiles) {
+    var w = tiles.w;
+    var h = tiles.h;
     
-    var player_index;
-    
-    // convert the tile symbols into tile types
-    var tiles = tile_symbols.map(function(index, symbol) {
-      var tile = Tile.from_symbol(symbol);
-      
+    // find the player
+    var player_index = null;
+    tiles.each(function(index, tile) {
       if (tile == Tile.player) {
         player_index = index;
       }
-      
-      return tile;
     });
     
     var tile_change_callbacks = $.Callbacks();
@@ -25,7 +20,7 @@ var Room = {
         tile_change_callbacks.add(callback);
       },
       
-      size: tile_symbols.size,
+      size: tiles.size,
       w: w,
       h: h,
       
@@ -56,7 +51,19 @@ var Room = {
         this.move_tile(player_index, new_index);
         
         player_index = new_index;
+      },
+      
+      fork: function() {
+        return Room.from_tiles(tiles.copy());
       }
     };
+  },
+  from_symbols: function(tile_symbols) {
+    // convert the tile symbols into tile types
+    var tiles = tile_symbols.map(function(index, symbol) {
+      return Tile.from_symbol(symbol);
+    });
+    
+    return this.from_tiles(tiles);
   }
 };
