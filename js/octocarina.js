@@ -23,11 +23,13 @@ $(function() {
     
     var player_index = 33;
     function move_player(new_index) {
-      room.change_tile(player_index, Tile.empty);
-      
-      player_index = new_index;
-      
-      room.change_tile(player_index, Tile.player);
+      if (!room.tile_at(new_index).solid) {
+        room.change_tile(player_index, Tile.empty);
+        
+        player_index = new_index;
+        
+        room.change_tile(player_index, Tile.player);
+      }
     }
     
     var keyHandler;

@@ -19,7 +19,12 @@ var Room = {
       
       size: tiles.length,
       tile_at: function(index) {
-        return tiles[index];
+        if (index < 0 || index >= tiles.length) {
+          // prevent the player from falling off the map
+          return Tile.wall;
+        } else {
+          return tiles[index];
+        }
       },
       change_tile: function(index, new_tile) {
         // notify watchers
