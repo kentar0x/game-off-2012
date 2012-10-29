@@ -5,10 +5,18 @@ var Room = {
   create: function(tile_symbols) {
     var n = tile_symbols.length;
     
+    var player_index;
+    
     // convert the tile symbols into tile types
     var tiles = new Array(n);
     for(var i=0; i<n; ++i) {
-      tiles[i] = Tile.from_symbol(tile_symbols[i]);
+      var tile = Tile.from_symbol(tile_symbols[i]);
+      
+      if (tile == Tile.player) {
+        player_index = i;
+      }
+      
+      tiles[i] = tile;
     }
     
     var tile_change_callbacks = $.Callbacks();
@@ -31,6 +39,17 @@ var Room = {
         tile_change_callbacks.fire(index, new_tile);
         
         tiles[index] = new_tile;
+      },
+      
+      player_index: function() {
+        return player_index;
+      },
+      move_player: function(new_index) {
+        this.change_tile(player_index, Tile.empty);
+        
+        player_index = new_index;
+        
+        this.change_tile(player_index, Tile.player);
       }
     };
   }
