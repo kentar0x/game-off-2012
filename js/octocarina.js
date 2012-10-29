@@ -1,15 +1,54 @@
 $(function() {
     var toplevel_container = $('#content');
-    var sprite_container = toplevel_container;
+    var first_container = null;
+    var second_container = null;
+    var is_fork_allowed = false;
     
     
     var level = 0;
-    var room;
+    var room = null;
+    var first_room = null;
+    var second_room = null;
+    
+    function create_room_container() {
+      var element = $('<div class="room"/>');
+      
+      toplevel_container.prepend(element);
+      return element;
+    }
+    
+    function really_load_level(index) {
+      level = index;
+      room = first_room = World.load_room(level);
+      Cake.display(first_container, first_room);
+      first_container.transition({opacity: 1}, 'slow');
+      
+      is_fork_allowed = true;
+    }
     
     function load_level(index) {
-      level = index;
-      room = World.load_room(level);
-      Cake.display(sprite_container, room);
+      if (second_container) {
+        var element = second_container;
+        element.transition({opacity: 0}, function() {
+          element.remove();
+        });
+        
+        second_container = second_room = null;
+      }
+      
+      if (!first_container) {
+        first_container = create_room_container();
+        first_container.transition({opacity: 0}, 0,
+                         function() {
+                           really_load_level(index);
+                         });
+      } else {
+        first_container.transition({opacity: 0})
+                       .transition({scale: 1.0, x: 0}, 0,
+                         function() {
+                           really_load_level(index);
+                         });
+      }
     }
     
     function try_again() {
@@ -39,6 +78,21 @@ $(function() {
       }
     }
     
+    
+    function fork_room() {
+      if (is_fork_allowed) {
+        is_fork_allowed = false;
+        
+        second_container = create_room_container();
+        room = second_room = World.load_room(level);
+        Cake.display(second_container, second_room);
+        
+        first_container.transition({scale: 0.5, x: -410});
+        second_container.transition({scale: 0.5, x: 410});
+      }
+    }
+    
+    
     var keyHandler;
     function handleKey(key) {
       switch(key) {
@@ -49,6 +103,8 @@ $(function() {
       
       case Keycode.esc: /* falls through */
       case Keycode.R: return try_again();
+      
+      case Keycode.F: return fork_room();
       }
     }
     
