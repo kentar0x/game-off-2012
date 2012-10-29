@@ -3,31 +3,31 @@ $(function() {
     var sprite_container = toplevel_container;
     
     
-    var level_number = 0;
-    var level_model;
+    var level = 0;
+    var room;
     
-    function load_level(i) {
-      level_number = i;
-      level_model = Level_Model.load(level_number);
-      Level_View.monitor(sprite_container, level_model);
+    function load_level(index) {
+      level = index;
+      room = World.load_room(level);
+      Cake.display(sprite_container, room);
     }
     
     function try_again() {
-      load_level(level_number);
+      load_level(level);
     }
     
     function next_level() {
-      load_level(level_number + 1);
+      load_level(level + 1);
     }
     
     
     var player_index = 33;
     function move_player(new_index) {
-      level_model.change_tile_type(player_index, Tile.empty);
+      room.change_tile(player_index, Tile.empty);
       
       player_index = new_index;
       
-      level_model.change_tile_type(player_index, Tile.player);
+      room.change_tile(player_index, Tile.player);
     }
     
     var keyHandler;
