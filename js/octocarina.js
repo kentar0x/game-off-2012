@@ -22,7 +22,7 @@ $(function() {
     
     
     function move(old_index, dx, dy) {
-      return old_index + dx + 8*dy;
+      return old_index + dx + room.width*dy;
     }
     
     function move_player(dx, dy) {

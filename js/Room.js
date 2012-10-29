@@ -26,6 +26,9 @@ var Room = {
       },
       
       size: tiles.length,
+      width: 8,
+      height: tiles.length/8,
+      
       tile_at: function(index) {
         if (index < 0 || index >= tiles.length) {
           // prevent the player from falling off the map
