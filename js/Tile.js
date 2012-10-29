@@ -1,12 +1,15 @@
+// an immutable representation of a tile type,
+// like Tile.wall or Tile.floor
+
 var Tile = {
   list: {},
   from_symbol: function(symbol) {
     return this.list[symbol];
   },
-  create: function(symbol, sprite, solid) {
+  create: function(symbol, sprite_class, solid) {
     var tile = {
       symbol: symbol,
-      sprite: sprite,
+      sprite_class: sprite_class,
       solid: solid
     };
     
