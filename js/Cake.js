@@ -26,17 +26,13 @@ var Cake = {
   },
   
   create_floor: function(room) {
-    var tiles = new Array(room.size);
-    for(var i=0; i<room.size; ++i) {
-      tiles[i] = Tile.floor;
-    }
-    return tiles;
+    return Table.create(room.size, function(index) {
+      return Tile.floor;
+    });
   },
   extract_tiles: function(room) {
-    var tiles = new Array(room.size);
-    for(var i=0; i<room.size; ++i) {
-      tiles[i] = room.tile_at(i);
-    }
-    return tiles;
+    return Table.create(room.size, function(index) {
+      return room.tile_at(index);
+    });
   }
 };

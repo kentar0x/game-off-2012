@@ -21,14 +21,10 @@ $(function() {
     }
     
     
-    function move(old_index, dx, dy) {
-      return old_index + dx + room.width*dy;
-    }
-    
     function move_player(dx, dy) {
       var old_index = room.player_index();
-      var new_index = move(old_index, dx, dy);
-      var new_index2 = move(old_index, 2*dx, 2*dy);
+      var new_index = old_index.plus(dx, dy);
+      var new_index2 = old_index.plus(2*dx, 2*dy);
       
       var target = room.tile_at(new_index);
       var target2 = room.tile_at(new_index2);

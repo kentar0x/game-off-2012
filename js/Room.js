@@ -3,21 +3,21 @@
 
 var Room = {
   create: function(tile_symbols) {
-    var n = tile_symbols.length;
+    var w = tile_symbols.w;
+    var h = tile_symbols.h;
     
     var player_index;
     
     // convert the tile symbols into tile types
-    var tiles = new Array(n);
-    for(var i=0; i<n; ++i) {
-      var tile = Tile.from_symbol(tile_symbols[i]);
+    var tiles = tile_symbols.map(function(index, symbol) {
+      var tile = Tile.from_symbol(symbol);
       
       if (tile == Tile.player) {
-        player_index = i;
+        player_index = index;
       }
       
-      tiles[i] = tile;
-    }
+      return tile;
+    });
     
     var tile_change_callbacks = $.Callbacks();
     return {
@@ -25,27 +25,25 @@ var Room = {
         tile_change_callbacks.add(callback);
       },
       
-      size: tiles.length,
-      width: 8,
-      height: tiles.length/8,
+      size: tile_symbols.size,
+      w: w,
+      h: h,
       
       tile_at: function(index) {
-        if (index < 0 || index >= tiles.length) {
+        return tiles.at(index, function() {
           // prevent the player from falling off the map
           return Tile.wall;
-        } else {
-          return tiles[index];
-        }
+        });
       },
       change_tile: function(index, new_tile) {
         // notify watchers
         tile_change_callbacks.fire(index, new_tile);
         
-        tiles[index] = new_tile;
+        tiles.change_at(index, new_tile);
       },
       
       move_tile: function(old_index, new_index) {
-        var tile = tiles[old_index];
+        var tile = tiles.at(old_index);
         
         this.change_tile(old_index, Tile.empty);
         this.change_tile(new_index, tile);

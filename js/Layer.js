@@ -8,15 +8,13 @@ var Layer = {
     
     container.append(element);
     
-    var n = tiles.length;
-    var sprites = new Array(n);
-    for(var i=0; i<n; ++i) {
-      sprites[i] = Sprite.create(element, tiles[i]);
-    }
+    var sprites = tiles.map(function(index, tile) {
+      return Sprite.create(element, tile);
+    });
     
     return {
       sprite_at: function(index) {
-        return sprites[index];
+        return sprites.at(index);
       }
     };
   }
