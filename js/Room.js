@@ -14,12 +14,8 @@ var Room = {
       }
     });
     
-    var tile_change_callbacks = $.Callbacks();
+    var change_tile_callbacks = $.Callbacks();
     return {
-      tile_change: function(callback) {
-        tile_change_callbacks.add(callback);
-      },
-      
       size: tiles.size,
       w: w,
       h: h,
@@ -31,10 +27,16 @@ var Room = {
         });
       },
       change_tile: function(index, new_tile) {
-        // notify watchers
-        tile_change_callbacks.fire(index, new_tile);
-        
-        tiles.change_at(index, new_tile);
+        if (arguments.length == 1) {
+          // add a watcher
+          var callback = index;
+          change_tile_callbacks.add(callback);
+        } else {
+          // notify watchers
+          change_tile_callbacks.fire(index, new_tile);
+          
+          tiles.change_at(index, new_tile);
+        }
       },
       
       move_tile: function(old_index, new_index) {

@@ -19,7 +19,7 @@ var Scene = {
     var layer = Layer.create(element, tiles);
     
     // monitor tile changes
-    room.tile_change(function(index, new_tile) {
+    room.change_tile(function(index, new_tile) {
       var sprite = layer.sprite_at(index);
       
       sprite.change_tile(new_tile);
