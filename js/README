@@ -1,0 +1,80 @@
+Containment Hierarchies
+---
+
+A note about the organization of the code.
+
+I try to keep each file very short, with few responsibilities. The exception
+is octocarina.js, which contains everything which hasn't yet been refactored
+into a class yet.
+
+So far, there are two parallel class hierarchies:
+- World contains Multirooms contains Rooms  contains Tiles
+-                Theatre    contains Scenes contains Sprites
+
+
+Rooms, etc.
+---
+
+The first hierarchy is the data. The main mechanic of this game is to fork the
+timeline, so it's important to keep track of each copy; this is what Multiroom
+does. Currently, there is no timeline, just multiple copies of the room.
+Before the first timeline fork, the Multiroom has only one Room instance.
+
+Rooms are built out of tiles, which represent the contents of the room at a
+particular location. As blocks are pushed and the player moves around, those
+tiles change from Tile.empty to Tile.block to Tile.empty again.
+
+Individual tiles don't have identities; a Tile instance should be viewed as a
+value, the tile type at a particular location in the room. The only reason I
+use instances instead of, say, a number or a symbol, is so that I can use the
+OO notation tile.solid() instead of Tile.is_solid(tile). I plan to add another
+class, probably Entity, for level elements which can move around.
+
+
+Oh, and World is where we keep the level data, using a simple ASCII format.
+Feel free to add your own levels! The more, the merrier.
+
+
+Scenes, etc.
+---
+
+In parallel to the data hierarchy is a view hierarchy which takes care of
+displaying all this data. Please don't add animation or css, or html data to
+the data classes; add them here instead.
+
+I chose not to call those classes boring names like "Room_View", because I
+like short names, and because I don't want this code to devolve into a
+Java-like mess of Room_Viewer_Factory_Worker_Singletons. It does require a bit
+of cleverness while coming up with new names, though.
+
+Each tile is represented by a Sprite. Unlike Tile, a Sprite instance does have
+an identity; it represents the individual DOM element at this particular
+location of the room. The Scene listen for the room's tile changes, and
+updates its sprites accordingly. There is also an uninteresting intermediate
+class, Layer, which deals with the fact that the floor and the obstacles are
+stacked on top of each other.
+
+In the same manner that a Multiroom contains many Rooms, a Theatre contains
+many Scenes. The role of the Theatre is to listen for Multiroom changes, and
+to display the many rooms accordingly.
+
+
+Events
+---
+
+I decided to stick to the jQuery convention for events and callbacks: the
+method for registering callbacks is the same as the method for triggering the
+event:
+
+  element.click(function() {...}); // register a callback
+  element.click(); // trigger a click
+  
+  room.change_tile(function(index, tile) {...}); // register a callback
+  room.change_tile(index, tile); // trigger a tile change
+
+Unlike jQuery, I don't provide a method for removing a callback, even though I
+routinely throw away Theatres which no longer need to listen to anything. The
+idea is that when a new level is loaded, I instantiate both a new Multiroom
+and a new Theatre. This should allow both the old Multiroom and the old
+Theatre to get garbage-collected, so it doesn't matter that an old Theatre
+instance is still listening to an old Multiroom.
