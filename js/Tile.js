@@ -1,5 +1,6 @@
 // an immutable representation of a tile type,
-// like Tile.wall or Tile.floor
+// like Tile.wall or Tile.floor;
+// remember to always compare with "===".
 
 var Tile = {
   list: {},

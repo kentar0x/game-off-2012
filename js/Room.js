@@ -9,7 +9,7 @@ var Room = {
     // find the player
     var player_index = null;
     tiles.each(function(index, tile) {
-      if (tile == Tile.player) {
+      if (tile === Tile.player) {
         player_index = index;
       }
     });
