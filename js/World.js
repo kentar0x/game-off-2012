@@ -62,5 +62,10 @@ var World = {
     });
     
     return Room.from_symbols(tile_symbols);
+  },
+  load_multiroom: function(index) {
+    var room = this.load_room(index);
+    
+    return Multiroom.create(room);
   }
 };

@@ -5,19 +5,15 @@ $(function() {
     
     
     var level = 0;
-    var room = null;
-    var first_room = null;
-    var second_room = null;
-    var first_scene = null;
-    var second_scene = null;
+    var multiroom = null;
+    var theatre = null;
     
     function really_load_level(index) {
       level = index;
-      room = first_room = World.load_room(level);
+      multiroom = World.load_multiroom(level);
       is_movement_allowed = true;
       
-      first_scene = Scene.create(toplevel_container, first_room);
-      first_scene.show(function() {
+      theatre = Theatre.create(toplevel_container, multiroom, function() {
         is_fork_allowed = true;
       });
     }
@@ -25,15 +21,11 @@ $(function() {
     function load_level(index) {
       is_movement_allowed = false;
       
-      if (second_scene) {
-        second_scene.remove();
-        second_scene = null;
-      }
-      if (first_scene) {
-        first_scene.remove(function() {
+      if (theatre) {
+        theatre.remove(function() {
           really_load_level(index);
         });
-        first_scene = null;
+        theatre = null;
       } else {
         really_load_level(index);
       }
@@ -50,6 +42,8 @@ $(function() {
     
     function move_player(dx, dy) {
       if (is_movement_allowed) {
+        var room = multiroom.current_room();
+        
         var old_index = room.player_index();
         var new_index = old_index.plus(dx, dy);
         var new_index2 = old_index.plus(2*dx, 2*dy);
@@ -73,11 +67,7 @@ $(function() {
       if (is_fork_allowed) {
         is_fork_allowed = false;
         
-        room = second_room = first_room.fork();
-        second_scene = Scene.create(toplevel_container, second_room);
-        
-        first_scene.move_left();
-        second_scene.move_right();
+        multiroom.fork();
       }
     }
     
