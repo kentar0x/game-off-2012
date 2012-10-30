@@ -65,17 +65,21 @@ $(function() {
     function handleKey(key) {
       if (is_movement_allowed) {
         switch(key) {
-        case Keycode.left:  return move_player(-1, 0);
-        case Keycode.right: return move_player( 1, 0);
-        case Keycode.up:    return move_player( 0,-1);
-        case Keycode.down:  return move_player( 0, 1);
+        case Keycode.left:  move_player(-1, 0); return true;
+        case Keycode.right: move_player( 1, 0); return true;
+        case Keycode.up:    move_player( 0,-1); return true;
+        case Keycode.down:  move_player( 0, 1); return true;
         
         case Keycode.esc: /* falls through */
-        case Keycode.R: return try_again();
+        case Keycode.R: try_again(); return true;
         
-        case Keycode.F: return fork_room();
+        case Keycode.F: fork_room(); return true;
+        
+        case Keycode.tab: multiroom.next_room(); return true;
         }
       }
+      
+      return false;
     }
     
     
@@ -90,6 +94,8 @@ $(function() {
     // first keypress begins the game
     keyHandler = begin;
     $(document).keydown(function(e) {
-      keyHandler(e['keyCode']);
+      if (keyHandler(e['keyCode'])) {
+        e.preventDefault();
+      }
     });
 });
