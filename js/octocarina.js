@@ -1,7 +1,5 @@
 $(function() {
     var toplevel_container = $('#content');
-    var first_container = null;
-    var second_container = null;
     var is_fork_allowed = false;
     
     
@@ -9,45 +7,30 @@ $(function() {
     var room = null;
     var first_room = null;
     var second_room = null;
-    
-    function create_room_container() {
-      var element = $('<div class="room"/>');
-      
-      toplevel_container.prepend(element);
-      return element;
-    }
+    var first_scene = null;
+    var second_scene = null;
     
     function really_load_level(index) {
       level = index;
       room = first_room = World.load_room(level);
-      Cake.display(first_container, first_room);
-      first_container.transition({opacity: 1}, 'slow');
-      
-      is_fork_allowed = true;
+      first_scene = Scene.create(toplevel_container, first_room);
+      first_scene.show(function() {
+        is_fork_allowed = true;
+      });
     }
     
     function load_level(index) {
-      if (second_container) {
-        var element = second_container;
-        element.transition({opacity: 0}, function() {
-          element.remove();
-        });
-        
-        second_container = second_room = null;
+      if (second_scene) {
+        second_scene.remove();
+        second_scene = null;
       }
-      
-      if (!first_container) {
-        first_container = create_room_container();
-        first_container.transition({opacity: 0}, 0,
-                         function() {
-                           really_load_level(index);
-                         });
+      if (first_scene) {
+        first_scene.remove(function() {
+          really_load_level(index);
+        });
+        first_scene = null;
       } else {
-        first_container.transition({opacity: 0})
-                       .transition({scale: 1.0, x: 0}, 0,
-                         function() {
-                           really_load_level(index);
-                         });
+        really_load_level(index);
       }
     }
     
@@ -83,12 +66,11 @@ $(function() {
       if (is_fork_allowed) {
         is_fork_allowed = false;
         
-        second_container = create_room_container();
         room = second_room = first_room.fork();
-        Cake.display(second_container, second_room);
+        second_scene = Scene.create(toplevel_container, second_room);
         
-        first_container.transition({scale: 0.5, x: -410});
-        second_container.transition({scale: 0.5, x: 410});
+        first_scene.move_left();
+        second_scene.move_right();
       }
     }
     

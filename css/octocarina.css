@@ -23,7 +23,7 @@ h1 {
  * 
  * All blocks have the same height: 40px. This allows them to stack nicely.
  */
-.room {
+.scene {
   width: 800px;
   height: 650px;
   overflow: hidden;
