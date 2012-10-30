@@ -1,19 +1,25 @@
-Containment Hierarchies
----
+# Design document
 
-A note about the organization of the code.
+This isn't a Waterfall-style design document: I don't have a fixed idea of
+where I want the project to go, or how I want it to be structured in the
+future. I just thought that it would be useful to have a high-level
+explanation of the way the code is *currently* structured, so you can have an
+idea of what is where.
 
-I try to keep each file very short, with few responsibilities. The exception
-is octocarina.js, which contains everything which hasn't yet been refactored
-into a class yet.
+I arrived at this design gradually: I implement new features in the main
+octocarina.js file, then I refactor the resulting mess into small classes,
+renaming and repurposing the existing classes when appropriate. I expect the
+design to continue to change as we go along, we can just trash this document
+once it becomes too obsolete. For now, I just hope it's useful to you!
+
+## Containment hierarchies
 
 So far, there are two parallel class hierarchies:
 - World contains Multirooms contains Rooms  contains Tiles
 -                Theatre    contains Scenes contains Sprites
 
 
-Rooms, etc.
----
+### Data hierarchy
 
 The first hierarchy is the data. The main mechanic of this game is to fork the
 timeline, so it's important to keep track of each copy; this is what Multiroom
@@ -35,8 +41,7 @@ Oh, and World is where we keep the level data, using a simple ASCII format.
 Feel free to add your own levels! The more, the merrier.
 
 
-Scenes, etc.
----
+### View hierarchy
 
 In parallel to the data hierarchy is a view hierarchy which takes care of
 displaying all this data. Please don't add animation or css, or html data to
@@ -59,18 +64,17 @@ many Scenes. The role of the Theatre is to listen for Multiroom changes, and
 to display the many rooms accordingly.
 
 
-Events
----
+## Events
 
 I decided to stick to the jQuery convention for events and callbacks: the
 method for registering callbacks is the same as the method for triggering the
 event:
 
-  element.click(function() {...}); // register a callback
-  element.click(); // trigger a click
-  
-  room.change_tile(function(index, tile) {...}); // register a callback
-  room.change_tile(index, tile); // trigger a tile change
+    element.click(function() {...}); // register a callback
+    element.click(); // trigger a click
+    
+    room.change_tile(function(index, tile) {...}); // register a callback
+    room.change_tile(index, tile); // trigger a tile change
 
 Unlike jQuery, I don't provide a method for removing a callback, even though I
 routinely throw away Theatres which no longer need to listen to anything. The
@@ -78,3 +82,5 @@ idea is that when a new level is loaded, I instantiate both a new Multiroom
 and a new Theatre. This should allow both the old Multiroom and the old
 Theatre to get garbage-collected, so it doesn't matter that an old Theatre
 instance is still listening to an old Multiroom.
+
+Happy hacking!
