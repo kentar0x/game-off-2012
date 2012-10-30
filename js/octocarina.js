@@ -63,6 +63,9 @@ $(function() {
     
     var keyHandler;
     function handleKey(key) {
+      // return false for keys which don't mess with the browser state,
+      // this will allow browser commands like Cmd+R to work.
+      
       if (is_movement_allowed) {
         switch(key) {
         case Keycode.left:  move_player(-1, 0); return true;
@@ -71,9 +74,9 @@ $(function() {
         case Keycode.down:  move_player( 0, 1); return true;
         
         case Keycode.esc: /* falls through */
-        case Keycode.R: try_again(); return true;
+        case Keycode.R: try_again(); return false;
         
-        case Keycode.F: fork_room(); return true;
+        case Keycode.F: fork_room(); return false;
         
         case Keycode.tab: multiroom.next_room(); return true;
         }
