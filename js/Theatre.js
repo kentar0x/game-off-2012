@@ -2,6 +2,16 @@
 // it watches a multiroom change, and updates its scenes to match.
 
 var Theatre = {
+  empty: function() {
+    // same API as a regular Theatre, but holds no rooms.
+    // useful to simplify the logic of callers,  who don't have
+    // to distinguish between a Theatre and null.
+    return {
+      remove: function(callback) {
+        callback();
+      }
+    };
+  },
   create: function(container, multiroom, callback) {
     var element = container;
     

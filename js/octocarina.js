@@ -6,29 +6,20 @@ $(function() {
     
     var level = 0;
     var multiroom = null;
-    var theatre = null;
-    
-    function really_load_level(index) {
-      level = index;
-      multiroom = World.load_multiroom(level);
-      is_movement_allowed = true;
-      
-      theatre = Theatre.create(toplevel_container, multiroom, function() {
-        is_fork_allowed = true;
-      });
-    }
+    var theatre = Theatre.empty();
     
     function load_level(index) {
       is_movement_allowed = false;
       
-      if (theatre) {
-        theatre.remove(function() {
-          really_load_level(index);
+      theatre.remove(function() {
+        level = index;
+        multiroom = World.load_multiroom(level);
+        is_movement_allowed = true;
+        
+        theatre = Theatre.create(toplevel_container, multiroom, function() {
+          is_fork_allowed = true;
         });
-        theatre = null;
-      } else {
-        really_load_level(index);
-      }
+      });
     }
     
     function try_again() {
