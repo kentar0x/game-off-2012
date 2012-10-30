@@ -1,5 +1,6 @@
 $(function() {
     var toplevel_container = $('#content');
+    var is_movement_allowed = true;
     var is_fork_allowed = false;
     
     
@@ -13,6 +14,8 @@ $(function() {
     function really_load_level(index) {
       level = index;
       room = first_room = World.load_room(level);
+      is_movement_allowed = true;
+      
       first_scene = Scene.create(toplevel_container, first_room);
       first_scene.show(function() {
         is_fork_allowed = true;
@@ -20,6 +23,8 @@ $(function() {
     }
     
     function load_level(index) {
+      is_movement_allowed = false;
+      
       if (second_scene) {
         second_scene.remove();
         second_scene = null;
@@ -44,20 +49,22 @@ $(function() {
     
     
     function move_player(dx, dy) {
-      var old_index = room.player_index();
-      var new_index = old_index.plus(dx, dy);
-      var new_index2 = old_index.plus(2*dx, 2*dy);
-      
-      var target = room.tile_at(new_index);
-      var target2 = room.tile_at(new_index2);
-      
-      if (target == Tile.goal) {
-        next_level();
-      } else if (target == Tile.block && !target2.solid) {
-        room.move_tile(new_index, new_index2);
-        room.move_player(new_index);
-      } else if (!target.solid) {
-        room.move_player(new_index);
+      if (is_movement_allowed) {
+        var old_index = room.player_index();
+        var new_index = old_index.plus(dx, dy);
+        var new_index2 = old_index.plus(2*dx, 2*dy);
+        
+        var target = room.tile_at(new_index);
+        var target2 = room.tile_at(new_index2);
+        
+        if (target == Tile.goal) {
+          next_level();
+        } else if (target == Tile.block && !target2.solid) {
+          room.move_tile(new_index, new_index2);
+          room.move_player(new_index);
+        } else if (!target.solid) {
+          room.move_player(new_index);
+        }
       }
     }
     
