@@ -8,8 +8,6 @@ var Scene = {
     // start invisible
     element.transition({opacity: 0}, 0);
     
-    container.prepend(element);
-    
     // add the floor
     var floor_tiles = this.create_floor(room);
     Layer.create(element, floor_tiles);
@@ -17,6 +15,12 @@ var Scene = {
     // add the actual obstacles
     var tiles = this.extract_tiles(room);
     var layer = Layer.create(element, tiles);
+    
+    // add color filters on the very top, to tint the entire scene
+    var dark_filter = this.create_filter(element, 'dark');
+    var light_filter = this.create_filter(element, 'light');
+    
+    container.prepend(element);
     
     // monitor tile changes
     room.change_tile(function(index, new_tile) {
@@ -33,6 +37,7 @@ var Scene = {
         } else {
           element.transition({opacity: 0}, callback);
         }
+        return this;
       },
       show: function(callback) {
         if (arguments.length == 0) {
@@ -41,17 +46,31 @@ var Scene = {
         } else {
           element.transition({opacity: 1}, 'slow', callback);
         }
+        return this;
+      },
+      
+      darken: function(callback) {
+        dark_filter.transition({opacity: 0.1}, 0, callback);
+        return this;
+      },
+      lighten: function(callback) {
+        dark_filter.transition({opacity: 0}, 0);
+        light_filter.transition({opacity: 0.2}, 0, function() {
+          light_filter.transition({opacity: 0}, 'slow', callback);
+        });
+        return this;
       },
       
       move_to: function(x, callback) {
         // move, scale down, and make sure it's visible
         element.transition({scale: 0.5, opacity: 1, x: x}, callback);
+        return this;
       },
       move_left: function(callback) {
-        this.move_to(-410);
+        return this.move_to(-410);
       },
       move_right: function(callback) {
-        this.move_to(410);
+        return this.move_to(410);
       },
       
       remove: function(callback) {
@@ -94,5 +113,15 @@ var Scene = {
     return Table.create(room.size, function(index) {
       return room.tile_at(index);
     });
+  },
+  
+  create_filter: function(container, class_name) {
+    var filter = $('<div class="'+class_name+' filter"/>');
+    
+    // start invisible
+    filter.transition({opacity: 0}, 0);
+    container.append(filter);
+    
+    return filter;
   }
 };

@@ -17,19 +17,35 @@ h1 {
   margin-bottom: 1em;
 }
 
+.scene {
+  width: 800px;
+  height: 650px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  margin-right: -800px;
+}
+.filter {
+  width: 800px;
+  height: 650px;
+  background-color: black;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+.dark {
+  background-color: black;
+}
+.light {
+  background-color: white;
+}
+
 /* Each sprite has a width of 100px, plus a 1px border on the right which
  * overlaps with the next tile. A sprite also has a depth of 80px and a height
  * of up to 90px, for a total of 170px plus an overlapping bottom border.
  * 
  * All blocks have the same height: 40px. This allows them to stack nicely.
  */
-.scene {
-  width: 800px;
-  height: 650px;
-  overflow: hidden;
-  display: inline-block;
-  margin-right: -800px;
-}
 .layer {
   font-size: 0px; /* no gap between rows */
   height: 480px; /* 6*80px depth */

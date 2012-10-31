@@ -15,9 +15,11 @@ var Theatre = {
   create: function(container, multiroom, callback) {
     var element = container;
     
+    var current_scene = Scene.create(element, multiroom.current_room());
+    current_scene.show(callback);
+    
     var scenes = new Array(0);
-    scenes[0] = Scene.create(element, multiroom.current_room());
-    scenes[0].show(callback);
+    scenes[0] = current_scene;
     
     function rearrange() {
       var n = scenes.length;
@@ -31,13 +33,23 @@ var Theatre = {
     
     // monitor room changes
     multiroom.change_index(function(index, fork) {
-      var room = multiroom.room_at(index);
-      
       if (fork) {
-        var new_scene = Scene.create(element, room);
+        var new_room = multiroom.room_at(index);
+        var new_scene = Scene.create(element, new_room);
         scenes.push(new_scene);
         
         rearrange();
+      }
+      
+      // highlight the current scene
+      {
+        var old_scene = current_scene;
+        var new_scene = scenes[index];
+        
+        old_scene.darken();
+        new_scene.lighten();
+        
+        current_scene = new_scene;
       }
     });
     
