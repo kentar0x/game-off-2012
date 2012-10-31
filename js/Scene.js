@@ -64,8 +64,30 @@ var Scene = {
   },
   
   create_floor: function(room) {
+    // we make a special case when the last row is all walls,
+    // because the row of ground tiles look out of place in that case.
+    var all_walls = true;
+    {
+      var y = room.h - 1;
+      for(var x=0; x<room.w; ++x) {
+        var pos = Pos.create(x, y);
+        var tile = room.tile_at(pos);
+        
+        if (tile !== Tile.wall) {
+          all_walls = false;
+          break;
+        }
+      }
+    }
+    
     return Table.create(room.size, function(index) {
-      return Tile.floor;
+      var tile = room.tile_at(index);
+      
+      if (all_walls && index.y == y) {
+        return Tile.empty;
+      } else {
+        return Tile.floor;
+      }
     });
   },
   extract_tiles: function(room) {
