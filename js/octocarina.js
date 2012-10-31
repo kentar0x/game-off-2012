@@ -44,7 +44,9 @@ $(function() {
       if (target === Tile.goal) {
         next_level();
       } else if (target === Tile.block && !target2.solid) {
-        room.move_tile(new_index, new_index2);
+        var block = room.entity_at(new_index);
+        
+        room.move(block, new_index2);
         room.move_player(new_index);
       } else if (!target.solid) {
         room.move_player(new_index);

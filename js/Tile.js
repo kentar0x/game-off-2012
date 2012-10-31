@@ -7,11 +7,12 @@ var Tile = {
   from_symbol: function(symbol) {
     return this.list[symbol];
   },
-  create: function(symbol, sprite_class, solid) {
+  create: function(symbol, sprite_class, solid, entity) {
     var tile = {
       symbol: symbol,
       sprite_class: sprite_class,
-      solid: solid
+      solid: solid,
+      entity: entity
     };
     
     this.list[symbol] = tile;
@@ -19,9 +20,9 @@ var Tile = {
   }
 };
 
-Tile.empty = Tile.create('.', 'empty-tile', false);
-Tile.floor = Tile.create('f', 'floor-tile', false);
-Tile.wall = Tile.create('#', 'wall-tile', true);
-Tile.block = Tile.create('b', 'block-sprite', true);
-Tile.goal = Tile.create('*', 'goal-sprite', false);
-Tile.player = Tile.create('C', 'player-sprite', false);
+Tile.empty = Tile.create('.', 'empty-tile', false, false);
+Tile.floor = Tile.create('f', 'floor-tile', false, false);
+Tile.wall = Tile.create('#', 'wall-tile', true, false);
+Tile.block = Tile.create('b', 'block-sprite', true, true);
+Tile.goal = Tile.create('*', 'goal-sprite', false, false);
+Tile.player = Tile.create('C', 'player-sprite', true, true);

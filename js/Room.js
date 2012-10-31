@@ -3,22 +3,28 @@
 
 var Room = {
   from_tiles: function(tiles) {
-    var w = tiles.w;
-    var h = tiles.h;
-    
-    // find the player
-    var player_index = null;
-    tiles.each(function(index, tile) {
-      if (tile === Tile.player) {
-        player_index = index;
+    // find the player and the other moving entities
+    var player = null;
+    var entities = tiles.map(function(pos, tile) {
+      if (tile.entity) {
+        var entity = {pos: pos, tile: tile, floor: Tile.empty};
+        
+        if (tile === Tile.player) {
+          player = entity;
+        }
+        
+        return entity;
+      } else {
+        return null;
       }
     });
     
     var change_tile_callbacks = $.Callbacks();
+    var move_callbacks = $.Callbacks();
     return {
       size: tiles.size,
-      w: w,
-      h: h,
+      w: tiles.w,
+      h: tiles.h,
       
       tile_at: function(index) {
         return tiles.at(index, function() {
@@ -39,20 +45,38 @@ var Room = {
         }
       },
       
-      move_tile: function(old_index, new_index) {
-        var tile = tiles.at(old_index);
-        
-        this.change_tile(old_index, Tile.empty);
-        this.change_tile(new_index, tile);
+      entity_at: function(pos) {
+        return entities.at(pos);
+      },
+      move: function(entity, new_pos) {
+        if (arguments.length == 1) {
+          // add a watcher
+          var callback = entity;
+          move_callbacks.add(callback);
+        } else {
+          var old_pos = entity.pos;
+          var old_floor = entity.floor;
+          var new_floor = this.tile_at(new_pos);
+          
+          this.change_tile(old_pos, old_floor);
+          this.change_tile(new_pos, entity.tile);
+          
+          entities.change_at(old_pos, null);
+          entities.change_at(new_pos, entity);
+          
+          // notify watchers
+          move_callbacks.fire(entity, new_pos);
+          
+          entity.pos = new_pos;
+          entity.floor = new_floor;
+        }
       },
       
       player_index: function() {
-        return player_index;
+        return player.pos;
       },
       move_player: function(new_index) {
-        this.move_tile(player_index, new_index);
-        
-        player_index = new_index;
+        this.move(player, new_index);
       },
       
       fork: function() {
