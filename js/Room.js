@@ -44,6 +44,12 @@ var Room = {
           tiles.change_at(index, new_tile);
         }
       },
+      each_door: function(body) {
+        tiles.each(function(index, tile) {
+          if( tile === Tile.open_door || tile === Tile.closed_door )
+            body(index, tile);
+        });
+      },
       
       entity_at: function(pos) {
         return entities.at(pos);

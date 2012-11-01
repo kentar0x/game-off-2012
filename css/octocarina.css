@@ -85,3 +85,15 @@ h1 {
 .player-sprite {
   background-position: -404px;
 }
+.closed-door-tile {
+  background-position: -707px;
+  background-color: #ffffff;
+}
+.open-door-tile {
+  background-position: -808px;
+  background-color: #cccccc;
+}
+.button-tile {
+  background-position: -909px;
+  background-color: #aaaaaa;
+}

@@ -21,6 +21,9 @@ var Tile = {
 };
 
 Tile.empty = Tile.create('.', 'empty-tile', false, false);
+Tile.closed_door = Tile.create('D', 'closed-door-tile', true, false);
+Tile.open_door = Tile.create('d', 'open-door-tile', false, false);
+Tile.button = Tile.create('s', 'button-tile', false, false);
 Tile.floor = Tile.create('f', 'floor-tile', false, false);
 Tile.wall = Tile.create('#', 'wall-tile', true, false);
 Tile.block = Tile.create('b', 'block-sprite', true, true);

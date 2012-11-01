@@ -50,6 +50,11 @@ $(function() {
       room.move_player(new_index);
     } else if (!target.solid) {
       room.move_player(new_index);
+      if (target === Tile.button) {
+        room.each_door(function(index, tile) {
+          room.change_tile(index, Tile.open_door);
+        });
+      }
     }
   }
   
