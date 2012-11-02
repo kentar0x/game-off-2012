@@ -11,6 +11,8 @@ var Layer = {
     var sprites = tiles.map(function(index, tile) {
       return Sprite.create(element, tile);
     });
+	
+	var player = Sprite.create_player(container);
     
     return {
       sprite_at: function(index) {
