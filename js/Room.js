@@ -6,14 +6,14 @@ var Room = {
     // find the player and the other moving entities
     var player = null;
     var entities = tiles.map(function(pos, tile) {
-      if (tile.entity) {
-        var entity = {pos: pos, tile: tile, floor: Tile.empty};
+      if (tile.moveable) {
+        var moveable = {pos: pos, tile: tile, floor: Tile.empty};
         
         if (tile === Tile.player) {
-          player = entity;
+          player = moveable;
         }
         
-        return entity;
+        return moveable;
       } else {
         return null;
       }
@@ -54,14 +54,14 @@ var Room = {
       entity_at: function(pos) {
         return entities.at(pos);
       },
-      force_move: function(entity, new_pos) {
+      force_move: function(moveable, new_pos) {
         if (arguments.length == 1) {
           // add a watcher
-          var callback = entity;
+          var callback = moveable;
           move_callbacks.add(callback);
         } else {
-          var old_pos = entity.pos;
-          var old_floor = entity.floor;
+          var old_pos = moveable.pos;
+          var old_floor = moveable.floor;
           var new_floor = this.tile_at(new_pos);
 
           var self = this;
@@ -72,10 +72,10 @@ var Room = {
           }
           
           this.change_tile(old_pos, old_floor);
-          this.change_tile(new_pos, entity.tile);
+          this.change_tile(new_pos, moveable.tile);
           
           entities.change_at(old_pos, null);
-          entities.change_at(new_pos, entity);
+          entities.change_at(new_pos, moveable);
           
           if (new_floor === Tile.button) {
             var self = this;
@@ -85,27 +85,27 @@ var Room = {
           }
           
           // notify watchers
-          move_callbacks.fire(entity, new_pos);
+          move_callbacks.fire(moveable, new_pos);
           
-          entity.pos = new_pos;
-          entity.floor = new_floor;
+          moveable.pos = new_pos;
+          moveable.floor = new_floor;
         }
       },
-      move: function(entity, dx, dy) {
-        var old_index = entity.pos;
+      move: function(moveable, dx, dy) {
+        var old_index = moveable.pos;
         var new_index = old_index.plus(dx, dy);
         var new_index2 = old_index.plus(2*dx, 2*dy);
         
         var target = this.tile_at(new_index);
         var target2 = this.tile_at(new_index2);
         
-        if (target.entity && !target2.solid) {
+        if (target.moveable && !target2.solid) {
           var block = this.entity_at(new_index);
           
           this.force_move(block, new_index2);
-          this.force_move(entity, new_index);
+          this.force_move(moveable, new_index);
         } else if (!target.solid) {
-          this.force_move(entity, new_index);
+          this.force_move(moveable, new_index);
         }
       },
       

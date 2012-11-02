@@ -7,12 +7,12 @@ var Tile = {
   from_symbol: function(symbol) {
     return this.list[symbol];
   },
-  create: function(symbol, sprite_class, solid, entity) {
+  create: function(symbol, sprite_class, solid, moveable) {
     var tile = {
       symbol: symbol,
       sprite_class: sprite_class,
       solid: solid,
-      entity: entity
+      moveable: moveable
     };
     
     this.list[symbol] = tile;
