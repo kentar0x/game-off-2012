@@ -38,9 +38,16 @@ $(function() {
     var new_index = old_index.plus(dx, dy);
     var new_index2 = old_index.plus(2*dx, 2*dy);
     
+    var from = room.entity_at(old_index).floor;
+    console.log(from);
     var target = room.tile_at(new_index);
     var target2 = room.tile_at(new_index2);
     
+    if (from === Tile.button) {
+      room.each_door(function(index, tile) {
+        room.change_tile(index, Tile.closed_door);
+      });
+    }
     if (target === Tile.goal) {
       next_level();
     } else if (target === Tile.block && !target2.solid) {
