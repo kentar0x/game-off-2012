@@ -76,9 +76,6 @@ h1 {
 .wall-tile {
   background-position: -101px;
 }
-.block-sprite {
-  background-position: -202px;
-}
 .goal-sprite {
   background-position: -303px;
 }
@@ -91,6 +88,39 @@ h1 {
 .open-door-tile {
   background-position: -808px;
 }
-.button-tile {
+.regular-button-tile {
   background-position: -909px;
+}
+.pressed-regular-button-tile {
+  background-position: -1010px;
+}
+.regular-block-sprite {
+  background-position: -202px;
+}
+.green-button-tile {
+  background-position: -1111px;
+}
+.pressed-green-button-tile {
+  background-position: -1212px;
+}
+.green-block-sprite {
+  background-position: -1313px;
+}
+.blue-button-tile {
+  background-position: -1414px;
+}
+.pressed-blue-button-tile {
+  background-position: -1515px;
+}
+.blue-block-sprite {
+  background-position: -1616px;
+}
+.orange-button-tile {
+  background-position: -1717px;
+}
+.pressed-orange-button-tile {
+  background-position: -1818px;
+}
+.orange-block-sprite {
+  background-position: -1919px;
 }
