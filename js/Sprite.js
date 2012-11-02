@@ -7,6 +7,7 @@ var Sprite = {
     container.append(element);
     
     return {
+	  element: element,
       change_tile: function(new_tile) {
         element.removeClass(tile.sprite_class);
         
