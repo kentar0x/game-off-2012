@@ -34,27 +34,10 @@ $(function() {
   function move_player(dx, dy) {
     var room = multiroom.current_room();
     
-    var old_index = room.player_index();
-    var new_index = old_index.plus(dx, dy);
-    var new_index2 = old_index.plus(2*dx, 2*dy);
+    room.move_player(dx, dy);
     
-    var target = room.tile_at(new_index);
-    var target2 = room.tile_at(new_index2);
-    
-    if (target === Tile.goal) {
+    if (room.player_entity.floor == Tile.goal) {
       next_level();
-    } else if (target.entity && !target2.solid) {
-      var block = room.entity_at(new_index);
-      
-      room.move(block, new_index2);
-      room.move_player(new_index);
-    } else if (!target.solid) {
-      room.move_player(new_index);
-      if (target === Tile.button) {
-        room.each_door(function(index, tile) {
-          room.change_tile(index, Tile.open_door);
-        });
-      }
     }
   }
   

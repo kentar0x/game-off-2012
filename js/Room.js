@@ -54,7 +54,7 @@ var Room = {
       entity_at: function(pos) {
         return entities.at(pos);
       },
-      move: function(entity, new_pos) {
+      force_move: function(entity, new_pos) {
         if (arguments.length == 1) {
           // add a watcher
           var callback = entity;
@@ -77,6 +77,13 @@ var Room = {
           entities.change_at(old_pos, null);
           entities.change_at(new_pos, entity);
           
+          if (new_floor === Tile.button) {
+            var self = this;
+            this.each_door(function(index, tile) {
+              self.change_tile(index, Tile.open_door);
+            });
+          }
+          
           // notify watchers
           move_callbacks.fire(entity, new_pos);
           
@@ -84,12 +91,30 @@ var Room = {
           entity.floor = new_floor;
         }
       },
+      move: function(entity, dx, dy) {
+        var old_index = entity.pos;
+        var new_index = old_index.plus(dx, dy);
+        var new_index2 = old_index.plus(2*dx, 2*dy);
+        
+        var target = this.tile_at(new_index);
+        var target2 = this.tile_at(new_index2);
+        
+        if (target.entity && !target2.solid) {
+          var block = this.entity_at(new_index);
+          
+          this.force_move(block, new_index2);
+          this.force_move(entity, new_index);
+        } else if (!target.solid) {
+          this.force_move(entity, new_index);
+        }
+      },
       
       player_index: function() {
         return player.pos;
       },
-      move_player: function(new_index) {
-        this.move(player, new_index);
+      player_entity: player,
+      move_player: function(dx, dy) {
+        this.move(player, dx, dy);
       },
       
       fork: function() {
