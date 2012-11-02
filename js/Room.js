@@ -63,6 +63,12 @@ var Room = {
           var old_pos = entity.pos;
           var old_floor = entity.floor;
           var new_floor = this.tile_at(new_pos);
+
+          if (old_floor === Tile.button) {
+            this.each_door(function(index, tile) {
+              this.change_tile(index, Tile.closed_door);
+            });
+          }
           
           this.change_tile(old_pos, old_floor);
           this.change_tile(new_pos, entity.tile);
