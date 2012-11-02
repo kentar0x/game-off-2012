@@ -44,13 +44,16 @@ Tile.button        = Tile.create('R', {
     sprite_class : 'regular-button-tile'
 });
 Tile.green_button  = Tile.create('G', {
-    sprite_class : 'green-button-tile'
+    sprite_class : 'green-button-tile',
+    color        : 'green'
 });
 Tile.blue_button   = Tile.create('B', {
-    sprite_class : 'blue-button-tile'
+    sprite_class : 'blue-button-tile',
+    color        : 'blue'
 });
 Tile.orange_button = Tile.create('O', {
-    sprite_class : 'orange-button-tile'
+    sprite_class : 'orange-button-tile',
+    color        : 'orange'
 });
 
 Tile.block        = Tile.create('r', {
