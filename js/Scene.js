@@ -60,7 +60,11 @@ var Scene = {
         });
         return this;
       },
-      
+
+      move_center: function (callback) {
+        element.transition({ scale: 1, opacity: 1, x: 0 }, callback);
+        return this;
+      },
       move_to: function(x, callback) {
         // move, scale down, and make sure it's visible
         element.transition({scale: 0.5, opacity: 1, x: x}, callback);
