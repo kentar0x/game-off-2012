@@ -7,22 +7,72 @@ var Tile = {
   from_symbol: function(symbol) {
     return this.list[symbol];
   },
-  create: function(symbol, sprite_class, solid, entity) {
-    var tile = {
-      symbol: symbol,
-      sprite_class: sprite_class,
-      solid: solid,
-      entity: entity
-    };
-    
+  create: function(symbol, tile) {
     this.list[symbol] = tile;
     return tile;
   }
 };
 
-Tile.empty = Tile.create('.', 'empty-tile', false, false);
-Tile.floor = Tile.create('f', 'floor-tile', false, false);
-Tile.wall = Tile.create('#', 'wall-tile', true, false);
-Tile.block = Tile.create('b', 'block-sprite', true, true);
-Tile.goal = Tile.create('*', 'goal-sprite', false, false);
-Tile.player = Tile.create('C', 'player-sprite', true, true);
+Tile.empty = Tile.create('.', {
+    sprite_class: 'empty-tile'
+});
+Tile.floor = Tile.create('f', {
+    sprite_class : 'floor-tile'
+});
+Tile.wall = Tile.create('#', {
+    sprite_class : 'wall-tile',
+    solid        : true
+});
+Tile.goal = Tile.create('*', {
+    sprite_class : 'goal-sprite'
+});
+Tile.player = Tile.create('C', {
+    sprite_class : 'player-sprite',
+    solid        : true,
+    moveable     : true
+});
+
+Tile.closed_door = Tile.create('D', {
+    sprite_class : 'closed-door-tile',
+    solid        : true
+});
+Tile.open_door   = Tile.create('d', {
+    sprite_class : 'open-door-tile'
+});
+
+Tile.button        = Tile.create('R', {
+    sprite_class : 'regular-button-tile'
+});
+Tile.green_button  = Tile.create('G', {
+    sprite_class : 'green-button-tile',
+    color        : 'green'
+});
+Tile.blue_button   = Tile.create('B', {
+    sprite_class : 'blue-button-tile',
+    color        : 'blue'
+});
+Tile.orange_button = Tile.create('O', {
+    sprite_class : 'orange-button-tile',
+    color        : 'orange'
+});
+
+Tile.block        = Tile.create('r', {
+    sprite_class : 'regular-block-sprite',
+    solid        : true,
+    moveable     : true
+});
+Tile.green_block  = Tile.create('g', {
+    sprite_class : 'green-block-sprite',
+    solid        : true,
+    moveable     : true
+});
+Tile.blue_block   = Tile.create('b', {
+    sprite_class : 'blue-block-sprite',
+    solid        : true,
+    moveable     : true
+});
+Tile.orange_block = Tile.create('o', {
+    sprite_class : 'orange-block-sprite',
+    solid        : true,
+    moveable     : true
+});
