@@ -36,7 +36,7 @@ var Multiroom = {
         }
       },
       next_room: function () {
-        return this.change_index(this.current_index + 1, false);
+        return this.change_index(this.current_index + 1);
       },
       fork: function (index) {
         if (_.isFunction(index)) {
