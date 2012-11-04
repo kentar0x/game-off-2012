@@ -3,9 +3,9 @@
 
 var Room = {
   from_tiles: function(tiles) {
-    // find the player and the other moving entities
+    // find the player and the other moveables
     var player = null;
-    var entities = tiles.map(function(pos, tile) {
+    var moveables = tiles.map(function(pos, tile) {
       if (tile.moveable) {
         var moveable = {pos: pos, tile: tile, floor: Tile.empty};
         
@@ -52,7 +52,7 @@ var Room = {
       },
       
       entity_at: function(pos) {
-        return entities.at(pos);
+        return moveables.at(pos);
       },
       force_move: function(moveable, new_pos) {
         if (arguments.length == 1) {
@@ -74,8 +74,8 @@ var Room = {
           this.change_tile(old_pos, old_floor);
           this.change_tile(new_pos, moveable.tile);
           
-          entities.change_at(old_pos, null);
-          entities.change_at(new_pos, moveable);
+          moveables.change_at(old_pos, null);
+          moveables.change_at(new_pos, moveable);
           
           if (new_floor.button) {
             var correct_color = true;
