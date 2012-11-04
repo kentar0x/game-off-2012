@@ -65,7 +65,7 @@ var Room = {
           var new_floor = this.tile_at(new_pos);
 
           var self = this;
-          if (old_floor === Tile.button) {
+          if (old_floor.button) {
             this.each_door(function(index, tile) {
               self.change_tile(index, Tile.closed_door);
             });
@@ -77,11 +77,18 @@ var Room = {
           entities.change_at(old_pos, null);
           entities.change_at(new_pos, moveable);
           
-          if (new_floor === Tile.button) {
-            var self = this;
-            this.each_door(function(index, tile) {
-              self.change_tile(index, Tile.open_door);
-            });
+          if (new_floor.button) {
+            var correct_color = true;
+            if (new_floor.color) {
+              correct_color = (moveable.tile.color == new_floor.color);
+            }
+            
+            if (correct_color) {
+              var self = this;
+              this.each_door(function(index, tile) {
+                self.change_tile(index, Tile.open_door);
+              });
+            }
           }
           
           // notify watchers

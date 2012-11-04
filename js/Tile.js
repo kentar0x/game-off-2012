@@ -41,19 +41,23 @@ Tile.open_door   = Tile.create('d', {
 });
 
 Tile.button        = Tile.create('R', {
-    sprite_class : 'regular-button-tile'
+    sprite_class : 'regular-button-tile',
+    button       : true
 });
 Tile.green_button  = Tile.create('G', {
     sprite_class : 'green-button-tile',
-    color        : 'green'
+    color        : 'green',
+    button       : true
 });
 Tile.blue_button   = Tile.create('B', {
     sprite_class : 'blue-button-tile',
-    color        : 'blue'
+    color        : 'blue',
+    button       : true
 });
 Tile.orange_button = Tile.create('O', {
     sprite_class : 'orange-button-tile',
-    color        : 'orange'
+    color        : 'orange',
+    button       : true
 });
 
 Tile.block        = Tile.create('r', {
@@ -63,16 +67,19 @@ Tile.block        = Tile.create('r', {
 });
 Tile.green_block  = Tile.create('g', {
     sprite_class : 'green-block-sprite',
+    color        : 'green',
     solid        : true,
     moveable     : true
 });
 Tile.blue_block   = Tile.create('b', {
     sprite_class : 'blue-block-sprite',
+    color        : 'blue',
     solid        : true,
     moveable     : true
 });
 Tile.orange_block = Tile.create('o', {
     sprite_class : 'orange-block-sprite',
+    color        : 'orange',
     solid        : true,
     moveable     : true
 });
