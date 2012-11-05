@@ -36,7 +36,7 @@ $(function() {
     
     room.move_player(dx, dy);
     
-    if (room.player_entity.floor == Tile.goal) {
+    if (room.player.floor == Tile.goal) {
       next_level();
     }
   }

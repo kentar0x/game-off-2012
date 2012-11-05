@@ -51,7 +51,7 @@ var Room = {
         });
       },
       
-      entity_at: function(pos) {
+      moveable_at: function(pos) {
         return moveables.at(pos);
       },
       force_move: function(moveable, new_pos) {
@@ -107,7 +107,7 @@ var Room = {
         var target2 = this.tile_at(new_index2);
         
         if (target.moveable && !target2.solid) {
-          var block = this.entity_at(new_index);
+          var block = this.moveable_at(new_index);
           
           this.force_move(block, new_index2);
           this.force_move(moveable, new_index);
@@ -116,10 +116,10 @@ var Room = {
         }
       },
       
+      player: player,
       player_index: function() {
         return player.pos;
       },
-      player_entity: player,
       move_player: function(dx, dy) {
         this.move(player, dx, dy);
       },
