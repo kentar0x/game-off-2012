@@ -19,39 +19,39 @@ var Table = {
     }
     
     return {
-      at: function(index, body) {
-        if (arguments.length == 2 && !this.contains(index)) {
+      at: function(pos, body) {
+        if (arguments.length == 2 && !this.contains(pos)) {
           // default value
           return body();
         }
-        return data[index.y][index.x];
+        return data[pos.y][pos.x];
       },
-      change_at: function(index, value) {
-        data[index.y][index.x] = value;
+      change_at: function(pos, value) {
+        data[pos.y][pos.x] = value;
       },
       
       size: {w: w, h: h},
       w: w,
       h: h,
       
-      contains: function(index) {
-        return (index.x >= 0 && index.y >= 0 && index.x < w && index.y < h);
+      contains: function(pos) {
+        return (pos.x >= 0 && pos.y >= 0 && pos.x < w && pos.y < h);
       },
       
       each: function(body) {
         var self = this;
-        Pos.each(self.w, self.h, function(index) {
-          body(index, self.at(index));
+        Pos.each(self.w, self.h, function(pos) {
+          body(pos, self.at(pos));
         });
       },
       map: function(body) {
         var self = this;
-        return Table.create(self.w, self.h, function(index) {
-          return body(index, self.at(index));
+        return Table.create(self.w, self.h, function(pos) {
+          return body(pos, self.at(pos));
         });
       },
       copy: function() {
-        return this.map(function(index, value) {
+        return this.map(function(pos, value) {
           return value;
         });
       }

@@ -23,8 +23,8 @@ var Scene = {
     container.prepend(element);
     
     // monitor tile changes
-    room.change_tile(function(index, new_tile) {
-      var sprite = layer.sprite_at(index);
+    room.change_tile(function(pos, new_tile) {
+      var sprite = layer.sprite_at(pos);
       
       sprite.change_tile(new_tile);
     });
@@ -103,10 +103,10 @@ var Scene = {
       }
     }
     
-    return Table.create(room.size, function(index) {
-      var tile = room.tile_at(index);
+    return Table.create(room.size, function(pos) {
+      var tile = room.tile_at(pos);
       
-      if (all_walls && index.y == y) {
+      if (all_walls && pos.y == y) {
         return Tile.empty;
       } else {
         return Tile.floor;
@@ -114,8 +114,8 @@ var Scene = {
     });
   },
   extract_tiles: function(room) {
-    return Table.create(room.size, function(index) {
-      return room.tile_at(index);
+    return Table.create(room.size, function(pos) {
+      return room.tile_at(pos);
     });
   },
   

@@ -71,8 +71,8 @@ var World = {
     var h = level.length;
     var w = level[0].length;
     
-    var tile_symbols = Table.create(w, h, function(index) {
-      return level[index.y][index.x];
+    var tile_symbols = Table.create(w, h, function(pos) {
+      return level[pos.y][pos.x];
     });
     
     return Room.from_symbols(tile_symbols);

@@ -26,28 +26,28 @@ var Room = {
       w: tiles.w,
       h: tiles.h,
       
-      tile_at: function(index) {
-        return tiles.at(index, function() {
+      tile_at: function(pos) {
+        return tiles.at(pos, function() {
           // prevent the player from falling off the map
           return Tile.wall;
         });
       },
-      change_tile: function(index, new_tile) {
+      change_tile: function(pos, new_tile) {
         if (arguments.length == 1) {
           // add a watcher
-          var callback = index;
+          var callback = pos;
           change_tile_callbacks.add(callback);
         } else {
           // notify watchers
-          change_tile_callbacks.fire(index, new_tile);
+          change_tile_callbacks.fire(pos, new_tile);
           
-          tiles.change_at(index, new_tile);
+          tiles.change_at(pos, new_tile);
         }
       },
       each_door: function(body) {
-        tiles.each(function(index, tile) {
+        tiles.each(function(pos, tile) {
           if( tile === Tile.open_door || tile === Tile.closed_door )
-            body(index, tile);
+            body(pos, tile);
         });
       },
       
@@ -66,8 +66,8 @@ var Room = {
 
           var self = this;
           if (old_floor.button) {
-            this.each_door(function(index, tile) {
-              self.change_tile(index, Tile.closed_door);
+            this.each_door(function(pos, tile) {
+              self.change_tile(pos, Tile.closed_door);
             });
           }
           
@@ -85,8 +85,8 @@ var Room = {
             
             if (correct_color) {
               var self = this;
-              this.each_door(function(index, tile) {
-                self.change_tile(index, Tile.open_door);
+              this.each_door(function(pos, tile) {
+                self.change_tile(pos, Tile.open_door);
               });
             }
           }
@@ -99,25 +99,25 @@ var Room = {
         }
       },
       move: function(moveable, dx, dy) {
-        var old_index = moveable.pos;
-        var new_index = old_index.plus(dx, dy);
-        var new_index2 = old_index.plus(2*dx, 2*dy);
+        var old_pos = moveable.pos;
+        var new_pos = old_pos.plus(dx, dy);
+        var new_pos2 = old_pos.plus(2*dx, 2*dy);
         
-        var target = this.tile_at(new_index);
-        var target2 = this.tile_at(new_index2);
+        var target = this.tile_at(new_pos);
+        var target2 = this.tile_at(new_pos2);
         
         if (target.moveable && !target2.solid) {
-          var block = this.moveable_at(new_index);
+          var block = this.moveable_at(new_pos);
           
-          this.force_move(block, new_index2);
-          this.force_move(moveable, new_index);
+          this.force_move(block, new_pos2);
+          this.force_move(moveable, new_pos);
         } else if (!target.solid) {
-          this.force_move(moveable, new_index);
+          this.force_move(moveable, new_pos);
         }
       },
       
       player: player,
-      player_index: function() {
+      player_pos: function() {
         return player.pos;
       },
       move_player: function(dx, dy) {
@@ -131,7 +131,7 @@ var Room = {
   },
   from_symbols: function(tile_symbols) {
     // convert the tile symbols into tile types
-    var tiles = tile_symbols.map(function(index, symbol) {
+    var tiles = tile_symbols.map(function(pos, symbol) {
       return Tile.from_symbol(symbol);
     });
     

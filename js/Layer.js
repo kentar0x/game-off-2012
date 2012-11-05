@@ -8,15 +8,15 @@ var Layer = {
     
     container.append(element);
     
-    var sprites = tiles.map(function(index, tile) {
+    var sprites = tiles.map(function(pos, tile) {
       return Sprite.create(element, tile);
     });
 	
 	var player = Sprite.create_player(container);
     
     return {
-      sprite_at: function(index) {
-        return sprites.at(index);
+      sprite_at: function(pos) {
+        return sprites.at(pos);
       }
     };
   }
