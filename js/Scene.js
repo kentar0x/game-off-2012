@@ -22,13 +22,6 @@ var Scene = {
     
     container.prepend(element);
     
-    // monitor tile changes
-    room.change_tile(function(pos, new_tile) {
-      var sprite = layer.sprite_at(pos);
-      
-      sprite.change_tile(new_tile);
-    });
-    
     return {
       hide: function(callback) {
         if (arguments.length == 0) {
@@ -75,6 +68,14 @@ var Scene = {
       },
       move_right: function(callback) {
         return this.move_to(410);
+      },
+      
+      process_tile_changes: function(tile_changes) {
+        tile_changes.each(function(tile_change) {
+          var sprite = layer.sprite_at(tile_change.pos);
+          
+          sprite.change_tile(tile_change.new_tile);
+        });
       },
       
       remove: function(callback) {

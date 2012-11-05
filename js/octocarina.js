@@ -8,6 +8,11 @@ $(function() {
   var multiroom = null;
   var theatre = Theatre.empty();
   
+  function process_events() {
+    theatre.process_events(multiroom);
+    multiroom.clear_events();
+  }
+  
   function load_level(index) {
     is_movement_allowed = false;
     
@@ -35,6 +40,7 @@ $(function() {
     var room = multiroom.current_room();
     
     room.move_player(dx, dy);
+    process_events();
     
     if (room.player.floor == Tile.goal) {
       next_level();
@@ -47,12 +53,19 @@ $(function() {
       is_fork_allowed = false;
       
       multiroom.fork();
+      process_events();
     }
   }
 
   function merge_room() {
     multiroom.merge();
+    process_events();
     is_fork_allowed = true;
+  }
+  
+  function next_room() {
+    multiroom.next_room();
+    process_events();
   }
 
 
@@ -73,7 +86,7 @@ $(function() {
       
       case Keycode.F: fork_room(); return false;
       case Keycode.M: merge_room(); return false;
-      case Keycode.tab: multiroom.next_room(); return true;
+      case Keycode.tab: next_room(); return true;
       }
     }
     

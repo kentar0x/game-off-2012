@@ -66,21 +66,17 @@ to display the many rooms accordingly.
 
 ## Events
 
-I decided to stick to the jQuery convention for events and callbacks: the
-method for registering callbacks is the same as the method for triggering the
-event:
+Change of plans.
 
-    element.click(function() {...}); // register a callback
-    element.click(); // trigger a click
-    
-    room.change_tile(function(index, tile) {...}); // register a callback
-    room.change_tile(index, tile); // trigger a tile change
+Instead of following the jQuery convention of registering and triggering
+callbacks, let's follow the advice of Rich Hickey and Evan Czaplicki and eschew
+callbacks. What shall we use instead?
 
-Unlike jQuery, I don't provide a method for removing a callback, even though I
-routinely throw away Theatres which no longer need to listen to anything. The
-idea is that when a new level is loaded, I instantiate both a new Multiroom
-and a new Theatre. This should allow both the old Multiroom and the old
-Theatre to get garbage-collected, so it doesn't matter that an old Theatre
-instance is still listening to an old Multiroom.
+Lists. In the top-level keypress handler, Let's:
+1) perform the action, accumulating events of a given type in a list
+   (wrapped in an EventQueue object, for clarity)
+2) ask each module to analyse the latest events
+3) clear the lists.
+4) loop.
 
-Happy hacking!
+Hope you like it this way!

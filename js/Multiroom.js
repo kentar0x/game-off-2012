@@ -8,13 +8,18 @@ var Multiroom = {
     var rooms = new Array(1);
     rooms[0] = room;
 
-    var change_index_callbacks = $.Callbacks();
-    var fork_callbacks = $.Callbacks();
-    var merge_callbacks = $.Callbacks();
+    var room_changes = EventQueue.create();
+    var forks = EventQueue.create();
+    var merges = EventQueue.create();
 
     return {
       room_at: function (index) {
         return rooms[index];
+      },
+      each_room: function (body) {
+        for(var i=0; i<rooms.length; ++i) {
+          body(i, rooms[i]);
+        }
       },
 
       current_index: 0,
@@ -22,49 +27,79 @@ var Multiroom = {
         return this.room_at(this.current_index);
       },
 
+      room_changes: room_changes,
       change_index: function (index) {
-        if(_.isFunction(index)){
-          // add a watcher
-          var callback = index;
-          change_index_callbacks.add(callback);
-        } else {
-          this.current_index = (index % rooms.length);
+        var old_index = this.current_index;
+        var new_index = index % rooms.length;
+        
+        var old_room = rooms[old_index];
+        var new_room = rooms[new_index];
+        
+        this.current_index = new_index;
 
-          // notify watchers
-          change_index_callbacks.fire(this.current_index);
-          return this.current_room();
-        }
+        // remember the change
+        room_changes.add({
+          old_index: old_index,
+          new_index: new_index,
+          old_room: old_room,
+          new_room: new_room
+        });
+        
+        return new_room;
       },
       next_room: function () {
         return this.change_index(this.current_index + 1);
       },
-      fork: function (index) {
-        if (_.isFunction(index)) {
-          // add a watcher
-          var callback = index;
-          fork_callbacks.add(callback);
-        } else {
-          if (rooms.length < Multiroom.max_rooms) {
-            var new_room = this.current_room().fork();
-            var new_index = rooms.length;
+      
+      forks: forks,
+      fork: function () {
+        if (rooms.length < Multiroom.max_rooms) {
+          var old_index = this.current_index;
+          var new_index = rooms.length;
+          
+          var old_room = this.current_room();
+          var new_room = old_room.fork();
 
-            rooms.push(new_room);
-            fork_callbacks.fire(new_index);
-            this.change_index(new_index);
-          }
+          rooms.push(new_room);
+          
+          // remember the event
+          forks.add({
+            old_index: old_index,
+            new_index: new_index,
+            old_room: old_room,
+            new_room: new_room
+          });
+          
+          this.change_index(new_index);
         }
       },
-      merge: function (index) {
-        if (_.isFunction(index)) {
-          // add a watcher
-          merge_callbacks.add(index);
-        } else {
-          if (rooms.length > 1) {
-            rooms.remove(this.current_index);
-            merge_callbacks.fire(this.current_index);
-            this.current_index = 0;
-          }
+      
+      merges: merges,
+      merge: function () {
+        if (rooms.length > 1) {
+          var old_index = this.current_index;
+          var new_index = 0;
+          
+          var old_room = rooms[old_index];
+          var new_room = rooms[new_room];
+          
+          rooms.remove(old_index);
+          this.change_index(new_index);
+          
+          // remember the event
+          merges.add({
+            old_index: old_index,
+            new_index: new_index,
+            old_room: old_room,
+            new_room: new_room
+          });
         }
+      },
+      
+      clear_events: function() {
+        room_changes.clear();
+        forks.clear();
+        merges.clear();
       }
     };
   }

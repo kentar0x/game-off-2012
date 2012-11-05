@@ -19,8 +19,8 @@ var Room = {
       }
     });
     
-    var change_tile_callbacks = $.Callbacks();
-    var move_callbacks = $.Callbacks();
+    var tile_changes = EventQueue.create();
+    var moves = EventQueue.create();
     return {
       size: tiles.size,
       w: tiles.w,
@@ -32,17 +32,19 @@ var Room = {
           return Tile.wall;
         });
       },
+      
+      tile_changes: tile_changes,
       change_tile: function(pos, new_tile) {
-        if (arguments.length == 1) {
-          // add a watcher
-          var callback = pos;
-          change_tile_callbacks.add(callback);
-        } else {
-          // notify watchers
-          change_tile_callbacks.fire(pos, new_tile);
-          
-          tiles.change_at(pos, new_tile);
-        }
+        var old_tile = tiles.at(pos);
+        
+        tiles.change_at(pos, new_tile);
+        
+        // remember the change
+        tile_changes.add({
+          pos: pos,
+          old_tile: old_tile,
+          new_tile: new_tile
+        });
       },
       each_door: function(body) {
         tiles.each(function(pos, tile) {
@@ -54,49 +56,51 @@ var Room = {
       moveable_at: function(pos) {
         return moveables.at(pos);
       },
+      
+      moves: moves,
       force_move: function(moveable, new_pos) {
-        if (arguments.length == 1) {
-          // add a watcher
-          var callback = moveable;
-          move_callbacks.add(callback);
-        } else {
-          var old_pos = moveable.pos;
-          var old_floor = moveable.floor;
-          var new_floor = this.tile_at(new_pos);
+        var old_pos = moveable.pos;
+        var old_floor = moveable.floor;
+        var new_floor = this.tile_at(new_pos);
 
-          var self = this;
-          if (old_floor.button) {
+        var self = this;
+        if (old_floor.button) {
+          this.each_door(function(pos, tile) {
+            self.change_tile(pos, Tile.closed_door);
+          });
+        }
+        
+        this.change_tile(old_pos, old_floor);
+        this.change_tile(new_pos, moveable.tile);
+        
+        moveables.change_at(old_pos, null);
+        moveables.change_at(new_pos, moveable);
+        
+        if (new_floor.button) {
+          var correct_color = true;
+          if (new_floor.color) {
+            correct_color = (moveable.tile.color == new_floor.color);
+          }
+          
+          if (correct_color) {
+            var self = this;
             this.each_door(function(pos, tile) {
-              self.change_tile(pos, Tile.closed_door);
+              self.change_tile(pos, Tile.open_door);
             });
           }
-          
-          this.change_tile(old_pos, old_floor);
-          this.change_tile(new_pos, moveable.tile);
-          
-          moveables.change_at(old_pos, null);
-          moveables.change_at(new_pos, moveable);
-          
-          if (new_floor.button) {
-            var correct_color = true;
-            if (new_floor.color) {
-              correct_color = (moveable.tile.color == new_floor.color);
-            }
-            
-            if (correct_color) {
-              var self = this;
-              this.each_door(function(pos, tile) {
-                self.change_tile(pos, Tile.open_door);
-              });
-            }
-          }
-          
-          // notify watchers
-          move_callbacks.fire(moveable, new_pos);
-          
-          moveable.pos = new_pos;
-          moveable.floor = new_floor;
         }
+        
+        moveable.pos = new_pos;
+        moveable.floor = new_floor;
+        
+        // remember the move
+        moves.add({
+          moveable: moveable,
+          old_pos: old_pos,
+          new_pos: new_pos,
+          old_floor: old_floor,
+          new_floor: new_floor
+        });
       },
       move: function(moveable, dx, dy) {
         var old_pos = moveable.pos;
