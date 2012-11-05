@@ -70,8 +70,8 @@ var Scene = {
         return this.move_to(410);
       },
       
-      process_tile_changes: function(tile_changes) {
-        tile_changes.each(function(tile_change) {
+      process_events: function(events) {
+        events.tile_changes.each(function(tile_change) {
           var sprite = layer.sprite_at(tile_change.pos);
           
           sprite.change_tile(tile_change.new_tile);
