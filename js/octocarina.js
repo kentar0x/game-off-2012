@@ -6,9 +6,11 @@ $(function() {
   
   var level = 0;
   var multiroom = null;
+  var multibuttons = null;
   var theatre = Theatre.empty();
   
   function process_events() {
+    multibuttons.process_events(multiroom);
     theatre.process_events(multiroom);
     multiroom.clear_events();
   }
@@ -19,6 +21,9 @@ $(function() {
     theatre.remove(function() {
       level = index;
       multiroom = World.load_multiroom(level);
+      
+      multibuttons = Multi.create(multiroom.current_room(), Buttons.create);
+      
       is_movement_allowed = true;
       
       theatre = Theatre.create(toplevel_container, multiroom, function() {

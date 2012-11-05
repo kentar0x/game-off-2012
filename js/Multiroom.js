@@ -100,6 +100,10 @@ var Multiroom = {
         room_changes.clear();
         forks.clear();
         merges.clear();
+        
+        this.each_room(function(index, room) {
+          room.clear_events();
+        });
       }
     };
   }

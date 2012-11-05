@@ -46,6 +46,11 @@ var Room = {
           new_tile: new_tile
         });
       },
+      each_tile: function(body) {
+        tiles.each(function(pos, tile) {
+          body(pos, tile);
+        });
+      },
       each_door: function(body) {
         tiles.each(function(pos, tile) {
           if( tile === Tile.open_door || tile === Tile.closed_door )
@@ -63,32 +68,11 @@ var Room = {
         var old_floor = moveable.floor;
         var new_floor = this.tile_at(new_pos);
 
-        var self = this;
-        if (old_floor.button) {
-          this.each_door(function(pos, tile) {
-            self.change_tile(pos, Tile.closed_door);
-          });
-        }
-        
         this.change_tile(old_pos, old_floor);
         this.change_tile(new_pos, moveable.tile);
         
         moveables.change_at(old_pos, null);
         moveables.change_at(new_pos, moveable);
-        
-        if (new_floor.button) {
-          var correct_color = true;
-          if (new_floor.color) {
-            correct_color = (moveable.tile.color == new_floor.color);
-          }
-          
-          if (correct_color) {
-            var self = this;
-            this.each_door(function(pos, tile) {
-              self.change_tile(pos, Tile.open_door);
-            });
-          }
-        }
         
         moveable.pos = new_pos;
         moveable.floor = new_floor;
@@ -130,6 +114,11 @@ var Room = {
       
       fork: function() {
         return Room.from_tiles(tiles.copy());
+      },
+      
+      clear_events: function() {
+        tile_changes.clear();
+        moves.clear();
       }
     };
   },
