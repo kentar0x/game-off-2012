@@ -18,7 +18,7 @@ var Theatre = {
     var current_scene = Scene.create(element, multiroom.current_room());
     current_scene.show(callback);
     
-    var scenes = new Array(0);
+    var scenes = new Array(1);
     scenes[0] = current_scene;
     
     function rearrange() {
