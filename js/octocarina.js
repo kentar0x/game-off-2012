@@ -82,9 +82,13 @@ $(function() {
     if (is_movement_allowed) {
       switch(key) {
       case Keycode.left:  move_player(-1, 0); return true;
+      case Keycode['H']:  move_player(-1, 0); return true;
       case Keycode.right: move_player( 1, 0); return true;
+      case Keycode['L']:  move_player( 1, 0); return true;
       case Keycode.up:    move_player( 0,-1); return true;
+      case Keycode['K']:  move_player( 0,-1); return true;
       case Keycode.down:  move_player( 0, 1); return true;
+      case Keycode['J']:  move_player( 0, 1); return true;
       
       case Keycode.esc: /* falls through */
       case Keycode.R: try_again(); return false;

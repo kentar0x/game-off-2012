@@ -10,7 +10,7 @@ var Keycode = {
 
 (function() {
   var s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for(var i=0; i<26; ++i) {
+  for(var i=0; i<s.length; ++i) {
     Keycode[s[i]] = s.charCodeAt(i);
   }
 })();
