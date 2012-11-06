@@ -41,10 +41,18 @@ var Multi = {
           var old_index = merge.old_index;
           var new_index = merge.new_index;
           
-          // remove thing from collection
-          things.remove(old_index);
+          // old_index is only valid before the removal
+          var old_thing = things[old_index];
+          {
+            things.remove(old_index);
+          }
+          // new_index is only valid after the removal
+          var new_thing = things[new_index];
           
-          current_thing = things[new_index];
+          // notify the thing if possible
+          if (old_thing.remove) old_thing.remove();
+          
+          current_thing = new_thing;
         });
         
         events.room_changes.each(function(room_change) {
