@@ -58,8 +58,8 @@ var Multiroom = {
           var new_index = rooms.length;
           
           var old_room = this.current_room();
-          var new_room = old_room.fork();
-
+          var new_room = old_room.copy();
+          
           rooms.push(new_room);
           
           // remember the event
@@ -81,7 +81,7 @@ var Multiroom = {
           var new_index = 0;
           
           var old_room = rooms[old_index];
-          var new_room = rooms[new_room];
+          var new_room = rooms[new_index];
           
           rooms.remove(old_index);
           this.change_index(new_index);

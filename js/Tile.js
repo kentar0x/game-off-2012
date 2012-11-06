@@ -64,7 +64,12 @@ Tile.block        = Tile.create('r', {
     sprite_class : 'regular-block-sprite',
     solid        : true,
     moveable     : true
-});
+  });
+Tile.forked_block = Tile.create('M', {
+    sprite_class : 'orange-block-sprite',
+    solid        : true,
+    moveable     : true
+  });
 Tile.green_block  = Tile.create('g', {
     sprite_class : 'green-block-sprite',
     color        : 'green',

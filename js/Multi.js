@@ -33,7 +33,7 @@ var Multi = {
         events.forks.each(function(fork) {
           var new_room = fork.new_room;
           var new_thing = factory(new_room);
-          
+
           things.push(new_thing);
         });
         
