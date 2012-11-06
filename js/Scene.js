@@ -10,11 +10,11 @@ var Scene = {
     
     // add the floor
     var floor_tiles = this.create_floor(room);
-    Layer.create(element, floor_tiles);
+    Layer.create(element, floor_tiles, room);
     
     // add the actual obstacles
     var tiles = this.extract_tiles(room);
-    var layer = Layer.create(element, tiles);
+    var layer = Layer.create(element, tiles, room);
     
     // add color filters on the very top, to tint the entire scene
     var dark_filter = this.create_filter(element, 'dark');

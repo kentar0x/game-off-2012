@@ -20,7 +20,7 @@ h1 {
 .scene {
   width: 800px;
   height: 650px;
-  overflow: hidden;
+  overflow: auto;
   display: inline-block;
   position: relative;
   margin-right: -800px;
@@ -28,6 +28,7 @@ h1 {
 .filter {
   width: 800px;
   height: 650px;
+  overflow: visible;
   background-color: black;
   position: absolute;
   left: 0px;
@@ -52,6 +53,11 @@ h1 {
   margin-bottom: -520px; /* 6*80px depth + 40px stacking height */
   position: relative;
   top: 40px; /* 1*40px stacking height */
+}
+.layer-line
+{
+	width: 3000px;
+	height: 80px;
 }
 .sprite {
   width: 101px; /* 100px width + 1px border */
