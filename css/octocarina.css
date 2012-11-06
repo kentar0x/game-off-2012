@@ -56,7 +56,7 @@ h1 {
 }
 .layer-line
 {
-	min-width: 3000px;
+	width: 3000px;
 	height: 80px;
 }
 .sprite {

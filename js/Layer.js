@@ -12,6 +12,7 @@ var Layer = {
 	for (var i = 1; i <= room.h; i++)
 	{
 		var line = $("<div class='layer-line'></div>");
+		line.css('width', (room.w * 101) + 'px');
 		element.append(line);
 		lines.push(line);
 	}
