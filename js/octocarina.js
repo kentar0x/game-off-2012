@@ -19,11 +19,11 @@ $(function () {
   }
 
   function load_level(index) {
+    level = index;
     is_movement_allowed = false;
 
     theatre.remove(function () {
-      level = index;
-      multiroom = World.load_multiroom(level);
+      multiroom = World.load_multiroom(index);
 
       multibuttons = Multi.create(multiroom.current_room(), Buttons.create);
       forkedBlock = ForkedBlock.create();
@@ -32,6 +32,11 @@ $(function () {
 
       theatre = Theatre.create(toplevel_container, multiroom, function () {
         is_fork_allowed = true;
+        
+        if (level != index) {
+          // level changed during the animation, load again
+          load_level(level);
+        }
       });
     });
   }
@@ -99,9 +104,15 @@ $(function () {
         case Keycode.M: merge_room(); return false;
         case Keycode.tab: next_room(); return true;
 
-        // secret level skipping keys!
+        // secret level-skipping keys!
         case Keycode.O: if (debug) load_level(level-1); return false;
         case Keycode.P: if (debug) load_level(level+1); return false;
+      }
+    } else if (debug) {
+      switch (key) {
+        // keep pressing while the level is loading.
+        case Keycode.O: --level; return false;
+        case Keycode.P: ++level; return false;
       }
     }
 
