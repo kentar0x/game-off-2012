@@ -2,6 +2,7 @@ $(function () {
   var toplevel_container = $('#content');
   var is_movement_allowed = true;
   var is_fork_allowed = false;
+  var debug = false;
 
 
   var level = 0;
@@ -97,6 +98,10 @@ $(function () {
         case Keycode.F: fork_room(); return false;
         case Keycode.M: merge_room(); return false;
         case Keycode.tab: next_room(); return true;
+
+        // secret level skipping keys!
+        case Keycode.O: if (debug) load_level(level-1); return false;
+        case Keycode.P: if (debug) load_level(level+1); return false;
       }
     }
 
@@ -104,10 +109,12 @@ $(function () {
   }
 
 
-  function begin() {
+  function begin(e) {
     toplevel_container.addClass('well').empty();
     load_level(0);
     keyHandler = handleKey;
+    
+    if (e == Keycode.D) debug = true;
   }
 
   $('#begin').click(begin);
