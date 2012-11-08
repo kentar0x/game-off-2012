@@ -1,7 +1,7 @@
 $(function () {
   var toplevel_container = $('#content');
   var is_movement_allowed = true;
-  var is_fork_allowed = false;
+  var player_has_fork = true;
   var debug = false;
 
 
@@ -31,8 +31,6 @@ $(function () {
       is_movement_allowed = true;
 
       theatre = Theatre.create(toplevel_container, multiroom, function () {
-        is_fork_allowed = true;
-        
         if (level != index) {
           // level changed during the animation, load again
           load_level(level);
@@ -62,25 +60,37 @@ $(function () {
   }
 
 
-  function fork_room() {
-    if (is_fork_allowed) {
+  function fork_unfork_room() {
+    if (player_has_fork) {
       var room = multiroom.current_room();
       var dir = Pos.create(1, 0);
       var pos = room.player.pos.plus(dir.x, dir.y);
       var block = room.moveable_at(pos);
 
       if (block) {
-        is_fork_allowed = false;
+        player_has_fork = false;
         multiroom.fork(block);
         process_events();
       }
+    } else {
+      var room = multiroom.current_room();
+      var block = null;
+      
+      Pos.each_dir(function(dir) {
+        var pos = room.player.pos.plus(dir.x, dir.y);
+        var moveable = room.moveable_at(pos);
+        
+        if (moveable && moveable.forked) {
+          block = moveable;
+        }
+      });
+      
+      if (block) {
+        player_has_fork = true;
+        multiroom.merge(block);
+        process_events();
+      }
     }
-  }
-
-  function merge_room() {
-    multiroom.merge();
-    process_events();
-    is_fork_allowed = true;
   }
 
   function next_room() {
@@ -104,8 +114,7 @@ $(function () {
         case Keycode.esc: /* falls through */
         case Keycode.R: try_again(); return false;
 
-        case Keycode.F: fork_room(); return false;
-        case Keycode.M: merge_room(); return false;
+        case Keycode.Z: fork_unfork_room(); return false;
         case Keycode.tab: next_room(); return true;
 
         // secret level-skipping keys!

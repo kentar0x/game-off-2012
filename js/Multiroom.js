@@ -54,6 +54,8 @@ var Multiroom = {
       forks: forks,
       fork: function (block) {
         if (rooms.length < Multiroom.max_rooms) {
+          block.forked = true;
+          
           var old_index = this.current_index;
           var new_index = rooms.length;
           
@@ -80,16 +82,25 @@ var Multiroom = {
       },
       
       merges: merges,
-      merge: function () {
+      merge: function (block) {
         if (rooms.length > 1) {
           var old_index = this.current_index;
           var new_index = 0;
           
+          // old_index is only valid before the removal
           var old_room = rooms[old_index];
+          {
+            rooms.remove(old_index);
+          }
+          // new_index is only valid after the removal
           var new_room = rooms[new_index];
-          
-          rooms.remove(old_index);
           this.change_index(new_index);
+          
+          var old_block = block;
+          var new_block = new_room.moveable_from_id(old_block.id);
+          
+          old_block.forked = new_block.forked = false;
+          
           
           // remember the event
           merges.add({

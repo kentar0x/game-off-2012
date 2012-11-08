@@ -19,6 +19,8 @@
             room.move(old_block, pos.x, pos.y);
           }
           
+          old_block.forked = false;
+          
           movements = [];
           old_block = new_block = false;
         });

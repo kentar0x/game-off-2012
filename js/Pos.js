@@ -21,5 +21,11 @@ var Pos = {
         body(Pos.create(x, y));
       }
     }
+  },
+  each_dir: function(body) {
+    body(Pos.create( 1,  0));
+    body(Pos.create(-1,  0));
+    body(Pos.create( 0,  1));
+    body(Pos.create( 0, -1));
   }
 };
