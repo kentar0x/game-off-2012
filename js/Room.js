@@ -7,7 +7,8 @@ var Room = {
     var player = null;
     var moveables = tiles.map(function (pos, tile) {
       if (tile.moveable) {
-        var moveable = { pos: pos, tile: tile, floor: Tile.empty };
+        var moveable = Moveable.create(tile);
+        moveable.pos = pos;
 
         if (tile === Tile.player) {
           player = moveable;
