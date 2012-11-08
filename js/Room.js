@@ -53,15 +53,8 @@ var Room = {
       moveable_at: function (pos) {
         return moveables.at(pos);
       },
-
-      find_moveable: function (need_tile) {
-        var object;
-        moveables.each(function (moveable) {
-          if (need_tile === moveable.tile) {
-            object = moveable;
-          }
-        });
-        return object;
+      moveable_from_id: function (id) {
+        return moveables.from_id(id);
       },
 
       moves: moves,
@@ -112,14 +105,6 @@ var Room = {
         this.move(player, dx, dy);
       },
 
-      fork_at: function (dx, dy) {
-        var pos = this.player_pos().plus(dx, dy);
-        var block = this.moveable_at(pos);
-        if (block) {
-          block.tile = Tile.forked_block;
-          this.change_tile(pos, Tile.forked_block);
-        }
-      },
       copy: function () {
         return Room.create(tiles.copy(), moveables.copy());
       },

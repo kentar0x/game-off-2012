@@ -52,13 +52,16 @@ var Multiroom = {
       },
       
       forks: forks,
-      fork: function () {
+      fork: function (block) {
         if (rooms.length < Multiroom.max_rooms) {
           var old_index = this.current_index;
           var new_index = rooms.length;
           
           var old_room = this.current_room();
           var new_room = old_room.copy();
+          
+          var old_block = block;
+          var new_block = new_room.moveable_from_id(old_block.id);
           
           rooms.push(new_room);
           
@@ -67,7 +70,9 @@ var Multiroom = {
             old_index: old_index,
             new_index: new_index,
             old_room: old_room,
-            new_room: new_room
+            new_room: new_room,
+            old_block: old_block,
+            new_block: new_block
           });
           
           this.change_index(new_index);

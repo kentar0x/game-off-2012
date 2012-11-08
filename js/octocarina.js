@@ -64,12 +64,16 @@ $(function () {
 
   function fork_room() {
     if (is_fork_allowed) {
-      is_fork_allowed = false;
       var room = multiroom.current_room();
-      room.fork_at(1, 0);
+      var dir = Pos.create(1, 0);
+      var pos = room.player.pos.plus(dir.x, dir.y);
+      var block = room.moveable_at(pos);
 
-      multiroom.fork();
-      process_events();
+      if (block) {
+        is_fork_allowed = false;
+        multiroom.fork(block);
+        process_events();
+      }
     }
   }
 
