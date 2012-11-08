@@ -131,9 +131,9 @@ var Room = {
     
     return this.create(tiles, moveables);
   },
-  from_symbols: function (tile_symbols) {
+  from_data: function (data) {
     // convert the tile symbols into tile types
-    var tiles = tile_symbols.map(function (pos, symbol) {
+    var tiles = data.symbols.map(function (pos, symbol) {
       return Tile.from_symbol(symbol);
     });
 
