@@ -11,10 +11,11 @@
 
         events.merges.each(function (merge) {
           var forked_block = merge.new_room.find_moveable(Tile.forked_block);
-          while (movements.length > 0) {
-            var pos = movements.pop();
+          for(var i=0; i<movements.length; ++i) {
+            var pos = movements[i];
             merge.new_room.move(forked_block, pos.x, pos.y);
           }
+          movements = [];
           actif = false;
         });
 
