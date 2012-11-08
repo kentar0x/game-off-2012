@@ -2,24 +2,15 @@
 // tiles can change type, and you can listen for those changes.
 
 var Room = {
-  from_tiles: function (tiles) {
-    // find the player and the other moveables
+  create: function(tiles, moveables) {
+    // find the player
     var player = null;
-    var moveables = tiles.map(function (pos, tile) {
-      if (tile.moveable) {
-        var moveable = Moveable.create(tile);
-        moveable.pos = pos;
-
-        if (tile === Tile.player) {
-          player = moveable;
-        }
-
-        return moveable;
-      } else {
-        return null;
+    moveables.each(function(moveable) {
+      if (moveable.tile === Tile.player) {
+        player = moveable;
       }
     });
-
+    
     var tile_changes = EventQueue.create();
     var moves = EventQueue.create();
     return {
@@ -64,13 +55,10 @@ var Room = {
       },
 
       find_moveable: function (need_tile) {
-        var object, 
-            self = this;
-        moveables.each(function (pos) {
-          var tile = self.tile_at(pos);
-          if (need_tile == tile) {
-            object = moveables.at(pos);
-            return;
+        var object;
+        moveables.each(function (moveable) {
+          if (need_tile === moveable.tile) {
+            object = moveable;
           }
         });
         return object;
@@ -85,10 +73,8 @@ var Room = {
         this.change_tile(old_pos, old_floor);
         this.change_tile(new_pos, moveable.tile);
 
-        moveables.change_at(old_pos, null);
-        moveables.change_at(new_pos, moveable);
-
-        moveable.pos = new_pos;
+        moveables.swap(old_pos, new_pos);
+        
         moveable.floor = new_floor;
 
         // remember the move
@@ -128,14 +114,14 @@ var Room = {
 
       fork_at: function (dx, dy) {
         var pos = this.player_pos().plus(dx, dy);
-        var tile = this.tile_at(pos);
-        //Tile.forkable ???
-        if (tile == Tile.block) {
+        var block = this.moveable_at(pos);
+        if (block) {
+          block.tile = Tile.forked_block;
           this.change_tile(pos, Tile.forked_block);
         }
       },
       copy: function () {
-        return Room.from_tiles(tiles.copy());
+        return Room.create(tiles.copy(), moveables.copy());
       },
 
       clear_events: function () {
@@ -143,6 +129,22 @@ var Room = {
         moves.clear();
       }
     };
+  },
+  from_tiles: function (tiles) {
+    // find the moveables
+    var player = null;
+    var moveable_table = tiles.map(function (pos, tile) {
+      if (tile.moveable) {
+        var moveable = Moveable.create(tile);
+        
+        return moveable;
+      } else {
+        return null;
+      }
+    });
+    var moveables = Tracker.from_moveable_table(moveable_table);
+    
+    return this.create(tiles, moveables);
   },
   from_symbols: function (tile_symbols) {
     // convert the tile symbols into tile types

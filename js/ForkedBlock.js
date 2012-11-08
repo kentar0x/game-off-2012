@@ -16,6 +16,7 @@
             merge.new_room.move(forked_block, pos.x, pos.y);
           }
           merge.new_room.change_tile(forked_block.pos, Tile.block);
+          forked_block.tile = Tile.block;
           
           movements = [];
           actif = false;
