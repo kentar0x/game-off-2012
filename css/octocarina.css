@@ -103,9 +103,6 @@ h1 {
 .wall-tile {
   background-position: -101px;
 }
-.goal-sprite {
-  background-position: -303px;
-}
 .player-sprite {
   background-position: -404px;
 }

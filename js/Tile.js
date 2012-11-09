@@ -23,9 +23,6 @@ Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
     solid        : true
 });
-Tile.goal = Tile.create('*', {
-    sprite_class : 'goal-sprite'
-});
 Tile.player = Tile.create('C', {
     sprite_class : 'player-sprite',
     solid        : true,

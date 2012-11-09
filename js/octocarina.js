@@ -55,7 +55,7 @@ $(function () {
     room.move_player(dx, dy);
     process_events();
 
-    if (room.player.floor == Tile.goal) {
+    if (room.player.floor == Tile.open_door) {
       next_level();
     }
   }
