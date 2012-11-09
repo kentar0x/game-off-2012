@@ -16,6 +16,32 @@ var Scene = {
     var tiles = this.extract_tiles(room);
     var layer = Layer.create(element, tiles, room);
     
+    // add text on top
+    if (room.text) {
+      var text_layer = $('<div class="text"/>');
+      var i = 0;
+      var delay = 500;
+      function display_next_line() {
+        if (i < room.text.length) {
+          var p = $('<p/>').text(room.text[i++]);
+          
+          // start invisible
+          p.transition({opacity: 0}, 0);
+          
+          text_layer.append(p);
+          
+          // appear gradually
+          
+          p.delay(delay)
+           .transition({opacity: 0.99}, 2000, 'out', display_next_line);
+          delay = 500;
+        }
+      }
+      
+      element.append(text_layer);
+      display_next_line();
+    }
+    
     // add color filters on the very top, to tint the entire scene
     var dark_filter = this.create_filter(element, 'dark');
     var light_filter = this.create_filter(element, 'light');

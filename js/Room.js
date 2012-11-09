@@ -136,7 +136,11 @@ var Room = {
     var tiles = data.symbols.map(function (pos, symbol) {
       return Tile.from_symbol(symbol);
     });
-
-    return this.from_tiles(tiles);
+    
+    var room = this.from_tiles(tiles);
+    
+    if (data.text) room.text = data.text;
+    
+    return room;
   }
 };

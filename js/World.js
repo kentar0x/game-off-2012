@@ -3,32 +3,15 @@
 var World = {
   levels: [
     {
-      ascii: ["########.#",
-              "#..r..*..#",
-              "#.Cg.....#",
-              "#..b.....#",
-              "#..o.....#",
-              "#......b.#",
-              "#......b.#",
-              "#######..#"],
-    }
-    ,
-    {
-      ascii: ["......*.",
-              "######D#",
-              "#.CrR..#",
-              "#..bB..#",
-              "#......#",
-              "########"]
-    }
-    ,
-    {
       ascii: ["########",
               "#......#",
               "#.C..*.#",
               "#......#",
               "#......#",
-              "########"]
+              "########"],
+      text: ["The adventure began simply",
+             "with a gentle press",
+             "on an arrow key."]
     }
     ,
     {
@@ -37,7 +20,10 @@ var World = {
               "#...*#.#",
               "#.####.#",
               "#......#",
-              "########"]
+              "########"],
+      text: ["The path was twisted",
+             "but the will is strong",
+             "when adventure awaits."]
     }
     ,
     {
@@ -46,7 +32,26 @@ var World = {
               "..#.*...",
               "C.#.....",
               "..#.....",
-              "..#####."]
+              "..#####."],
+      text: ["The walls are high",
+             "impenetrable, and wide",
+             "but are they deep?"]
+    }
+    ,
+    {
+      ascii: ["#...#",
+              "..*..",
+              ".....",
+              "rr#rr",
+              ".....",
+              ".....",
+              "##r##",
+              ".....",
+              "..C..",
+              "....."],
+      text: ["The path was full of obstacles",
+             "which I pushed aside",
+             "strongly, but carefully."]
     }
     ,
     {
@@ -55,7 +60,10 @@ var World = {
               "#r.#....",
               "...####.",
               ".C.r....",
-              "...#...."]
+              "...#...."],
+      text: ["I am ashamed of my mistakes",
+             "so I press 'R'",
+             "to rewrite the history."]
     }
     ,
     {
@@ -64,7 +72,13 @@ var World = {
               "........",
               "####rrrr",
               ".C.r....",
-              "...#...."]
+              "...#...."],
+      text: ["I hate those blocks",
+             "I want to stab them",
+             "with 'Z'.",
+             "",
+             "Soon",
+             "my anger turns to confusion."]
     }
     ,
     {
@@ -73,16 +87,28 @@ var World = {
               "........",
               "####.###",
               ".C.rr...",
-              "........"]
+              "........"],
+      text: ["Can I unstab a block?",
+             "With 'Z'?",
+             "What else would that undo?",
+             "",
+             "As I experiment",
+             "confusion gives way to understanding."]
     }
     ,
     {
-      ascii: ["........",
-              ".*..##..",
-              ".....#..",
-              "####.###",
-              ".C.rr...",
-              "........"]
+      ascii: [".......",
+              ".......",
+              ".......",
+              ".......",
+              "...C...",
+              "......."],
+      text: ["As I lay",
+             "alone",
+             "in an empty room",
+             "",
+             "I realize",
+             "I played an incomplete prototype."]
     }
   ],
   
