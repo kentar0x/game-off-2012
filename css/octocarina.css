@@ -109,6 +109,21 @@ h1 {
 .player-sprite {
   background-position: -404px;
 }
+.player-sprite.up {
+  background-position: -505px;
+}
+.player-sprite.left {
+  background-position: -606px;
+}
+.player-sprite.right {
+  background-position: -606px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
 .closed-door-tile {
   background-position: -707px;
 }

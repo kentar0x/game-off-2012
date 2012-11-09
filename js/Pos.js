@@ -7,6 +7,17 @@ var Pos = {
       y: y,
       plus: function(dx, dy) {
         return Pos.create(this.x + dx, this.y + dy);
+      },
+      dir_name: function() {
+        if (this.x < 0) {
+          return "left";
+        } else if (this.x > 0) {
+          return "right";
+        } else if (this.y < 0) {
+          return "up";
+        } else {
+          return "down";
+        }
       }
     };
   },

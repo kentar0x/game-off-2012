@@ -102,6 +102,7 @@ var Room = {
         return player.pos;
       },
       move_player: function (dx, dy) {
+        player.dir = Pos.create(dx, dy);
         this.move(player, dx, dy);
       },
 

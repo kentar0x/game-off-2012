@@ -17,6 +17,7 @@ var Sprite = {
   },
   create: function(container, tile) {
     var element = $('<div class="sprite"/>').addClass(tile.sprite_class);
+    var dir = null;
     
     container.append(element);
     
@@ -28,6 +29,18 @@ var Sprite = {
         tile = new_tile;
         
         element.addClass(tile.sprite_class)
+      },
+      change_moveable: function(new_moveable) {
+        if (dir) {
+          element.removeClass(dir.dir_name());
+        }
+        
+        this.change_tile(new_moveable.tile);
+        
+        if (new_moveable.dir) {
+          dir = new_moveable.dir;
+          element.addClass(dir.dir_name());
+        }
       }
     };
   }

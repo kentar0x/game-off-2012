@@ -96,11 +96,18 @@ var Scene = {
         return this.move_to(410);
       },
       
-      process_events: function(events) {
-        events.tile_changes.each(function(tile_change) {
-          var sprite = layer.sprite_at(tile_change.pos);
+      process_events: function(room) {
+        room.tile_changes.each(function(tile_change) {
+          var pos = tile_change.pos;
+          var tile = tile_change.new_tile;
+          var sprite = layer.sprite_at(pos);
+          var moveable = room.moveable_at(pos);
           
-          sprite.change_tile(tile_change.new_tile);
+          if (moveable) {
+            sprite.change_moveable(moveable);
+          } else {
+            sprite.change_tile(tile);
+          }
         });
       },
       

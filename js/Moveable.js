@@ -10,6 +10,7 @@ var Moveable = {
       id: null,
       
       forked: false,
+      dir: null,
       
       copy: function() {
         var other = Moveable.create(this.tile);
@@ -19,6 +20,7 @@ var Moveable = {
         other.id = this.id;
         
         other.forked = this.forked;
+        other.dir = this.dir;
         
         return other;
       }
