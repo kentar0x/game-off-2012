@@ -21,6 +21,7 @@ $(function () {
   function load_level(index) {
     level = index;
     is_movement_allowed = false;
+    player_has_fork = true;
 
     theatre.remove(function () {
       multiroom = World.load_multiroom(index);
