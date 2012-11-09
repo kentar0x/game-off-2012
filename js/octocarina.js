@@ -64,7 +64,7 @@ $(function () {
   function fork_unfork_room() {
     if (player_has_fork) {
       var room = multiroom.current_room();
-      var dir = Pos.create(1, 0);
+      var dir = room.player.dir;
       var pos = room.player.pos.plus(dir.x, dir.y);
       var block = room.moveable_at(pos);
 
