@@ -12,10 +12,10 @@ var Theatre = {
       }
     };
   },
-  create: function(container, multiroom, callback) {
+  create: function(container, room, callback) {
     var element = container;
     
-    var scenes = Multi.create(multiroom.current_room(), function(room) {
+    var scenes = Multi.create(room, function(room) {
       return Scene.create(element, room);
     });
     scenes.current().show(callback);

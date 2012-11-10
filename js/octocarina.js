@@ -26,12 +26,13 @@ $(function () {
     theatre.remove(function () {
       multiroom = World.load_multiroom(index);
 
-      multibuttons = Multi.create(multiroom.current_room(), Buttons.create);
-      forkedBlock = ForkedBlock.create();
+      var room = multiroom.current_room();
+      multibuttons = Multibuttons.create(room);
+      forkedBlock = ForkedBlock.create(room);
 
       is_movement_allowed = true;
 
-      theatre = Theatre.create(toplevel_container, multiroom, function () {
+      theatre = Theatre.create(toplevel_container, room, function () {
         if (level != index) {
           // level changed during the animation, load again
           load_level(level);

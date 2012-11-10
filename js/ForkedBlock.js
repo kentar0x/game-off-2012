@@ -1,5 +1,5 @@
 ﻿var ForkedBlock = {
-  create: function () {
+  create: function (room) {
     var new_block = null;
     var old_block = null;
     var movements = [];
