@@ -2,23 +2,27 @@
 // it watches a multiroom change, and updates its scenes to match.
 
 var Theatre = {
+  queue: ActionQueue.create(),
+  
   empty: function() {
     // same API as a regular Theatre, but holds no rooms.
     // useful to simplify the logic of callers,  who don't have
     // to distinguish between a Theatre and null.
     return {
-      remove: function(callback) {
-        callback();
-      }
+      remove: function() {}
     };
   },
-  create: function(container, room, callback) {
+  create: function(container, room) {
     var element = container;
     
     var scenes = Multi.create(room, function(room) {
       return Scene.create(element, room);
     });
-    scenes.current().show(callback);
+    Theatre.queue.enqueue_async(function() {
+      scenes.current().show(function() {
+        Theatre.queue.resume();
+      });
+    });
     
     return {
       process_events: function(events) {
@@ -51,14 +55,18 @@ var Theatre = {
         }
       },
     
-      remove: function(callback) {
+      remove: function() {
         var n = scenes.count();
-        var j=0;
-        for(var i=0; i<n; ++i) {
-          scenes.at(i).remove(function() {
-            ++j;
-            if (j == n) {
-              if (callback) callback();
+        if (n > 0) {
+          Theatre.queue.enqueue_async(function() {
+            var j=0;
+            for(var i=0; i<n; ++i) {
+              scenes.at(i).remove(function() {
+                ++j;
+                if (j == n) {
+                  Theatre.queue.resume();
+                }
+              });
             }
           });
         }

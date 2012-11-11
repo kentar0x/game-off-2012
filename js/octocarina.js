@@ -1,6 +1,5 @@
 $(function () {
   var toplevel_container = $('#content');
-  var is_movement_allowed = true;
   var player_has_fork = true;
   var debug = false;
 
@@ -20,19 +19,19 @@ $(function () {
 
   function load_level(index) {
     level = index;
-    is_movement_allowed = false;
     player_has_fork = true;
 
-    theatre.remove(function () {
+    Movement.enqueue(function() {
+      theatre.remove();
+    }).then_wait_for(Theatre.queue).then(function() {
       multiroom = World.load_multiroom(index);
 
       var room = multiroom.current_room();
       multibuttons = Multibuttons.create(room);
       forkedBlock = ForkedBlock.create(room);
 
-      is_movement_allowed = true;
-
-      theatre = Theatre.create(toplevel_container, room, function () {
+      theatre = Theatre.create(toplevel_container, room);
+      Theatre.queue.enqueue(function() {
         if (level != index) {
           // level changed during the animation, load again
           load_level(level);
@@ -106,7 +105,7 @@ $(function () {
     // return false for keys which don't mess with the browser state,
     // this will allow browser commands like Cmd+R to work.
 
-    if (is_movement_allowed) {
+    if (Movement.allowed()) {
       switch (key) {
         case Keycode.left: move_player(-1, 0); return true;
         case Keycode.right: move_player(1, 0); return true;
