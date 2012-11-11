@@ -5,6 +5,7 @@ $(function () {
 
 
   var level = 0;
+  var loaded_level = null;
   var multiroom = null;
   var multibuttons = null;
   var forkedBlock = null;
@@ -24,19 +25,18 @@ $(function () {
     Movement.enqueue(function() {
       theatre.remove();
     }).then_wait_for(Theatre.queue).then(function() {
+      // use level instead of index, in case we are
+      // in debug mode and the level changed quickly
+      index = level;
+      
       multiroom = World.load_multiroom(index);
+      loaded_level = index;
 
       var room = multiroom.current_room();
       multibuttons = Multibuttons.create(room);
       forkedBlock = ForkedBlock.create(room);
 
       theatre = Theatre.create(toplevel_container, room);
-      Theatre.queue.enqueue(function() {
-        if (level != index) {
-          // level changed during the animation, load again
-          load_level(level);
-        }
-      });
     });
   }
 
@@ -117,16 +117,30 @@ $(function () {
 
         case Keycode.Z: fork_unfork_room(); return false;
         case Keycode.tab: next_room(); return true;
-
-        // secret level-skipping keys!
-        case Keycode.O: if (debug) load_level(level-1); return false;
-        case Keycode.P: if (debug) load_level(level+1); return false;
       }
-    } else if (debug) {
+    }
+    
+    if (debug) {
+      var old_level = level;
+      
+      // secret level-skipping keys!
       switch (key) {
-        // keep pressing while the level is loading.
-        case Keycode.O: --level; return false;
-        case Keycode.P: ++level; return false;
+        case Keycode.O: --level; break;
+        case Keycode.P: ++level; break;
+      }
+      
+      var new_level = level;
+      if (new_level < 0) new_level = 0;
+      
+      if (new_level != old_level) {
+        Theatre.queue.enqueue(function() {
+          if (level == new_level && level != loaded_level) {
+            load_level(new_level);
+          } else {
+            // the level-skipping keys were pressed repeatedly,
+            // wait until the user stops
+          }
+        });
       }
     }
 
