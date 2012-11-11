@@ -73,10 +73,21 @@ var ActionQueue = {
       then_wait_for: function(other_queue) {
         var self = this;
         
-        self.stop();
-        other_queue.enqueue(function() {
-          self.resume();
-        });
+        // dual purpose! depending on the argument type,
+        // either wait for another queue of for time to pass.
+        if ($.isNumeric(other_queue)) {
+          var delay = other_queue;
+          self.enqueue_async(function() {
+            window.setTimeout(function() {
+              self.resume();
+            }, delay);
+          });
+        } else {
+          self.stop();
+          other_queue.enqueue(function() {
+            self.resume();
+          });
+        }
         
         return self;
       },

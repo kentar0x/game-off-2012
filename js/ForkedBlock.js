@@ -2,9 +2,11 @@
   create: function (room) {
     var new_block = null;
     var old_block = null;
-    var movements = [];
+    var observed_moves = EventQueue.create();
+    var moves_to_replay = EventQueue.create();
 
     return {
+      moves_to_replay: moves_to_replay,
       process_events: function (events) {
         events.forks.each(function (fork) {
           old_block = fork.old_block;
@@ -14,14 +16,17 @@
         events.merges.each(function (merge) {
           var room = merge.new_room;
           
-          for(var i=0; i<movements.length; ++i) {
-            var pos = movements[i];
-            room.move(old_block, pos.x, pos.y);
-          }
+          observed_moves.each(function(delta) {
+            moves_to_replay.add({
+              moveable: old_block,
+              dx: delta.x,
+              dy: delta.y
+            });
+          });
           
           old_block.forked = false;
           
-          movements = [];
+          observed_moves.clear();
           old_block = new_block = false;
         });
 
@@ -30,7 +35,8 @@
             room.moves.each(function (move) {
               if (move.moveable === new_block) {
                 var delta = Pos.distance_between(move.old_pos, move.new_pos);
-                movements.push(delta);
+                
+                observed_moves.add(delta);
               }
             });
           });

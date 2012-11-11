@@ -7,6 +7,9 @@ var EventQueue = {
   create: function() {
     var events = new Array();
     return {
+      empty: function() {
+        return (events.length == 0);
+      },
       add: function(e) {
         events.push(e);
       },

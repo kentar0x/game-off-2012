@@ -16,7 +16,25 @@ $(function () {
     forkedBlock.process_events(multiroom);
     theatre.process_events(multiroom);
     multiroom.clear_events();
+    
+    if (!forkedBlock.moves_to_replay.empty()) {
+      process_moves(forkedBlock.moves_to_replay);
+    }
   }
+  
+  function process_move(move) {
+    Movement.enqueue(function() {
+    }).then_wait_for(600).then(function() {
+      multiroom.current_room().move(move.moveable, move.dx, move.dy);
+      process_events();
+    });
+  }
+  
+  function process_moves(moves) {
+    moves.each(process_move);
+    moves.clear();
+  }
+  
 
   function load_level(index) {
     level = index;
