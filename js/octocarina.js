@@ -2,6 +2,13 @@ $(function () {
   var toplevel_container = $('#content');
   var player_has_fork = true;
   var debug = false;
+  
+  var foreground_animations = ActionQueue.create();
+  
+  function is_movement_allowed() {
+    // don't allow the player to move if an animation is under way
+    return foreground_animations.is_empty();
+  }
 
 
   var level = 0;
@@ -23,8 +30,7 @@ $(function () {
   }
   
   function process_move(move) {
-    Movement.enqueue(function() {
-    }).then_wait_for(600).then(function() {
+    foreground_animations.then_wait_for(600).then(function() {
       multiroom.current_room().move(move.moveable, move.dx, move.dy);
       process_events();
     });
@@ -40,7 +46,7 @@ $(function () {
     level = index;
     player_has_fork = true;
 
-    Movement.enqueue(function() {
+    foreground_animations.enqueue(function() {
       theatre.remove();
     }).then_wait_for(Theatre.queue).then(function() {
       // use level instead of index, in case we are
@@ -123,7 +129,7 @@ $(function () {
     // return false for keys which don't mess with the browser state,
     // this will allow browser commands like Cmd+R to work.
 
-    if (Movement.allowed()) {
+    if (is_movement_allowed()) {
       switch (key) {
         case Keycode.left: move_player(-1, 0); return true;
         case Keycode.right: move_player(1, 0); return true;
