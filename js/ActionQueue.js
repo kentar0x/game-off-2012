@@ -70,11 +70,6 @@ var ActionQueue = {
         // synonym for enqueue_async
         return this.enqueue_async(body);
       },
-      then_resume: function(other_queue) {
-        other_queue.resume();
-        
-        return this;
-      },
       then_wait_for: function(other_queue) {
         var self = this;
         
