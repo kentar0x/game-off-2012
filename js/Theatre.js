@@ -18,11 +18,11 @@ var Theatre = {
     var scenes = Multi.create(room, function(room) {
       return Scene.create(element, room);
     });
-    Theatre.queue.enqueue_async(function() {
-      scenes.current().show(function() {
-        Theatre.queue.resume();
-      });
-    });
+    
+    var scene = scenes.current();
+    Theatre.queue.enqueue(function() {
+      scene.show();
+    }).then_wait_for(scene.queue);
     
     return {
       process_events: function(events) {
@@ -57,18 +57,19 @@ var Theatre = {
     
       remove: function() {
         var n = scenes.count();
-        if (n > 0) {
-          Theatre.queue.enqueue_async(function() {
-            var j=0;
-            for(var i=0; i<n; ++i) {
-              scenes.at(i).remove(function() {
-                ++j;
-                if (j == n) {
-                  Theatre.queue.resume();
-                }
-              });
-            }
-          });
+        
+        function remove_scene(scene) {
+          return function() {
+            scene.remove();
+          };
+        }
+        
+        var j=0;
+        for(var i=0; i<n; ++i) {
+          var scene = scenes.at(i);
+          
+          Theatre.queue.enqueue(remove_scene(scene))
+                       .then_wait_for(scene.queue);
         }
       }
     };

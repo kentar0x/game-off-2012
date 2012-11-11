@@ -48,52 +48,55 @@ var Scene = {
     
     container.prepend(element);
     
+    var queue = ActionQueue.create();
     return {
-      hide: function(callback) {
-        if (arguments.length == 0) {
-          // hide immediately
-          element.transition({opacity: 0}, 0);
-        } else {
-          element.transition({opacity: 0}, callback);
-        }
-        return this;
+      queue: queue,
+      
+      hide: function() {
+        queue.enqueue_async(function() {
+          element.transition({opacity: 0}, function() {
+            queue.resume();
+          });
+        });
       },
-      show: function(callback) {
-        if (arguments.length == 0) {
-          // show immediately
-          element.transition({opacity: 1}, 0);
-        } else {
-          element.transition({opacity: 1}, 'slow', callback);
-        }
-        return this;
+      show: function(now) {
+        queue.enqueue_async(function() {
+          element.transition({opacity: 1}, 'slow', function() {
+            queue.resume();
+          });
+        });
       },
       
-      darken: function(callback) {
-        dark_filter.transition({opacity: 0.1}, 0, callback);
-        return this;
+      darken: function() {
+        dark_filter.transition({opacity: 0.1}, 0);
       },
-      lighten: function(callback) {
+      lighten: function() {
         dark_filter.transition({opacity: 0}, 0);
         light_filter.transition({opacity: 0.2}, 0, function() {
-          light_filter.transition({opacity: 0}, 'slow', callback);
+          light_filter.transition({opacity: 0}, 'slow');
         });
-        return this;
       },
 
-      move_center: function (callback) {
-        element.transition({ scale: 1, opacity: 1, x: 0 }, callback);
-        return this;
+      move_center: function () {
+        queue.enqueue_async(function() {
+          element.transition({ scale: 1, opacity: 1, x: 0 }, function() {
+            queue.resume();
+          });
+        });
       },
-      move_to: function(x, callback) {
-        // move, scale down, and make sure it's visible
-        element.transition({scale: 0.5, opacity: 1, x: x}, callback);
-        return this;
+      move_to: function(x) {
+        queue.enqueue_async(function() {
+          // move, scale down, and make sure it's visible
+          element.transition({scale: 0.5, opacity: 1, x: x}, function() {
+            queue.resume();
+          });
+        });
       },
-      move_left: function(callback) {
-        return this.move_to(-410);
+      move_left: function() {
+        this.move_to(-410);
       },
-      move_right: function(callback) {
-        return this.move_to(410);
+      move_right: function() {
+        this.move_to(410);
       },
       
       process_events: function(room) {
@@ -111,10 +114,13 @@ var Scene = {
         });
       },
       
-      remove: function(callback) {
-        this.hide(function() {
+      remove: function() {
+        var self = this;
+        
+        queue.enqueue(function() {
+          self.hide();
+        }).then(function() {
           element.remove();
-          if (callback) callback();
         });
       }
     };
