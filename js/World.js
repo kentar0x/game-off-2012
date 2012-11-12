@@ -190,20 +190,6 @@ var World = {
               "C#..#.",
               "..gG.."]  // harder than it looks!
     }
-    ,
-    {
-      ascii: [".......",
-              ".......",
-              ".......",
-              ".......",
-              "...C...",
-              "......."],
-      text: ["You are alone",
-             "in an empty room",
-             "",
-             "after a moment, you realize",
-             "you played an incomplete prototype."]
-    }
   ],
   
   load_room: function(index) {

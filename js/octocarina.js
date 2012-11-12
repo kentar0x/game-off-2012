@@ -46,6 +46,10 @@ $(function () {
   
 
   function load_level(index) {
+    if (index == World.levels.length) {
+      return roll_credit();
+    }
+    
     level = index;
 
     foreground_animations.enqueue(function() {
@@ -74,6 +78,22 @@ $(function () {
 
   function next_level() {
     load_level(level + 1);
+  }
+  
+  function roll_credit() {
+    // no more player movement
+    keyHandler = function() {};
+    
+    toplevel_container.children().transition({opacity: 0}, 2000);
+    toplevel_container.transition({'background-color': '#000'}, 6000, function() {
+      var credits = $('#credits');
+      toplevel_container.append(credits);
+      credits.show();
+      
+      var delta = 1000;
+      delta = credits.height();
+      credits.transition({y: -delta}, delta*15, 'linear');
+    });
   }
 
 

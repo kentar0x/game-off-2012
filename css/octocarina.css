@@ -4,6 +4,8 @@ h1 {
 }
 #content {
   width: 800px;
+  height: 650px;
+  overflow: hidden;
   margin: auto;
 }
 
@@ -205,4 +207,44 @@ h1 {
 }
 .player-sprite.forked.under-door:after {
   background-position: 101px;
+}
+
+#credits {
+  display: none;
+  color: white;
+  text-align: center;
+}
+#credits h3 {
+  font-size: 24px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+#credits h4 {
+  font-size: 22px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+#credits ul {
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+#credits img {
+  height: 300px;
+  padding: 20px;
+}
+#credits a {
+  color: white;
+}
+#credits a:visited {
+  color: white;
+}
+#credits .spacing {
+  height: 280px;
 }
