@@ -157,6 +157,9 @@ h1 {
 .orange-block-sprite {
   background-position: -1919px;
 }
+.player-sprite.under-door {
+  background-position: -2323px;
+}
 
 .forked:after {
   content: "";
@@ -185,15 +188,21 @@ h1 {
 .player-sprite.forked.left {
   background-position: -2121px;
 }
+.player-sprite.forked.under-door {
+  background-position: -2323px;
+}
 .player-sprite.forked.right:after {
   background-position: -303px;
 }
 .player-sprite.forked:after {
   background-position: -404px;
 }
-.player-sprite.up.forked:after {
+.player-sprite.forked.up:after {
   background-position: -2121px;
 }
-.player-sprite.left.forked:after {
+.player-sprite.forked.left:after {
   background-position: -606px;
+}
+.player-sprite.forked.under-door:after {
+  background-position: 101px;
 }

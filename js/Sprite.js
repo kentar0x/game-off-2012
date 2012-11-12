@@ -50,6 +50,9 @@ var Sprite = {
           element.addClass("forked");
           forked = true;
         }
+        if (new_moveable.floor == Tile.open_door) {
+          element.addClass("under-door");
+        }
       }
     };
   }
