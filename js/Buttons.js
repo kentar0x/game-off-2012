@@ -47,10 +47,10 @@ var Buttons = {
         if (new_active != old_active) {
           if (new_active) {
             // open the door
-            room.change_tile(door, Tile.open_door);
+            if (door) room.change_tile(door, Tile.open_door);
           } else {
             // close the door
-            room.change_tile(door, Tile.closed_door);
+            if (door) room.change_tile(door, Tile.closed_door);
           }
         }
       }
