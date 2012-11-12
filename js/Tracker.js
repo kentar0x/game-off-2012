@@ -8,7 +8,9 @@ var Tracker = {
   from_id_table: function(id_table, moveables, next_id) {
     return {
       at: function(pos) {
-        var id = id_table.at(pos);
+        var id = id_table.at(pos, function() {
+          return 0;
+        });
         
         return this.from_id(id);
       },
