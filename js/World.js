@@ -53,10 +53,18 @@ var World = {
               "........",
               "####rrrr",
               ".C.r....",
-              "...#...."],
+              "...#...."]
+    }
+    ,
+    {
+      ascii: ["#####d#",
+              ".......",
+              ".......",
+              ".C.r...",
+              "......."],
       text: ["Press 'Z'",
              "next to a block",
-             "to experience confusion."]
+             "and discover a new world."]
     }
     ,
     {
@@ -115,6 +123,25 @@ var World = {
               "..#.",
               ".##.",
               "...."]
+    }
+    ,
+    {
+      ascii: ["####D#",
+              "......",
+              "C.rrRR",
+              "......"],
+      text: ["A block",
+             "moving on its own",
+             "moves with the strength of a hero."]
+    }
+    ,
+    {
+      ascii: ["###D##",
+              "..Rr..",
+              "C#..#.",
+              "..gG.."],  // harder than it looks!
+      text: ["The hero pushes blocks",
+             "but who pushes the hero?"]
     }
     ,
     {
@@ -182,13 +209,6 @@ var World = {
               ".r.r.",
               ".bro.",
               "G.C.R"]  // hard
-    }
-    ,
-    {
-      ascii: ["###D##",
-              "..Rr..",
-              "C#..#.",
-              "..gG.."]  // harder than it looks!
     }
   ],
   
