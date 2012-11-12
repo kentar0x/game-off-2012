@@ -15,31 +15,36 @@ var World = {
     }
     ,
     {
-      ascii: ["##d##",
-              ".....",
-              ".....",
-              "rr#rr",
-              ".....",
-              ".....",
-              "##r##",
-              ".....",
-              "..C..",
-              "....."],
-      text: ["The path was full of obstacles",
-             "which I pushed aside",
-             "strongly, but carefully."]
+      ascii: [".C.#####",
+              "...#####",
+              "r#r#####",
+              "...###d#",
+              "...r....",
+              "...r...."],
+      text: ["Adventures are full of obstacles",
+             "some of which must be faced",
+             "while others",
+             "may be pushed away."]
     }
     ,
     {
-      ascii: ["...#####",
-              "...#####",
-              "#r.#####",
-              "...###d#",
-              ".C.r...#",
-              "...#...#"],
-      text: ["I am ashamed of my mistakes",
-             "so I press 'R'",
-             "to rewrite the history."]
+      ascii: ["#####D##",
+              "#......#",
+              "#.C....#",
+              "#......#",
+              "#..r..R#"],
+      text: ["A block, a switch, a door",
+             "for the hero",
+             "a rite of passage."]
+    }
+    ,
+    {
+      ascii: ["..###D#",
+              "..#...#",
+              "C..rR.."],
+      text: ["Press 'R'",
+             "to undo",
+             "the mistake you are about to make."]
     }
     ,
     {
@@ -49,12 +54,9 @@ var World = {
               "####rrrr",
               ".C.r....",
               "...#...."],
-      text: ["I hate those blocks",
-             "I want to stab them",
-             "with 'Z'.",
-             "",
-             "Soon",
-             "my anger turns to confusion."]
+      text: ["Press 'Z'",
+             "next to a block",
+             "to experience confusion."]
     }
     ,
     {
@@ -64,12 +66,11 @@ var World = {
               "####.###",
               ".C.rr...",
               "........"],
-      text: ["Can I unstab a block?",
-             "With 'Z'?",
-             "What else would that undo?",
+      text: ["Press 'Z' again",
+             "after moving the block",
+             "in the correct direction.",
              "",
-             "As I experiment",
-             "confusion gives way to understanding."]
+             "I'm sure you'll figure it out."]
     }
     ,
     {
@@ -79,12 +80,11 @@ var World = {
               ".......",
               "...C...",
               "......."],
-      text: ["As I lay",
-             "alone",
+      text: ["You are alone",
              "in an empty room",
              "",
-             "I realize",
-             "I played an incomplete prototype."]
+             "after a moment, you realize",
+             "you played an incomplete prototype."]
     }
   ],
   
