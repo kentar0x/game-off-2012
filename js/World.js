@@ -15,30 +15,6 @@ var World = {
     }
     ,
     {
-      ascii: ["######C.",
-              "####d#.#",
-              "#....#.#",
-              "#.####.#",
-              "#......#",
-              "########"],
-      text: ["The path was twisted",
-             "but the will is strong",
-             "when adventure awaits."]
-    }
-    ,
-    {
-      ascii: ["........",
-              "..#####.",
-              "..##d##.",
-              "C.#.....",
-              "..#.....",
-              "..#####."],
-      text: ["The walls are high",
-             "impenetrable, and wide",
-             "but are they deep?"]
-    }
-    ,
-    {
       ascii: ["##d##",
               ".....",
               ".....",
