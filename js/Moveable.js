@@ -5,7 +5,7 @@ var Moveable = {
   create: function(tile) {
     return {
       tile: tile,
-      floor: Tile.empty,
+      floor: Tile.floor,
       pos: null,
       id: null,
       

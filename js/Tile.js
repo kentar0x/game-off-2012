@@ -13,11 +13,12 @@ var Tile = {
   }
 };
 
-Tile.empty = Tile.create('.', {
-    sprite_class: 'empty-tile'
+Tile.empty = Tile.create('', {
+    sprite_class : 'empty-tile'
 });
-Tile.floor = Tile.create('f', {
-    sprite_class : 'floor-tile'
+Tile.floor = Tile.create('.', {
+    sprite_class : 'floor-tile',
+    is_floor     : true
 });
 Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
@@ -39,21 +40,25 @@ Tile.open_door   = Tile.create('d', {
 
 Tile.button        = Tile.create('R', {
     sprite_class : 'regular-button-tile',
+    is_floor     : true,
     button       : true
 });
 Tile.green_button  = Tile.create('G', {
     sprite_class : 'green-button-tile',
     color        : 'green',
+    is_floor     : true,
     button       : true
 });
 Tile.blue_button   = Tile.create('B', {
     sprite_class : 'blue-button-tile',
     color        : 'blue',
+    is_floor     : true,
     button       : true
 });
 Tile.orange_button = Tile.create('O', {
     sprite_class : 'orange-button-tile',
     color        : 'orange',
+    is_floor     : true,
     button       : true
 });
 

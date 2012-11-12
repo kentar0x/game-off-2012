@@ -10,20 +10,20 @@ var Scene = {
     
     // add the floor
     var floor_tiles = this.create_floor(room);
-    Layer.create(element, floor_tiles, room);
+    var floor_layer = Layer.create(element, floor_tiles, room);
     
     // add the actual obstacles
-    var tiles = this.extract_tiles(room);
-    var layer = Layer.create(element, tiles, room);
+    var solid_tiles = this.extract_tiles(room);
+    var solid_layer = Layer.create(element, solid_tiles, room);
     
     // honor each moveable's special visual features
-    tiles.each(function(pos, tile) {
+    solid_tiles.each(function(pos, tile) {
       var moveable = room.moveable_at(pos);
       
       if (moveable) {
-        var sprite = layer.sprite_at(pos);
+        var solid_sprite = solid_layer.sprite_at(pos);
         
-        sprite.change_moveable(moveable);
+        solid_sprite.change_moveable(moveable);
       }
     });
     
@@ -114,13 +114,19 @@ var Scene = {
         room.tile_changes.each(function(tile_change) {
           var pos = tile_change.pos;
           var tile = tile_change.new_tile;
-          var sprite = layer.sprite_at(pos);
+          var solid_sprite = solid_layer.sprite_at(pos);
+          var floor_sprite = floor_layer.sprite_at(pos);
           var moveable = room.moveable_at(pos);
           
           if (moveable) {
-            sprite.change_moveable(moveable);
+            solid_sprite.change_moveable(moveable);
+            floor_sprite.change_tile(moveable.floor);
+          } else if (tile.is_floor) {
+            solid_sprite.change_tile(Tile.empty);
+            floor_sprite.change_tile(tile);
           } else {
-            sprite.change_tile(tile);
+            solid_sprite.change_tile(tile);
+            floor_sprite.change_tile(Tile.floor);
           }
         });
       },
@@ -159,6 +165,8 @@ var Scene = {
       
       if (all_walls && pos.y == y) {
         return Tile.empty;
+      } else if (tile.is_floor) {
+        return tile;
       } else {
         return Tile.floor;
       }
@@ -166,7 +174,13 @@ var Scene = {
   },
   extract_tiles: function(room) {
     return Table.create(room.size, function(pos) {
-      return room.tile_at(pos);
+      var tile = room.tile_at(pos)
+      
+      if (tile.is_floor) {
+        return Tile.empty;
+      } else {
+        return tile;
+      }
     });
   },
   
