@@ -126,10 +126,25 @@ var World = {
     }
     ,
     {
-      ascii: ["####D#",
-              "......",
+      ascii: ["#####..",
+              "#D###..",
+              "..RRrr.",
+              ".......",
+              ".....C.",
+              "......."]
+    }
+    ,
+    {
+      ascii: ["#D###..",
+              "..RRrr.",
+              "....C.."]
+    }
+    ,
+    {
+      ascii: ["#D####",
+              "....##",
               "C.rrRR",
-              "......"],
+              "....##"],
       text: ["A block",
              "moving on its own",
              "moves with the strength of a hero."]
