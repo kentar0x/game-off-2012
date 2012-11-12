@@ -21,8 +21,6 @@ var Layer = {
       return Sprite.create(lines[pos.y], tile);
     });
     
-    var player = Sprite.create_player(container);
-    
     return {
       sprite_at: function(pos) {
         return sprites.at(pos);
