@@ -18,6 +18,7 @@ var Sprite = {
   create: function(container, tile) {
     var element = $('<div class="sprite"/>').addClass(tile.sprite_class);
     var dir = null;
+    var forked = false;
     
     container.append(element);
     
@@ -25,6 +26,10 @@ var Sprite = {
       element: element,
       change_tile: function(new_tile) {
         element.removeClass(tile.sprite_class);
+        if (forked) {
+          element.removeClass("forked");
+          forked = false;
+        }
         
         tile = new_tile;
         
@@ -40,6 +45,10 @@ var Sprite = {
         if (new_moveable.dir) {
           dir = new_moveable.dir;
           element.addClass(dir.dir_name());
+        }
+        if (new_moveable.forked) {
+          element.addClass("forked");
+          forked = true;
         }
       }
     };

@@ -1,22 +1,25 @@
 $(function () {
   var toplevel_container = $('#content');
-  var player_has_fork = true;
   var debug = false;
   
-  var foreground_animations = ActionQueue.create();
-  
-  function is_movement_allowed() {
-    // don't allow the player to move if an animation is under way
-    return foreground_animations.is_empty();
-  }
-
-
   var level = 0;
   var loaded_level = null;
   var multiroom = null;
   var multibuttons = null;
   var forkedBlock = null;
   var theatre = Theatre.empty();
+
+  var foreground_animations = ActionQueue.create();
+  
+  function is_movement_allowed() {
+    // don't allow the player to move if an animation is under way
+    return foreground_animations.is_empty();
+  }
+  
+  function player_has_fork() {
+    return multiroom.current_room().player.forked;
+  }
+
 
   function process_events() {
     multibuttons.process_events(multiroom);
@@ -44,7 +47,6 @@ $(function () {
 
   function load_level(index) {
     level = index;
-    player_has_fork = true;
 
     foreground_animations.enqueue(function() {
       theatre.remove();
@@ -60,6 +62,8 @@ $(function () {
       multibuttons = Multibuttons.create(room);
       forkedBlock = ForkedBlock.create(room);
 
+      room.player.forked = true;
+      
       theatre = Theatre.create(toplevel_container, room);
     });
   }
@@ -86,14 +90,19 @@ $(function () {
 
 
   function fork_unfork_room() {
-    if (player_has_fork) {
+    if (player_has_fork()) {
       var room = multiroom.current_room();
       var dir = room.player.dir;
       var pos = room.player.pos.plus(dir.x, dir.y);
       var block = room.moveable_at(pos);
 
       if (block) {
-        player_has_fork = false;
+        block.forked = true;
+        room.update_moveable(block);
+        
+        room.player.forked = false;
+        room.update_moveable(room.player);
+        
         multiroom.fork(block);
         process_events();
       }
@@ -111,9 +120,36 @@ $(function () {
       });
       
       if (block) {
-        player_has_fork = true;
-        multiroom.merge(block);
-        process_events();
+        // pick up the fork
+        {
+          block.forked = false;
+          room.update_moveable(block);
+          
+          room.player.forked = true;
+          room.update_moveable(room.player);
+          
+          process_events();
+        }
+        
+        // merge the timelines;
+        // we go back into the old room, and thus need
+        // to consider the block's instance from that room
+        {
+          multiroom.merge(block);
+          room = multiroom.current_room();
+          block = room.moveable_from_id(block.id);
+        }
+        
+        // repeat the changes in the old timeline
+        {
+          block.forked = false
+          room.update_moveable(block);
+          
+          room.player.forked = true;
+          room.update_moveable(room.player);
+          
+          process_events();
+        }
       }
     }
   }

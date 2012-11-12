@@ -62,13 +62,15 @@ var Room = {
         var old_pos = moveable.pos;
         var old_floor = moveable.floor;
         var new_floor = this.tile_at(new_pos);
-
+        
         this.change_tile(old_pos, old_floor);
         this.change_tile(new_pos, moveable.tile);
 
         moveables.swap(old_pos, new_pos);
         
-        moveable.floor = new_floor;
+        if (old_pos !== new_pos) {
+          moveable.floor = new_floor;
+        }
 
         // remember the move
         moves.add({
@@ -78,6 +80,9 @@ var Room = {
           old_floor: old_floor,
           new_floor: new_floor
         });
+      },
+      update_moveable: function (moveable) {
+        this.force_move(moveable, moveable.pos);
       },
       move: function (moveable, dx, dy) {
         var old_pos = moveable.pos;

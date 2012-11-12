@@ -16,6 +16,17 @@ var Scene = {
     var tiles = this.extract_tiles(room);
     var layer = Layer.create(element, tiles, room);
     
+    // honor each moveable's special visual features
+    tiles.each(function(pos, tile) {
+      var moveable = room.moveable_at(pos);
+      
+      if (moveable) {
+        var sprite = layer.sprite_at(pos);
+        
+        sprite.change_moveable(moveable);
+      }
+    });
+    
     // add text on top
     if (room.text) {
       var text_layer = $('<div class="text"/>');
