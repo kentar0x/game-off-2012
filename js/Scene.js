@@ -120,7 +120,9 @@ var Scene = {
           
           if (moveable) {
             solid_sprite.change_moveable(moveable);
-            floor_sprite.change_tile(moveable.floor);
+            if (moveable.floor.is_floor) {
+              floor_sprite.change_tile(moveable.floor);
+            }
           } else if (tile.is_floor) {
             solid_sprite.change_tile(Tile.empty);
             floor_sprite.change_tile(tile);
