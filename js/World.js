@@ -74,6 +74,124 @@ var World = {
     }
     ,
     {
+      ascii: ["##D##",
+              ".....",
+              ".r.r.",
+              "rgrGr",
+              ".r.r.",
+              "..C.."]  // doesn't need the fork
+    }
+    ,
+    {
+      ascii: ["###D###",
+              "..r.r..",
+              ".rgrGr.",
+              "..r.r..",
+              "...C..."]  // variant which does need the fork
+    }
+    ,
+    {
+      ascii: ["#D#",
+              "...",
+              "r.r",
+              "Cg.",
+              "r.r",
+              ".G."]  // doesn't need the fork (and super easy)
+    }
+    ,
+    {
+      ascii: ["#D#",
+              "...",
+              "r.r",
+              ".g.",
+              "r.r",
+              "CG."]  // variant which does need the fork
+    }
+    ,
+    {
+      ascii: ["###D",
+              "....",
+              "CgrG",
+              "..#.",
+              ".##.",
+              "...."]
+    }
+    ,
+    {
+      ascii: ["#.r.#####",
+              "..r.#####",
+              "CgrG##D##",
+              "..r.#...#",
+              "#.r.....#"]  // no need for the fork
+    }
+    ,
+    {
+      ascii: ["#.r.###",
+              "..r.###",
+              "CgrG###",
+              "..r.#D#",
+              "#.r...#"]  // variant which does need the fork
+    }
+    ,
+    {
+      ascii: ["#.r.###",
+              "..r.#D#",
+              "CgrG..#",
+              "..r.#.#",  // variang which teaches
+              "#.r.#.#"]  // that the block can push the player
+    }
+    ,
+    {
+      ascii: ["#####D#",
+              "C..#...",
+              ".#.#...",
+              "Ggo..O.",
+              "...#..."] // doesn't need the fork
+    }
+    ,
+    {
+      ascii: ["#####D",
+              "C..#..",
+              ".#.#..",
+              "Ggo..O",
+              "...#.."]  // variant which does need the fork
+    }
+    ,
+    {
+      ascii: ["##D##",
+              "R...G",
+              ".rrg.",
+              ".r.r.",
+              ".bro.",
+              "B.C.O"]  // easy
+    }
+    ,
+    {
+      ascii: ["##D##",
+              "G...R",
+              ".rrg.",
+              ".r.r.",
+              ".bro.",
+              "O.C.B"]  // medium
+    }
+    ,
+    {
+      ascii: ["##D##",
+              "O...B",
+              ".rrg.",
+              ".r.r.",
+              ".bro.",
+              "G.C.R"]  // hard
+    }
+    ,
+    {
+      ascii: ["###D##",
+              "..Rr..",
+              "C#..#.",
+              "..gG.."]  // harder than it looks!
+    }
+    ,
+    {
       ascii: [".......",
               ".......",
               ".......",
