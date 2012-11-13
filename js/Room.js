@@ -100,6 +100,10 @@ var Room = {
         } else if (!target.solid) {
           this.force_move(moveable, new_pos);
         }
+		else{
+			this.force_move(moveable, moveable.pos);
+		}
+		
       },
 
       player: player,
