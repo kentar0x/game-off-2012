@@ -8,10 +8,13 @@ var World = {
               "#.C....#",
               "#......#",
               "#......#",
-              "########"],
-      text: ["The adventure began simply",
-             "with a gentle press",
-             "on an arrow key."]
+              "########"]
+    }
+    ,
+    {
+      ascii: ["..###D#",
+              "..#...#",
+              "C..rR.."]
     }
     ,
     {
@@ -20,31 +23,7 @@ var World = {
               "r#r#####",
               "...###d#",
               "...r....",
-              "...r...."],
-      text: ["Adventures are full of obstacles",
-             "some of which must be faced",
-             "while others",
-             "may be pushed away."]
-    }
-    ,
-    {
-      ascii: ["#####D##",
-              "#......#",
-              "#.C....#",
-              "#......#",
-              "#..r..R#"],
-      text: ["A block, a switch, a door",
-             "for the hero",
-             "a rite of passage."]
-    }
-    ,
-    {
-      ascii: ["..###D#",
-              "..#...#",
-              "C..rR.."],
-      text: ["Press 'R'",
-             "to undo",
-             "the mistake you are about to make."]
+              "...r...."]
     }
     ,
     {
@@ -57,28 +36,53 @@ var World = {
     }
     ,
     {
-      ascii: ["#####d#",
-              ".......",
-              ".......",
-              ".C.r...",
-              "......."],
-      text: ["Press 'Z'",
-             "next to a block",
-             "and discover a new world."]
-    }
-    ,
-    {
       ascii: ["########",
               "#d######",
               "........",
               "####.###",
               ".C.rr...",
-              "........"],
-      text: ["Press 'Z' again",
-             "after moving the block",
-             "in the correct direction.",
-             "",
-             "I'm sure you'll figure it out."]
+              "........"]
+    }
+    ,
+    {
+      ascii: ["###d###",
+              "###.###",
+              "##.r.##",
+              "##r.r##",
+              "#.C...#"]
+    }
+    ,
+    {
+      ascii: ["#####D#",
+              "..r.r.#",
+              "C.Gg..#",
+              "..r.r.#",
+              "#######"]
+    }
+    ,
+    {
+      ascii: ["####D####",
+              "#.......#",
+              "#.......#",
+              "#.gR.Gb.#",
+              "#.......#",
+              "#...C...#",
+              "#########"]
+    }
+    ,
+    {
+      ascii: ["###D###",
+              "##...##",
+              "##r.r##",
+              "##.g.##",
+              "##r.r##",
+              "##CG.##"]
+    }
+    ,
+    {
+      ascii: ["#D###..",
+              "..RRrr.",
+              "....C.."]
     }
     ,
     {
@@ -99,24 +103,6 @@ var World = {
     }
     ,
     {
-      ascii: ["#D#",
-              "...",
-              "r.r",
-              "Cg.",
-              "r.r",
-              ".G."]  // doesn't need the fork (and super easy)
-    }
-    ,
-    {
-      ascii: ["#D#",
-              "...",
-              "r.r",
-              ".g.",
-              "r.r",
-              "CG."]  // variant which does need the fork
-    }
-    ,
-    {
       ascii: ["###D",
               "....",
               "CgrG",
@@ -126,37 +112,17 @@ var World = {
     }
     ,
     {
-      ascii: ["#####..",
-              "#D###..",
-              "..RRrr.",
-              ".......",
-              ".....C.",
-              "......."]
-    }
-    ,
-    {
-      ascii: ["#D###..",
-              "..RRrr.",
-              "....C.."]
-    }
-    ,
-    {
       ascii: ["#D####",
               "....##",
               "C.rrRR",
-              "....##"],
-      text: ["A block",
-             "moving on its own",
-             "moves with the strength of a hero."]
+              "....##"]
     }
     ,
     {
       ascii: ["###D##",
               "..Rr..",
               "C#..#.",
-              "..gG.."],  // harder than it looks!
-      text: ["The hero pushes blocks",
-             "but who pushes the hero?"]
+              "..gG.."]  // harder than it looks!
     }
     ,
     {
