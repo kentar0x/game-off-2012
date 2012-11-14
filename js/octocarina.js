@@ -125,19 +125,37 @@ $(function () {
         
         multiroom.fork(block);
         process_events();
+      } else {
+        // player is not facing a block.
+        // maybe it's still clear which one he means, though?
+        var block_count = 0;
+        var block_dir = null;
+        
+        Pos.each_dir(function(dir) {
+          var pos = room.player.pos.plus(dir.x, dir.y);
+          var moveable = room.moveable_at(pos);
+          
+          if (moveable) {
+            ++block_count;
+            block_dir = dir;
+          }
+        });
+        
+        if (block_count == 1) {
+          // that must be the block the player meant.
+          // turn towards it and try again
+          room.player.dir = block_dir;
+          room.update_moveable(room.player);
+          process_events();
+          
+          fork_unfork_room();
+        }
       }
     } else {
       var room = multiroom.current_room();
-      var block = null;
-      
-      Pos.each_dir(function(dir) {
-        var pos = room.player.pos.plus(dir.x, dir.y);
-        var moveable = room.moveable_at(pos);
-        
-        if (moveable && moveable.forked) {
-          block = moveable;
-        }
-      });
+      var dir = room.player.dir;
+      var pos = room.player.pos.plus(dir.x, dir.y);
+      var block = room.moveable_at(pos);
       
       if (block) {
         // pick up the fork
@@ -169,6 +187,29 @@ $(function () {
           room.update_moveable(room.player);
           
           process_events();
+        }
+      } else {
+        // player is not facing a block.
+        // maybe it's still clear which one he means, though?
+        var block_dir = null;
+        
+        Pos.each_dir(function(dir) {
+          var pos = room.player.pos.plus(dir.x, dir.y);
+          var moveable = room.moveable_at(pos);
+          
+          if (moveable && moveable.forked) {
+            block_dir = dir;
+          }
+        });
+        
+        if (block_dir) {
+          // that must be the block the player meant.
+          // turn towards it and try again
+          room.player.dir = block_dir;
+          room.update_moveable(room.player);
+          process_events();
+          
+          fork_unfork_room();
         }
       }
     }
