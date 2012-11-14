@@ -147,10 +147,6 @@ var Room = {
       return Tile.from_symbol(symbol);
     });
     
-    var room = this.from_tiles(tiles);
-    
-    if (data.text) room.text = data.text;
-    
-    return room;
+    return this.from_tiles(tiles);
   }
 };

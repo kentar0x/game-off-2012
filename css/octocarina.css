@@ -42,28 +42,6 @@ h1 {
   background-color: white;
 }
 
-.text {
-  width: 800px;
-  height: 650px;
-  overflow: visible;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  text-align: center;
-}
-.text p {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0px 0px 4px #000;
-  display: block;
-  overflow: visible;
-  height: 22px;
-  position: relative;
-  top: 68px;
-  margin-bottom: -22px;
-}
-
 /* Each sprite has a width of 100px, plus a 1px border on the right which
  * overlaps with the next tile. A sprite also has a depth of 80px and a height
  * of up to 90px, for a total of 170px plus an overlapping bottom border.
