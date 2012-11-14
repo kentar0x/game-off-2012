@@ -1,7 +1,9 @@
 // http://unixpapa.com/js/key.html
 var Keycode = {
   tab: 9,
+  ctrl: 17,
   esc: 27,
+  space: 32,
   left: 37,
   up: 38,
   right: 39,

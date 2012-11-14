@@ -195,7 +195,12 @@ $(function () {
         case Keycode.esc: /* falls through */
         case Keycode.R: try_again(); return false;
 
-        case Keycode.Z: fork_unfork_room(); return false;
+        case Keycode.Z:     /* falls through */
+        case Keycode.X:     /* falls through */
+        case Keycode.F:     /* falls through */
+        case Keycode.ctrl:  /* falls through */
+        case Keycode.space: fork_unfork_room(); return false;
+        
         //case Keycode.tab: next_room(); return true;
       }
     }
