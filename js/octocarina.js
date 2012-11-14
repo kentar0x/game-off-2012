@@ -67,6 +67,7 @@ $(function () {
       forkedBlock = ForkedBlock.create(room);
 
       room.player.forked = true;
+      room.player.dir = Pos.create(0, 1);
       
       theatre = Theatre.create(toplevel_container, room);
     });
