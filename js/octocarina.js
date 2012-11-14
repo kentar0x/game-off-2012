@@ -99,8 +99,17 @@ $(function () {
 
   function move_player(dx, dy) {
     var room = multiroom.current_room();
-
-    room.move_player(dx, dy);
+    var pos = room.player.pos.plus(dx, dy);
+    var block = room.moveable_at(pos);
+    var old_dir = room.player.dir;
+    var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
+    
+    if (block && !same_dir) {
+      room.player.dir = Pos.create(dx, dy);
+      room.update_moveable(room.player);
+    } else {
+      room.move_player(dx, dy);
+    }
     process_events();
 
     if (room.player.floor == Tile.open_door) {
