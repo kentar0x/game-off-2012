@@ -36,11 +36,11 @@ var World = {
     }
     ,
     {
-      ascii: ["#.r.#####",
-              "..r.#####",
-              "CgrG##D##",
-              "..r.#...#",
-              "#.r.....#"]  // practice for the gate...
+      ascii: ["#.r.####",
+              "..r.####",
+              "CgrG##D#",
+              "..r.#...",
+              "#.r....."]  // practice for the gate...
     }
     ,
     {
