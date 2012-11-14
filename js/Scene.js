@@ -8,6 +8,10 @@ var Scene = {
     // start invisible
     element.transition({opacity: 0}, 0);
     
+    // add color filters on the very top, to tint the entire scene
+    var dark_filter = this.create_filter(element, 'dark');
+    var light_filter = this.create_filter(element, 'light');
+	
     // add the floor
     var floor_tiles = this.create_floor(room);
     var floor_layer = Layer.create(element, floor_tiles, room);
@@ -26,10 +30,6 @@ var Scene = {
         solid_sprite.change_moveable(moveable);
       }
     });
-    
-    // add color filters on the very top, to tint the entire scene
-    var dark_filter = this.create_filter(element, 'dark');
-    var light_filter = this.create_filter(element, 'light');
     
     container.prepend(element);
     
