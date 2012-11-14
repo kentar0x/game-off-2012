@@ -196,7 +196,7 @@ $(function () {
         case Keycode.R: try_again(); return false;
 
         case Keycode.Z: fork_unfork_room(); return false;
-        case Keycode.tab: next_room(); return true;
+        //case Keycode.tab: next_room(); return true;
       }
     }
     
