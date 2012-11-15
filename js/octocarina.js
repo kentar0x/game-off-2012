@@ -287,7 +287,7 @@ $(function () {
       var pos = r.player.pos.plus(dir.x, dir.y);
       var block = r.moveable_at(pos);
       
-      if (block) {
+      if (block && block.forked) {
         // pick up the fork
         {
           block.forked = false;
