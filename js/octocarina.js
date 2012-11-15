@@ -209,6 +209,26 @@ $(function () {
     var old_dir = r.player.dir;
     var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
     
+    var pos_key = pos.x + "," + pos.y;
+    var animation_plan = World.levels[level].position_animations[pos_key];
+    if( animation_plan ) {
+      var had_delay = false;
+      for( var i = 0; i < animation_plan.length; ++i ) {
+        var animation_key = animation_plan[i];
+        if ($.isNumeric(animation_key)) {
+          var delay = animation_key;
+          foreground_animations.then_wait_for(delay);
+          had_delay = true;
+        } else {
+          var animation_func = animation[animation_key];
+          if( ! had_delay ) {
+            foreground_animations.then_wait_for(std_delay);
+          }
+          foreground_animations.enqueue(animation_func);
+          had_delay = false;
+        }
+      }
+    }
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
