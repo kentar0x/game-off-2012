@@ -10,6 +10,7 @@ $(function () {
   var theatre = Theatre.empty();
 
   var foreground_animations = ActionQueue.create();
+  var std_delay = 600;
   
   function is_movement_allowed() {
     // don't allow the player to move if an animation is under way
@@ -50,7 +51,7 @@ $(function () {
   }
   
   function process_move(move) {
-    foreground_animations.then_wait_for(600).then(function() {
+    foreground_animations.then_wait_for(std_delay).then(function() {
       multiroom.current_room().move(move.moveable, move.dx, move.dy);
       process_events();
     });
@@ -89,10 +90,25 @@ $(function () {
       theatre = Theatre.create(toplevel_container, room);
 
       var animation_plan = World.load_on_start(index);
+      var had_delay = false;
       for( var i = 0; i < animation_plan.length; ++i ) {
-        var animation_func = animation[animation_plan[i]];
+        var animation_key = animation_plan[i];
+        
+        if ($.isNumeric(animation_key)) {
+          var delay = animation_key;
+          
+          foreground_animations.then_wait_for(delay);
+          had_delay = true;
+        } else {
+          var animation_func = animation[animation_key];
 
-        foreground_animations.enqueue(animation_func);
+          if (!had_delay) {
+            foreground_animations.then_wait_for(std_delay);
+          }
+          
+          foreground_animations.enqueue(animation_func);
+          had_delay = false;
+        }
       }
     });
   }
