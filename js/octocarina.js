@@ -35,6 +35,20 @@ $(function () {
     'down': function() {
       move_lover(0, 1);
     },
+    
+    'face_left': function() {
+      change_lover_dir(-1, 0);
+    },
+    'face_right': function() {
+      change_lover_dir(1, 0);
+    },
+    'face_up': function() {
+      change_lover_dir(0, -1);
+    },
+    'face_down': function() {
+      change_lover_dir(0, 1);
+    },
+    
     'dummy': null
   };
 
@@ -138,6 +152,23 @@ $(function () {
   }
 
 
+  function change_player_dir(dx, dy) {
+    var room = multiroom.current_room();
+    
+    room.player.dir = Pos.create(dx, dy);
+    room.update_moveable(room.player);
+    
+    process_events();
+  }
+  function change_lover_dir(dx, dy) {
+    var room = multiroom.current_room();
+    
+    room.lover.dir = Pos.create(dx, dy);
+    room.update_moveable(room.lover);
+    
+    process_events();
+  }
+  
   function move_player(dx, dy) {
     var room = multiroom.current_room();
     var pos = room.player.pos.plus(dx, dy);
@@ -146,12 +177,11 @@ $(function () {
     var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
     
     if (block && !same_dir) {
-      room.player.dir = Pos.create(dx, dy);
-      room.update_moveable(room.player);
+      change_player_dir(dx, dy);
     } else {
       room.move_player(dx, dy);
+      process_events();
     }
-    process_events();
 
     if (room.player.floor == Tile.open_door) {
       next_level();
