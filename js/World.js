@@ -202,5 +202,11 @@ var World = {
     return data.on_start
         ? data.on_start
         : [];
+  },
+  load_position_animations: function(index) {
+    var data = this.levels[index];
+    return data.position_animations
+        ? data.position_animations
+        : {};
   }
 };

@@ -210,7 +210,7 @@ $(function () {
     var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
     
     var pos_key = pos.x + "," + pos.y;
-    var animation_plan = World.levels[level].position_animations[pos_key];
+    var animation_plan = World.load_position_animations(level)[pos_key];
     if( animation_plan ) {
       animate(animation_plan);
     }
