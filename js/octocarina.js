@@ -12,13 +12,23 @@ $(function () {
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
   
+  function room() {
+    return multiroom.current_room();
+  }
+  function player() {
+    return room().player;
+  }
+  function lover() {
+    return room().lover;
+  }
+  
   function is_movement_allowed() {
     // don't allow the player to move if an animation is under way
     return foreground_animations.is_empty();
   }
   
   function player_has_fork() {
-    return multiroom.current_room().player.forked;
+    return player().forked;
   }
 
 
@@ -73,7 +83,7 @@ $(function () {
   
   function process_move(move) {
     foreground_animations.then_wait_for(std_delay).then(function() {
-      multiroom.current_room().move(move.moveable, move.dx, move.dy);
+      room().move(move.moveable, move.dx, move.dy);
       process_events();
     });
   }
@@ -101,14 +111,14 @@ $(function () {
       multiroom = World.load_multiroom(index);
       loaded_level = index;
 
-      var room = multiroom.current_room();
-      multibuttons = Multibuttons.create(room);
-      forkedBlock = ForkedBlock.create(room);
+      var r = room();
+      multibuttons = Multibuttons.create(r);
+      forkedBlock = ForkedBlock.create(r);
 
-      room.player.forked = true;
-      room.player.dir = Pos.create(0, 1);
+      r.player.forked = true;
+      r.player.dir = Pos.create(0, 1);
       
-      theatre = Theatre.create(toplevel_container, room);
+      theatre = Theatre.create(toplevel_container, r);
 
       var animation_plan = World.load_on_start(index);
       var had_delay = false;
@@ -160,64 +170,58 @@ $(function () {
 
 
   function update_moveable(moveable) {
-    var room = multiroom.current_room();
-    
-    room.update_moveable(moveable);
+    room().update_moveable(moveable);
     process_events();
   }
   
+  function change_moveable_dir(moveable, dx, dy) {
+    moveable.dir = Pos.create(dx, dy);
+    update_moveable(moveable);
+  }
   function change_player_dir(dx, dy) {
-    var room = multiroom.current_room();
-    
-    room.player.dir = Pos.create(dx, dy);
-    update_moveable(room.player);
+    change_moveable_dir(player(), dx, dy);
   }
   function change_lover_dir(dx, dy) {
-    var room = multiroom.current_room();
-    
-    room.lover.dir = Pos.create(dx, dy);
-    update_moveable(room.lover);
+    change_moveable_dir(lover(), dx, dy);
   }
   
-  function player_says(something) {
-    var room = multiroom.current_room();
+  function moveable_says(moveable, something) {
+    moveable.say = something;
     
-    room.player.say = something;
-    update_moveable(room.player);
+    moveable.say = something;
+    update_moveable(moveable);
+    foreground_animations.wait_for(2*std_delay, function() {
+      moveable.say = null;
+      update_moveable(moveable);
+    });
+  }
+  function player_says(something) {
+    moveable_says(player(), something);
   }
   function lover_says(something) {
-    var room = multiroom.current_room();
-    
-    room.lover.say = something;
-    update_moveable(room.lover);
-    foreground_animations.wait_for(2*std_delay, function() {
-      room.lover.say = null;
-      update_moveable(room.lover);
-    });
+    moveable_says(lover(), something);
   }
   
   function move_player(dx, dy) {
-    var room = multiroom.current_room();
-    var pos = room.player.pos.plus(dx, dy);
-    var block = room.moveable_at(pos);
-    var old_dir = room.player.dir;
+    var r = room();
+    var pos = r.player.pos.plus(dx, dy);
+    var block = r.moveable_at(pos);
+    var old_dir = r.player.dir;
     var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
     
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
-      room.move_player(dx, dy);
+      r.move_player(dx, dy);
       process_events();
     }
 
-    if (room.player.floor == Tile.open_door) {
+    if (r.player.floor == Tile.open_door) {
       next_level();
     }
   }
   function move_lover(dx, dy) {
-    var room = multiroom.current_room();
-    
-    room.move_lover(dx, dy);
+    room().move_lover(dx, dy);
     
     process_events();
   }
@@ -226,17 +230,17 @@ $(function () {
 
   function fork_unfork_room() {
     if (player_has_fork()) {
-      var room = multiroom.current_room();
-      var dir = room.player.dir;
-      var pos = room.player.pos.plus(dir.x, dir.y);
-      var block = room.moveable_at(pos);
+      var r = room();
+      var dir = r.player.dir;
+      var pos = r.player.pos.plus(dir.x, dir.y);
+      var block = r.moveable_at(pos);
 
       if (block) {
         block.forked = true;
-        room.update_moveable(block);
+        r.update_moveable(block);
         
-        room.player.forked = false;
-        room.update_moveable(room.player);
+        r.player.forked = false;
+        r.update_moveable(r.player);
         
         multiroom.fork(block);
         process_events();
@@ -247,8 +251,8 @@ $(function () {
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = room.player.pos.plus(dir.x, dir.y);
-          var moveable = room.moveable_at(pos);
+          var pos = r.player.pos.plus(dir.x, dir.y);
+          var moveable = r.moveable_at(pos);
           
           if (moveable) {
             ++block_count;
@@ -259,26 +263,26 @@ $(function () {
         if (block_count == 1) {
           // that must be the block the player meant.
           // turn towards it and try again
-          room.player.dir = block_dir;
-          update_moveable(room.player);
+          r.player.dir = block_dir;
+          update_moveable(r.player);
           
           fork_unfork_room();
         }
       }
     } else {
-      var room = multiroom.current_room();
-      var dir = room.player.dir;
-      var pos = room.player.pos.plus(dir.x, dir.y);
-      var block = room.moveable_at(pos);
+      var r = room();
+      var dir = r.player.dir;
+      var pos = r.player.pos.plus(dir.x, dir.y);
+      var block = r.moveable_at(pos);
       
       if (block) {
         // pick up the fork
         {
           block.forked = false;
-          room.update_moveable(block);
+          r.update_moveable(block);
           
-          room.player.forked = true;
-          room.update_moveable(room.player);
+          r.player.forked = true;
+          r.update_moveable(r.player);
           
           process_events();
         }
@@ -288,17 +292,17 @@ $(function () {
         // to consider the block's instance from that room
         {
           multiroom.merge(block);
-          room = multiroom.current_room();
-          block = room.moveable_from_id(block.id);
+          r = room();
+          block = r.moveable_from_id(block.id);
         }
         
         // repeat the changes in the old timeline
         {
           block.forked = false
-          room.update_moveable(block);
+          r.update_moveable(block);
           
-          room.player.forked = true;
-          room.update_moveable(room.player);
+          r.player.forked = true;
+          r.update_moveable(r.player);
           
           process_events();
         }
@@ -308,8 +312,8 @@ $(function () {
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = room.player.pos.plus(dir.x, dir.y);
-          var moveable = room.moveable_at(pos);
+          var pos = r.player.pos.plus(dir.x, dir.y);
+          var moveable = r.moveable_at(pos);
           
           if (moveable && moveable.forked) {
             block_dir = dir;
@@ -319,8 +323,8 @@ $(function () {
         if (block_dir) {
           // that must be the block the player meant.
           // turn towards it and try again
-          room.player.dir = block_dir;
-          update_moveable(room.player);
+          r.player.dir = block_dir;
+          update_moveable(r.player);
           
           fork_unfork_room();
         }
