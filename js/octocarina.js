@@ -258,8 +258,10 @@ $(function () {
         character.forked = false;
         r.update_moveable(character);
         
-        if (block !== lover()) {
+        if (!block.tile.character) {
           multiroom.fork(block);
+          
+          animate('fork', World.load_on_fork(level));
         }
         
         process_events();
@@ -306,14 +308,16 @@ $(function () {
           process_events();
         }
         
-        if (block !== lover()) {
+        if (!block.tile.character) {
           // merge the timelines;
           // we go back into the old room, and thus need
           // to consider the block's instance from that room
           {
             multiroom.merge(block);
+            
             r = room();
             block = r.moveable_from_id(block.id);
+            character = r.moveable_from_id(character.id);
           }
           
           // repeat the changes in the old timeline
@@ -323,8 +327,9 @@ $(function () {
             
             character.forked = true;
             r.update_moveable(character);
-            
           }
+          
+          animate('fork', World.load_on_fork(level));
         }
         
         process_events();

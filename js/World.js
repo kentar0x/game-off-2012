@@ -7,10 +7,11 @@ var World = {
               "#......#",
               "#.C....#",
               "#.c....#",
-              "#......#",
+              "#....w##",
               "########"],
       on_start: [ 'right', 'up', 'face_left', 'fork', 'right', 'right', 'up', 'face_down', '<3' ],
       on_kiss: [ 'up' ],
+      on_fork: [ 'down', 'down', 'fork' ],
       position_animations: {
         '1,2': [ 'left', 'down' ]
       }
@@ -199,17 +200,20 @@ var World = {
     
     return Multiroom.create(room);
   },
-  load_on_start: function(index) {
+  load_animation: function(index, animation_type) {
     var data = this.levels[index];
-    return data.on_start
-        ? data.on_start
+    return data[animation_type]
+        ? data[animation_type]
         : [];
   },
+  load_on_start: function(index) {
+    return this.load_animation(index, 'on_start');
+  },
   load_on_kiss: function(index) {
-    var data = this.levels[index];
-    return data.on_kiss
-        ? data.on_kiss
-        : [];
+    return this.load_animation(index, 'on_kiss');
+  },
+  load_on_fork: function(index) {
+    return this.load_animation(index, 'on_fork');
   },
   load_position_animations: function(index) {
     var data = this.levels[index];
