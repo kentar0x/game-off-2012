@@ -70,24 +70,31 @@ var ActionQueue = {
         // synonym for enqueue_async
         return this.enqueue_async(body);
       },
-      then_wait_for: function(other_queue) {
+      
+      wait_for: function(other_queue, then_do) {
         var self = this;
+        self.stop();
+        
+        var resume = function() {
+          if (then_do) then_do();
+          
+          self.resume();
+        };
         
         // dual purpose! depending on the argument type,
         // either wait for another queue of for time to pass.
         if ($.isNumeric(other_queue)) {
           var delay = other_queue;
-          self.enqueue_async(function() {
-            window.setTimeout(function() {
-              self.resume();
-            }, delay);
-          });
+          window.setTimeout(resume, delay);
         } else {
-          self.stop();
-          other_queue.enqueue(function() {
-            self.resume();
-          });
+          other_queue.enqueue(resume);
         }
+      },
+      then_wait_for: function(other_queue) {
+        var self = this;
+        self.enqueue(function() {
+          self.wait_for(other_queue);
+        });
         
         return self;
       },

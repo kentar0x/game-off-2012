@@ -231,6 +231,27 @@ h1 {
   background-position: -2020px;
 }
 
+.say:before {
+  content: "";
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
+  background-image: url('../img/sprites.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: -1px; /* 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
+  position: relative;
+  left: -70px;
+  top: -15px;
+}
+.say.heart:before {
+  background-position: -2828px;
+}
+.say.press-key:before {
+  background-position: -2929px;
+}
+  
+
 #credits {
   display: none;
   color: white;

@@ -49,6 +49,13 @@ $(function () {
       change_lover_dir(0, 1);
     },
     
+    '<3': function() {
+      lover_says('heart');
+    },
+    'press-key': function() {
+      lover_says('press-key');
+    },
+    
     'dummy': null
   };
 
@@ -152,21 +159,41 @@ $(function () {
   }
 
 
+  function update_moveable(moveable) {
+    var room = multiroom.current_room();
+    
+    room.update_moveable(moveable);
+    process_events();
+  }
+  
   function change_player_dir(dx, dy) {
     var room = multiroom.current_room();
     
     room.player.dir = Pos.create(dx, dy);
-    room.update_moveable(room.player);
-    
-    process_events();
+    update_moveable(room.player);
   }
   function change_lover_dir(dx, dy) {
     var room = multiroom.current_room();
     
     room.lover.dir = Pos.create(dx, dy);
-    room.update_moveable(room.lover);
+    update_moveable(room.lover);
+  }
+  
+  function player_says(something) {
+    var room = multiroom.current_room();
     
-    process_events();
+    room.player.say = something;
+    update_moveable(room.player);
+  }
+  function lover_says(something) {
+    var room = multiroom.current_room();
+    
+    room.lover.say = something;
+    update_moveable(room.lover);
+    foreground_animations.wait_for(2*std_delay, function() {
+      room.lover.say = null;
+      update_moveable(room.lover);
+    });
   }
   
   function move_player(dx, dy) {
@@ -233,8 +260,7 @@ $(function () {
           // that must be the block the player meant.
           // turn towards it and try again
           room.player.dir = block_dir;
-          room.update_moveable(room.player);
-          process_events();
+          update_moveable(room.player);
           
           fork_unfork_room();
         }
@@ -294,8 +320,7 @@ $(function () {
           // that must be the block the player meant.
           // turn towards it and try again
           room.player.dir = block_dir;
-          room.update_moveable(room.player);
-          process_events();
+          update_moveable(room.player);
           
           fork_unfork_room();
         }

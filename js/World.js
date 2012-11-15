@@ -9,7 +9,7 @@ var World = {
               "#.c....#",
               "#......#",
               "########"],
-      on_start: [ 'right', 'right', 'right', 'up', 'up', 'face_down' ]
+      on_start: [ 'right', 'up', 'face_left', '<3', 'right', 'right', 'up', 'face_down', '<3' ]
     }
     ,
     {
