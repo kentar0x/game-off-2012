@@ -8,6 +8,7 @@ $(function () {
   var multibuttons = null;
   var forkedBlock = null;
   var theatre = Theatre.empty();
+  var completed_animations = {};
 
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
@@ -69,21 +70,25 @@ $(function () {
     'dummy': null
   };
 
-  function animate(animation_plan) {
-    var had_delay = false;
-    for( var i = 0; i < animation_plan.length; ++i ) {
-      var animation_key = animation_plan[i];
-      if ($.isNumeric(animation_key)) {
-        var delay = animation_key;
-        foreground_animations.then_wait_for(delay);
-        had_delay = true;
-      } else {
-        var animation_func = animation[animation_key];
-        if( ! had_delay ) {
-          foreground_animations.then_wait_for(std_delay);
+  function animate(animation_key, animation_plan) {
+    if (!completed_animations[animation_key]) {
+      completed_animations[animation_key] = true;
+      
+      var had_delay = false;
+      for( var i = 0; i < animation_plan.length; ++i ) {
+        var animation_key = animation_plan[i];
+        if ($.isNumeric(animation_key)) {
+          var delay = animation_key;
+          foreground_animations.then_wait_for(delay);
+          had_delay = true;
+        } else {
+          var animation_func = animation[animation_key];
+          if( ! had_delay ) {
+            foreground_animations.then_wait_for(std_delay);
+          }
+          foreground_animations.enqueue(animation_func);
+          had_delay = false;
         }
-        foreground_animations.enqueue(animation_func);
-        had_delay = false;
       }
     }
   };
@@ -139,7 +144,8 @@ $(function () {
       
       theatre = Theatre.create(toplevel_container, r);
 
-      animate(World.load_on_start(index));
+      completed_animations = {};
+      animate('start', World.load_on_start(index));
     });
   }
 
@@ -211,7 +217,7 @@ $(function () {
     var pos_key = pos.x + "," + pos.y;
     var animation_plan = World.load_position_animations(level)[pos_key];
     if( animation_plan ) {
-      animate(animation_plan);
+      animate(pos_key, animation_plan);
     }
     if (block && !same_dir) {
       change_player_dir(dx, dy);
@@ -219,7 +225,7 @@ $(function () {
       if (block && block === lover()) {
         player_says('heart');
         
-        animate(World.load_on_kiss(level));
+        animate('kiss', World.load_on_kiss(level));
       } else {
         r.move_player(dx, dy);
         process_events();
