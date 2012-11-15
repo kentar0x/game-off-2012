@@ -217,8 +217,12 @@ $(function () {
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
-      r.move_player(dx, dy);
-      process_events();
+      if (block && block == lover()) {
+        player_says('heart');
+      } else {
+        r.move_player(dx, dy);
+        process_events();
+      }
     }
 
     if (r.player.floor == Tile.open_door) {

@@ -241,7 +241,7 @@ h1 {
   background-image: url('../img/sprites.png');
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: -1px; /* 1px border */
+  margin-right: -101px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
   position: relative;
   left: -70px;
