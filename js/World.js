@@ -8,7 +8,8 @@ var World = {
               "#.C....#",
               "#......#",
               "#......#",
-              "########"]
+              "########"],
+      on_start: [ 'right', 'right', 'right', 'up' ]
     }
     ,
     {
@@ -192,5 +193,11 @@ var World = {
     var room = this.load_room(index);
     
     return Multiroom.create(room);
+  },
+  load_on_start: function(index) {
+    var data = this.levels[index];
+    return data.on_start
+        ? data.on_start
+        : [];
   }
 };

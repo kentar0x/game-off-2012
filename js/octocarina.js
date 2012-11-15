@@ -21,6 +21,23 @@ $(function () {
   }
 
 
+  var animation = {
+    'left': function() {
+      move_player(-1, 0);
+    },
+    'right': function() {
+      move_player(1, 0);
+    },
+    'up': function() {
+      move_player(0, -1);
+    },
+    'down': function() {
+      move_player(0, 1);
+    },
+    'dummy': null
+  };
+
+
   function process_events() {
     multibuttons.process_events(multiroom);
     forkedBlock.process_events(multiroom);
@@ -70,6 +87,13 @@ $(function () {
       room.player.dir = Pos.create(0, 1);
       
       theatre = Theatre.create(toplevel_container, room);
+
+      var animation_plan = World.load_on_start(index);
+      for( var i = 0; i != animation.length; ++i ) {
+        var animation_func = animation[animation_plan[i]];
+
+        foreground_animations.enqueue(animation_func);
+      }
     });
   }
 
