@@ -90,14 +90,17 @@ h1 {
 .open-door-tile {
   background-position: -808px;
 }
-.regular-button-tile {
+.wooden-block-sprite {
+  background-position: -202px;
+}
+.red-button-tile {
   background-position: -909px;
 }
-.pressed-regular-button-tile {
+.pressed-red-button-tile {
   background-position: -1010px;
 }
-.regular-block-sprite {
-  background-position: -202px;
+.red-block-sprite {
+  background-position: -3030px;
 }
 .green-button-tile {
   background-position: -1111px;

@@ -44,8 +44,9 @@ Tile.open_door   = Tile.create('d', {
     sprite_class : 'open-door-tile'
 });
 
-Tile.button        = Tile.create('R', {
-    sprite_class : 'regular-button-tile',
+Tile.red_button    = Tile.create('R', {
+    sprite_class : 'red-button-tile',
+    color        : 'red',
     is_floor     : true,
     button       : true
 });
@@ -68,8 +69,14 @@ Tile.orange_button = Tile.create('O', {
     button       : true
 });
 
-Tile.block        = Tile.create('r', {
-    sprite_class : 'regular-block-sprite',
+Tile.block        = Tile.create('w', {
+    sprite_class : 'wooden-block-sprite',
+    solid        : true,
+    moveable     : true
+  });
+Tile.red_block    = Tile.create('r', {
+    sprite_class : 'red-block-sprite',
+    color        : 'red',
     solid        : true,
     moveable     : true
   });

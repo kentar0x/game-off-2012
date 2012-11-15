@@ -34,17 +34,17 @@ var World = {
       ascii: ["########",
               "#d######",
               "........",
-              "####rrrr",
-              ".C.r....",
+              "####wwww",
+              ".C.w....",
               "...#...."]
     }
     ,
     {
-      ascii: ["#.r.####",
-              "..r.####",
-              "CgrG##D#",
-              "..r.#...",
-              "#.r....."]  // practice for the gate...
+      ascii: ["#.w.####",
+              "..w.####",
+              "CgwG##D#",
+              "..w.#...",
+              "#.w....."]  // practice for the gate...
     }
     ,
     {
@@ -58,9 +58,9 @@ var World = {
     {
       ascii: ["##D##",
               ".....",
-              ".r.r.",
-              "rgrGr",  // block pushing gate.
-              ".r.r.",  // players who go past this
+              ".w.w.",
+              "wgwGw",  // block pushing gate.
+              ".w.w.",  // players who go past this
               "..C.."]  // master regular sokoban.
     }
     ,
@@ -68,15 +68,15 @@ var World = {
       ascii: ["#d###",
               ".....",
               "###.#",
-              ".Crr.",
+              ".Cww.",
               "....."]
     }
     ,
     {
       ascii: ["###d###",
               "###.###",
-              "##.r.##",
-              "##r.r##",
+              "##.w.##",
+              "##w.w##",
               "#.C...#"]
     }
     ,
@@ -88,27 +88,27 @@ var World = {
     ,
     {
       ascii: ["#####D#",
-              "..r.r.#",
+              "..w.w.#",
               "C.Gg..#",
-              "..r.r.#",
+              "..w.w.#",
               "#######"]
     }
     ,
     {
       ascii: ["####D#",
               "#....#",
-              "#CgrG#",
+              "#CgwG#",
               "#..#.#",
               "#.##.#",
               "#....#"]
     }
     ,
     {
-      ascii: ["#.r.###",
-              "..r.###",
-              "CgrG###",
-              "..r.#D#",
-              "#.r...#"]  // variant which does need the fork
+      ascii: ["#.w.###",
+              "..w.###",
+              "CgwG###",
+              "..w.#D#",
+              "#.w...#"]  // vawiant which does need the fowk
     }
     ,
     {
@@ -116,15 +116,15 @@ var World = {
               "C..#..",
               ".#.#..",
               "Ggo..O",
-              "...#.."]  // variant which does need the fork
+              "...#.."]  // vawiant which does need the fowk
     }
     ,
     {
       ascii: ["###D###",
-              "..r.r..",
-              ".rgrGr.",
-              "..r.r..",
-              "...C..."]  // variant which does need the fork
+              "..w.w..",
+              ".wgwGw.",
+              "..w.w..",
+              "...C..."]  // vawiant which does need the fowk
     }
     ,
     {
@@ -145,7 +145,7 @@ var World = {
       ascii: ["###D###",
               "###.###",
               "#..G..#",
-              "#rrrrr#",
+              "#wwwww#",
               "#..g..#",  // variang which teaches
               "##.C.##"]  // that the block can push the player
     }
@@ -153,27 +153,27 @@ var World = {
     {
       ascii: ["##D##",
               "R...G",
-              ".rrg.",
-              ".r.r.",
-              ".bro.",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
               "B.C.O"]  // easy
     }
     ,
     {
       ascii: ["##D##",
               "G...R",
-              ".rrg.",
-              ".r.r.",
-              ".bro.",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
               "O.C.B"]  // medium
     }
     ,
     {
       ascii: ["##D##",
               "O...B",
-              ".rrg.",
-              ".r.r.",
-              ".bro.",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
               "G.C.R"]  // hard
     }
   ],
