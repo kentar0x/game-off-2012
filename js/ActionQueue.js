@@ -107,6 +107,11 @@ var ActionQueue = {
           paused = false;
           this.run_queue();
         }
+      },
+      
+      clear: function() {
+        queue = [];
+        this.resume();
       }
     };
   }

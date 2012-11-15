@@ -3,7 +3,6 @@ $(function () {
   var debug = false;
   
   var level = 0;
-  var loaded_level = null;
   var multiroom = null;
   var multibuttons = null;
   var forkedBlock = null;
@@ -128,12 +127,7 @@ $(function () {
     foreground_animations.enqueue(function() {
       theatre.remove();
     }).then_wait_for(Theatre.queue).then(function() {
-      // use level instead of index, in case we are
-      // in debug mode and the level changed quickly
-      index = level;
-      
       multiroom = World.load_multiroom(index);
-      loaded_level = index;
 
       var r = room();
       multibuttons = Multibuttons.create(r);
@@ -403,14 +397,9 @@ $(function () {
       if (new_level < 0) new_level = 0;
       
       if (new_level != old_level) {
-        Theatre.queue.enqueue(function() {
-          if (level == new_level && level != loaded_level) {
-            load_level(new_level);
-          } else {
-            // the level-skipping keys were pressed repeatedly,
-            // wait until the user stops
-          }
-        });
+        foreground_animations.clear();
+        Theatre.queue.clear();
+        load_level(new_level);
       }
     }
 
