@@ -9,7 +9,7 @@ var World = {
               "#.c....#",
               "#......#",
               "########"],
-      on_start: [ 'right', 'up', 'face_left', '<3', 'right', 'right', 'up', 'face_down', '<3' ],
+      on_start: [ 'right', 'up', 'face_left', 'fork', 'right', 'right', 'up', 'face_down', '<3' ],
       on_kiss: [ 'up' ],
       position_animations: {
         '1,2': [ 'left', 'down' ]

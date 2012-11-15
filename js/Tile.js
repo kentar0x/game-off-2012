@@ -28,11 +28,13 @@ Tile.wall = Tile.create('#', {
 Tile.player = Tile.create('C', {
     sprite_class : 'player-sprite',
     solid        : true,
+    character    : true,
     moveable     : true
 });
 Tile.lover = Tile.create('c', {
     sprite_class : 'lover-sprite',
     solid        : true,
+    character    : true,
     moveable     : true
 });
 

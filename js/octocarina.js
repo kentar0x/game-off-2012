@@ -26,10 +26,6 @@ $(function () {
     // don't allow the player to move if an animation is under way
     return foreground_animations.is_empty();
   }
-  
-  function player_has_fork() {
-    return player().forked;
-  }
 
 
   var animation = {
@@ -64,6 +60,10 @@ $(function () {
     },
     'press-key': function() {
       lover_says('press-key');
+    },
+    
+    'fork': function() {
+      use_fork(lover());
     },
     
     'dummy': null
@@ -238,19 +238,19 @@ $(function () {
     
 
 
-  function fork_unfork_room() {
-    if (player_has_fork()) {
+  function use_fork(character) {
+    if (character.forked) {
       var r = room();
-      var dir = r.player.dir;
-      var pos = r.player.pos.plus(dir.x, dir.y);
+      var dir = character.dir;
+      var pos = character.pos.plus(dir.x, dir.y);
       var block = r.moveable_at(pos);
 
       if (block) {
         block.forked = true;
         r.update_moveable(block);
         
-        r.player.forked = false;
-        r.update_moveable(r.player);
+        character.forked = false;
+        r.update_moveable(character);
         
         if (block !== lover()) {
           multiroom.fork(block);
@@ -258,13 +258,13 @@ $(function () {
         
         process_events();
       } else {
-        // player is not facing a block.
+        // character is not facing a block.
         // maybe it's still clear which one he means, though?
         var block_count = 0;
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = r.player.pos.plus(dir.x, dir.y);
+          var pos = character.pos.plus(dir.x, dir.y);
           var moveable = r.moveable_at(pos);
           
           if (moveable) {
@@ -274,18 +274,18 @@ $(function () {
         });
         
         if (block_count == 1) {
-          // that must be the block the player meant.
+          // that must be the block the character meant.
           // turn towards it and try again
-          r.player.dir = block_dir;
-          update_moveable(r.player);
+          character.dir = block_dir;
+          update_moveable(character);
           
-          fork_unfork_room();
+          use_fork(character);
         }
       }
     } else {
       var r = room();
-      var dir = r.player.dir;
-      var pos = r.player.pos.plus(dir.x, dir.y);
+      var dir = character.dir;
+      var pos = character.pos.plus(dir.x, dir.y);
       var block = r.moveable_at(pos);
       
       if (block && block.forked) {
@@ -294,8 +294,8 @@ $(function () {
           block.forked = false;
           r.update_moveable(block);
           
-          r.player.forked = true;
-          r.update_moveable(r.player);
+          character.forked = true;
+          r.update_moveable(character);
           
           process_events();
         }
@@ -315,20 +315,20 @@ $(function () {
             block.forked = false
             r.update_moveable(block);
             
-            r.player.forked = true;
-            r.update_moveable(r.player);
+            character.forked = true;
+            r.update_moveable(character);
             
           }
         }
         
         process_events();
       } else {
-        // player is not facing a block.
+        // character is not facing a block.
         // maybe it's still clear which one he means, though?
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = r.player.pos.plus(dir.x, dir.y);
+          var pos = character.pos.plus(dir.x, dir.y);
           var moveable = r.moveable_at(pos);
           
           if (moveable && moveable.forked) {
@@ -337,12 +337,12 @@ $(function () {
         });
         
         if (block_dir) {
-          // that must be the block the player meant.
+          // that must be the block the character meant.
           // turn towards it and try again
-          r.player.dir = block_dir;
-          update_moveable(r.player);
+          character.dir = block_dir;
+          update_moveable(character);
           
-          fork_unfork_room();
+          use_fork(character);
         }
       }
     }
@@ -373,7 +373,7 @@ $(function () {
         case Keycode.X:     /* falls through */
         case Keycode.F:     /* falls through */
         case Keycode.ctrl:  /* falls through */
-        case Keycode.space: fork_unfork_room(); return false;
+        case Keycode.space: use_fork(player()); return false;
         
         //case Keycode.tab: next_room(); return true;
       }
