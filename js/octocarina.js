@@ -217,7 +217,7 @@ $(function () {
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
-      if (block && block == lover()) {
+      if (block && block === lover()) {
         player_says('heart');
       } else {
         r.move_player(dx, dy);
@@ -251,7 +251,10 @@ $(function () {
         r.player.forked = false;
         r.update_moveable(r.player);
         
-        multiroom.fork(block);
+        if (block !== lover()) {
+          multiroom.fork(block);
+        }
+        
         process_events();
       } else {
         // player is not facing a block.
@@ -296,25 +299,28 @@ $(function () {
           process_events();
         }
         
-        // merge the timelines;
-        // we go back into the old room, and thus need
-        // to consider the block's instance from that room
-        {
-          multiroom.merge(block);
-          r = room();
-          block = r.moveable_from_id(block.id);
+        if (block !== lover()) {
+          // merge the timelines;
+          // we go back into the old room, and thus need
+          // to consider the block's instance from that room
+          {
+            multiroom.merge(block);
+            r = room();
+            block = r.moveable_from_id(block.id);
+          }
+          
+          // repeat the changes in the old timeline
+          {
+            block.forked = false
+            r.update_moveable(block);
+            
+            r.player.forked = true;
+            r.update_moveable(r.player);
+            
+          }
         }
         
-        // repeat the changes in the old timeline
-        {
-          block.forked = false
-          r.update_moveable(block);
-          
-          r.player.forked = true;
-          r.update_moveable(r.player);
-          
-          process_events();
-        }
+        process_events();
       } else {
         // player is not facing a block.
         // maybe it's still clear which one he means, though?
