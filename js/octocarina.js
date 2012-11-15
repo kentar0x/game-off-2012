@@ -89,7 +89,7 @@ $(function () {
       theatre = Theatre.create(toplevel_container, room);
 
       var animation_plan = World.load_on_start(index);
-      for( var i = 0; i != animation.length; ++i ) {
+      for( var i = 0; i < animation_plan.length; ++i ) {
         var animation_func = animation[animation_plan[i]];
 
         foreground_animations.enqueue(animation_func);
