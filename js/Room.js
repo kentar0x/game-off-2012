@@ -3,11 +3,14 @@
 
 var Room = {
   create: function(tiles, moveables) {
-    // find the player
+    // find the player and her lover
     var player = null;
+    var lover = null;
     moveables.each(function(moveable) {
       if (moveable.tile === Tile.player) {
         player = moveable;
+      } else if (moveable.tile === Tile.lover) {
+        lover = moveable;
       }
     });
     
@@ -113,6 +116,15 @@ var Room = {
       move_player: function (dx, dy) {
         player.dir = Pos.create(dx, dy);
         this.move(player, dx, dy);
+      },
+
+      lover: lover,
+      lover_pos: function () {
+        return lover.pos;
+      },
+      move_lover: function (dx, dy) {
+        lover.dir = Pos.create(dx, dy);
+        this.move(lover, dx, dy);
       },
 
       copy: function () {

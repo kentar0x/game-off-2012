@@ -23,16 +23,16 @@ $(function () {
 
   var animation = {
     'left': function() {
-      move_player(-1, 0);
+      move_lover(-1, 0);
     },
     'right': function() {
-      move_player(1, 0);
+      move_lover(1, 0);
     },
     'up': function() {
-      move_player(0, -1);
+      move_lover(0, -1);
     },
     'down': function() {
-      move_player(0, 1);
+      move_lover(0, 1);
     },
     'dummy': null
   };
@@ -141,6 +141,14 @@ $(function () {
       next_level();
     }
   }
+  function move_lover(dx, dy) {
+    var room = multiroom.current_room();
+    
+    room.move_lover(dx, dy);
+    
+    process_events();
+  }
+    
 
 
   function fork_unfork_room() {

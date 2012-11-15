@@ -6,10 +6,10 @@ var World = {
       ascii: ["#####d##",
               "#......#",
               "#.C....#",
-              "#......#",
+              "#.c....#",
               "#......#",
               "########"],
-      on_start: [ 'right', 'right', 'right', 'up' ]
+      on_start: [ 'right', 'right', 'right', 'up', 'up' ]
     }
     ,
     {

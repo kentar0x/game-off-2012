@@ -24,8 +24,14 @@ Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
     solid        : true
 });
+
 Tile.player = Tile.create('C', {
     sprite_class : 'player-sprite',
+    solid        : true,
+    moveable     : true
+});
+Tile.lover = Tile.create('c', {
+    sprite_class : 'lover-sprite',
     solid        : true,
     moveable     : true
 });
