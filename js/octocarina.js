@@ -139,8 +139,7 @@ $(function () {
       
       theatre = Theatre.create(toplevel_container, r);
 
-      var animation_plan = World.load_on_start(index);
-      animate(animation_plan);
+      animate(World.load_on_start(index));
     });
   }
 
@@ -219,6 +218,8 @@ $(function () {
     } else {
       if (block && block === lover()) {
         player_says('heart');
+        
+        animate(World.load_on_kiss(level));
       } else {
         r.move_player(dx, dy);
         process_events();

@@ -10,6 +10,7 @@ var World = {
               "#......#",
               "########"],
       on_start: [ 'right', 'up', 'face_left', '<3', 'right', 'right', 'up', 'face_down', '<3' ],
+      on_kiss: [ 'up' ],
       position_animations: {
         '1,2': [ 'left', 'down' ]
       }
@@ -202,6 +203,12 @@ var World = {
     var data = this.levels[index];
     return data.on_start
         ? data.on_start
+        : [];
+  },
+  load_on_kiss: function(index) {
+    var data = this.levels[index];
+    return data.on_kiss
+        ? data.on_kiss
         : [];
   },
   load_position_animations: function(index) {
