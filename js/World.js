@@ -5,16 +5,21 @@ var World = {
     {
       ascii: ["#####d##",
               "#......#",
-              "#.C....#",
-              "#.c....#",
-              "#....w##",
+              "#.Cc...#",
+              "#......#",
+              "#......#",
               "########"],
-      on_start: [ 'right', 'up', 'face_left', 'fork', 'right', 'right', 'up', 'face_down', '<3' ],
-      on_kiss: [ 'up' ],
-      on_fork: [ 'down', 'down', 'fork' ],
       position_animations: {
-        '1,2': [ 'left', 'down' ]
+        '5,0': [ 'right', 'right', 'up', 'up' ]
       }
+    }
+    ,
+    {
+      ascii: ["..###D#",
+              "..#...#",
+              "c......",
+              "C..rR.."],
+      on_start: [ 'right', 'right', 'right', 'right', 'up', 'right', 'face_up', 'face_down' ]
     }
     ,
     {
@@ -25,12 +30,6 @@ var World = {
               ".c.w....",
               "...w...."],
       on_start: [ 'right', 'right', 'right', 'right', 'right', 'face_down', '<3' ],
-    }
-    ,
-    {
-      ascii: ["..###D#",
-              "..#...#",
-              "C..rR.."]
     }
     ,
     {
