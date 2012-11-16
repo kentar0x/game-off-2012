@@ -27,6 +27,15 @@ var Room = {
           return Tile.wall;
         });
       },
+      floor_tile_at: function(pos) {
+        var moveable = moveables.at(pos);
+        
+        if (moveable) {
+          return moveable.floor;
+        } else {
+          return this.tile_at(pos);
+        }
+      },
 
       tile_changes: tile_changes,
       change_tile: function (pos, new_tile) {

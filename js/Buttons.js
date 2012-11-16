@@ -9,7 +9,7 @@ var Buttons = {
     var door = null;
     var button_count = 0;
     var buttons = Table.create(room.size, function(pos) {
-      var tile = room.tile_at(pos);
+      var tile = room.floor_tile_at(pos);
       
       if (tile == Tile.closed_door) {
         door = pos;

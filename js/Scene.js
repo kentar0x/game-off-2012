@@ -137,7 +137,7 @@ var Scene = {
     }
     
     return Table.create(room.size, function(pos) {
-      var tile = room.tile_at(pos);
+      var tile = room.floor_tile_at(pos);
       
       if (all_walls && pos.y == y) {
         return Tile.empty;
