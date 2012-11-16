@@ -96,6 +96,10 @@ var Room = {
       update_moveable: function (moveable) {
         this.force_move(moveable, moveable.pos);
       },
+      remove_moveable: function (moveable) {
+        moveables.remove(moveable);
+        this.change_tile(moveable.pos, moveable.floor);
+      },
       move: function (moveable, dx, dy) {
         var old_pos = moveable.pos;
         var new_pos = old_pos.plus(dx, dy);

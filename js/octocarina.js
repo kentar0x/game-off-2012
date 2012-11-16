@@ -55,6 +55,16 @@ $(function () {
       change_lover_dir(0, 1);
     },
     
+    'leave': function() {
+      if (player().floor === Tile.open_door) {
+        room().remove_moveable(player());
+      } else if (lover().floor === Tile.open_door) {
+        room().remove_moveable(lover());
+      }
+      
+      process_events();
+    },
+    
     '<3': function() {
       lover_says('heart');
     },
