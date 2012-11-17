@@ -5,12 +5,13 @@ var World = {
     {
       ascii: ["#####d##",
               "#......#",
-              "#.Cc...#",
               "#......#",
+              "#.Cc...#",
               "#......#",
               "########"],
       position_animations: {
-        '5,0': [ 'leave', 'right', 'right', 'up', 'up' ]
+        '5,1': [ 'right', 'right', 'up', 'door?' ],
+        '5,0': [ 'leave', 'up', 'up', 'leave' ]
       }
     }
     ,

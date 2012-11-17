@@ -71,6 +71,18 @@ $(function () {
     'press-key': function() {
       lover_says('press-key');
     },
+    'door?': function() {
+      lover_says('door-question');
+    },
+    'door!': function() {
+      lover_says('door-exclam');
+    },
+    '?': function() {
+      lover_says('question');
+    },
+    '!': function() {
+      lover_says('exclam');
+    },
     
     'fork': function() {
       use_fork(lover());

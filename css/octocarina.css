@@ -253,6 +253,18 @@ h1 {
 .say.press-key:before {
   background-position: -2929px;
 }
+.say.door-question:before {
+  background-position: -3131px;
+}
+.say.door-exclam:before {
+  background-position: -3232px;
+}
+.say.question:before {
+  background-position: -3333px;
+}
+.say.exclam:before {
+  background-position: -3434px;
+}
   
 
 #credits {
