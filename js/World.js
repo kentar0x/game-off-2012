@@ -10,7 +10,7 @@ var World = {
               "#......#",
               "########"],
       position_animations: {
-        '5,1': [ 'right', 'right', 'up', 'door?' ],
+        '5,1': [ 400, 'right', 300, 'right', 300, 'up', 1000, 'door?' ],
         '5,0': [ 'leave', 'up', 'up', 'leave' ]
       }
     }
