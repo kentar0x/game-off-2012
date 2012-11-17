@@ -155,7 +155,6 @@ $(function () {
       multibuttons = Multibuttons.create(r);
       forkedBlock = ForkedBlock.create(r);
 
-      r.player.forked = true;
       r.player.dir = Pos.create(0, 1);
       
       theatre = Theatre.create(toplevel_container, r);

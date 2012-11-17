@@ -6,7 +6,7 @@ var World = {
       ascii: ["#####d##",
               "#......#",
               "#......#",
-              "#.Cc...#",
+              "#.cl...#",
               "#......#",
               "########"],
       position_animations: {
@@ -19,8 +19,8 @@ var World = {
       ascii: ["..###D#",
               "..#...#",
               ".......",
-              "c......",
-              "C..rR.."],
+              "l......",
+              "c..rR.."],
       on_start: [ 600, 'right', 600, 'right', 600, 'right', 600, 'right', 'face_up', 1500, 'face_left', 'door!', 300, 'up', 300, 'right', 300, 'up', 2000, 'face_down', 'face_up', 2000, 'face_left', 'door?' ],
       position_animations: {
         '3,4': [ 'face_up', 'door!', 'down', 300, 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
@@ -28,11 +28,20 @@ var World = {
     }
     ,
     {
+      ascii: ["....##d",
+              ".......",
+              ".......",
+              "...W...",
+              "l......",
+              "c......"]
+    }
+    ,
+    {
       ascii: ["#d######",
               "........",
               "####wwww",
               "..w...w.",
-              "C.w..wc.",
+              "c.w..wl.",
               "..#....."],
       on_start: [ 0, 'face_up', 1000, 'face_left', 1000, 'face_up', 1500,
                   'down', 300, 'left', 300, 'left', 300, 'up',
@@ -53,14 +62,14 @@ var World = {
     {
       ascii: ["#.w.####",
               "..w.####",
-              "CgwG##D#",
+              "cgwG##D#",
               "..w.#...",
               "#.w....."]  // practice for the gate...
     }
     ,
     {
       ascii: ["#####D#",
-              "C..#...",
+              "c..#...",
               ".#.#...",
               "Ggo..O.",
               "...#..."] // doesn't need the fork
@@ -72,7 +81,7 @@ var World = {
               ".w.w.",
               "wgwGw",  // block pushing gate.
               ".w.w.",  // players who go past this
-              "..C.."]  // master regular sokoban.
+              "..c.."]  // master regular sokoban.
     }
     ,
     {

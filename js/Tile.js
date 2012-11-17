@@ -25,15 +25,33 @@ Tile.wall = Tile.create('#', {
     solid        : true
 });
 
-Tile.player = Tile.create('C', {
+Tile.player = Tile.create('c', {
     sprite_class : 'player-sprite',
+    player       : true,
     solid        : true,
     character    : true,
     moveable     : true
 });
-Tile.lover = Tile.create('c', {
-    sprite_class : 'lover-sprite',
+Tile.player_with_fork = Tile.create('C', {
+    sprite_class : 'player-sprite',
+    player       : true,
     solid        : true,
+    forked       : true,
+    character    : true,
+    moveable     : true
+});
+Tile.lover = Tile.create('l', {
+    sprite_class : 'lover-sprite',
+    lover        : true,
+    solid        : true,
+    character    : true,
+    moveable     : true
+});
+Tile.lover_with_fork = Tile.create('L', {
+    sprite_class : 'lover-sprite',
+    lover        : true,
+    solid        : true,
+    forked       : true,
     character    : true,
     moveable     : true
 });
@@ -75,13 +93,20 @@ Tile.block        = Tile.create('w', {
     sprite_class : 'wooden-block-sprite',
     solid        : true,
     moveable     : true
-  });
+});
+Tile.block_with_fork = Tile.create('W', {
+    sprite_class : 'wooden-block-sprite',
+    solid        : true,
+    forked       : true,
+    moveable     : true
+});
+
 Tile.red_block    = Tile.create('r', {
     sprite_class : 'red-block-sprite',
     color        : 'red',
     solid        : true,
     moveable     : true
-  });
+});
 Tile.green_block  = Tile.create('g', {
     sprite_class : 'green-block-sprite',
     color        : 'green',

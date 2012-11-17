@@ -7,9 +7,9 @@ var Room = {
     var player = null;
     var lover = null;
     moveables.each(function(moveable) {
-      if (moveable.tile === Tile.player) {
+      if (moveable.tile.player) {
         player = moveable;
-      } else if (moveable.tile === Tile.lover) {
+      } else if (moveable.tile.lover) {
         lover = moveable;
       }
     });
@@ -156,6 +156,10 @@ var Room = {
     var moveable_table = tiles.map(function (pos, tile) {
       if (tile.moveable) {
         var moveable = Moveable.create(tile);
+        
+        if (tile.forked) {
+          moveable.forked = true;
+        }
         
         return moveable;
       } else {
