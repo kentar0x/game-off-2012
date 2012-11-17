@@ -28,22 +28,26 @@ var World = {
     }
     ,
     {
-      ascii: [".C.#####",
-              "...#####",
-              "w#w#####",
-              "...###d#",
-              ".c.w....",
-              "...w...."],
-      on_start: [ 'right', 'right', 'right', 'right', 'right', 'face_down', '<3' ],
-    }
-    ,
-    {
-      ascii: ["########",
-              "#d######",
+      ascii: ["#d######",
               "........",
               "####wwww",
-              ".C.w....",
-              "...#...."]
+              "..w...w.",
+              "C.w..wc.",
+              "..#....."],
+      on_start: [ 0, 'face_up', 1000, 'face_left', 1000, 'face_up', 1500,
+                  'down', 300, 'left', 300, 'left', 300, 'up',
+                  'face_right', 'face_up', 'face_right', 'right',
+                  'face_up', 1000, 'face_down',
+                  'down', 300, 'right', 300, 'right', 300, 'up', 300, 'up',
+                  'face_left', 'face_up', 'face_left', 1500,
+                  'left', 500, 'face_up', 'up', 'face_right',
+                  'face_down', 300, 'down', 400, 'right', 400, 'face_up', 'up',
+                  'face_left', 1500,
+                  'left', 300, 'down', 300, 'left', 'face_up',
+                  'up', 'face_left', 1500,
+                  'face_right', 'face_left', 1500,
+                  'down', 500, 'down', 500,
+                  'face_left', 'door?'],
     }
     ,
     {
