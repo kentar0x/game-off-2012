@@ -4,11 +4,11 @@ var World = {
   levels: [
     { // level 1
       ascii: ["#####d##",
-              "#......#",
-              "#......#",
-              "#.cl...#",
-              "#......#",
-              "########"],
+              "###.....",
+              "###.....",
+              "..cl....",
+              "........",
+              "........"],
       position_animations: {
         '5,1': [ 400, 'right', 300, 'right', 300, 'up', 1000, 'door?' ],
         '5,0': [ 'leave', 'up', 'up', 'leave' ]
@@ -16,11 +16,13 @@ var World = {
     }
     ,
     { // level 2
-      ascii: ["..###D#",
-              "..#...#",
-              ".......",
-              "l......",
-              "c..rR.."],
+      ascii: ["######D#",
+              "#......#",
+              "#......#",
+              "#l.R...#",
+              "#c..r..#",
+              "#......#",
+              "########"],
       on_start: [ 600, 'right', 600, 'right', 600, 'right', 600, 'right', 'face_up', 1500, 'face_left', 'door!', 300, 'up', 300, 'right', 300, 'up', 2000, 'face_down', 'face_up', 2000, 'face_left', 'door?' ],
       position_animations: {
         '3,4': [ 'face_up', 'door!', 'down', 300, 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
@@ -64,11 +66,11 @@ var World = {
     ,
     { // level 1, second visit
       ascii: ["#####d##",
-              "#......#",
-              "#......#",
-              "#.cL...#",
-              "#......#",
-              "########"],
+              "###.....",
+              "###.....",
+              "..cL....",
+              "........",
+              "........"],
       on_start: [
         1000, 'face_right', 'face_left', 'face_right', 1000,
         'face_left', '!',
@@ -76,11 +78,13 @@ var World = {
     }
     ,
     { // level 2, second visit
-      ascii: ["..###D#",
-              "..#...#",
-              ".......",
-              ".......",
-              "c..rR.."]
+      ascii: ["######D#",
+              "#......#",
+              "#......#",
+              "#..R...#",
+              "#c..r..#",
+              "#......#",
+              "########"],
     }
     ,
     { // level 3, second visit
