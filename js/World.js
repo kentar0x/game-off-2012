@@ -18,9 +18,13 @@ var World = {
     {
       ascii: ["..###D#",
               "..#...#",
+              ".......",
               "c......",
               "C..rR.."],
-      on_start: [ 'right', 'right', 'right', 'right', 'up', 'right', 'face_up', 'face_down' ]
+      on_start: [ 600, 'right', 600, 'right', 600, 'right', 600, 'right', 'face_up', 1500, 'face_left', 'door!', 300, 'up', 300, 'right', 300, 'up', 2000, 'face_down', 'face_up', 2000, 'face_left', 'door?' ],
+      position_animations: {
+        '3,4': [ 'face_up', 'door!', 'down', 300, 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
+      }
     }
     ,
     {
