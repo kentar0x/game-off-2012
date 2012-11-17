@@ -24,9 +24,7 @@ var World = {
               "#......#",
               "########"],
       on_start: [ 600, 'right', 600, 'right', 600, 'right', 600, 'right', 'face_up', 1500, 'face_left', 'door!', 300, 'up', 300, 'right', 300, 'up', 2000, 'face_down', 'face_up', 2000, 'face_left', 'door?' ],
-      position_animations: {
-        '3,4': [ 'face_up', 'door!', 'down', 300, 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
-      }
+      on_solved: [ 'face_up', 'door!', 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
     }
     ,
     { // level 3
@@ -283,6 +281,9 @@ var World = {
   },
   load_on_fork: function(index) {
     return this.load_animation(index, 'on_fork');
+  },
+  load_on_solved: function(index) {
+    return this.load_animation(index, 'on_solved');
   },
   load_position_animations: function(index) {
     var data = this.levels[index];

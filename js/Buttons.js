@@ -48,11 +48,14 @@ var Buttons = {
           if (new_active) {
             // open the door
             if (door) room.change_tile(door, Tile.open_door);
+            return true;
           } else {
             // close the door
             if (door) room.change_tile(door, Tile.closed_door);
           }
         }
+        
+        return false;
       }
     };
   },

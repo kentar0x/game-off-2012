@@ -128,13 +128,19 @@ $(function () {
 
 
   function process_events() {
-    multibuttons.process_events(multiroom);
+    var r = room();
+    var buttons = multibuttons.current();
+    var solved = buttons.process_events(r);
+    
     forkedBlock.process_events(multiroom);
     theatre.process_events(multiroom);
     multiroom.clear_events();
     
     if (!forkedBlock.moves_to_replay.empty()) {
       process_moves(forkedBlock.moves_to_replay);
+    }
+    if (solved) {
+      animate('solved', World.load_on_solved(level));
     }
   }
   
