@@ -2,7 +2,7 @@
 
 var World = {
   levels: [
-    {
+    { // level 1
       ascii: ["#####d##",
               "#......#",
               "#......#",
@@ -15,7 +15,7 @@ var World = {
       }
     }
     ,
-    {
+    { // level 2
       ascii: ["..###D#",
               "..#...#",
               ".......",
@@ -27,16 +27,7 @@ var World = {
       }
     }
     ,
-    {
-      ascii: ["....##d",
-              ".......",
-              ".......",
-              "...W...",
-              "l......",
-              "c......"]
-    }
-    ,
-    {
+    { // level 3
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -57,6 +48,63 @@ var World = {
                   'face_right', 'face_left', 1500,
                   'down', 500, 'down', 500,
                   'face_left', 'door?'],
+    }
+    ,
+    { // level F
+      ascii: ["..#####",
+              "...#d#.",
+              ".......",
+              "...W...",
+              "l......",
+              "c......"],
+      on_start: [
+        500, 'right', 500, 'up', 500, 'right', 500, 'up', 500, 'right',
+        'face_down', '?', 1000, 'Z', 0, 'fork', 'skip' ],
+    }
+    ,
+    { // level 1, second visit
+      ascii: ["#####d##",
+              "#......#",
+              "#......#",
+              "#.cL...#",
+              "#......#",
+              "########"],
+      on_start: [
+        1000, 'face_right', 'face_left', 'face_right', 1000,
+        'face_left', '!',
+        'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave']
+    }
+    ,
+    { // level 2, second visit
+      ascii: ["..###D#",
+              "..#...#",
+              ".......",
+              ".......",
+              "c..rR.."]
+    }
+    ,
+    { // level 3, second visit
+      ascii: ["#d######",
+              "........",
+              "####wwww",
+              "..w...w.",
+              "c.w..w..",
+              "..#....."]
+    }
+    ,
+    { // level F, second visit
+      ascii: ["..#####",
+              "...#d#.",
+              ".....L.",
+              ".....w.",
+              "c......",
+              "......."],
+      on_start: [
+        1000, 'face_right', 'right', 'face_down', 'down', 'face_left',
+        'Z', 0, 'fork', 1000, 'face_down', '!', 1000,
+        'face_left', 'left', 'left', 'left', 1000, 'Z', 0, 'fork',
+        'face_down', '?', 1000,
+        'face_left', 'left', 'up', 'left', 'up', 'leave', 'close'],
     }
     ,
     {

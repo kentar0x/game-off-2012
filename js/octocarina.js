@@ -64,11 +64,19 @@ $(function () {
       
       process_events();
     },
+    'close': function() {
+      var r = room();
+      r.each_door(function(pos, tile) {
+        r.change_tile(pos, Tile.closed_door);
+      });
+      
+      process_events();
+    },
     
     '<3': function() {
       lover_says('heart');
     },
-    'press-key': function() {
+    'Z': function() {
       lover_says('press-key');
     },
     'door?': function() {
@@ -86,6 +94,10 @@ $(function () {
     
     'fork': function() {
       use_fork(lover());
+    },
+    
+    'skip': function() {
+      next_level();
     },
     
     'dummy': null
