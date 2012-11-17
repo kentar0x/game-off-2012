@@ -223,6 +223,12 @@ $(function () {
     moveable_says(lover(), something);
   }
   
+  function kiss(kisser, kissed) {
+    player_says('heart');
+    
+    animate('kiss', World.load_on_kiss(level));
+  }
+  
   function move_player(dx, dy) {
     var r = room();
     var pos = r.player.pos.plus(dx, dy);
@@ -238,10 +244,8 @@ $(function () {
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
-      if (block && block === lover()) {
-        player_says('heart');
-        
-        animate('kiss', World.load_on_kiss(level));
+      if (block && block === r.lover) {
+        kiss(r.player, r.lover);
       } else {
         r.move_player(dx, dy);
         process_events();
@@ -261,12 +265,14 @@ $(function () {
 
 
   function use_fork(character) {
-    if (character.forked) {
-      var r = room();
-      var dir = character.dir;
-      var pos = character.pos.plus(dir.x, dir.y);
-      var block = r.moveable_at(pos);
+    var r = room();
+    var dir = character.dir;
+    var pos = character.pos.plus(dir.x, dir.y);
+    var block = r.moveable_at(pos);
 
+    if (block && block.tile.character) return kiss(character, block);
+    
+    if (character.forked) {
       if (block) {
         block.forked = true;
         r.update_moveable(block);
@@ -274,11 +280,9 @@ $(function () {
         character.forked = false;
         r.update_moveable(character);
         
-        if (!block.tile.character) {
-          multiroom.fork(block);
-          
-          animate('fork', World.load_on_fork(level));
-        }
+        multiroom.fork(block);
+        
+        animate('fork', World.load_on_fork(level));
         
         process_events();
       } else {
@@ -307,11 +311,6 @@ $(function () {
         }
       }
     } else {
-      var r = room();
-      var dir = character.dir;
-      var pos = character.pos.plus(dir.x, dir.y);
-      var block = r.moveable_at(pos);
-      
       if (block && block.forked) {
         // pick up the fork
         {
@@ -324,29 +323,27 @@ $(function () {
           process_events();
         }
         
-        if (!block.tile.character) {
-          // merge the timelines;
-          // we go back into the old room, and thus need
-          // to consider the block's instance from that room
-          {
-            multiroom.merge(block);
-            
-            r = room();
-            block = r.moveable_from_id(block.id);
-            character = r.moveable_from_id(character.id);
-          }
+        // merge the timelines;
+        // we go back into the old room, and thus need
+        // to consider the block's instance from that room
+        {
+          multiroom.merge(block);
           
-          // repeat the changes in the old timeline
-          {
-            block.forked = false
-            r.update_moveable(block);
-            
-            character.forked = true;
-            r.update_moveable(character);
-          }
-          
-          animate('fork', World.load_on_fork(level));
+          r = room();
+          block = r.moveable_from_id(block.id);
+          character = r.moveable_from_id(character.id);
         }
+        
+        // repeat the changes in the old timeline
+        {
+          block.forked = false
+          r.update_moveable(block);
+          
+          character.forked = true;
+          r.update_moveable(character);
+        }
+        
+        animate('fork', World.load_on_fork(level));
         
         process_events();
       } else {
