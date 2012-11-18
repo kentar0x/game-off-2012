@@ -118,29 +118,39 @@ var World = {
       on_kiss: [ 0, 'ask', 'give' ]
     }
     ,
-    {
+    { // the gate, easy version
       ascii: ["#.w.####",
-              "..w.####",
-              "cgwG##D#",
+              "c.w.####",
+              "LgwG##D#",
               "..w.#...",
-              "#.w....."]  // practice for the gate...
+              "#.w....."],
+      on_start: [
+        'down', 300, 'right', 300, 'down', 300, 'face_right',
+        'right', 'right', 'right', 'right',
+        'face_up', 300, 'up', 300, 'right', 300, 'face_up', 1500,
+        'face_down', 'face_up', 1500,
+        'face_left', 'door?'],
+      on_solved: [
+        'face_up', 1000,
+        'face_left', 'door!',
+        'face_up', 300, 'up', 300, 'leave']
     }
     ,
-    {
+    { // convoluted block exchange protocol
       ascii: ["#####D#",
               "c..#...",
               ".#.#...",
               "Ggo..O.",
-              "...#..."] // doesn't need the fork
+              "...#..."]
     }
     ,
-    {
+    { // block-pushing mastery required
       ascii: ["##D##",
               ".....",
               ".w.w.",
-              "wgwGw",  // block pushing gate.
-              ".w.w.",  // players who go past this
-              "..c.."]  // master regular sokoban.
+              "wgwGw",
+              ".w.w.",
+              "..c.."]
     }
     ,
     {
