@@ -132,6 +132,12 @@ h1 {
 .player-sprite.under-door {
   background-position: -2323px;
 }
+.blood-on-floor {
+  background-position: -3939px;
+}
+.fork-on-floor {
+  background-position: -4040px;
+}
 
 .forked:after {
   content: "";

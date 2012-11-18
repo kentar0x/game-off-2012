@@ -125,3 +125,12 @@ Tile.orange_block = Tile.create('o', {
     solid        : true,
     moveable     : true
 });
+
+Tile.fork = Tile.create('F', {
+    sprite_class : 'blood-on-floor',
+    is_floor     : true
+});
+Tile.fork = Tile.create('f', {
+    sprite_class : 'fork-on-floor',
+    is_floor     : true
+});

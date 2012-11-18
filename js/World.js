@@ -164,6 +164,14 @@ var World = {
               "..c.."]
     }
     ,
+    { // something terrible has happened
+      ascii: ["#####D#",
+              "c......",
+              ".......",
+              ".......",
+              "...f..."]
+    }
+    ,
     {
       ascii: ["###d###",
               "###.###",
