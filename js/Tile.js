@@ -126,7 +126,7 @@ Tile.orange_block = Tile.create('o', {
     moveable     : true
 });
 
-Tile.fork = Tile.create('F', {
+Tile.blood = Tile.create('F', {
     sprite_class : 'blood-on-floor',
     is_floor     : true
 });

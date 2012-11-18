@@ -169,7 +169,10 @@ var World = {
               "c......",
               ".......",
               ".......",
-              "...f..."]
+              "...f..."],
+      position_animations: {
+        "3,4": ['face_down', 'pick', 'open']
+      }
     }
     ,
     {

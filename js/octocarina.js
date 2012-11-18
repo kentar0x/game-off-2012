@@ -53,7 +53,11 @@ $(function () {
       change_lover_dir(0, -1);
     },
     'face_down': function() {
-      change_lover_dir(0, 1);
+      if (lover()) {
+        change_lover_dir(0, 1);
+      } else {
+        change_player_dir(0, 1);
+      }
     },
     
     'leave': function() {
@@ -136,6 +140,16 @@ $(function () {
     
     'skip': function() {
       next_level();
+    },
+    
+    'pick': function() {
+      var p = player();
+      
+      p.dir = Pos.create(0, 1);
+      p.forked = true;
+      p.floor = Tile.blood;
+      
+      update_moveable(p);
     },
     
     'dummy': null
