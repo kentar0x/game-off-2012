@@ -28,6 +28,7 @@ var World = {
               "#......#",
               "########"],
       on_start: [
+        0, 'face_right',
         600, 'face_left', '!',
         'up', 300, 'up', 300, 'left', 300, 'left', 300,
         'kiss', 1000,
@@ -39,10 +40,13 @@ var World = {
         'right', 300, 'down', 300, 'face_left',
         'left', 'left', 'left',
         'up', 300, 'face_left', '!',
-        'left', 300, 'face_down', 'Z', 0, 'fork',
+        'left', 300, 'face_down', 'Z', 0, 'fork', 0,
         'face_left', '!',
         'left', 300, 'left', 300, 'left', 300, 'left', 300, 'face_up',
-        '?' ],
+        '?', 'give',
+        'face_down', 300, 'down', 300, 'face_right',
+        'right', 'right', 'right',
+        'face_up', 300, 'up', 300, 'up', 300, 'face_down'],
     }
     ,
     { // level 1

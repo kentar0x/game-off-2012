@@ -73,6 +73,20 @@ $(function () {
       process_events();
     },
     
+    'give': function() {
+      var r = room();
+      var p = player();
+      var l = lover();
+      
+      p.forked = !p.forked;
+      l.forked = !l.forked;
+      
+      r.update_moveable(p);
+      r.update_moveable(l);
+      
+      process_events();
+    },
+    
     'kiss': function() {
       kiss(lover(), player());
     },
