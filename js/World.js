@@ -46,7 +46,7 @@ var World = {
         '?', 'give',
         'face_down', 300, 'down', 300, 'face_right',
         'right', 'right', 'right',
-        'face_up', 300, 'up', 300, 'up', 300, 'face_down', '!'],
+        'face_up', 300, 'up', 300, 'up', 300, 'face_down', 'fork!'],
       on_unfork: [
         '<3',
         'left', 300, 'left', 300, 'left', 300, 'face_up', 'open',

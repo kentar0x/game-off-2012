@@ -123,6 +123,12 @@ $(function () {
     'R?': function() {
       lover_says('r-question');
     },
+    'fork?': function() {
+      lover_says('fork-question');
+    },
+    'fork!': function() {
+      lover_says('fork-exclam');
+    },
     
     'fork': function() {
       use_fork(lover());

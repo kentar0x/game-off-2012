@@ -274,6 +274,9 @@ h1 {
 .say.fork-question:before {
   background-position: -3737px;
 }
+.say.fork-exclam:before {
+  background-position: -3838px;
+}
 
 
 #credits {
