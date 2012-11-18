@@ -73,6 +73,9 @@ $(function () {
       process_events();
     },
     
+    'kiss': function() {
+      kiss(lover(), player());
+    },
     '<3': function() {
       lover_says('heart');
     },
@@ -241,7 +244,14 @@ $(function () {
   }
   
   function kiss(kisser, kissed) {
-    player_says('heart');
+    foreground_animations.enqueue(function() {
+      moveable_says(kisser, 'heart');
+    }).then(function() {
+      kissed.dir = Pos.distance_between(kissed.pos, kisser.pos);
+      update_moveable(kissed);
+    }).then_wait_for(std_delay).then(function() {
+      moveable_says(kissed, 'heart');
+    });
     
     animate('kiss', World.load_on_kiss(level));
   }

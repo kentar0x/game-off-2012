@@ -30,7 +30,7 @@ var World = {
       on_start: [
         600, 'face_left', '!',
         'up', 300, 'up', 300, 'left', 300, 'left', 300,
-        'face_left', '<3', 1000,
+        'kiss', 1000,
         'face_right', 300, 'right', 300, 'right', 300, 'right',
         'face_left', '!',
         'face_down', 300, 'down',
