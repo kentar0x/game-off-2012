@@ -26,9 +26,12 @@ var Buttons = {
     var active_buttons = 0;
     
     return {
+      solved: function() {
+        return (active_buttons == button_count);
+      },
       process_events: function(room) {
         // remember how things were
-        var old_active = (active_buttons == button_count);
+        var old_active = this.solved();
         
         room.moves.each(function(move) {
           var old_button = buttons.at(move.old_pos);
@@ -43,19 +46,16 @@ var Buttons = {
         });
         
         // have things changed?
-        var new_active = (active_buttons == button_count);
+        var new_active = this.solved();
         if (new_active != old_active) {
           if (new_active) {
             // open the door
             if (door) room.change_tile(door, Tile.open_door);
-            return true;
           } else {
             // close the door
             if (door) room.change_tile(door, Tile.closed_door);
           }
         }
-        
-        return false;
       }
     };
   },
