@@ -9,7 +9,7 @@ var Moveable = {
       pos: null,
       id: null,
       
-      forked: false,
+      forked: null,
       dir: null,
       
       copy: function() {

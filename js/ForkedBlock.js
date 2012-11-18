@@ -24,7 +24,7 @@
             });
           });
           
-          old_block.forked = false;
+          old_block.forked = null;
           
           observed_moves.clear();
           old_block = new_block = false;

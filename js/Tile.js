@@ -36,7 +36,15 @@ Tile.player_with_fork = Tile.create('C', {
     sprite_class : 'player-sprite',
     player       : true,
     solid        : true,
-    forked       : true,
+    forked       : 'forked',
+    character    : true,
+    moveable     : true
+});
+Tile.player_with_fork = Tile.create('S', {
+    sprite_class : 'player-sprite',
+    player       : true,
+    solid        : true,
+    forked       : 'sporked',
     character    : true,
     moveable     : true
 });
@@ -51,7 +59,7 @@ Tile.lover_with_fork = Tile.create('L', {
     sprite_class : 'lover-sprite',
     lover        : true,
     solid        : true,
-    forked       : true,
+    forked       : 'forked',
     character    : true,
     moveable     : true
 });
@@ -97,7 +105,13 @@ Tile.block        = Tile.create('w', {
 Tile.block_with_fork = Tile.create('W', {
     sprite_class : 'wooden-block-sprite',
     solid        : true,
-    forked       : true,
+    forked       : 'forked',
+    moveable     : true
+});
+Tile.block_with_spork = Tile.create('s', {
+    sprite_class : 'green-block-sprite',
+    solid        : true,
+    forked       : 'sporked',
     moveable     : true
 });
 
@@ -132,5 +146,9 @@ Tile.blood = Tile.create('F', {
 });
 Tile.fork = Tile.create('f', {
     sprite_class : 'fork-on-floor',
+    is_floor     : true
+});
+Tile.dropped_fork = Tile.create('', {
+    sprite_class : 'dropped-fork',
     is_floor     : true
 });

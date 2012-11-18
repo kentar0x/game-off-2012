@@ -97,8 +97,10 @@ $(function () {
       var p = player();
       var l = lover();
       
-      p.forked = !p.forked;
-      l.forked = !l.forked;
+      var forked1 = p.forked;
+      var forked2 = l.forked;
+      p.forked = forked2;
+      l.forked = forked1;
       
       r.update_moveable(p);
       r.update_moveable(l);
@@ -149,7 +151,7 @@ $(function () {
       var p = player();
       
       p.dir = Pos.create(0, 1);
-      p.forked = true;
+      p.forked = 'forked';
       p.floor = Tile.blood;
       
       update_moveable(p);
@@ -392,13 +394,14 @@ $(function () {
     
     if (character.forked) {
       if (block) {
-        block.forked = true;
+        var forked = character.forked;
+        block.forked = forked;
         r.update_moveable(block);
         
-        character.forked = false;
+        character.forked = null;
         r.update_moveable(character);
         
-        multiroom.fork(block);
+        multiroom.fork(block, forked);
         
         process_events();
       } else {
@@ -429,10 +432,11 @@ $(function () {
       if (block && block.forked) {
         // pick up the fork
         {
-          block.forked = false;
+          var forked = block.forked;
+          block.forked = null;
           r.update_moveable(block);
           
-          character.forked = true;
+          character.forked = forked;
           r.update_moveable(character);
           
           process_events();
@@ -451,10 +455,10 @@ $(function () {
         
         // repeat the changes in the old timeline
         {
-          block.forked = false
+          block.forked = null;
           r.update_moveable(block);
           
-          character.forked = true;
+          character.forked = forked;
           r.update_moveable(character);
         }
         

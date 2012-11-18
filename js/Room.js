@@ -158,7 +158,7 @@ var Room = {
         var moveable = Moveable.create(tile);
         
         if (tile.forked) {
-          moveable.forked = true;
+          moveable.forked = tile.forked;
         }
         
         return moveable;

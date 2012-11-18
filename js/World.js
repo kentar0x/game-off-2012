@@ -284,6 +284,15 @@ var World = {
               ".bwo.",
               "G.C.R"]  // hard
     }
+    ,
+    {
+      ascii: [".#.s.#.",
+              ".#...#.",
+              "..#.#..",
+              "b.w.w.b",
+              "wwwwwww",
+              "..C...."]
+    }
   ],
   
   load_room: function(index) {

@@ -52,9 +52,9 @@ var Multiroom = {
       },
       
       forks: forks,
-      fork: function (block) {
+      fork: function (block, forked) {
         if (rooms.length < Multiroom.max_rooms) {
-          block.forked = true;
+          block.forked = forked;
           
           var old_index = this.current_index;
           var new_index = rooms.length;
@@ -99,7 +99,7 @@ var Multiroom = {
           var old_block = block;
           var new_block = new_room.moveable_from_id(old_block.id);
           
-          old_block.forked = new_block.forked = false;
+          old_block.forked = new_block.forked = null;
           
           
           // remember the event

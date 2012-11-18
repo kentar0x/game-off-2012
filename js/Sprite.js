@@ -19,7 +19,7 @@ var Sprite = {
     var element = $('<div class="sprite"/>').addClass(tile.sprite_class);
     var dir = null;
     var say = null;
-    var forked = false;
+    var forked = null;
     var leaving = false;
     
     container.append(element);
@@ -33,8 +33,8 @@ var Sprite = {
           say = null;
         }
         if (forked) {
-          element.removeClass("forked");
-          forked = false;
+          element.removeClass(forked);
+          forked = null;
         }
         if (leaving) {
           element.removeClass("under-door");
@@ -61,8 +61,8 @@ var Sprite = {
           element.addClass("say").addClass(say);
         }
         if (new_moveable.forked) {
-          element.addClass("forked");
-          forked = true;
+          forked = new_moveable.forked;
+          element.addClass(forked);
         }
         if (new_moveable.floor == Tile.open_door) {
           leaving = true;
