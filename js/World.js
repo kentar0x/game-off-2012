@@ -20,7 +20,7 @@ var World = {
               "...w...."]
     }
     ,
-    { // lover's house
+    { // lover demonstrates his new toy
       ascii: ["#D######",
               "#c.....#",
               "#......#",
@@ -54,32 +54,24 @@ var World = {
         'door?']
     }
     ,
-    { // level 1
-      ascii: ["#####d##",
+    { // the adventure begins!
+      ascii: ["####D###",
               "###.....",
-              "###.....",
-              "..cl....",
-              "........",
-              "........"],
-      position_animations: {
-        '5,1': [ 400, 'right', 300, 'right', 300, 'up', 1000, 'door?' ],
-        '5,0': [ 'leave', 'up', 'up', 'leave' ]
-      }
+              "###...#.",
+              ".cl..#..",
+              "....#...",
+              "....#.rR"],
+      on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
+      on_solved: [
+        '?',
+        'face_right', 300, 'right', 300, 'face_up', 1000,
+        'face_down', 'door!',
+        'face_up', 300, 'up', 300, 'right', 300, 'up', 300,
+        'face_down', '!',
+        'face_up', 300, 'up', 300, 'leave']
     }
     ,
-    { // level 2
-      ascii: ["######D#",
-              "#......#",
-              "#......#",
-              "#l.R...#",
-              "#c..r..#",
-              "#......#",
-              "########"],
-      on_start: [ 600, 'right', 600, 'right', 600, 'right', 600, 'right', 'face_up', 1500, 'face_left', 'door!', 300, 'up', 300, 'right', 300, 'up', 2000, 'face_down', 'face_up', 2000, 'face_left', 'door?' ],
-      on_solved: [ 'face_up', 'door!', 'left', 300, 'down', 300, 'left', 'face_down', '<3', 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave' ],
-    }
-    ,
-    { // level 3
+    { // lover messes up. reset please?
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -100,65 +92,6 @@ var World = {
                   'face_right', 'face_left', 1500,
                   'down', 500, 'down', 500,
                   'face_left', 'door?'],
-    }
-    ,
-    { // level F
-      ascii: ["..#####",
-              "...#d#.",
-              ".......",
-              "...W...",
-              "l......",
-              "c......"],
-      on_start: [
-        500, 'right', 500, 'up', 500, 'right', 500, 'up', 500, 'right',
-        'face_down', '?', 1000, 'Z', 0, 'fork', 'skip' ],
-    }
-    ,
-    { // level 1, second visit
-      ascii: ["#####d##",
-              "###.....",
-              "###.....",
-              "..cL....",
-              "........",
-              "........"],
-      on_start: [
-        1000, 'face_right', 'face_left', 'face_right', 1000,
-        'face_left', '!',
-        'up', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300, 'leave']
-    }
-    ,
-    { // level 2, second visit
-      ascii: ["######D#",
-              "#......#",
-              "#......#",
-              "#..R...#",
-              "#c..r..#",
-              "#......#",
-              "########"],
-    }
-    ,
-    { // level 3, second visit
-      ascii: ["#d######",
-              "........",
-              "####wwww",
-              "..w...w.",
-              "c.w..w..",
-              "..#....."]
-    }
-    ,
-    { // level F, second visit
-      ascii: ["..#####",
-              "...#d#.",
-              ".....L.",
-              ".....w.",
-              "c......",
-              "......."],
-      on_start: [
-        1000, 'face_right', 'right', 'face_down', 'down', 'face_left',
-        'Z', 0, 'fork', 1000, 'face_down', '!', 1000,
-        'face_left', 'left', 'left', 'left', 1000, 'Z', 0, 'fork',
-        'face_down', '?', 1000,
-        'face_left', 'left', 'up', 'left', 'up', 'leave', 'close'],
     }
     ,
     {
