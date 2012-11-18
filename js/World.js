@@ -41,12 +41,12 @@ var World = {
         'left', 'left', 'left',
         'up', 300, 'face_left', '!',
         'left', 300, 'face_down', 'Z', 0, 'fork', 0,
-        'face_left', '!',
+        'face_left',
         'left', 300, 'left', 300, 'left', 300, 'left', 300, 'face_up',
         '?', 'give',
         'face_down', 300, 'down', 300, 'face_right',
         'right', 'right', 'right',
-        'face_up', 300, 'up', 300, 'up', 300, 'face_down'],
+        'face_up', 300, 'up', 300, 'up', 300, 'face_down', '!'],
     }
     ,
     { // level 1
