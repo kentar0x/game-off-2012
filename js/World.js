@@ -136,6 +136,17 @@ var World = {
         'face_up', 300, 'up', 300, 'leave']
     }
     ,
+    { // lover explores ahead
+      ascii: ["#######d",
+              ".r.r.r..",
+              ".r.r.rl.",
+              "Cr.r.r.#",
+              ".r.r.r.#",
+              ".r.r.r.#"],
+      on_start: [ 0, 'face_right',
+        'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
+    }
+    ,
     { // convoluted block exchange protocol
       ascii: ["#####D#",
               "c..#...",
