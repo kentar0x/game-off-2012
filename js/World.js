@@ -47,6 +47,11 @@ var World = {
         'face_down', 300, 'down', 300, 'face_right',
         'right', 'right', 'right',
         'face_up', 300, 'up', 300, 'up', 300, 'face_down', '!'],
+      on_unfork: [
+        '<3',
+        'left', 300, 'left', 300, 'left', 300, 'face_up', 'open',
+        'face_right', 300, 'right', 300, 'face_down',
+        'door?']
     }
     ,
     { // level 1
@@ -328,6 +333,9 @@ var World = {
   },
   load_on_fork: function(index) {
     return this.load_animation(index, 'on_fork');
+  },
+  load_on_unfork: function(index) {
+    return this.load_animation(index, 'on_unfork');
   },
   load_on_solved: function(index) {
     return this.load_animation(index, 'on_solved');

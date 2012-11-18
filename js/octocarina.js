@@ -8,6 +8,7 @@ $(function () {
   var forkedBlock = null;
   var theatre = Theatre.empty();
   var completed_animations = {};
+  var last_learning_step = 'none';
 
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
@@ -61,6 +62,14 @@ $(function () {
       } else if (lover().floor === Tile.open_door) {
         room().remove_moveable(lover());
       }
+      
+      process_events();
+    },
+    'open': function() {
+      var r = room();
+      r.each_door(function(pos, tile) {
+        r.change_tile(pos, Tile.open_door);
+      });
       
       process_events();
     },
@@ -314,6 +323,10 @@ $(function () {
       if (block && block === r.lover) {
         kiss(r.player, r.lover);
       } else {
+        if (block && last_learning_step == 'fork') {
+          last_learning_step = 'push';
+        }
+        
         r.move_player(dx, dy);
         process_events();
       }
@@ -347,8 +360,6 @@ $(function () {
         r.update_moveable(character);
         
         multiroom.fork(block);
-        
-        animate('fork', World.load_on_fork(level));
         
         process_events();
       } else {
@@ -435,6 +446,19 @@ $(function () {
       }
     }
   }
+  function player_uses_fork() {
+    use_fork(player());
+    
+    if (last_learning_step == 'none') {
+      last_learning_step = 'fork';
+      
+      animate('fork', World.load_on_fork(level));
+    } else if (last_learning_step == 'push') {
+      last_learning_step = 'done';
+      
+      animate('unfork', World.load_on_unfork(level));
+    }
+  }
 
   function next_room() {
     multiroom.next_room();
@@ -461,7 +485,7 @@ $(function () {
         case Keycode.X:     /* falls through */
         case Keycode.F:     /* falls through */
         case Keycode.ctrl:  /* falls through */
-        case Keycode.space: use_fork(player()); return false;
+        case Keycode.space: player_uses_fork(); return false;
         
         //case Keycode.tab: next_room(); return true;
       }
