@@ -222,6 +222,18 @@ $(function () {
     process_events();
   }
   
+  function target(moveable, dx, dy) {
+    if (dx || dy) {
+      var pos = moveable.pos.plus(dx, dy);
+      
+      return room().moveable_at(pos);
+    } else {
+      var dir = moveable.dir;
+      
+      return target(moveable, dir.x, dir.y);
+    }
+  }
+  
   function change_moveable_dir(moveable, dx, dy) {
     moveable.dir = Pos.create(dx, dy);
     update_moveable(moveable);
@@ -233,14 +245,22 @@ $(function () {
     change_moveable_dir(lover(), dx, dy);
   }
   
+  function look_at(moveable, target) {
+    moveable.dir = Pos.distance_between(moveable.pos, target.pos);
+    update_moveable(moveable);
+  }
+  
   function moveable_says(moveable, something) {
-    moveable.say = something;
-    
     moveable.say = something;
     update_moveable(moveable);
     foreground_animations.wait_for(2*std_delay, function() {
       moveable.say = null;
       update_moveable(moveable);
+      
+      var t = target(moveable);
+      if (t) {
+        look_at(t, moveable);
+      }
     });
   }
   function player_says(something) {
@@ -254,8 +274,7 @@ $(function () {
     foreground_animations.enqueue(function() {
       moveable_says(kisser, 'heart');
     }).then(function() {
-      kissed.dir = Pos.distance_between(kissed.pos, kisser.pos);
-      update_moveable(kissed);
+      look_at(kissed, kisser);
     }).then_wait_for(std_delay).then(function() {
       moveable_says(kissed, 'heart');
     });
@@ -301,8 +320,7 @@ $(function () {
   function use_fork(character) {
     var r = room();
     var dir = character.dir;
-    var pos = character.pos.plus(dir.x, dir.y);
-    var block = r.moveable_at(pos);
+    var block = target(character);
 
     if (block && block.tile.character) return kiss(character, block);
     
@@ -326,8 +344,7 @@ $(function () {
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = character.pos.plus(dir.x, dir.y);
-          var moveable = r.moveable_at(pos);
+          var moveable = target(character, dir.x, dir.y);
           
           if (moveable) {
             ++block_count;
@@ -386,8 +403,7 @@ $(function () {
         var block_dir = null;
         
         Pos.each_dir(function(dir) {
-          var pos = character.pos.plus(dir.x, dir.y);
-          var moveable = r.moveable_at(pos);
+          var moveable = target(character, dir.x, dir.y);
           
           if (moveable && moveable.forked) {
             block_dir = dir;
