@@ -138,11 +138,11 @@ var World = {
     ,
     { // lover explores ahead
       ascii: ["#######d",
-              ".r.r.r..",
-              ".r.r.rl.",
-              "Cr.r.r.#",
-              ".r.r.r.#",
-              ".r.r.r.#"],
+              ".w.w.w..",
+              ".w.w.wl.",
+              "cw.w.w.#",
+              ".w.w.w.#",
+              ".w.w.w.#"],
       on_start: [ 0, 'face_right',
         'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
     }
