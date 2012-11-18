@@ -271,7 +271,10 @@ h1 {
 .say.r-question:before {
   background-position: -3636px;
 }
-  
+.say.fork-question:before {
+  background-position: -3737px;
+}
+
 
 #credits {
   display: none;

@@ -82,6 +82,9 @@ $(function () {
       process_events();
     },
     
+    'ask': function() {
+      player_says('fork-question');
+    },
     'give': function() {
       var r = room();
       var p = player();
@@ -133,7 +136,7 @@ $(function () {
   };
 
   function animate(animation_key, animation_plan) {
-    if (!completed_animations[animation_key]) {
+    if (animation_plan.length > 0 && !completed_animations[animation_key]) {
       completed_animations[animation_key] = true;
       
       var i = 0;
@@ -159,6 +162,10 @@ $(function () {
       }
       
       next_animation_step();
+      
+      return true;
+    } else {
+      return false;
     }
   };
 
@@ -219,11 +226,7 @@ $(function () {
   }
 
   function try_again() {
-    var reset_plan = World.load_on_reset(level);
-    
-    if (reset_plan.length > 0) {
-      animate('reset', reset_plan);
-    } else {
+    if (!animate('reset', World.load_on_reset(level))) {
       load_level(level);
     }
   }
@@ -303,15 +306,15 @@ $(function () {
   }
   
   function kiss(kisser, kissed) {
-    foreground_animations.enqueue(function() {
-      moveable_says(kisser, 'heart');
-    }).then(function() {
-      look_at(kissed, kisser);
-    }).then_wait_for(std_delay).then(function() {
-      moveable_says(kissed, 'heart');
-    });
-    
-    animate('kiss', World.load_on_kiss(level));
+    if (!animate('kiss', World.load_on_kiss(level))) {
+      foreground_animations.enqueue(function() {
+        moveable_says(kisser, 'heart');
+      }).then(function() {
+        look_at(kissed, kisser);
+      }).then_wait_for(std_delay).then(function() {
+        moveable_says(kissed, 'heart');
+      });
+    }
   }
   
   function move_player(dx, dy) {

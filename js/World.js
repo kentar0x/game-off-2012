@@ -93,7 +93,7 @@ var World = {
       on_reset: [ 'skip' ]
     }
     ,
-    { // player's turn.
+    { // player's turn. first block puzzle!
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -106,6 +106,16 @@ var World = {
         'face_left', '<3',
         'face_down', 300, 'down', 300, 'left', 300, 'face_down', 1500,
         'door?']
+    }
+    ,
+    { // borrow the fork. first fork puzzle!
+      ascii: ["#d###",
+              ".....",
+              "###.#",
+              "..ww.",
+              ".....",
+              ".Lc.."],
+      on_kiss: [ 0, 'ask', 'give' ]
     }
     ,
     {
@@ -131,14 +141,6 @@ var World = {
               "wgwGw",  // block pushing gate.
               ".w.w.",  // players who go past this
               "..c.."]  // master regular sokoban.
-    }
-    ,
-    {
-      ascii: ["#d###",
-              ".....",
-              "###.#",
-              ".Cww.",
-              "....."]
     }
     ,
     {
