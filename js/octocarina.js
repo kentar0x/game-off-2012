@@ -493,30 +493,30 @@ $(function () {
       switch (key) {
         case Keycode.W:
         case Keycode.K:
-        case Keycode.up:    move_player( 0,-1); return true;
+        case Keycode.up:    move_player( 0,-1); break;
 
         case Keycode.A:
         case Keycode.H:
-        case Keycode.left:  move_player(-1, 0); return true;
+        case Keycode.left:  move_player(-1, 0); break;
 
         case Keycode.S:
         case Keycode.J:
-        case Keycode.down:  move_player( 0, 1); return true;
+        case Keycode.down:  move_player( 0, 1); break;
 
         case Keycode.D:
         case Keycode.L:
-        case Keycode.right: move_player( 1, 0); return true;
+        case Keycode.right: move_player( 1, 0); break;
 
         case Keycode.esc:
-        case Keycode.R: try_again(); return false;
+        case Keycode.R: try_again(); break;
 
         case Keycode.Z:
         case Keycode.X:
         case Keycode.F:
         case Keycode.ctrl:
-        case Keycode.space: player_uses_fork(); return false;
+        case Keycode.space: player_uses_fork(); break;
         
-        //case Keycode.tab: next_room(); return true;
+        //case Keycode.tab: next_room(); break
       }
     }
     
@@ -539,7 +539,13 @@ $(function () {
       }
     }
 
-    return false;
+    if (key >= Keycode.A && key <= Keycode.Z) {
+      // let the key through, in case the user
+      // is trying to type a browser hotkey combination
+      return false;
+    } else {
+      return true;
+    }
   }
 
 
