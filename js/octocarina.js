@@ -86,7 +86,10 @@ $(function () {
       process_events();
     },
     
-    'ask': function() {
+    'ask-door': function() {
+      player_says('door-exclam');
+    },
+    'ask-fork': function() {
       player_says('fork-question');
     },
     'give': function() {
@@ -323,15 +326,22 @@ $(function () {
   }
   
   function kiss(kisser, kissed) {
-    if (!animate('kiss', World.load_on_kiss(level))) {
-      foreground_animations.enqueue(function() {
-        moveable_says(kisser, 'heart');
-      }).then(function() {
-        look_at(kissed, kisser);
-      }).then_wait_for(std_delay).then(function() {
-        moveable_says(kissed, 'heart');
-      });
+    if (multibuttons.current().solved()) {
+      if (animate('solved_kiss', World.load_on_solved_kiss(level))) {
+        return;
+      }
     }
+    if (animate('kiss', World.load_on_kiss(level))) {
+      return;
+    }
+    
+    foreground_animations.enqueue(function() {
+      moveable_says(kisser, 'heart');
+    }).then(function() {
+      look_at(kissed, kisser);
+    }).then_wait_for(std_delay).then(function() {
+      moveable_says(kissed, 'heart');
+    });
   }
   
   function move_player(dx, dy) {

@@ -66,8 +66,13 @@ var World = {
         '?',
         'face_right', 300, 'right', 300, 'face_up', 1000,
         'face_down', 'door!',
-        'face_up', 300, 'up', 300, 'right', 300, 'up', 300, 'up', 300,
-        'leave']
+        'face_right', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300,
+        'face_down', 'door?' ],
+      on_solved_kiss: [
+        0, 'ask-door', '<3',
+        'face_left', 'door!',
+        'left', 300,
+        'face_up', 300, 'up', 300, 'leave']
     }
     ,
     { // lover messes up. reset please?
@@ -115,7 +120,7 @@ var World = {
               "..ww.",
               ".....",
               ".Lc.."],
-      on_kiss: [ 0, 'ask', 'give' ]
+      on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
     { // the gate, easy version
@@ -320,6 +325,9 @@ var World = {
   },
   load_on_solved: function(index) {
     return this.load_animation(index, 'on_solved');
+  },
+  load_on_solved_kiss: function(index) {
+    return this.load_animation(index, 'on_solved_kiss');
   },
   load_on_reset: function(index) {
     return this.load_animation(index, 'on_reset');
