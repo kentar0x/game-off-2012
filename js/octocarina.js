@@ -110,22 +110,29 @@ $(function () {
     if (!completed_animations[animation_key]) {
       completed_animations[animation_key] = true;
       
-      var had_delay = false;
-      for( var i = 0; i < animation_plan.length; ++i ) {
-        var animation_key = animation_plan[i];
-        if ($.isNumeric(animation_key)) {
-          var delay = animation_key;
-          foreground_animations.then_wait_for(delay);
-          had_delay = true;
-        } else {
-          var animation_func = animation[animation_key];
-          if( ! had_delay ) {
+      var i = 0;
+      function next_animation_step() {
+        if (i < animation_plan.length) {
+          var animation_key = animation_plan[i];
+          ++i;
+          
+          if ($.isNumeric(animation_key)) {
+            var delay = animation_key;
+            foreground_animations.then_wait_for(delay);
+            
+            animation_key = animation_plan[i];
+            ++i;
+          } else {
             foreground_animations.then_wait_for(std_delay);
           }
-          foreground_animations.enqueue(animation_func);
-          had_delay = false;
+          
+          var animation_func = animation[animation_key];
+          foreground_animations.enqueue(animation_func)
+                               .then(next_animation_step);
         }
       }
+      
+      next_animation_step();
     }
   };
 
