@@ -60,7 +60,7 @@ var World = {
               "###...#.",
               ".cL..#..",
               "....#...",
-              "....#.rR"],
+              "....#.gG"],
       on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
       on_solved: [
         '?',
@@ -139,7 +139,7 @@ var World = {
     { // lover explores ahead
       ascii: ["#######d",
               ".w.w.w..",
-              ".w.w.wl.",
+              ".w.w.wL.",
               "cw.w.w.#",
               ".w.w.w.#",
               ".w.w.w.#"],
@@ -185,7 +185,7 @@ var World = {
     ,
     {
       ascii: ["#D###..",
-              "..RRrr.",
+              "..GGgg.",
               "....C.."]
     }
     ,
@@ -233,7 +233,7 @@ var World = {
     {
       ascii: ["#D####",
               "....##",
-              "C.rrRR",
+              "C.ooOO",
               "....##"]
     }
     ,
