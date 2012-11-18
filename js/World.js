@@ -58,7 +58,7 @@ var World = {
       ascii: ["####D###",
               "###.....",
               "###...#.",
-              ".cl..#..",
+              ".cL..#..",
               "....#...",
               "....#.rR"],
       on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
@@ -66,9 +66,8 @@ var World = {
         '?',
         'face_right', 300, 'right', 300, 'face_up', 1000,
         'face_down', 'door!',
-        'face_up', 300, 'up', 300, 'right', 300, 'up', 300,
-        'face_down', '!',
-        'face_up', 300, 'up', 300, 'leave']
+        'face_up', 300, 'up', 300, 'right', 300, 'up', 300, 'up', 300,
+        'leave']
     }
     ,
     { // lover messes up. reset please?
@@ -76,11 +75,10 @@ var World = {
               "........",
               "####wwww",
               "..w...w.",
-              "c.w..wl.",
+              "c.w.Lw..",
               "..#....."],
-      on_start: [ 0, 'face_up', 1000, 'face_left', 1000, 'face_up', 1500,
-                  'down', 300, 'left', 300, 'left', 300, 'up',
-                  'face_right', 'face_up', 'face_right', 'right',
+      on_start: [ 0, 'face_right', 1000,
+                  'face_up', 'face_right', 'right',
                   'face_up', 1000, 'face_down',
                   'down', 300, 'right', 300, 'right', 300, 'up', 300, 'up',
                   'face_left', 'face_up', 'face_left', 1500,
@@ -90,8 +88,24 @@ var World = {
                   'left', 300, 'down', 300, 'left', 'face_up',
                   'up', 'face_left', 1500,
                   'face_right', 'face_left', 1500,
-                  'down', 500, 'down', 500,
-                  'face_left', 'door?'],
+                  'face_down', 500, 'down', 500, 'down', 500,
+                  'face_left', 'R?'],
+      on_reset: [ 'skip' ]
+    }
+    ,
+    { // player's turn.
+      ascii: ["#d######",
+              "........",
+              "####wwww",
+              "..w...w.",
+              "c.w.Lw..",
+              "..#....."],
+      on_start: [
+        0, 'face_right',
+        'face_up', 'face_right', 1000,
+        'face_left', '<3',
+        'face_down', 300, 'down', 300, 'left', 300, 'face_down', 1500,
+        'door?']
     }
     ,
     {
@@ -272,6 +286,9 @@ var World = {
   },
   load_on_solved: function(index) {
     return this.load_animation(index, 'on_solved');
+  },
+  load_on_reset: function(index) {
+    return this.load_animation(index, 'on_reset');
   },
   load_position_animations: function(index) {
     var data = this.levels[index];

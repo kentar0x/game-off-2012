@@ -103,7 +103,7 @@ $(function () {
       lover_says('heart');
     },
     'Z': function() {
-      lover_says('press-key');
+      lover_says('press-z');
     },
     'door?': function() {
       lover_says('door-question');
@@ -116,6 +116,9 @@ $(function () {
     },
     '!': function() {
       lover_says('exclam');
+    },
+    'R?': function() {
+      lover_says('r-question');
     },
     
     'fork': function() {
@@ -216,7 +219,13 @@ $(function () {
   }
 
   function try_again() {
-    load_level(level);
+    var reset_plan = World.load_on_reset(level);
+    
+    if (reset_plan.length > 0) {
+      animate('reset', reset_plan);
+    } else {
+      load_level(level);
+    }
   }
 
   function next_level() {

@@ -250,7 +250,7 @@ h1 {
 .say.heart:before {
   background-position: -2828px;
 }
-.say.press-key:before {
+.say.press-z:before {
   background-position: -2929px;
 }
 .say.door-question:before {
@@ -264,6 +264,12 @@ h1 {
 }
 .say.exclam:before {
   background-position: -3434px;
+}
+.say.lightbulb:before {
+  background-position: -3535px;
+}
+.say.r-question:before {
+  background-position: -3636px;
 }
   
 
