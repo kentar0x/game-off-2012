@@ -2,6 +2,49 @@
 
 var World = {
   levels: [
+    { // player's house
+      ascii: ["#####d##",
+              "#......#",
+              "#......#",
+              "#.c....#",
+              "#......#",
+              "########"]
+    }
+    ,
+    { // walking towards lover's house
+      ascii: ["#D##....",
+              ".c.#.###",
+              "...#.###",
+              "w#w#.#d#",
+              "...w....",
+              "...w...."]
+    }
+    ,
+    { // lover's house
+      ascii: ["#D######",
+              "#c.....#",
+              "#......#",
+              "#...Lw.#",
+              "#......#",
+              "########"],
+      on_start: [
+        600, 'face_left', '!',
+        'up', 300, 'up', 300, 'left', 300, 'left', 300,
+        'face_left', '<3', 1000,
+        'face_right', 300, 'right', 300, 'right', 300, 'right',
+        'face_left', '!',
+        'face_down', 300, 'down',
+        'Z', 0, 'fork', 1000,
+        'face_left', '!', 'face_right',
+        'right', 300, 'down', 300, 'face_left',
+        'left', 'left', 'left',
+        'up', 300, 'face_left', '!',
+        'left', 300, 'face_down', 'Z', 0, 'fork',
+        'face_left', '!',
+        'left', 300, 'left', 300, 'left', 300, 'left', 300, 'face_up',
+        '?' ],
+    }
+    ,
     { // level 1
       ascii: ["#####d##",
               "###.....",
