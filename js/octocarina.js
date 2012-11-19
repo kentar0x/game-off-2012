@@ -372,6 +372,7 @@ $(function () {
       theatre = Theatre.create(toplevel_container, r);
 
       completed_animations = {};
+      last_learning_step = 'none';
       animate('start', World.load_on_start(index));
     });
   }
@@ -505,7 +506,7 @@ $(function () {
     
     var pos_key = pos.x + "," + pos.y;
     var animation_plan = World.load_position_animations(level)[pos_key];
-    if( animation_plan ) {
+    if( animation_plan && last_learning_step == 'none') {
       animate(pos_key, animation_plan);
     }
     if (block && !same_dir) {

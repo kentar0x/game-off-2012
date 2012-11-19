@@ -120,6 +120,9 @@ var World = {
               "..ww.",
               ".....",
               ".Lc.."],
+      position_animations: {
+        "3,2": [0, 'face_up', 'fork?']
+      },
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
