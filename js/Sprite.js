@@ -21,6 +21,7 @@ var Sprite = {
     var say = null;
     var forked = null;
     var leaving = false;
+    var dying = false;
     
     container.append(element);
     
@@ -67,6 +68,9 @@ var Sprite = {
         if (new_moveable.floor == Tile.open_door) {
           leaving = true;
           element.addClass("under-door");
+        }
+        if (new_moveable.dying) {
+          element.transition({opacity: 0}, 4000);
         }
       }
     };

@@ -86,7 +86,7 @@ $(function () {
     'player_appear': function() {
       var p = Moveable.create(Tile.player_with_spork);
       p.forked = 'sporked';
-      room().insert_moveable(Pos.create(0, 4), p);
+      room().insert_moveable(Pos.create(0, 3), p);
       update_moveable(p);
     },
     
@@ -215,6 +215,41 @@ $(function () {
       room().change_tile(pos, Tile.dropped_fork);
       p.forked = null;
       update_moveable(p);
+    },
+    'stab': function() {
+      var r = room();
+      var p = r.lover;
+      var f = r.forktopus;
+      
+      var forked1 = p.forked;
+      var forked2 = f.forked;
+      p.forked = forked2;
+      f.forked = forked1;
+      
+      r.update_moveable(p);
+      r.update_moveable(f);
+      
+      f.floor = Tile.blood;
+      process_events();
+    },
+    'die': function() {
+      var f = room().forktopus;
+      for(var i=0; i<5; ++i) {
+        foreground_animations.enqueue(function() {
+          f.tile = Tile.empty;
+          update_moveable(f);
+        }).then_wait_for(100).enqueue(function() {
+          f.tile = Tile.forktopus;
+          update_moveable(f);
+        }).then_wait_for(100);
+      }
+      foreground_animations.enqueue(function() {
+        f.dying = true;
+        update_moveable(f);
+      }).then_wait_for(3000).enqueue(function() {
+        f.floor = Tile.fork;
+        update_moveable(f);
+      });
     },
     
     'dummy': null

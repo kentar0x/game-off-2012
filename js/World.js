@@ -351,7 +351,12 @@ var World = {
         'octo_down', 1200, 'octo_down', 1200, 'octo_down', 2000,
         'octo_right', 1200, 'octo_right', 1200,
         'player_appear', 'octo_face_left', 'spork!', 'face_left', 1200,
-        'octo_left', 1200, 'left', 300, 'left'
+        'octo_left', 1200,
+        'left', 300, 'left', 300, 'stab', 'die', 2000,
+        'face_up', 0, 'player_right', 300,
+        'up', 0, 'player_right', 300,
+        'face_left', 0, 'player_right',
+        '<3'
       ]
     }
   ],
