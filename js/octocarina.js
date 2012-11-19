@@ -251,6 +251,21 @@ $(function () {
         update_moveable(f);
       });
     },
+    'saved': function() {
+      var p = player();
+      p.say = 'heart';
+      update_moveable(p);
+    },
+    'saved_end': function() {
+      var p = player();
+      p.say = null;
+      update_moveable(p);
+    },
+    'both_right': function() {
+      move_lover(1, 0);
+      move_player(1, 0);
+      process_events();
+    },
     
     'dummy': null
   };

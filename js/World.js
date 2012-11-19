@@ -170,11 +170,11 @@ var World = {
     }
     ,
     { // something terrible has happened
-      ascii: ["###D####",
-              "........",
-              "........",
-              "c.......",
-              "...f...g"],
+      ascii: ["###D######",
+              "........  ",
+              "........  ",
+              "c.......  ",
+              "...f...g  "],
       position_animations: {
         "3,4": ['face_down', 'pick', 'open']
       }
@@ -336,11 +336,11 @@ var World = {
     }
     ,
     { // something terrible, avoided
-      ascii: ["###D####",
-              "........",
-              "........",
-              "L.......",
-              ".......g"],
+      ascii: ["###D######",
+              "..........",
+              "..........",
+              "L.........",
+              ".......g.."],
       on_start: [
         'face_right', 'right', 'right', 'right', 'face_up',
         'up', 500, 'up', 1500, 'door?',
@@ -356,7 +356,10 @@ var World = {
         'face_up', 0, 'player_right', 300,
         'up', 0, 'player_right', 300,
         'face_left', 0, 'player_right',
-        '<3'
+        'saved', 0, '<3', 0, 'saved_end', 2000,
+        'face_right', 'both_right', 'both_right',
+        'both_right', 'both_right', 'both_right',
+        'skip'
       ]
     }
   ],
