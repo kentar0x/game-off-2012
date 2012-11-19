@@ -271,10 +271,10 @@ h1 {
 }
 
 .under-door {
-  background-position: -2323px;
+  background-position: -2323px !important;
 }
 .under-door:after {
-  background-position: 101px;
+  background-position: -2323px !important;
 }
 
 .say:before {
