@@ -24,6 +24,11 @@ Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
     solid        : true
 });
+Tile.invisible_wall = Tile.create(' ', {
+    sprite_class : 'floor-tile',
+    solid        : true,
+    is_floor     : true
+});
 
 Tile.player = Tile.create('c', {
     sprite_class : 'player-sprite',
@@ -140,7 +145,7 @@ Tile.orange_block = Tile.create('o', {
     moveable     : true
 });
 
-Tile.blood = Tile.create('F', {
+Tile.blood = Tile.create('', {
     sprite_class : 'blood-on-floor',
     is_floor     : true
 });
@@ -151,4 +156,11 @@ Tile.fork = Tile.create('f', {
 Tile.dropped_fork = Tile.create('', {
     sprite_class : 'dropped-fork',
     is_floor     : true
+});
+Tile.forktopus = Tile.create('F', {
+    sprite_class : 'forktopus',
+    forktopus    : true,
+    solid        : true,
+    character    : true,
+    moveable     : true
 });

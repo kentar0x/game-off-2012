@@ -141,6 +141,9 @@ h1 {
 .dropped-fork {
   background-position: -4141px;
 }
+.forktopus {
+  background-position: -4545px;
+}
 
 .forked:after {
   content: "";

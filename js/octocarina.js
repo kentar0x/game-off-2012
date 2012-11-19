@@ -43,6 +43,41 @@ $(function () {
       move_lover(0, 1);
     },
     
+    'player_left': function() {
+      move_player(-1, 0);
+    },
+    'player_right': function() {
+      move_player(1, 0);
+    },
+    'player_up': function() {
+      move_player(0, -1);
+    },
+    'player_down': function() {
+      move_player(0, 1);
+    },
+    
+    'octo_left': function() {
+      room().move_forktopus(-1, 0);
+      process_events();
+    },
+    'octo_right': function() {
+      room().move_forktopus(1, 0);
+      process_events();
+    },
+    'octo_up': function() {
+      room().move_forktopus(0, -1);
+      process_events();
+    },
+    'octo_down': function() {
+      room().move_forktopus(0, 1);
+      process_events();
+    },
+    
+    'green_up': function() {
+      room().move_green(0, -1);
+      process_events();
+    },
+    
     'face_left': function() {
       change_character_dir(-1, 0);
     },
@@ -243,7 +278,9 @@ $(function () {
       multibuttons = Multibuttons.create(r);
       forkedBlock = ForkedBlock.create(r);
 
-      r.player.dir = Pos.create(0, 1);
+      if (r.player) {
+        r.player.dir = Pos.create(0, 1);
+      }
       
       theatre = Theatre.create(toplevel_container, r);
 

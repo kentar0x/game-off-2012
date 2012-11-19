@@ -286,14 +286,30 @@ var World = {
     }
     ,
     {
-      ascii: ["#..s..#",
+      ascii: ["#. s .#",
               "#.....#",
               "#.....#",
               ".#...#.",
               ".o#.#o.",
               ".......",
               "...C..."],
-      on_spork: [ 'face_left', 'drop', 'face_up', 'fork', 'skip' ]
+      on_spork: [ 0, 'face_left', 'drop', 'face_up', 'fork', 'skip' ]
+    }
+    ,
+    {
+      ascii: ["#.....#",
+              "#.....#",
+              "#.....#",
+              ".#.g.#.",
+              ".o#F#o.",
+              ".......",
+              ".......",
+              ".......",
+              "......."],
+      on_start: [
+        'green_up', 'green_up', 'green_up', 2000,
+        'octo_down', 'octo_down', 'octo_down', 'octo_down',
+        'skip']
     }
   ],
   
