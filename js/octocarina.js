@@ -72,6 +72,23 @@ $(function () {
       room().move_forktopus(0, 1);
       process_events();
     },
+    'octo_face_left': function() {
+      var f = room().forktopus;
+      f.dir = Pos.create(-1, 0);
+      update_moveable(f);
+    },
+    'octo_appear': function() {
+      var forktopus = Moveable.create(Tile.forktopus);
+      room().insert_moveable(Pos.create(3, 1), forktopus);
+      update_moveable(forktopus);
+      process_events();
+    },
+    'player_appear': function() {
+      var p = Moveable.create(Tile.player_with_spork);
+      p.forked = 'sporked';
+      room().insert_moveable(Pos.create(0, 4), p);
+      update_moveable(p);
+    },
     
     'green_up': function() {
       room().move_green(0, -1);
@@ -168,6 +185,9 @@ $(function () {
     },
     'fork!': function() {
       lover_says('fork-exclam');
+    },
+    'spork!': function() {
+      moveable_says(room().forktopus, 'spork-exclam');
     },
     
     'fork': function() {

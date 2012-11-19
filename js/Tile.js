@@ -45,7 +45,7 @@ Tile.player_with_fork = Tile.create('C', {
     character    : true,
     moveable     : true
 });
-Tile.player_with_fork = Tile.create('S', {
+Tile.player_with_spork = Tile.create('S', {
     sprite_class : 'player-sprite',
     player       : true,
     solid        : true,

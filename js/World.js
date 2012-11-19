@@ -170,11 +170,11 @@ var World = {
     }
     ,
     { // something terrible has happened
-      ascii: ["#####D#",
-              "c......",
-              ".......",
-              ".......",
-              "...f..."],
+      ascii: ["###D####",
+              "........",
+              "........",
+              "c.......",
+              "...f...g"],
       position_animations: {
         "3,4": ['face_down', 'pick', 'open']
       }
@@ -305,11 +305,54 @@ var World = {
               ".......",
               ".......",
               ".......",
+              ".......",
               "......."],
       on_start: [
         'green_up', 'green_up', 'green_up', 2000,
-        'octo_down', 'octo_down', 'octo_down', 'octo_down',
+        'octo_down', 1200, 'octo_down', 1200,
+        'octo_down', 1200, 'octo_down', 1200, 'octo_down', 0,
         'skip']
+    }
+    ,
+    { // exchange protocol, second visit
+      ascii: ["#####D#",
+              "S..#...",
+              ".#.#...",
+              "Ggo..O.",
+              "...#..."]
+    }
+    ,
+    { // block-pushing mastery, second visit
+      ascii: ["##d##",
+              "w.w..",
+              ".wlw.",
+              "...gw",
+              ".w.w.",
+              "..S.."],
+      on_start: [
+        0, 'face_up',
+        'face_left', 500, 'left', 500, 'face_up', 300, 'up', 300,
+        'face_right', 'right', 500, 'face_up', 300, 'up', 300, 'leave']
+    }
+    ,
+    { // something terrible, avoided
+      ascii: ["###D####",
+              "........",
+              "........",
+              "L.......",
+              ".......g"],
+      on_start: [
+        'face_right', 'right', 'right', 'right', 'face_up',
+        'up', 500, 'up', 1500, 'door?',
+        'face_down', 500, 'down', 500, 'down', 500, 'down',
+        'face_right', 'right', 300, 'right', 300, 'right',
+        '?', 2000,
+        'open', 'octo_appear', 'close', 1200,
+        'octo_down', 1200, 'octo_down', 1200, 'octo_down', 2000,
+        'octo_right', 1200, 'octo_right', 1200,
+        'player_appear', 'octo_face_left', 'spork!', 'face_left', 1200,
+        'octo_left', 1200, 'left', 300, 'left'
+      ]
     }
   ],
   

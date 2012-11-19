@@ -144,6 +144,9 @@ h1 {
 .forktopus {
   background-position: -4545px;
 }
+.forktopus.left {
+  background-position: -4646px;
+}
 
 .forked:after {
   content: "";
@@ -330,6 +333,9 @@ h1 {
 }
 .say.fork-exclam:before {
   background-position: -3838px;
+}
+.say.spork-exclam:before {
+  background-position: -4747px;
 }
 
 

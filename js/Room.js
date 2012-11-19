@@ -102,6 +102,14 @@ var Room = {
       update_moveable: function (moveable) {
         this.force_move(moveable, moveable.pos);
       },
+      insert_moveable: function (pos, moveable) {
+        if (moveable.tile.player) player = this.player = moveable;
+        if (moveable.tile.lover) lover = this.lover = moveable;
+        if (moveable.tile.forktopus) forktopus = this.forktopus = moveable;
+        
+        moveables.insert(pos, moveable);
+        this.update_moveable(moveable);
+      },
       remove_moveable: function (moveable) {
         moveables.remove(moveable);
         this.change_tile(moveable.pos, moveable.floor);
