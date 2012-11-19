@@ -266,6 +266,9 @@ $(function () {
       move_player(1, 0);
       process_events();
     },
+    'credits': function() {
+      roll_credit();
+    },
     
     'dummy': null
   };
@@ -373,15 +376,33 @@ $(function () {
     // no more player movement
     keyHandler = function() {};
     
-    toplevel_container.children().transition({opacity: 0}, 2000);
-    toplevel_container.transition({'background-color': '#000'}, 6000, function() {
-      var credits = $('#credits');
-      toplevel_container.append(credits);
-      credits.show();
-      
-      var delta = 1000;
-      delta = credits.height();
-      credits.transition({y: -delta}, delta*15, 'linear');
+    foreground_animations.enqueue_async(function() {
+      toplevel_container.children().transition({opacity: 0.5}, 5000);
+      toplevel_container.transition({'background-color': '#000'}, 6000, function() {
+        var credits = $('#credits');
+        toplevel_container.append(credits);
+        credits.show();
+        
+        var delta = 1000;
+        delta = credits.height() + toplevel_container.children().height() + 20;
+        credits.transition({y: -delta}, delta*15, 'linear', function() {
+          foreground_animations.resume();
+        });
+      });
+    });
+  }
+  function show_room() {
+    foreground_animations.enqueue_async(function() {
+      toplevel_container.children().transition({opacity: 1}, 2000, function() {
+        foreground_animations.resume();
+      });
+    });
+  }
+  function hide_room() {
+    foreground_animations.enqueue_async(function() {
+      toplevel_container.children().transition({opacity: 0}, 2000, function() {
+        foreground_animations.resume();
+      });
     });
   }
 

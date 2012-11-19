@@ -344,13 +344,16 @@ var World = {
       on_start: [
         'face_right', 'right', 'right', 'right', 'face_up',
         'up', 500, 'up', 1500, 'door?',
-        'face_down', 500, 'down', 500, 'down', 500, 'down',
-        'face_right', 'right', 300, 'right', 300, 'right',
+        'face_down', 500, 'down', 500, 'down', 500,
+        'down',
+        'face_right', 'right', 300, 'right', 300,
+        'right',
         '?', 2000,
         'open', 'octo_appear', 'close', 1200,
         'octo_down', 1200, 'octo_down', 1200, 'octo_down', 2000,
         'octo_right', 1200, 'octo_right', 1200,
-        'player_appear', 'octo_face_left', 'spork!', 'face_left', 1200,
+        'player_appear',
+        'octo_face_left', 'spork!', 'face_left', 1200,
         'octo_left', 1200,
         'left', 300, 'left', 300, 'stab', 'die', 2000,
         'face_up', 0, 'player_right', 300,
@@ -359,7 +362,7 @@ var World = {
         'saved', 0, '<3', 0, 'saved_end', 2000,
         'face_right', 'both_right', 'both_right',
         'both_right', 'both_right', 'both_right',
-        'skip'
+        'credits'
       ]
     }
   ],
