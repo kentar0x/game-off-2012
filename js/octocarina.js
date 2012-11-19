@@ -44,20 +44,16 @@ $(function () {
     },
     
     'face_left': function() {
-      change_lover_dir(-1, 0);
+      change_character_dir(-1, 0);
     },
     'face_right': function() {
-      change_lover_dir(1, 0);
+      change_character_dir(1, 0);
     },
     'face_up': function() {
-      change_lover_dir(0, -1);
+      change_character_dir(0, -1);
     },
     'face_down': function() {
-      if (lover()) {
-        change_lover_dir(0, 1);
-      } else {
-        change_player_dir(0, 1);
-      }
+      change_character_dir(0, 1);
     },
     
     'leave': function() {
@@ -140,7 +136,7 @@ $(function () {
     },
     
     'fork': function() {
-      use_fork(lover());
+      use_fork(lover() || player());
     },
     
     'skip': function() {
@@ -154,6 +150,15 @@ $(function () {
       p.forked = 'forked';
       p.floor = Tile.blood;
       
+      update_moveable(p);
+    },
+    'drop': function() {
+      var p = player();
+      var dir = p.dir;
+      var pos = player().pos.plus(dir.x, dir.y);
+      
+      room().change_tile(pos, Tile.dropped_fork);
+      p.forked = null;
       update_moveable(p);
     },
     
@@ -300,6 +305,9 @@ $(function () {
   }
   function change_lover_dir(dx, dy) {
     change_moveable_dir(lover(), dx, dy);
+  }
+  function change_character_dir(dx, dy) {
+    change_moveable_dir(lover() || player(), dx, dy);
   }
   
   function look_at(moveable, target) {
@@ -494,7 +502,15 @@ $(function () {
     return false;
   }
   function player_uses_fork() {
-    if (use_fork(player())) {
+    var p = player();
+    var t = target(p);
+    if (t && t.forked == 'sporked') {
+      if (animate('spork', World.load_on_spork(level))) {
+        return;
+      }
+    }
+    
+    if (use_fork(p)) {
       if (last_learning_step == 'none') {
         last_learning_step = 'fork';
         

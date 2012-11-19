@@ -286,12 +286,14 @@ var World = {
     }
     ,
     {
-      ascii: [".#.s.#.",
+      ascii: ["#..s..#",
+              "#.....#",
+              "#.....#",
               ".#...#.",
-              "..#.#..",
-              "b.w.w.b",
-              "wwwwwww",
-              "..C...."]
+              ".o#.#o.",
+              ".......",
+              "...C..."],
+      on_spork: [ 'face_left', 'drop', 'face_up', 'fork', 'skip' ]
     }
   ],
   
@@ -328,6 +330,9 @@ var World = {
   },
   load_on_fork: function(index) {
     return this.load_animation(index, 'on_fork');
+  },
+  load_on_spork: function(index) {
+    return this.load_animation(index, 'on_spork');
   },
   load_on_unfork: function(index) {
     return this.load_animation(index, 'on_unfork');
