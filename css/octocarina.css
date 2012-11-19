@@ -129,9 +129,6 @@ h1 {
 .orange-block-sprite {
   background-position: -1919px;
 }
-.player-sprite.under-door {
-  background-position: -2323px;
-}
 .blood-on-floor {
   background-position: -3939px;
 }
@@ -199,9 +196,6 @@ h1 {
 .player-sprite.forked.left {
   background-position: -2121px;
 }
-.player-sprite.forked.under-door {
-  background-position: -2323px;
-}
 .player-sprite.forked.right:after {
   background-position: -303px;
 }
@@ -213,9 +207,6 @@ h1 {
 }
 .player-sprite.forked.left:after {
   background-position: -606px;
-}
-.player-sprite.forked.under-door:after {
-  background-position: 101px;
 }
 .player-sprite.sporked.right {
   background-position: -4343px;
@@ -229,9 +220,6 @@ h1 {
 .player-sprite.sporked.left {
   background-position: -4242px;
 }
-.player-sprite.sporked.under-door {
-  background-position: -4444px;
-}
 .player-sprite.sporked.right:after {
   background-position: -303px;
 }
@@ -243,9 +231,6 @@ h1 {
 }
 .player-sprite.sporked.left:after {
   background-position: -606px;
-}
-.player-sprite.sporked.under-door:after {
-  background-position: 101px;
 }
 
 .lover-sprite.right {
@@ -272,9 +257,6 @@ h1 {
 .lover-sprite.forked.left {
   background-position: -2121px;
 }
-.lover-sprite.forked.under-door {
-  background-position: -2323px;
-}
 .lover-sprite.forked.right:after {
   background-position: -2424px;
 }
@@ -287,8 +269,12 @@ h1 {
 .lover-sprite.forked.left:after {
   background-position: -2727px;
 }
-.lover-sprite.forked.under-door:after {
-  background-position: -2020px;
+
+.under-door {
+  background-position: -2323px;
+}
+.under-door:after {
+  background-position: 101px;
 }
 
 .say:before {
