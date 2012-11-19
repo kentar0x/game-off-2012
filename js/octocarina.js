@@ -83,9 +83,15 @@ $(function () {
       update_moveable(forktopus);
       process_events();
     },
-    'player_appear': function() {
+    'S_appear': function() {
       var p = Moveable.create(Tile.player_with_spork);
       p.forked = 'sporked';
+      room().insert_moveable(Pos.create(0, 3), p);
+      update_moveable(p);
+    },
+    'c_appear': function() {
+      var p = Moveable.create(Tile.player);
+      p.dying = 'not_dead';
       room().insert_moveable(Pos.create(0, 3), p);
       update_moveable(p);
     },
@@ -244,11 +250,13 @@ $(function () {
         }).then_wait_for(100);
       }
       foreground_animations.enqueue(function() {
-        f.dying = true;
+        f.dying = 'dying';
         update_moveable(f);
       }).then_wait_for(3000).enqueue(function() {
         f.floor = Tile.fork;
         update_moveable(f);
+      }).then_wait_for(1000).enqueue(function() {
+        room().remove_moveable(f);
       });
     },
     'saved': function() {
@@ -268,6 +276,12 @@ $(function () {
     },
     'credits': function() {
       roll_credit();
+    },
+    'show': function() {
+      show_room();
+    },
+    'the_end': function() {
+      hide_room();
     },
     
     'dummy': null
@@ -724,7 +738,7 @@ $(function () {
 
   function begin(e) {
     toplevel_container.addClass('well').empty();
-    load_level(0);
+    load_level(29);
     keyHandler = handleKey;
     
     if (e == Keycode.D) debug = true;

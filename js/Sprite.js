@@ -70,7 +70,12 @@ var Sprite = {
           element.addClass("under-door");
         }
         if (new_moveable.dying) {
-          element.transition({opacity: 0}, 4000);
+          dying = new_moveable.dying;
+          if (dying == 'dying') {
+            element.transition({opacity: 0}, 4000);
+          } else {
+            element.transition({opacity: 1}, 0);
+          }
         }
       }
     };

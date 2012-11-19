@@ -352,17 +352,25 @@ var World = {
         'open', 'octo_appear', 'close', 1200,
         'octo_down', 1200, 'octo_down', 1200, 'octo_down', 2000,
         'octo_right', 1200, 'octo_right', 1200,
-        'player_appear',
+        'S_appear',
         'octo_face_left', 'spork!', 'face_left', 1200,
         'octo_left', 1200,
-        'left', 300, 'left', 300, 'stab', 'die', 2000,
+        'left', 300, 'left', 400, 'stab', 'die', 2000,
         'face_up', 0, 'player_right', 300,
         'up', 0, 'player_right', 300,
         'face_left', 0, 'player_right',
         'saved', 0, '<3', 0, 'saved_end', 2000,
         'face_right', 'both_right', 'both_right',
         'both_right', 'both_right', 'both_right',
-        'credits'
+        'credits',
+        'c_appear',
+        'show',
+        'player_right', 'player_right', 'player_right',
+        'face_down', 3000,
+        'player_down', 'pick', 'open', 2000,
+        'face_up', 1500,
+        'player_up', 'player_up', 'player_up', 'player_up', 'leave',
+        'the_end'
       ]
     }
   ],
