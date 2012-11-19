@@ -404,6 +404,7 @@ $(function () {
         multiroom.fork(block, forked);
         
         process_events();
+        return true;
       } else {
         // character is not facing a block.
         // maybe it's still clear which one he means, though?
@@ -465,6 +466,7 @@ $(function () {
         animate('fork', World.load_on_fork(level));
         
         process_events();
+        return true;
       } else {
         // character is not facing a block.
         // maybe it's still clear which one he means, though?
@@ -488,18 +490,20 @@ $(function () {
         }
       }
     }
+    
+    return false;
   }
   function player_uses_fork() {
-    use_fork(player());
-    
-    if (last_learning_step == 'none') {
-      last_learning_step = 'fork';
-      
-      animate('fork', World.load_on_fork(level));
-    } else if (last_learning_step == 'push') {
-      last_learning_step = 'done';
-      
-      animate('unfork', World.load_on_unfork(level));
+    if (use_fork(player())) {
+      if (last_learning_step == 'none') {
+        last_learning_step = 'fork';
+        
+        animate('fork', World.load_on_fork(level));
+      } else if (last_learning_step == 'push') {
+        last_learning_step = 'done';
+        
+        animate('unfork', World.load_on_unfork(level));
+      }
     }
   }
 
