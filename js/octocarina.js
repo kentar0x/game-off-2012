@@ -530,7 +530,7 @@ $(function () {
         return;
       }
     }
-    if (animate('kiss', World.load_on_kiss(level))) {
+    if (is_movement_allowed() && animate('kiss', World.load_on_kiss(level))) {
       return;
     }
     

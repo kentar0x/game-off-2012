@@ -36,11 +36,10 @@ var World = {
         'face_left', '!',
         'face_down', 300, 'down',
         'Z', 0, 'fork', 1000,
-        'face_left', '!', 'face_right',
-        'right', 300, 'down', 300, 'face_left',
+        'face_right', 300, 'right', 300, 'down', 300, 'face_left',
         'left', 'left', 'left',
         'up', 300, 'face_left', '!',
-        'left', 300, 'face_down', 'Z', 0, 'fork', 0,
+        'left', 300, 'face_down', 'Z', 0, 'fork', 1000,
         'face_left',
         'left', 300, 'left', 300, 'left', 300, 'left', 300, 'face_up',
         '?', 'give',
@@ -66,13 +65,9 @@ var World = {
         '?',
         'face_right', 300, 'right', 300, 'face_up', 1000,
         'face_down', 'door!',
-        'face_right', 300, 'right', 300, 'up', 300, 'right', 300, 'up', 300,
-        'face_down', 'door?' ],
-      on_solved_kiss: [
-        0, 'ask-door', '<3',
-        'face_left', 'door!',
-        'left', 300,
-        'face_up', 300, 'up', 300, 'leave']
+        'face_up', 300, 'up', 300, 'right', 300, 'up', 300, 'up', 300,
+        'leave' ],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
     { // lover messes up. reset please?
@@ -95,7 +90,8 @@ var World = {
                   'face_right', 'face_left', 1500,
                   'face_down', 500, 'down', 500, 'down', 500,
                   'face_left', 'R?'],
-      on_reset: [ 'skip' ]
+      on_reset: [ 'skip' ],
+      on_kiss: [ 0, 'R?' ]
     }
     ,
     { // player's turn. first block puzzle!
@@ -103,14 +99,9 @@ var World = {
               "........",
               "####wwww",
               "..w...w.",
-              "c.w.Lw..",
-              "..#....."],
-      on_start: [
-        0, 'face_right',
-        'face_up', 'face_right', 1000,
-        'face_left', '<3',
-        'face_down', 300, 'down', 300, 'left', 300, 'face_down', 1500,
-        'door?']
+              "c.w..w..",
+              "..#L...."],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
     { // borrow the fork. first fork puzzle!
@@ -136,12 +127,12 @@ var World = {
         'down', 300, 'right', 300, 'down', 300, 'face_right',
         'right', 'right', 'right', 'right',
         'face_up', 300, 'up', 300, 'right', 300, 'face_up', 1500,
-        'face_down', 'face_up', 1500,
         'face_left', 'door?'],
       on_solved: [
         'face_up', 1000,
         'face_left', 'door!',
-        'face_up', 300, 'up', 300, 'leave']
+        'face_up', 300, 'up', 300, 'leave'],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
     { // lover explores ahead
