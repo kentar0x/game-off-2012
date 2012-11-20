@@ -356,6 +356,20 @@ $(function () {
   }
   
   function process_undo_move(move) {
+    if (move == "dropped_fork") {
+      foreground_animations.enqueue(function() {
+        var p = player();
+        var dir = p.dir;
+        var pos = player().pos.plus(dir.x, dir.y);
+        
+        room().change_tile(pos, Tile.floor);
+        p.forked = 'forked';
+        update_moveable(p);
+      });
+      
+      return;
+    }
+    
     if (move.moveable.tile.character) {
       foreground_animations.then_wait_for(0.1*std_delay);
     }
@@ -781,7 +795,7 @@ $(function () {
 
   function begin(e) {
     toplevel_container.addClass('well').empty();
-    load_level(0);
+    load_level(24);
     keyHandler = handleKey;
     
     if (e == Keycode.D) debug = true;
