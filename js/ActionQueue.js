@@ -39,7 +39,19 @@ var ActionQueue = {
       run_queue: function() {
         while (queue.length > 0 && !paused) {
           var body = queue.shift();
-          body();
+          if (body != 'dummy') {
+            var remaining_events = queue;
+            queue = ['dummy'];
+            
+            body();
+            
+            // next, play the events enqueued by body(),
+            // (which are already in the queue)
+            // then play the remaining events
+            for(var i=0; i<remaining_events.length; ++i) {
+              queue.push(remaining_events[i]);
+            }
+          }
         }
       },
       

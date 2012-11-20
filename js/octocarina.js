@@ -291,29 +291,21 @@ $(function () {
     if (animation_plan.length > 0 && !completed_animations[animation_key]) {
       completed_animations[animation_key] = true;
       
-      var i = 0;
-      function next_animation_step() {
-        if (i < animation_plan.length) {
-          var animation_key = animation_plan[i];
-          ++i;
+      for(var i=0; i<animation_plan.length; ++i) {
+        var animation_key = animation_plan[i];
+        
+        if ($.isNumeric(animation_key)) {
+          var delay = animation_key;
+          foreground_animations.then_wait_for(delay);
           
-          if ($.isNumeric(animation_key)) {
-            var delay = animation_key;
-            foreground_animations.then_wait_for(delay);
-            
-            animation_key = animation_plan[i];
-            ++i;
-          } else {
-            foreground_animations.then_wait_for(std_delay);
-          }
-          
-          var animation_func = animation[animation_key];
-          foreground_animations.enqueue(animation_func)
-                               .then(next_animation_step);
+          animation_key = animation_plan[++i];
+        } else {
+          foreground_animations.then_wait_for(std_delay);
         }
+        
+        var animation_func = animation[animation_key];
+        foreground_animations.enqueue(animation_func);
       }
-      
-      next_animation_step();
       
       return true;
     } else {
@@ -334,18 +326,14 @@ $(function () {
       }).then_wait_for(Scene.queue)
         .then(function() {
         process_undo_moves(forkedBlock.moves_to_undo);
-        
-        foreground_animations.enqueue(function() {
-          theatre.current_scene().undarken();
-        }).then_wait_for(Scene.queue)
-          .then(function() {
-          process_replay_moves(forkedBlock.moves_to_replay);
-          
-          foreground_animations.then_wait_for(std_delay)
-                               .then(function() {
-            theatre.current_scene().lighten();
-          });
-        });
+      }).then(function() {
+        theatre.current_scene().undarken();
+      }).then_wait_for(Scene.queue)
+        .then(function() {
+        process_replay_moves(forkedBlock.moves_to_replay);
+      }).then_wait_for(std_delay)
+        .then(function() {
+        theatre.current_scene().lighten();
       });
     }
     
