@@ -35,7 +35,7 @@
         if (new_block) {
           events.each_room(function (index, room) {
             room.moves.each(function (move) {
-              if (move.new_pos !== move.old_pos) {
+              if (move.new_pos !== move.old_pos || move.dir) {
                 observed_moves.add(move);
               }
             });
