@@ -219,7 +219,7 @@ var World = {
               "..w.###",
               "CgwG###",
               "..w.#D#",
-              "#.w...#"]  // vawiant which does need the fowk
+              "#.w...#"]
     }
     ,
     {
@@ -227,7 +227,7 @@ var World = {
               "C..#..",
               ".#.#..",
               "Ggo..O",
-              "...#.."]  // vawiant which does need the fowk
+              "...#.."]
     }
     ,
     {
@@ -235,7 +235,7 @@ var World = {
               "..w.w..",
               ".wgwGw.",
               "..w.w..",
-              "...C..."]  // vawiant which does need the fowk
+              "...C..."]
     }
     ,
     {
@@ -257,8 +257,8 @@ var World = {
               "###.###",
               "#..G..#",
               "#wwwww#",
-              "#..g..#",  // variang which teaches
-              "##.C.##"]  // that the block can push the player
+              "#..g..#",
+              "##.C.##"]
     }
     ,
     {
@@ -267,7 +267,7 @@ var World = {
               ".rwg.",
               ".w.w.",
               ".bwo.",
-              "B.C.O"]  // easy
+              "B.C.O"]
     }
     ,
     {
@@ -276,16 +276,7 @@ var World = {
               ".rwg.",
               ".w.w.",
               ".bwo.",
-              "O.C.B"]  // medium
-    }
-    ,
-    {
-      ascii: ["##D##",
-              "O...B",
-              ".rwg.",
-              ".w.w.",
-              ".bwo.",
-              "G.C.R"]  // hard
+              "O.C.B"]
     }
     ,
     {
