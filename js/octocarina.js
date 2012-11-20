@@ -343,7 +343,7 @@ $(function () {
   }
   
   function process_undo_move(move) {
-    if (move.moveable === player()) {
+    if (move.moveable.tile.character) {
       foreground_animations.then_wait_for(0.1*std_delay);
     }
     
