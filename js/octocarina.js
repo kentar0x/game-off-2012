@@ -344,7 +344,7 @@ $(function () {
           foreground_animations.then_wait_for(std_delay)
                                .then(function() {
             theatre.current_scene().lighten();
-          }).then_wait_for(Scene.queue);
+          });
         });
       });
     }
