@@ -120,7 +120,7 @@ var Room = {
         var target = this.tile_at(new_pos);
         var target2 = this.tile_at(new_pos2);
 
-        if (target.moveable && !target2.solid) {
+        if (target.moveable && !target2.solid && target2 !== Tile.open_door) {
           var block = this.moveable_at(new_pos);
 
           this.force_move(block, new_pos2);
