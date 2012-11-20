@@ -2,7 +2,8 @@
 
 var World = {
   levels: [
-    { // player's house
+    {
+      name: "player's house",
       ascii: ["#####d##",
               "#......#",
               "#......#",
@@ -11,7 +12,8 @@ var World = {
               "########"]
     }
     ,
-    { // walking towards lover's house
+    {
+      name: "walking towards lover's house",
       ascii: ["#D##....",
               ".c.#.###",
               "...#.###",
@@ -20,7 +22,7 @@ var World = {
               "...w...."]
     }
     ,
-    { // lover demonstrates his new toy
+    { name: "lover demonstrates his new toy",
       ascii: ["#D######",
               "#c.....#",
               "#......#",
@@ -53,7 +55,7 @@ var World = {
         'door?']
     }
     ,
-    { // the adventure begins!
+    { name: "the adventure begins!",
       ascii: ["####D###",
               "###.....",
               "###...#.",
@@ -70,7 +72,8 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    { // lover messes up. reset please?
+    {
+      name: "lover messes up. reset please?",
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -94,7 +97,8 @@ var World = {
       on_kiss: [ 0, 'R?' ]
     }
     ,
-    { // player's turn. first block puzzle!
+    {
+      name: "player's turn. first block puzzle! - 1 / 20",
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -104,7 +108,8 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    { // borrow the fork. first fork puzzle!
+    {
+      name: "borrow the fork. first fork puzzle! - 2 / 20",
       ascii: ["#d###",
               ".....",
               "###.#",
@@ -117,7 +122,8 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    { // the gate, easy version
+    {
+      name: "the gate, easy version - 3 / 20",
       ascii: ["#.w.####",
               "c.w.####",
               "LgwG##D#",
@@ -135,7 +141,8 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    { // lover explores ahead
+    {
+      name: "lover explores ahead - 4 / 20",
       ascii: ["#######d",
               ".w.w.w..",
               ".w.w.wL.",
@@ -146,7 +153,8 @@ var World = {
         'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
     }
     ,
-    { // convoluted block exchange protocol
+    {
+      name: "convoluted block exchange protocol - 5 / 20",
       ascii: ["#####D#",
               "c..#...",
               ".#.#...",
@@ -154,7 +162,8 @@ var World = {
               "...#..."]
     }
     ,
-    { // block-pushing mastery required
+    {
+      name: "the spider - 6 / 20",
       ascii: ["##D##",
               ".....",
               ".w.w.",
@@ -163,7 +172,8 @@ var World = {
               "..c.."]
     }
     ,
-    { // something terrible has happened
+    {
+      name: "something terrible has happened - 7 / 20",
       ascii: ["###D######",
               "........  ",
               "........  ",
@@ -175,6 +185,7 @@ var World = {
     }
     ,
     {
+      name: "8 / 20",
       ascii: ["###d###",
               "###.###",
               "##.w.##",
@@ -183,12 +194,14 @@ var World = {
     }
     ,
     {
+      name: "9 / 20",
       ascii: ["#D###..",
               "..GGgg.",
               "....C.."]
     }
     ,
     {
+      name: "10 / 20",
       ascii: ["#####D#",
               "..w.w.#",
               "C.Gg..#",
@@ -197,6 +210,7 @@ var World = {
     }
     ,
     {
+      name: "11 / 20",
       ascii: ["####D#",
               "#....#",
               "#CgwG#",
@@ -206,6 +220,7 @@ var World = {
     }
     ,
     {
+      name: "the gate, hard version - 12 / 20",
       ascii: ["#.w.###",
               "..w.###",
               "CgwG###",
@@ -214,6 +229,7 @@ var World = {
     }
     ,
     {
+      name: "an even more convoluted exchange protocol - 13 / 20",
       ascii: ["#####D",
               "C..#..",
               ".#.#..",
@@ -222,6 +238,7 @@ var World = {
     }
     ,
     {
+      name: "return of the spider - 14 / 20",
       ascii: ["###D###",
               "..w.w..",
               ".wgwGw.",
@@ -230,6 +247,7 @@ var World = {
     }
     ,
     {
+      name: "I didn't know blocks could do that - 15 / 20",
       ascii: ["#D####",
               "....##",
               "C.ooOO",
@@ -237,13 +255,15 @@ var World = {
     }
     ,
     {
+      name: "harder than it looks - 16 / 20",
       ascii: ["###D##",
               "..Rr..",
               "C#..#.",
-              "..gG.."]  // harder than it looks!
+              "..gG.."]
     }
     ,
     {
+      name: "the impasse - 17 / 20",
       ascii: ["###D###",
               "###.###",
               "#..G..#",
@@ -253,6 +273,7 @@ var World = {
     }
     ,
     {
+      name: "the ring, easy version - 18 / 20",
       ascii: ["##D##",
               "R...G",
               ".rwg.",
@@ -262,6 +283,7 @@ var World = {
     }
     ,
     {
+      name: "the ring, hard version - 19 / 20",
       ascii: ["##D##",
               "G...R",
               ".rwg.",
@@ -271,6 +293,7 @@ var World = {
     }
     ,
     {
+      name: "the lair - 20 / 20",
       ascii: ["#. s .#",
               "#.....#",
               "#.....#",
@@ -317,7 +340,8 @@ var World = {
       ]
     }
     ,
-    { // exchange protocol, second visit
+    { // second visit
+      name: "convoluted block exchange protocol - 5 / 20",
       ascii: ["#####D#",
               "S..#...",
               ".#.#...",
@@ -325,7 +349,8 @@ var World = {
               "...#..."]
     }
     ,
-    { // block-pushing mastery, second visit
+    { // second visit
+      name: "the spider - 6 / 20",
       ascii: ["##d##",
               "w.w..",
               ".wlw.",
@@ -396,6 +421,10 @@ var World = {
     var room = this.load_room(index);
     
     return Multiroom.create(room);
+  },
+  load_name: function(index) {
+    var name = this.levels.name;
+    return name ? name : "";
   },
   load_animation: function(index, animation_type) {
     var data = this.levels[index];
