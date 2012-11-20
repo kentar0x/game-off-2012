@@ -9,6 +9,7 @@ $(function () {
   var theatre = Theatre.empty();
   var completed_animations = {};
   var last_learning_step = 'none';
+  var display_events = false;
 
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
@@ -56,6 +57,13 @@ $(function () {
       move_player(0, 1);
     },
     
+    'hidden': function() {
+      display_events = false;
+    },
+    'unhidden': function() {
+      display_events = true;
+    },
+    
     'octo_left': function() {
       room().move_forktopus(-1, 0);
       process_events();
@@ -72,9 +80,19 @@ $(function () {
       room().move_forktopus(0, 1);
       process_events();
     },
+    'octo_spork': function() {
+      var f = room().forktopus;
+      f.forked = 'sporked';
+      use_fork(f);
+    },
     'octo_face_left': function() {
       var f = room().forktopus;
       f.dir = Pos.create(-1, 0);
+      update_moveable(f);
+    },
+    'octo_face_right': function() {
+      var f = room().forktopus;
+      f.dir = Pos.create(1, 0);
       update_moveable(f);
     },
     'octo_appear': function() {
@@ -94,11 +112,6 @@ $(function () {
       p.dying = 'not_dead';
       room().insert_moveable(Pos.create(0, 3), p);
       update_moveable(p);
-    },
-    
-    'green_up': function() {
-      room().move_green(0, -1);
-      process_events();
     },
     
     'face_left': function() {
@@ -317,7 +330,7 @@ $(function () {
   function process_events() {
     multibuttons.process_events(multiroom);
     forkedBlock.process_events(multiroom);
-    theatre.process_events(multiroom);
+    if (display_events) theatre.process_events(multiroom);
     multiroom.clear_events();
     
     if (!forkedBlock.moves_to_undo.empty()) {
@@ -393,14 +406,15 @@ $(function () {
       multibuttons = Multibuttons.create(r);
       forkedBlock = ForkedBlock.create(r);
 
-      if (r.player) {
-        r.player.dir = Pos.create(0, 1);
-      }
+      if (r.player) r.player.dir = Pos.create(0, 1);
+      if (r.lover) r.lover.dir = Pos.create(0, 1);
+      if (r.forktopus) r.forktopus.dir = Pos.create(0, 1);
       
       theatre = Theatre.create(toplevel_container, r);
 
       completed_animations = {};
       last_learning_step = 'none';
+      display_events = true;
       animate('start', World.load_on_start(index));
     });
   }

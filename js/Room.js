@@ -6,15 +6,12 @@ var Room = {
     // find the player and other important moveables
     var player = null;
     var lover = null;
-    var green = null;
     var forktopus = null;
     moveables.each(function(moveable) {
       if (moveable.tile.player) {
         player = moveable;
       } else if (moveable.tile.lover) {
         lover = moveable;
-      } else if (moveable.tile.color == 'green') {
-        green = moveable;
       } else if (moveable.tile.forktopus) {
         forktopus = moveable;
       }
@@ -153,15 +150,6 @@ var Room = {
       move_lover: function (dx, dy) {
         lover.dir = Pos.create(dx, dy);
         this.move(lover, dx, dy);
-      },
-
-      green: green,
-      green_pos: function () {
-        return green.pos;
-      },
-      move_green: function (dx, dy) {
-        green.dir = Pos.create(dx, dy);
-        this.move(green, dx, dy);
       },
 
       forktopus: forktopus,
