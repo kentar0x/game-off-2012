@@ -329,22 +329,37 @@ $(function () {
     multiroom.clear_events();
     
     if (!forkedBlock.moves_to_replay.empty()) {
-      process_moves(forkedBlock.moves_to_replay);
+      process_undo_moves(forkedBlock.moves_to_undo);
+      //process_replay_moves(forkedBlock.moves_to_replay);
     }
     if (multibuttons.current().solved()) {
       animate('solved', World.load_on_solved(level));
     }
   }
   
-  function process_move(move) {
+  function process_undo_move(move) {
     foreground_animations.then_wait_for(std_delay).then(function() {
+      var delta = Pos.distance_between(move.old_pos, move.new_pos);
+      
+      room().move(move.moveable, -move.dx, -move.dy);
+      process_events();
+    });
+  }
+  function process_undo_moves(moves) {
+    moves.reverse_each(process_undo_move);
+    moves.clear();
+  }
+  
+  function process_replay_move(move) {
+    foreground_animations.then_wait_for(std_delay).then(function() {
+      var delta = Pos.distance_between(move.old_pos, move.new_pos);
+      
       room().move(move.moveable, move.dx, move.dy);
       process_events();
     });
   }
-  
-  function process_moves(moves) {
-    moves.each(process_move);
+  function process_replay_moves(moves) {
+    moves.each(process_replay_move);
     moves.clear();
   }
   
@@ -739,7 +754,7 @@ $(function () {
 
   function begin(e) {
     toplevel_container.addClass('well').empty();
-    load_level(0);
+    load_level(14);
     keyHandler = handleKey;
     
     if (e == Keycode.D) debug = true;

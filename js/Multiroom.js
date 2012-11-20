@@ -90,7 +90,7 @@ var Multiroom = {
           // old_index is only valid before the removal
           var old_room = rooms[old_index];
           {
-            rooms.remove(old_index);
+            rooms.remove(0);
           }
           // new_index is only valid after the removal
           var new_room = rooms[new_index];

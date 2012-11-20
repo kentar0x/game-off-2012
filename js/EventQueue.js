@@ -18,6 +18,11 @@ var EventQueue = {
           body(events[i]);
         }
       },
+      reverse_each: function(body) {
+        for(var i=events.length; i-->0;) {
+          body(events[i]);
+        }
+      },
       clear: function() {
         events = new Array();
       }
