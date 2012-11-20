@@ -356,32 +356,22 @@ $(function () {
   }
   
   function process_undo_move(move) {
-    if (move == "dropped_fork") {
-      foreground_animations.enqueue(function() {
-        var p = player();
-        var dir = p.dir;
-        var pos = player().pos.plus(dir.x, dir.y);
-        
-        room().change_tile(pos, Tile.floor);
-        p.forked = 'forked';
-        update_moveable(p);
-      });
-      
-      return;
-    }
-    
-    if (move.moveable.tile.character) {
+    if (move.moveable && move.moveable.tile.character) {
       foreground_animations.then_wait_for(0.1*std_delay);
     }
     
     foreground_animations.enqueue(function() {
-      var delta = Pos.distance_between(move.new_pos, move.old_pos);
-      
-      if (move.dir) {
-        move.moveable.dir = move.dir;
+      if (move.new_tile) {
+        room().change_tile(move.pos, move.old_tile);
+      } else {
+        var delta = Pos.distance_between(move.new_pos, move.old_pos);
+        
+        if (move.dir) {
+          move.moveable.dir = move.dir;
+        }
+        
+        room().move(move.moveable, delta.x, delta.y);
       }
-      
-      room().move(move.moveable, delta.x, delta.y);
       process_events();
     });
   }

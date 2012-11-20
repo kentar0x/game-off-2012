@@ -35,9 +35,7 @@
         if (new_block) {
           events.each_room(function (index, room) {
             room.tile_changes.each(function(tile_change) {
-              if (tile_change.new_tile === Tile.dropped_fork) {
-                observed_moves.add('dropped_fork');
-              }
+              observed_moves.add(tile_change);
             });
             room.moves.each(function (move) {
               if (move.new_pos !== move.old_pos || move.dir) {
