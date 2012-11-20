@@ -328,9 +328,9 @@ $(function () {
     theatre.process_events(multiroom);
     multiroom.clear_events();
     
-    if (!forkedBlock.moves_to_replay.empty()) {
+    if (!forkedBlock.moves_to_undo.empty()) {
       process_undo_moves(forkedBlock.moves_to_undo);
-      //process_replay_moves(forkedBlock.moves_to_replay);
+      process_replay_moves(forkedBlock.moves_to_replay);
     }
     if (multibuttons.current().solved()) {
       animate('solved', World.load_on_solved(level));
@@ -338,10 +338,10 @@ $(function () {
   }
   
   function process_undo_move(move) {
-    foreground_animations.then_wait_for(std_delay).then(function() {
-      var delta = Pos.distance_between(move.old_pos, move.new_pos);
+    foreground_animations.then_wait_for(0.1*std_delay).then(function() {
+      var delta = Pos.distance_between(move.new_pos, move.old_pos);
       
-      room().move(move.moveable, -move.dx, -move.dy);
+      room().move(move.moveable, delta.x, delta.y);
       process_events();
     });
   }
@@ -354,7 +354,7 @@ $(function () {
     foreground_animations.then_wait_for(std_delay).then(function() {
       var delta = Pos.distance_between(move.old_pos, move.new_pos);
       
-      room().move(move.moveable, move.dx, move.dy);
+      room().move(move.moveable, delta.x, delta.y);
       process_events();
     });
   }
@@ -754,7 +754,7 @@ $(function () {
 
   function begin(e) {
     toplevel_container.addClass('well').empty();
-    load_level(14);
+    load_level(0);
     keyHandler = handleKey;
     
     if (e == Keycode.D) debug = true;

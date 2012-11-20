@@ -29,13 +29,15 @@
           old_block.forked = null;
           
           observed_moves.clear();
-          old_block = new_block = false;
+          old_block = new_block = null;
         });
 
         if (new_block) {
           events.each_room(function (index, room) {
             room.moves.each(function (move) {
-              observed_moves.add(move);
+              if (move.new_pos !== move.old_pos) {
+                observed_moves.add(move);
+              }
             });
           });
         }
