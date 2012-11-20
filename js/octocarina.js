@@ -338,7 +338,11 @@ $(function () {
   }
   
   function process_undo_move(move) {
-    foreground_animations.then_wait_for(0.1*std_delay).then(function() {
+    if (move.moveable === player()) {
+      foreground_animations.then_wait_for(0.1*std_delay);
+    }
+    
+    foreground_animations.enqueue(function() {
       var delta = Pos.distance_between(move.new_pos, move.old_pos);
       
       if (move.dir) {
