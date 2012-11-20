@@ -785,7 +785,7 @@ $(function () {
 
   function begin(e) {
     toplevel_container.addClass('well').empty();
-    load_level(24);
+    load_level(0);
     keyHandler = handleKey;
     
     if (e == Keycode.D) debug = true;
