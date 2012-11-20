@@ -25,6 +25,9 @@ var Theatre = {
     }).then_wait_for(scene.queue);
     
     return {
+      current_scene: function() {
+        return scenes.current();
+      },
       process_events: function(events) {
         // remember how things were
         var old_count = scenes.count();

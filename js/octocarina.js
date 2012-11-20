@@ -329,9 +329,26 @@ $(function () {
     multiroom.clear_events();
     
     if (!forkedBlock.moves_to_undo.empty()) {
-      process_undo_moves(forkedBlock.moves_to_undo);
-      process_replay_moves(forkedBlock.moves_to_replay);
+      foreground_animations.enqueue(function() {
+        theatre.current_scene().darken();
+      }).then_wait_for(Scene.queue)
+        .then(function() {
+        process_undo_moves(forkedBlock.moves_to_undo);
+        
+        foreground_animations.enqueue(function() {
+          theatre.current_scene().undarken();
+        }).then_wait_for(Scene.queue)
+          .then(function() {
+          process_replay_moves(forkedBlock.moves_to_replay);
+          
+          foreground_animations.then_wait_for(std_delay)
+                               .then(function() {
+            theatre.current_scene().lighten();
+          }).then_wait_for(Scene.queue);
+        });
+      });
     }
+    
     if (multibuttons.current().solved()) {
       animate('solved', World.load_on_solved(level));
     }

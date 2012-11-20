@@ -2,16 +2,13 @@
 // it watches a room change, and updates the sprites to match.
 
 var Scene = {
+  queue: ActionQueue.create(),
   create: function(container, room) {
     var element = $('<div class="scene"/>');
     
     // start invisible
     element.transition({opacity: 0}, 0);
     
-    // add color filters on the very top, to tint the entire scene
-    var dark_filter = this.create_filter(element, 'dark');
-    var light_filter = this.create_filter(element, 'light');
-	
     // add the floor
     var floor_tiles = this.create_floor(room);
     var floor_layer = Layer.create(element, floor_tiles, room);
@@ -31,6 +28,10 @@ var Scene = {
       }
     });
     
+    // add color filters on the very top, to tint the entire scene
+    var dark_filter = this.create_filter(element, 'dark');
+    var light_filter = this.create_filter(element, 'light');
+	
     container.prepend(element);
     
     var queue = ActionQueue.create();
@@ -53,12 +54,26 @@ var Scene = {
       },
       
       darken: function() {
-        dark_filter.transition({opacity: 0.1}, 0);
+        Scene.queue.enqueue_async(function() {
+          dark_filter.transition({opacity: 0.1}, 'slow', function() {
+            Scene.queue.resume();
+          });
+        });
+      },
+      undarken: function() {
+        Scene.queue.enqueue_async(function() {
+          dark_filter.transition({opacity: 0}, 'slow', function() {
+            Scene.queue.resume();
+          });
+        });
       },
       lighten: function() {
-        dark_filter.transition({opacity: 0}, 0);
-        light_filter.transition({opacity: 0.2}, 0, function() {
-          light_filter.transition({opacity: 0}, 'slow');
+        Scene.queue.enqueue_async(function() {
+          light_filter.transition({opacity: 0.5}, 0, function() {
+            light_filter.transition({opacity: 0}, 'slow', function() {
+              Scene.queue.resume();
+            });
+          });
         });
       },
 
