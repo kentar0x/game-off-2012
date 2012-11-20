@@ -341,6 +341,10 @@ $(function () {
     foreground_animations.then_wait_for(0.1*std_delay).then(function() {
       var delta = Pos.distance_between(move.new_pos, move.old_pos);
       
+      if (move.dir) {
+        move.moveable.dir = move.dir;
+      }
+      
       room().move(move.moveable, delta.x, delta.y);
       process_events();
     });

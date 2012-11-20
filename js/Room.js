@@ -93,6 +93,7 @@ var Room = {
         // remember the move
         moves.add({
           moveable: moveable,
+          dir: moveable.dir,
           old_pos: old_pos,
           new_pos: new_pos,
           old_floor: old_floor,
