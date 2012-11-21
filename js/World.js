@@ -25,11 +25,11 @@ var World = {
     {
       name: "New toy",
       ascii: ["#D######",
-              "#c...w.#",
-              "#....w.#",
-              "#....L.#",
-              "#....w.#",
-              "#......#"],
+              "#c,,,w,#",
+              "#,...w,#",
+              "#,...L,#",
+              "#,...w,#",
+              "#,,,,,,#"],
       on_start: [
         600, 'face_left', '!',
         'left', 200, 'up', 200, 'up', 200, 'left', 200, 'left', 200,
@@ -74,7 +74,7 @@ var World = {
               "###...#.",
               ".cL..#..",
               "....#...",
-              "....#.gG"],
+              "....#,gG"],
       on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
       on_solved: [
         '?',
@@ -88,22 +88,14 @@ var World = {
     {
       name: "Inside the cave &mdash; 1 / 20",
       ascii: ["#d######",
-              "........",
-              "####wwww",
-              "..w...w.",
-              "c.w.Lw..",
-              "..#....."],
-      on_start: [ 0, 'face_right', 1000,
-                  'face_up', 'face_right', 'right',
-                  'face_up', 1000, 'face_down',
-                  'down', 300, 'right', 300, 'right', 300, 'up', 300, 'up',
-                  'face_left', 'face_up', 'face_left', 1500,
-                  'left', 500, 'face_up', 'up', 'face_right',
-                  'face_down', 300, 'down', 400, 'right', 400, 'face_up', 'up',
-                  'face_left', 1500,
-                  'left', 300, 'down', 300, 'left', 'face_up',
-                  'up', 'face_left', 1500,
-                  'face_right', 'face_left', 1500,
+              ".....,..",
+              "####www#",
+              ".L.w..,w",
+              ".c.w...w"],
+      on_start: [ 0, 'face_right', 300, 'right',
+                  'right', 'right', 'right',
+                  'face_up', 'up', 1000,
+                  'face_left', 300, 'face_right', 300, 'face_left', 1500,
                   'face_down', 500, 'down', 500, 'down', 500,
                   'face_left', 'R?'],
       on_reset: [ 'skip' ],
@@ -113,11 +105,10 @@ var World = {
     {
       name: "Inside the cave &mdash; 1 / 20",
       ascii: ["#d######",
-              "........",
-              "####wwww",
-              "..w...w.",
-              "c.w..w..",
-              "..#L...."],
+              ".....,..",
+              "####www#",
+              ".L.w...w",
+              ".c.w...w"],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
@@ -187,10 +178,10 @@ var World = {
     { // something terrible has happened
       name: "",
       ascii: ["###D######",
-              "........  ",
-              "........  ",
-              "c.......  ",
-              "...f...g  "],
+              "........;;",
+              "........;;",
+              "c.......;;",
+              "...f...g;;"],
       position_animations: {
         "3,4": ['face_down', 'pick', 'open']
       }
@@ -306,7 +297,7 @@ var World = {
     }
     ,
     { // The lair
-      ascii: ["#. s .#",
+      ascii: ["#.;s;.#",
               "#.....#",
               "#.....#",
               ".#...#.",

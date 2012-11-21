@@ -9,6 +9,7 @@ $(function () {
   var theatre = Theatre.empty();
   var completed_animations = {};
   var last_learning_step = 'none';
+  var fork_in_block = false;
   var display_events = false;
 
   var foreground_animations = ActionQueue.create();
@@ -422,6 +423,7 @@ $(function () {
 
       completed_animations = {};
       last_learning_step = 'none';
+      fork_in_block = false;
       display_events = true;
       animate('start', World.load_on_start(index));
     });
@@ -571,6 +573,12 @@ $(function () {
         
         r.move_player(dx, dy);
         process_events();
+        
+        if (block && block.floor === Tile.bad_floor && !fork_in_block) {
+          foreground_animations.wait_for(std_delay, function() {
+            lover_says('r-question');
+          });
+        }
       }
     }
 
@@ -704,6 +712,8 @@ $(function () {
     }
     
     if (use_fork(p)) {
+      fork_in_block = !fork_in_block;
+      
       if (last_learning_step == 'none') {
         last_learning_step = 'fork';
         

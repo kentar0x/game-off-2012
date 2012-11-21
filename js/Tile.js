@@ -20,11 +20,15 @@ Tile.floor = Tile.create('.', {
     sprite_class : 'floor-tile',
     is_floor     : true
 });
+Tile.bad_floor = Tile.create(',', {
+    sprite_class : 'floor-tile',
+    is_floor     : true
+});
 Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
     solid        : true
 });
-Tile.invisible_wall = Tile.create(' ', {
+Tile.invisible_wall = Tile.create(';', {
     sprite_class : 'floor-tile',
     solid        : true,
     is_floor     : true
