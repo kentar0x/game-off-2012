@@ -434,8 +434,9 @@ var World = {
     return Multiroom.create(room);
   },
   load_name: function(index) {
-    var name = this.levels.name;
-    return name ? name : "";
+    var data = this.levels[index];
+    
+    return data.name ? data.name : "";
   },
   load_animation: function(index, animation_type) {
     var data = this.levels[index];

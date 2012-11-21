@@ -12,12 +12,17 @@ var Theatre = {
       remove: function() {}
     };
   },
-  create: function(container, room) {
+  create: function(container, room, name) {
     var element = container;
     
     var scenes = Multi.create(room, function(room) {
       return Scene.create(element, room);
     });
+    
+    var title = $('<div class="level-name"/>').text(name);
+    title.transition({opacity: 0}, 0);
+    element.append(title);
+    title.transition({opacity: 1});
     
     var scene = scenes.current();
     Theatre.queue.enqueue(function() {
@@ -66,6 +71,10 @@ var Theatre = {
             scene.remove();
           };
         }
+        
+        title.transition({opacity: 0}, function () {
+          title.remove();
+        });
         
         var j=0;
         for(var i=0; i<n; ++i) {

@@ -417,7 +417,8 @@ $(function () {
       if (r.lover) r.lover.dir = Pos.create(0, 1);
       if (r.forktopus) r.forktopus.dir = Pos.create(0, 1);
       
-      theatre = Theatre.create(toplevel_container, r);
+      var name = World.load_name(index);
+      theatre = Theatre.create(toplevel_container, r, name);
 
       completed_animations = {};
       last_learning_step = 'none';
