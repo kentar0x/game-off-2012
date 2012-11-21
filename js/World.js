@@ -260,15 +260,15 @@ var World = {
     }
     ,
     {
-      name: "New territory &mdash; 15 / 20",
+      name: "New strength &mdash; 15 / 20",
       ascii: ["#D####",
-              "....##",
-              "C.ooOO",
-              ".ww.##"]
+              "#.C.##",
+              "#.ooOO",
+              "###.##"]
     }
     ,
     {
-      name: "Harder than it looks &mdash; 16 / 20",
+      name: "Pushed back &mdash; 16 / 20",
       ascii: ["###D##",
               "..Rr..",
               "C#..#.",
