@@ -85,7 +85,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // lover makes a mistake
       name: "Inside the cave &mdash; 1 / 20",
       ascii: ["#d######",
               "........",
@@ -105,7 +105,7 @@ var World = {
     {
       name: "Inside the cave &mdash; 1 / 20",
       ascii: ["#d######",
-              ".....,..",
+              "....2,2.",
               "####www#",
               ".L.w..,w",
               ".c.w...w"],
@@ -118,7 +118,7 @@ var World = {
               "###.###",
               "##.w.##",
               "##w.w##",
-              "#Lc...#"],
+              "#L1c..#"],
       position_animations: {
         "3,2": [0, 'face_up', 'fork?']
       },
@@ -127,8 +127,8 @@ var World = {
     ,
     {
       name: "The gate &mdash; 3 / 20",
-      ascii: ["#.w.####",
-              "c.w.####",
+      ascii: ["#2w2####",
+              "c2w2####",
               "LgwG##D#",
               "..w.#...",
               "#.w....."],
@@ -147,11 +147,11 @@ var World = {
     {
       name: "Stripes &mdash; 4 / 20",
       ascii: ["#######d",
-              ".w.w.w..",
-              ".w.w.wL.",
-              "cw.w.w.#",
+              ".w2w2w..",
+              ".w.w.wL2",
+              "cw2w2w.#",
               ".w.w.w.#",
-              ".w.w.w.#"],
+              ".w2w2w.#"],
       on_start: [ 0, 'face_right',
         'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
     }
@@ -192,7 +192,7 @@ var World = {
       ascii: ["#d###",
               ".....",
               "###.#",
-              "..ww.",
+              "1.ww.",
               ".....",
               "..C.."]
     }
