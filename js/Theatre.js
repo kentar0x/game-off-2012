@@ -19,7 +19,7 @@ var Theatre = {
       return Scene.create(element, room);
     });
     
-    var title = $('<div class="level-name"/>').text(name);
+    var title = $('<div class="level-name"/>').html(name);
     title.transition({opacity: 0}, 0);
     element.append(title);
     title.transition({opacity: 1});

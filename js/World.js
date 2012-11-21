@@ -109,7 +109,7 @@ var World = {
     }
     ,
     {
-      name: "player's turn. first block puzzle! - 1 / 20",
+      name: "player's turn. first block puzzle! &mdash; 1 / 20",
       ascii: ["#d######",
               "........",
               "####wwww",
@@ -120,7 +120,7 @@ var World = {
     }
     ,
     {
-      name: "borrow the fork. first fork puzzle! - 2 / 20",
+      name: "borrow the fork. first fork puzzle! &mdash; 2 / 20",
       ascii: ["###d###",
               "###.###",
               "##.w.##",
@@ -133,7 +133,7 @@ var World = {
     }
     ,
     {
-      name: "the gate, easy version - 3 / 20",
+      name: "the gate, easy version &mdash; 3 / 20",
       ascii: ["#.w.####",
               "c.w.####",
               "LgwG##D#",
@@ -152,7 +152,7 @@ var World = {
     }
     ,
     {
-      name: "lover explores ahead - 4 / 20",
+      name: "lover explores ahead &mdash; 4 / 20",
       ascii: ["#######d",
               ".w.w.w..",
               ".w.w.wL.",
@@ -164,7 +164,7 @@ var World = {
     }
     ,
     {
-      name: "convoluted block exchange protocol - 5 / 20",
+      name: "convoluted block exchange protocol &mdash; 5 / 20",
       ascii: ["#####D#",
               "c..#...",
               ".#.#...",
@@ -173,7 +173,7 @@ var World = {
     }
     ,
     {
-      name: "the spider - 6 / 20",
+      name: "the spider &mdash; 6 / 20",
       ascii: ["##D##",
               ".....",
               ".w.w.",
@@ -183,7 +183,7 @@ var World = {
     }
     ,
     {
-      name: "something terrible has happened - 7 / 20",
+      name: "something terrible has happened &mdash; 7 / 20",
       ascii: ["###D######",
               "........  ",
               "........  ",
@@ -231,7 +231,7 @@ var World = {
     }
     ,
     {
-      name: "the gate, hard version - 12 / 20",
+      name: "the gate, hard version &mdash; 12 / 20",
       ascii: ["#.w.###",
               "..w.###",
               "CgwG###",
@@ -240,7 +240,7 @@ var World = {
     }
     ,
     {
-      name: "an even more convoluted exchange protocol - 13 / 20",
+      name: "an even more convoluted exchange protocol &mdash; 13 / 20",
       ascii: ["#####D",
               "C..#..",
               ".#.#..",
@@ -249,7 +249,7 @@ var World = {
     }
     ,
     {
-      name: "return of the spider - 14 / 20",
+      name: "return of the spider &mdash; 14 / 20",
       ascii: ["###D###",
               "..w.w..",
               ".wgwGw.",
@@ -258,7 +258,7 @@ var World = {
     }
     ,
     {
-      name: "I didn't know blocks could do that - 15 / 20",
+      name: "I didn't know blocks could do that &mdash; 15 / 20",
       ascii: ["#D####",
               "....##",
               "C.ooOO",
@@ -266,7 +266,7 @@ var World = {
     }
     ,
     {
-      name: "harder than it looks - 16 / 20",
+      name: "harder than it looks &mdash; 16 / 20",
       ascii: ["###D##",
               "..Rr..",
               "C#..#.",
@@ -274,7 +274,7 @@ var World = {
     }
     ,
     {
-      name: "the impasse - 17 / 20",
+      name: "the impasse &mdash; 17 / 20",
       ascii: ["###D###",
               "###.###",
               "#..G..#",
@@ -284,7 +284,7 @@ var World = {
     }
     ,
     {
-      name: "the ring, easy version - 18 / 20",
+      name: "the ring, easy version &mdash; 18 / 20",
       ascii: ["##D##",
               "R...G",
               ".rwg.",
@@ -294,7 +294,7 @@ var World = {
     }
     ,
     {
-      name: "the ring, hard version - 19 / 20",
+      name: "the ring, hard version &mdash; 19 / 20",
       ascii: ["##D##",
               "G...R",
               ".rwg.",
@@ -304,7 +304,7 @@ var World = {
     }
     ,
     {
-      name: "the lair - 20 / 20",
+      name: "the lair &mdash; 20 / 20",
       ascii: ["#. s .#",
               "#.....#",
               "#.....#",
@@ -352,7 +352,7 @@ var World = {
     }
     ,
     { // second visit
-      name: "convoluted block exchange protocol - 5 / 20",
+      name: "convoluted block exchange protocol &mdash; 5 / 20",
       ascii: ["#####D#",
               "S..#...",
               ".#.#...",
@@ -361,7 +361,7 @@ var World = {
     }
     ,
     { // second visit
-      name: "the spider - 6 / 20",
+      name: "the spider &mdash; 6 / 20",
       ascii: ["##d##",
               "w.w..",
               ".wlw.",
