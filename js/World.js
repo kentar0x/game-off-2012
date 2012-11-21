@@ -88,9 +88,9 @@ var World = {
     {
       name: "Inside the cave &mdash; 1 / 20",
       ascii: ["#d######",
-              ".....,..",
+              "........",
               "####www#",
-              ".L.w..,w",
+              ".L.w...w",
               ".c.w...w"],
       on_start: [ 0, 'face_right', 300, 'right',
                   'right', 'right', 'right',
@@ -107,7 +107,7 @@ var World = {
       ascii: ["#d######",
               ".....,..",
               "####www#",
-              ".L.w...w",
+              ".L.w..,w",
               ".c.w...w"],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
