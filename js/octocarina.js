@@ -56,6 +56,9 @@ $(function () {
     'player_down': function() {
       move_player(0, 1);
     },
+    'player_?': function() {
+      player_says('question');
+    },
     
     'hidden': function() {
       display_events = false;
