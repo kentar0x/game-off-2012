@@ -111,17 +111,13 @@ Tile.block        = Tile.create('w', {
     solid        : true,
     moveable     : true
 });
-Tile.block        = Tile.create('2', {
-    sprite_class : 'wooden-block-hint-sprite',
-    hint         : true
-});
 Tile.block_with_fork = Tile.create('W', {
     sprite_class : 'wooden-block-sprite',
     solid        : true,
     forked       : 'forked',
     moveable     : true
 });
-Tile.block        = Tile.create('1', {
+Tile.block        = Tile.create('?', {
     sprite_class : 'forked-block-hint-sprite',
     hint         : true
 });
