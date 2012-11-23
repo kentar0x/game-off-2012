@@ -23,6 +23,7 @@ var Sprite = {
     var leaving = false;
     var pushing = false;
     var dying = false;
+    var holder = false;
     
     container.append(element);
     
@@ -45,6 +46,10 @@ var Sprite = {
         if (pushing) {
           element.removeClass("pushing");
           pushing = false;
+        }
+        if (holder) {
+          element.removeClass("holder");
+          holder = false;
         }
         
         tile = new_tile;
@@ -85,6 +90,10 @@ var Sprite = {
           } else {
             element.transition({opacity: 1}, 0);
           }
+        }
+        if (new_moveable.tile.holder) {
+          holder = true;
+          element.addClass("holder");
         }
       }
     };

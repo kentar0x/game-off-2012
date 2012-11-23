@@ -149,6 +149,16 @@ h1 {
 }
 
 
+.holder:after {
+  content: "";
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
+  background-image: url('../img/sprites.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: -1px; /* 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
+}
 .forked:after {
   content: "";
   width: 101px; /* 100px width + 1px border */
@@ -186,102 +196,69 @@ h1 {
 /* :before and :after elements show up on *top* of the main element;
  * to display the fork under the player sprite, we display the fork
  * in the main element and the player sprite in the pseudo-element. */
-.player-sprite.right {
+.player-sprite.right:after {
   background-position: -303px;
 }
-.player-sprite { /* down, and default */
+.player-sprite.down:after { /* down, and default */
   background-position: -404px;
 }
 .player-sprite.up {
   background-position: -505px;
 }
-.player-sprite.left {
-  background-position: -606px;
-}
-.player-sprite.forked.right {
-  background-position: -2222px;
-}
-.player-sprite.forked {
-  background-position: -2121px;
-}
-.player-sprite.forked.up {
-  background-position: -505px;
-}
-.player-sprite.forked.left {
-  background-position: -2121px;
-}
-.player-sprite.forked.right:after {
-  background-position: -303px;
-}
-.player-sprite.forked:after {
-  background-position: -404px;
-}
-.player-sprite.forked.up:after {
-  background-position: -2121px;
-}
-.player-sprite.forked.left:after {
-  background-position: -606px;
-}
-.player-sprite.sporked.right {
-  background-position: -4343px;
-}
-.player-sprite.sporked {
-  background-position: -4242px;
-}
-.player-sprite.sporked.up {
-  background-position: -505px;
-}
-.player-sprite.sporked.left {
-  background-position: -4242px;
-}
-.player-sprite.sporked.right:after {
-  background-position: -303px;
-}
-.player-sprite.sporked:after {
-  background-position: -404px;
-}
-.player-sprite.sporked.up:after {
-  background-position: -4242px;
-}
-.player-sprite.sporked.left:after {
+.player-sprite.left:after {
   background-position: -606px;
 }
 
-.lover-sprite.right {
+.lover-sprite.right:after {
   background-position: -2424px;
 }
-.lover-sprite { /* down, and default */
+.lover-sprite.down:after {
   background-position: -2525px;
 }
 .lover-sprite.up {
   background-position: -2626px;
 }
-.lover-sprite.left {
+.lover-sprite.left:after {
   background-position: -2727px;
 }
-.lover-sprite.forked.right {
+
+.holder.right {
+  background-position: -5454px;
+}
+.holder.down {
+  background-position: -5353px;
+}
+.holder.left {
+  background-position: -5353px;
+}
+.holder.up:after {
+  background-position: -5353px;
+}
+
+.holder.forked.right {
   background-position: -2222px;
 }
-.lover-sprite.forked {
+.holder.forked.down {
   background-position: -2121px;
 }
-.lover-sprite.forked.up {
-  background-position: -2626px;
-}
-.lover-sprite.forked.left {
+.holder.forked.left {
   background-position: -2121px;
 }
-.lover-sprite.forked.right:after {
-  background-position: -2424px;
-}
-.lover-sprite.forked:after {
-  background-position: -2525px;
-}
-.lover-sprite.forked.up:after {
+.holder.forked.up:after {
   background-position: -2121px;
 }
-.lover-sprite.forked.left:after {
-  background-position: -2727px;
+
+.holder.sporked.right {
+  background-position: -4343px;
+}
+.holder.sporked.down {
+  background-position: -4242px;
+}
+.holder.sporked.left {
+  background-position: -4242px;
+}
+.holder.sporked.up:after {
+  background-position: -4242px;
 }
 
 .pushing.right:before {

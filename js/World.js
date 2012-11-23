@@ -356,7 +356,7 @@ var World = {
       name: "The spider &mdash; 6 / 20",
       ascii: ["##d##",
               "w.w..",
-              ".wlw.",
+              ".wLw.",
               "...gw",
               ".w.w.",
               "..S.."],

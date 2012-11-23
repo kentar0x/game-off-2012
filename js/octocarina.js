@@ -101,18 +101,21 @@ $(function () {
     },
     'octo_appear': function() {
       var forktopus = Moveable.create(Tile.forktopus);
+      forktopus.dir = Pos.create(0, 1);
       room().insert_moveable(Pos.create(3, 1), forktopus);
       update_moveable(forktopus);
       process_events();
     },
     'S_appear': function() {
       var p = Moveable.create(Tile.player_with_spork);
+      p.dir = Pos.create(1, 0);
       p.forked = 'sporked';
       room().insert_moveable(Pos.create(0, 3), p);
       update_moveable(p);
     },
     'c_appear': function() {
       var p = Moveable.create(Tile.player);
+      p.dir = Pos.create(1, 0);
       p.dying = 'not_dead';
       room().insert_moveable(Pos.create(0, 3), p);
       update_moveable(p);

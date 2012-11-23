@@ -39,6 +39,7 @@ Tile.player = Tile.create('c', {
     player       : true,
     solid        : true,
     character    : true,
+    holder       : true,
     moveable     : true
 });
 Tile.player_with_fork = Tile.create('C', {
@@ -47,6 +48,7 @@ Tile.player_with_fork = Tile.create('C', {
     solid        : true,
     forked       : 'forked',
     character    : true,
+    holder       : true,
     moveable     : true
 });
 Tile.player_with_spork = Tile.create('S', {
@@ -55,6 +57,7 @@ Tile.player_with_spork = Tile.create('S', {
     solid        : true,
     forked       : 'sporked',
     character    : true,
+    holder       : true,
     moveable     : true
 });
 Tile.lover = Tile.create('l', {
@@ -62,6 +65,7 @@ Tile.lover = Tile.create('l', {
     lover        : true,
     solid        : true,
     character    : true,
+    holder       : true,
     moveable     : true
 });
 Tile.lover_with_fork = Tile.create('L', {
@@ -70,6 +74,7 @@ Tile.lover_with_fork = Tile.create('L', {
     solid        : true,
     forked       : 'forked',
     character    : true,
+    holder       : true,
     moveable     : true
 });
 
