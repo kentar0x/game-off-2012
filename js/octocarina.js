@@ -386,10 +386,17 @@ $(function () {
   
   function process_replay_move(move) {
     foreground_animations.then_wait_for(std_delay).then(function() {
+      var r = room();
       var delta = Pos.distance_between(move.old_pos, move.new_pos);
       
-      room().move(move.moveable, delta.x, delta.y);
-      process_events();
+      if (r.moveable_at(move.moveable.pos.plus(delta.x, delta.y))) {
+        push_moveable(move.moveable, delta.x, delta.y);
+      }
+      
+      foreground_animations.enqueue(function() {
+        r.move(move.moveable, delta.x, delta.y);
+        process_events();
+      });
     });
   }
   function process_replay_moves(moves) {
@@ -549,6 +556,19 @@ $(function () {
     });
   }
   
+  function push_moveable(moveable, dx, dy) {
+    if (dx || dy) {
+      foreground_animations.enqueue(function() {
+        moveable.dir = Pos.create(dx, dy);
+        moveable.pushing = true;
+        update_moveable(moveable);
+      }).then_wait_for(200).then(function() {
+        moveable.pushing = false;
+        update_moveable(moveable);
+      });
+    }
+  }
+  
   function move_player(dx, dy) {
     var r = room();
     var pos = r.player.pos.plus(dx, dy);
@@ -568,13 +588,7 @@ $(function () {
         kiss(r.player, r.lover);
       } else {
         if (block) {
-          r.player.pushing = true;
-          update_moveable(r.player);
-          
-          foreground_animations.then_wait_for(250).then(function() {
-            r.player.pushing = false;
-            update_moveable(r.player);
-          });
+          push_moveable(r.player, dx, dy);
           
           if (last_learning_step == 'fork') {
             last_learning_step = 'push';
