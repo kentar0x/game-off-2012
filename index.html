@@ -43,13 +43,22 @@
     <script src="js/ForkedBlock.js"></script>
     <script src="js/Keycode.js"></script>
     <script src="js/octocarina.js"></script>
-    <script>
+    <script type="text/javascript">
       //To Do : move in apropriate place
       Array.prototype.remove = function (from, to) {
         var rest = this.slice((to || from) + 1 || this.length);
         this.length = from < 0 ? this.length + from : from;
         return this.push.apply(this, rest);
       };
+      
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-7465014-3']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
     </script>
     <div id="credits">
       <h3>CREDITS</h3>
