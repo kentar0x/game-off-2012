@@ -835,10 +835,34 @@ $(function () {
     if (e == Keycode.D) debug = true;
   }
 
-  $('#begin').click(begin);
+  function create_splash() {
+    var splash = $('<div id="splash"/>');
+    
+    splash.append($('<img class="splash-img" src="img/README/octocat-link-big.jpg" alt="Octocat"/>'));
+    
+    return splash;
+  }
+  
+  function create_begin_button() {
+    var button = $('<div id="begin" class="btn btn-success"/>').text('Wield the Master Fork');
+    
+    $('#begin').click(begin);
+    keyHandler = begin;
+    
+    return button;
+  }
+  
+  function load_splash() {
+    var splash = create_splash();
+    
+    splash.append(create_begin_button());
+    
+    toplevel_container.removeClass('well').empty().append(splash);
+  }
+  
+  load_splash();
 
   // first keypress begins the game
-  keyHandler = begin;
   $(document).keydown(function (e) {
     if (keyHandler(e['keyCode'])) {
       e.preventDefault();
