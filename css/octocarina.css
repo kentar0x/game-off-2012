@@ -147,9 +147,6 @@ h1 {
 .forked-block-hint-sprite {
   background-position: -4848px;
 }
-.wooden-block-hint-sprite {
-  background-position: -4949px;
-}
 
 
 .forked:after {
@@ -173,6 +170,16 @@ h1 {
   margin-right: -1px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
   background-position: -4444px;
+}
+.pushing:before {
+  content: "";
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
+  background-image: url('../img/sprites.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: -101px; /* 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
 }
 
 
@@ -275,6 +282,19 @@ h1 {
 }
 .lover-sprite.forked.left:after {
   background-position: -2727px;
+}
+
+.pushing.right:before {
+  background-position: -4949px;
+}
+.pushing:before {
+  background-position: -5050px;
+}
+.pushing.up:before {
+  background-position: -5151px;
+}
+.pushing.left:before {
+  background-position: -5252px;
 }
 
 .under-door {

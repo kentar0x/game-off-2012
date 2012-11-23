@@ -21,6 +21,7 @@ var Sprite = {
     var say = null;
     var forked = null;
     var leaving = false;
+    var pushing = false;
     var dying = false;
     
     container.append(element);
@@ -40,6 +41,10 @@ var Sprite = {
         if (leaving) {
           element.removeClass("under-door");
           leaving = false;
+        }
+        if (pushing) {
+          element.removeClass("pushing");
+          pushing = false;
         }
         
         tile = new_tile;
@@ -68,6 +73,10 @@ var Sprite = {
         if (new_moveable.floor == Tile.open_door) {
           leaving = true;
           element.addClass("under-door");
+        }
+        if (new_moveable.pushing) {
+          pushing = true;
+          element.addClass("pushing");
         }
         if (new_moveable.dying) {
           dying = new_moveable.dying;

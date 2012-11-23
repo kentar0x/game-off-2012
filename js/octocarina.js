@@ -567,23 +567,35 @@ $(function () {
       if (block && block === r.lover) {
         kiss(r.player, r.lover);
       } else {
-        if (block && last_learning_step == 'fork') {
-          last_learning_step = 'push';
-        }
-        
-        r.move_player(dx, dy);
-        process_events();
-        
-        if (block && block.floor === Tile.bad_floor && !fork_in_block) {
-          foreground_animations.wait_for(std_delay, function() {
-            lover_says('r-question');
+        if (block) {
+          r.player.pushing = true;
+          update_moveable(r.player);
+          
+          foreground_animations.then_wait_for(250).then(function() {
+            r.player.pushing = false;
+            update_moveable(r.player);
           });
+          
+          if (last_learning_step == 'fork') {
+            last_learning_step = 'push';
+          }
         }
+        
+        foreground_animations.enqueue(function() {
+          r.move_player(dx, dy);
+          process_events();
+          
+          if (block && block.floor === Tile.bad_floor && !fork_in_block) {
+            foreground_animations.wait_for(std_delay, function() {
+              lover_says('r-question');
+            });
+          }
+          
+          if (r.player.floor == Tile.open_door) {
+            next_level();
+          }
+        });
       }
-    }
-
-    if (r.player.floor == Tile.open_door) {
-      next_level();
     }
   }
   function move_lover(dx, dy) {
