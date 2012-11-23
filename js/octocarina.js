@@ -579,11 +579,6 @@ $(function () {
     var old_dir = r.player.dir;
     var same_dir = old_dir && dx == old_dir.x && dy == old_dir.y;
     
-    var pos_key = pos.x + "," + pos.y;
-    var animation_plan = World.load_position_animations(level)[pos_key];
-    if( animation_plan && last_learning_step == 'none') {
-      animate(pos_key, animation_plan);
-    }
     if (block && !same_dir) {
       change_player_dir(dx, dy);
     } else {
@@ -610,6 +605,12 @@ $(function () {
           
           if (r.player.floor == Tile.open_door) {
             next_level();
+          }
+          
+          var pos_key = pos.x + "," + pos.y;
+          var animation_plan = World.load_position_animations(level)[pos_key];
+          if( animation_plan && last_learning_step == 'none') {
+            animate(pos_key, animation_plan);
           }
         });
       }
