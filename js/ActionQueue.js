@@ -6,12 +6,12 @@
 //   var actionQueue = ActionQueue.create();
 //    actionQueue.enqueue(function() {
 //      // this block executes first
-//    }).then_async(function() {
+//    }).then_async(function(resume) {
 //      // then this animation.
 //      $('body').transition({opacity: 0}, function() {
 //        // this callback runs when the animation finishes.
 //        // tell the actionQueue to continue
-//        actionQueue.resume();
+//        resume();
 //    }).then(function() {
 //      // this block runs once the animation is over
 //    });
@@ -25,6 +25,7 @@
 var ActionQueue = {
   create: function() {
     var paused = false;
+    var nested = false;
     var queue = [];
     
     return {
@@ -37,6 +38,9 @@ var ActionQueue = {
         }
       },
       run_queue: function() {
+        if (nested) return;
+        
+        nested = true;
         while (queue.length > 0 && !paused) {
           var body = queue.shift();
           if (body != 'dummy') {
@@ -53,10 +57,11 @@ var ActionQueue = {
             }
           }
         }
+        nested = false;
       },
       
       enqueue: function(body) {
-        if (this.is_empty()) {
+        if (this.is_empty() && !nested) {
           // run immediately
           body();
         } else {
@@ -68,10 +73,19 @@ var ActionQueue = {
       },
       enqueue_async: function(body) {
         var self = this;
+        var resumed = false;
+        var resume = function() {
+          if (!resumed) {
+            // don't resume twice
+            resumed = true;
+            
+            self.resume();
+          }
+        };
         
         return self.enqueue(function() {
           self.stop();
-          body();
+          body(resume);
         });
       },
       then: function(body) {
@@ -117,6 +131,7 @@ var ActionQueue = {
       resume: function() {
         if (paused) {
           paused = false;
+          
           this.run_queue();
         }
       },

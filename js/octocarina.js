@@ -456,7 +456,7 @@ $(function () {
     // no more player movement
     keyHandler = function() {};
     
-    foreground_animations.enqueue_async(function() {
+    foreground_animations.enqueue_async(function(resume) {
       toplevel_container.children().transition({opacity: 0.5}, 5000);
       toplevel_container.transition({'background-color': '#000'}, 6000, function() {
         var credits = $('#credits');
@@ -465,24 +465,18 @@ $(function () {
         
         var delta = 1000;
         delta = credits.height() + toplevel_container.children().height() + 20;
-        credits.transition({y: -delta}, delta*15, 'linear', function() {
-          foreground_animations.resume();
-        });
+        credits.transition({y: -delta}, delta*15, 'linear', resume);
       });
     });
   }
   function show_room() {
-    foreground_animations.enqueue_async(function() {
-      toplevel_container.children().transition({opacity: 1}, 2000, function() {
-        foreground_animations.resume();
-      });
+    foreground_animations.enqueue_async(function(resume) {
+      toplevel_container.children().transition({opacity: 1}, 2000, resume);
     });
   }
   function hide_room() {
-    foreground_animations.enqueue_async(function() {
-      toplevel_container.children().transition({opacity: 0}, 2000, function() {
-        foreground_animations.resume();
-      });
+    foreground_animations.enqueue_async(function(resume) {
+      toplevel_container.children().transition({opacity: 0}, 2000, resume);
     });
   }
 

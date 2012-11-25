@@ -39,57 +39,43 @@ var Scene = {
       queue: queue,
       
       hide: function() {
-        queue.enqueue_async(function() {
-          element.transition({opacity: 0}, function() {
-            queue.resume();
-          });
+        queue.enqueue_async(function(resume) {
+          element.transition({opacity: 0}, resume);
         });
       },
       show: function(now) {
-        queue.enqueue_async(function() {
-          element.transition({opacity: 1}, 'slow', function() {
-            queue.resume();
-          });
+        queue.enqueue_async(function(resume) {
+          element.transition({opacity: 1}, 'slow', resume);
         });
       },
       
       darken: function() {
-        Scene.queue.enqueue_async(function() {
-          dark_filter.transition({opacity: 0.1}, 'slow', function() {
-            Scene.queue.resume();
-          });
+        Scene.queue.enqueue_async(function(resume) {
+          dark_filter.transition({opacity: 0.1}, 'slow', resume);
         });
       },
       undarken: function() {
-        Scene.queue.enqueue_async(function() {
-          dark_filter.transition({opacity: 0}, 'slow', function() {
-            Scene.queue.resume();
-          });
+        Scene.queue.enqueue_async(function(resume) {
+          dark_filter.transition({opacity: 0}, 'slow', resume);
         });
       },
       lighten: function() {
-        Scene.queue.enqueue_async(function() {
+        Scene.queue.enqueue_async(function(resume) {
           light_filter.transition({opacity: 0.5}, 0, function() {
-            light_filter.transition({opacity: 0}, 'slow', function() {
-              Scene.queue.resume();
-            });
+            light_filter.transition({opacity: 0}, 'slow', resume);
           });
         });
       },
 
       move_center: function () {
-        queue.enqueue_async(function() {
-          element.transition({ scale: 1, opacity: 1, x: 0 }, function() {
-            queue.resume();
-          });
+        queue.enqueue_async(function(resume) {
+          element.transition({ scale: 1, opacity: 1, x: 0 }, resume);
         });
       },
       move_to: function(x) {
-        queue.enqueue_async(function() {
+        queue.enqueue_async(function(resume) {
           // move, scale down, and make sure it's visible
-          element.transition({scale: 0.5, opacity: 1, x: x}, function() {
-            queue.resume();
-          });
+          element.transition({scale: 0.5, opacity: 1, x: x}, resume);
         });
       },
       move_left: function() {
