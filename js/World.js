@@ -290,26 +290,6 @@ var World = {
               "##.C.##"]
     }
     ,
-    {
-      name: "The ring &mdash; 18 / 20",
-      ascii: ["##D##",
-              "R...G",
-              ".rwg.",
-              ".w.w.",
-              ".bwo.",
-              "B.C.O"]
-    }
-    ,
-    {
-      name: "The ring (hard version) &mdash; 19 / 20",
-      ascii: ["##D##",
-              "G...R",
-              ".rwg.",
-              ".w.w.",
-              ".bwo.",
-              "O.C.B"]
-    }
-    ,
     { // The lair
       ascii: ["#.;s;.#",
               "#.....#",
@@ -410,13 +390,41 @@ var World = {
         'credits',
         'c_appear',
         'show',
-        'player_right', 'player_right', 'player_right',
-        'face_down', 3000,
-        'player_down', 'pick', 'open', 2000,
-        'face_up', 1500,
+        'player_right', 'player_right', 'player_down', 'player_right',
+        'pick', 'open', 'face_up', 1500,
         'player_up', 'player_up', 'player_up', 'player_up', 'leave',
         'the_end'
       ]
+    }
+    ,
+    {
+      name: "The ring (easy version) &mdash; 1 / 3",
+      ascii: ["##D##",
+              "R...G",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
+              "B.C.O"]
+    }
+    ,
+    {
+      name: "The ring (hard version) &mdash; 2 / 3",
+      ascii: ["##D##",
+              "G...R",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
+              "O.C.B"]
+    }
+    ,
+    {
+      name: "The ring (very hard version) &mdash; 3 / 3",
+      ascii: ["##D##",
+              "O...B",
+              ".rwg.",
+              ".w.w.",
+              ".bwo.",
+              "G.C.."]
     }
   ],
   

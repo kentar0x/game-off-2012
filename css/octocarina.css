@@ -19,6 +19,11 @@ h1 {
   margin-bottom: 1em;
 }
 
+.btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .scene {
   width: 808px;
   height: 650px;
@@ -336,8 +341,11 @@ h1 {
 }
 
 
-#credits {
+#hidden {
   display: none;
+}
+
+#credits {
   color: white;
   text-align: center;
 }
@@ -378,4 +386,14 @@ h1 {
 }
 #credits .spacing {
   height: 280px;
+}
+
+#thanks {
+  color: white;
+  text-align: center;
+  margin-top: 300px;
+}
+#congratulations {
+  color: white;
+  text-align: center;
 }

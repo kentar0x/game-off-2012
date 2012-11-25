@@ -11,6 +11,7 @@ $(function () {
   var last_learning_step = 'none';
   var fork_in_block = false;
   var display_events = false;
+  var unlocked_puzzles = 0;
 
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
@@ -305,6 +306,11 @@ $(function () {
     },
     'the_end': function() {
       hide_room();
+      show_thanks();
+      if (!unlocked_puzzles) {
+        unlocked_puzzles = 3;
+        show_congratulations();
+      }
     },
     
     'dummy': null
@@ -413,7 +419,10 @@ $(function () {
 
   function load_level(index) {
     if (index == World.levels.length) {
-      return roll_credit();
+      roll_credit();
+      hide_room();
+      show_thanks();
+      return;
     }
     
     level = index;
@@ -457,16 +466,19 @@ $(function () {
     keyHandler = function() {};
     
     foreground_animations.enqueue_async(function(resume) {
+      toplevel_container.transition({'background-color': '#000'}, 1000, resume);
+    }).then_async(function(resume) {
       toplevel_container.children().transition({opacity: 0.5}, 5000);
-      toplevel_container.transition({'background-color': '#000'}, 6000, function() {
-        var credits = $('#credits');
-        toplevel_container.append(credits);
-        credits.show();
-        
-        var delta = 1000;
-        delta = credits.height() + toplevel_container.children().height() + 20;
-        credits.transition({y: -delta}, delta*15, 'linear', resume);
-      });
+    
+      var credits = $('#credits');
+      credits.transition({y: 10}, 0);
+      toplevel_container.append(credits);
+      
+      var delta = delta = credits.height() + toplevel_container.children().height() + 40;
+      credits.transition({y: -delta}, delta*15, 'linear', resume);
+    }).then(function() {
+      var hidden = $('#hidden');
+      $('#credits').appendTo(hidden);
     });
   }
   function show_room() {
@@ -477,6 +489,37 @@ $(function () {
   function hide_room() {
     foreground_animations.enqueue_async(function(resume) {
       toplevel_container.children().transition({opacity: 0}, 2000, resume);
+    });
+  }
+  function show_thanks() {
+    foreground_animations.enqueue_async(function(resume) {
+      var thanks = $('#thanks');
+      thanks.transition({opacity: 0}, 0);
+      toplevel_container.prepend(thanks);
+      
+      thanks.transition({opacity: 0.95}, resume);
+    }).then(function() {
+      keyHandler = hide_congratulations;
+    });
+  }
+  function show_congratulations() {
+    foreground_animations.enqueue_async(function(resume) {
+      var congratulations = $('#congratulations');
+      congratulations.transition({opacity: 0}, 0);
+      $('#thanks').after(congratulations);
+      
+      congratulations.transition({opacity: 0.95}, 3000, resume);
+    });
+  }
+  function hide_congratulations() {
+    foreground_animations.enqueue_async(function(resume) {
+      var hidden = $('#hidden');
+      $('#thanks').appendTo(hidden);
+      $('#congratulations').appendTo(hidden);
+      
+      toplevel_container.transition({'background-color': '#fff'}, 1000, resume);
+    }).then(function() {
+      load_splash();
     });
   }
 
@@ -600,7 +643,7 @@ $(function () {
             });
           }
           
-          if (r.player.floor == Tile.open_door) {
+          if (r.player.floor == Tile.open_door && is_movement_allowed()) {
             next_level();
           }
           
@@ -823,13 +866,18 @@ $(function () {
     }
   }
 
-
-  function begin(e) {
+  function play_from_level(index) {
     toplevel_container.addClass('well').empty();
-    load_level(0);
+    load_level(index);
     keyHandler = handleKey;
+  }
+  function begin(e) {
+    play_from_level(0);
     
     if (e == Keycode.D) debug = true;
+  }
+  function begin_puzzles(e) {
+    play_from_level(27);
   }
 
   function create_splash() {
@@ -841,20 +889,28 @@ $(function () {
   }
   
   function create_begin_button() {
-    var button = $('<div id="begin" class="btn btn-success"/>').text('Wield the Master Fork');
-    
-    $('#begin').click(begin);
-    keyHandler = begin;
-    
-    return button;
+    return $('<div id="begin" class="btn btn-success"/>').text(unlocked_puzzles
+                                                               ? 'Play from the beginning'
+                                                               : 'Wield the Master Fork');
+  }
+  function create_puzzle_button() {
+    return $('<div id="begin-puzzles" class="btn btn-success"/>').text('Bonus Levels ('+unlocked_puzzles+'/3)');
   }
   
   function load_splash() {
     var splash = create_splash();
     
     splash.append(create_begin_button());
+    if (unlocked_puzzles) {
+      splash.append(create_puzzle_button());
+    }
     
     toplevel_container.removeClass('well').empty().append(splash);
+    
+    $('#begin').click(begin);
+    $('#begin-puzzles').click(begin_puzzles);
+    
+    keyHandler = begin;
   }
   
   load_splash();
