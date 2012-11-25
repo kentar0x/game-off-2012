@@ -223,6 +223,9 @@ $(function () {
     'skip': function() {
       next_level();
     },
+    'level_up': function() {
+      ++level;
+    },
     
     'pick': function() {
       var p = player();

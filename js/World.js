@@ -136,7 +136,21 @@ var World = {
         'down', 300, 'right', 300, 'down', 300, 'face_right',
         'right', 'right', 'right', 'right',
         'face_up', 300, 'up', 300, 'right', 300, 'face_up', 1500,
-        'face_left', 'door?'],
+        'face_left', 'door?', 'level_up' ],
+      on_solved: [
+        'face_up', 1000,
+        'face_left', 'door!',
+        'face_up', 300, 'up', 300, 'leave'],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
+    }
+    ,
+    {
+      name: "The gate &mdash; 3 / 20",
+      ascii: ["#.w.####",
+              "c.w.####",
+              ".gwG##D#",
+              "..w.#.L.",
+              "#.....w."],
       on_solved: [
         'face_up', 1000,
         'face_left', 'door!',
