@@ -149,28 +149,39 @@ h1 {
 }
 
 
-.holder:after {
+.holder:before {
   content: "";
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
   background-image: url('../img/sprites.png');
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: -1px; /* 1px border */
+  margin-right: -101px; /* 100px width + 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
 }
-.forked:after {
+.forked:before {
   content: "";
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
   background-image: url('../img/sprites.png');
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: -1px; /* 1px border */
+  margin-right: -101px; /* 100px width + 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
   background-position: -2020px;
 }
-.sporked:after {
+.sporked:before {
+  content: "";
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
+  background-image: url('../img/sprites.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: -101px; /* 100px width + 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
+  background-position: -4444px;
+}
+.pushing:after {
   content: "";
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
@@ -178,17 +189,6 @@ h1 {
   background-repeat: no-repeat;
   display: inline-block;
   margin-right: -1px; /* 1px border */
-  margin-bottom: -91px; /* 90px height + 1px border */
-  background-position: -4444px;
-}
-.pushing:before {
-  content: "";
-  width: 101px; /* 100px width + 1px border */
-  height: 171px; /* 80px depth + 90px height + 1px border */
-  background-image: url('../img/sprites.png');
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin-right: -101px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
 }
 
@@ -196,29 +196,29 @@ h1 {
 /* :before and :after elements show up on *top* of the main element;
  * to display the fork under the player sprite, we display the fork
  * in the main element and the player sprite in the pseudo-element. */
-.player-sprite.right:after {
+.player-sprite.right:before {
   background-position: -303px;
 }
-.player-sprite.down:after { /* down, and default */
+.player-sprite.down:before { /* down, and default */
   background-position: -404px;
 }
 .player-sprite.up {
   background-position: -505px;
 }
-.player-sprite.left:after {
+.player-sprite.left:before {
   background-position: -606px;
 }
 
-.lover-sprite.right:after {
+.lover-sprite.right:before {
   background-position: -2424px;
 }
-.lover-sprite.down:after {
+.lover-sprite.down:before {
   background-position: -2525px;
 }
 .lover-sprite.up {
   background-position: -2626px;
 }
-.lover-sprite.left:after {
+.lover-sprite.left:before {
   background-position: -2727px;
 }
 
@@ -231,7 +231,7 @@ h1 {
 .holder.left {
   background-position: -5353px;
 }
-.holder.up:after {
+.holder.up:before {
   background-position: -5353px;
 }
 
@@ -244,7 +244,7 @@ h1 {
 .holder.forked.left {
   background-position: -2121px;
 }
-.holder.forked.up:after {
+.holder.forked.up:before {
   background-position: -2121px;
 }
 
@@ -257,27 +257,27 @@ h1 {
 .holder.sporked.left {
   background-position: -4242px;
 }
-.holder.sporked.up:after {
+.holder.sporked.up:before {
   background-position: -4242px;
 }
 
-.pushing.right:before {
+.pushing.right:after {
   background-position: -4949px;
 }
-.pushing:before {
+.pushing.down:after {
   background-position: -5050px;
 }
-.pushing.up:before {
+.pushing.up:after {
   background-position: -5151px;
 }
-.pushing.left:before {
+.pushing.left:after {
   background-position: -5252px;
 }
 
 .under-door {
   background-position: -2323px !important;
 }
-.under-door:after {
+.under-door:before {
   background-position: -2323px !important;
 }
 
