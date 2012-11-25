@@ -281,50 +281,50 @@ h1 {
   background-position: -2323px !important;
 }
 
-.say:before {
+.say:after {
   content: "";
   width: 101px; /* 100px width + 1px border */
   height: 171px; /* 80px depth + 90px height + 1px border */
   background-image: url('../img/sprites.png');
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: -101px; /* 1px border */
+  margin-right: -1px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
   position: relative;
   left: -70px;
   top: -15px;
 }
-.say.heart:before {
+.say.heart:after {
   background-position: -2828px;
 }
-.say.press-z:before {
+.say.press-z:after {
   background-position: -2929px;
 }
-.say.door-question:before {
+.say.door-question:after {
   background-position: -3131px;
 }
-.say.door-exclam:before {
+.say.door-exclam:after {
   background-position: -3232px;
 }
-.say.question:before {
+.say.question:after {
   background-position: -3333px;
 }
-.say.exclam:before {
+.say.exclam:after {
   background-position: -3434px;
 }
-.say.lightbulb:before {
+.say.lightbulb:after {
   background-position: -3535px;
 }
-.say.r-question:before {
+.say.r-question:after {
   background-position: -3636px;
 }
-.say.fork-question:before {
+.say.fork-question:after {
   background-position: -3737px;
 }
-.say.fork-exclam:before {
+.say.fork-exclam:after {
   background-position: -3838px;
 }
-.say.spork-exclam:before {
+.say.spork-exclam:after {
   background-position: -4747px;
 }
 
