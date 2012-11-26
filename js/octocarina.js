@@ -500,6 +500,10 @@ $(function () {
 
   function next_level() {
     var index = level + 1;
+	if (window.localStorage)
+	{
+		window.localStorage['currentLevel'] = index;
+	}
     load_level(index);
     
     if (_gaq) {
@@ -922,11 +926,18 @@ $(function () {
 
   function play_from_level(index) {
     toplevel_container.addClass('well').empty();
+	console.log("index :" + index);
     load_level(index);
     keyHandler = handleKey;
   }
   function begin(e) {
-    play_from_level(0);
+	//set the level to start
+	currentLevel = 0;
+	if (window.localStorage && window.localStorage['currentLevel'])
+	{
+		currentLevel = parseInt(window.localStorage['currentLevel']);
+	}
+    play_from_level(currentLevel);
     
     if (e == Keycode.D) debug = true;
   }
