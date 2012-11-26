@@ -1,10 +1,10 @@
 # Octocarina of time
 
-![](https://raw.github.com/gelisam/game-off-2012/master/img/README/octocat-link-small.png) 
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/octocat-link-small.png) 
 
 ### Click [here](http://gelisam.com/octocarina) to play!
 
-![](https://raw.github.com/gelisam/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/gelisam/game-off-2012/master/img/README/screenshot2.png) 
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot2.png) 
 
 The game is self-contained; you don't need to read any of the explanations below to figure out how to play.
 
