@@ -4,6 +4,8 @@
 
 ### Click [here](http://gelisam.com/octocarina) to play!
 
+![](img/README/screenshot1.png) ![](img/README/screenshot2.png) 
+
 The game is self-contained; you don't need to read any of the explanations below to figure out how to play.
 
 
