@@ -489,15 +489,29 @@ $(function () {
 
   function try_again() {
     if (!animate('reset', World.load_on_reset(level))) {
-      load_level(level);
+      var index = level;
+      load_level(index);
+      
+      if (_gaq) {
+        _gaq.push(['_trackEvent', 'Levels', 'Restart', 'Level ' + index]);
+      }
     }
   }
 
   function next_level() {
-    load_level(level + 1);
+    var index = level + 1;
+    load_level(index);
+    
+    if (_gaq) {
+      _gaq.push(['_trackEvent', 'Levels', 'Begin', 'Level ' + index]);
+    }
   }
   
   function roll_credit() {
+    if (_gaq) {
+      _gaq.push(['_trackEvent', 'Levels', 'Begins', 'Credits']);
+    }
+    
     // no more player movement
     keyHandler = function() {};
     
@@ -548,6 +562,10 @@ $(function () {
     });
   }
   function hide_congratulations() {
+    if (_gaq) {
+      _gaq.push(['_trackEvent', 'Levels', 'Begins', 'Post-Game']);
+    }
+    
     foreground_animations.enqueue_async(function(resume) {
       var hidden = $('#hidden');
       $('#thanks').appendTo(hidden);
