@@ -9,6 +9,8 @@ $(function () {
   var theatre = Theatre.empty();
   var completed_animations = {};
   var fork_in_block = false;
+  var has_forked = false;
+  var forked_block = null;
   var display_events = false;
   var unlocked_puzzles = 0;
 
@@ -175,9 +177,7 @@ $(function () {
     'hint': function() {
       var r = room();
       r.each_tile(function(pos, tile) {
-        console.log(tile);
         if (tile === Tile.future_hint) {
-          console.log('changed');
           r.change_tile(pos, Tile.hint);
           process_events();
         }
@@ -217,6 +217,11 @@ $(function () {
     },
     'Z': function() {
       lover_says('press-z');
+    },
+    'reminder': function() {
+      if (!has_forked) {
+        lover_says('press-z');
+      }
     },
     'door?': function() {
       lover_says('door-question');
@@ -471,6 +476,8 @@ $(function () {
 
       completed_animations = {};
       fork_in_block = false;
+      has_forked = false;
+      forked_block = null;
       display_events = true;
       animate('start', World.load_on_start(index));
     });
@@ -700,6 +707,8 @@ $(function () {
       if (block) {
         var forked = character.forked;
         block.forked = forked;
+        fork_in_block = true;
+        forked_block = block;
         r.update_moveable(block);
         
         character.forked = null;
@@ -730,7 +739,7 @@ $(function () {
           character.dir = block_dir;
           update_moveable(character);
           
-          use_fork(character);
+          return use_fork(character);
         }
       }
     } else {
@@ -739,6 +748,8 @@ $(function () {
         {
           var forked = block.forked;
           block.forked = null;
+          forked_block = block;
+          fork_in_block = false;
           r.update_moveable(block);
           
           character.forked = forked;
@@ -788,7 +799,7 @@ $(function () {
           character.dir = block_dir;
           update_moveable(character);
           
-          use_fork(character);
+          return use_fork(character);
         }
       }
     }
@@ -805,11 +816,13 @@ $(function () {
     }
     
     if (use_fork(p)) {
-      fork_in_block = !fork_in_block;
+      has_forked = true;
       
-      if (fork_in_block && target(p).tile === Tile.block_with_hint) {
+      if (fork_in_block && forked_block.tile === Tile.block_with_hint) {
         animate('fork', World.load_on_fork(level));
       } else if (!fork_in_block && target(p).floor === Tile.hint) {
+        animate('unfork_solved', World.load_on_unfork_solved(level));
+      } else if (!fork_in_block) {
         animate('unfork', World.load_on_unfork(level));
       }
     }

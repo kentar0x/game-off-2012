@@ -33,7 +33,12 @@ var World = {
         
         'face_up', 200, 'up', 200, 'up', 200, 'right', 200,
         'face_down',
-        'fork!' ]
+        'fork!' ],
+      position_animations: {
+        '5,5': ['reminder'],
+        '6,4': ['reminder']
+      },
+      on_unfork: [ 'face_left', '<3' ]
     }
     ,
     {
@@ -45,14 +50,19 @@ var World = {
               "#,2..W,#",
               "#,,,,,,#"],
       on_kiss: [ 0, 'ask-fork', 'give' ],
+      position_animations: {
+        '5,3': ['reminder'],
+        '4,4': ['reminder']
+      },
       on_fork: [ '<3',
         'down', 300, 'right', 300, 'right', 300, 'up', 300,
         'face_left', 'left', 'left', 'face_down',
         
         'player_face_left', 'player_?', '!',
         'hint' ],
-      on_solved: [ 'fork!' ],
-      on_unfork: [
+      on_solved: [ 'Z' ],
+      on_unfork: [ 'face_down', 'R?' ],
+      on_unfork_solved: [
         '<3',
         'left', 300, 'face_up', 'open',
         'face_right', 300, 'right', 300, 'face_down',
@@ -502,6 +512,9 @@ var World = {
   },
   load_on_unfork: function(index) {
     return this.load_animation(index, 'on_unfork');
+  },
+  load_on_unfork_solved: function(index) {
+    return this.load_animation(index, 'on_unfork_solved');
   },
   load_on_solved: function(index) {
     return this.load_animation(index, 'on_solved');
