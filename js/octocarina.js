@@ -8,7 +8,6 @@ $(function () {
   var forkedBlock = null;
   var theatre = Theatre.empty();
   var completed_animations = {};
-  var last_learning_step = 'none';
   var fork_in_block = false;
   var display_events = false;
   var unlocked_puzzles = 0;
@@ -135,6 +134,19 @@ $(function () {
       change_character_dir(0, 1);
     },
     
+    'player_face_left': function() {
+      change_player_dir(-1, 0);
+    },
+    'player_face_right': function() {
+      change_player_dir(1, 0);
+    },
+    'player_face_up': function() {
+      change_player_dir(0, -1);
+    },
+    'player_face_down': function() {
+      change_player_dir(0, 1);
+    },
+    
     'leave': function() {
       if (player().floor === Tile.open_door) {
         room().remove_moveable(player());
@@ -160,7 +172,21 @@ $(function () {
       
       process_events();
     },
+    'hint': function() {
+      var r = room();
+      r.each_tile(function(pos, tile) {
+        console.log(tile);
+        if (tile === Tile.future_hint) {
+          console.log('changed');
+          r.change_tile(pos, Tile.hint);
+          process_events();
+        }
+      });
+    },
     
+    'player_<3': function() {
+      player_says('heart');
+    },
     'ask-door': function() {
       player_says('door-exclam');
     },
@@ -444,7 +470,6 @@ $(function () {
       theatre = Theatre.create(toplevel_container, r, name);
 
       completed_animations = {};
-      last_learning_step = 'none';
       fork_in_block = false;
       display_events = true;
       animate('start', World.load_on_start(index));
@@ -627,10 +652,6 @@ $(function () {
       } else {
         if (block) {
           push_moveable(r.player, dx, dy);
-          
-          if (last_learning_step == 'fork') {
-            last_learning_step = 'push';
-          }
         }
         
         foreground_animations.enqueue(function() {
@@ -643,13 +664,17 @@ $(function () {
             });
           }
           
+          if (block && block.forked && block.floor === Tile.hint) {
+            animate('solved', World.load_on_solved(level));
+          }
+          
           if (r.player.floor == Tile.open_door && is_movement_allowed()) {
             next_level();
           }
           
           var pos_key = pos.x + "," + pos.y;
           var animation_plan = World.load_position_animations(level)[pos_key];
-          if( animation_plan && last_learning_step == 'none') {
+          if( animation_plan ) {
             animate(pos_key, animation_plan);
           }
         });
@@ -742,8 +767,6 @@ $(function () {
           r.update_moveable(character);
         }
         
-        animate('fork', World.load_on_fork(level));
-        
         process_events();
         return true;
       } else {
@@ -784,13 +807,9 @@ $(function () {
     if (use_fork(p)) {
       fork_in_block = !fork_in_block;
       
-      if (last_learning_step == 'none') {
-        last_learning_step = 'fork';
-        
+      if (fork_in_block && target(p).tile === Tile.block_with_hint) {
         animate('fork', World.load_on_fork(level));
-      } else if (last_learning_step == 'push') {
-        last_learning_step = 'done';
-        
+      } else if (!fork_in_block && target(p).floor === Tile.hint) {
         animate('unfork', World.load_on_unfork(level));
       }
     }

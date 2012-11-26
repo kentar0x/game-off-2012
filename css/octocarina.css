@@ -152,6 +152,9 @@ h1 {
 .forked-block-hint-sprite {
   background-position: -4848px;
 }
+.hint-block-sprite {
+  background-position: -5555px;
+}
 
 
 .holder:before {

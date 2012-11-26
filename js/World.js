@@ -3,7 +3,6 @@
 var World = {
   levels: [
     {
-      name: "Home",
       ascii: ["#####d##",
               "#......#",
               "#......#",
@@ -13,56 +12,49 @@ var World = {
     }
     ,
     {
-      name: "Neighbourhood",
-      ascii: ["#D##....",
+      name: "New toy",
+      ascii: ["#D##.###",
               ".c.#.###",
-              "...#.###",
-              "w#w#.#d#",
+              "...#.#d#",
+              "w#w#....",
               "...w....",
-              "...w...."]
+              "...w.Lw."],
+      on_start: [
+        600, 'face_left', '!',
+        'left', 200, 'up', 200, 'up', 200, 'up', 200, 'up', 200,
+        'face_left', '<3', 0, 'player_face_right', 'player_<3', 1000,
+        
+        'face_down', 300, 'down', 300, 'down', 300, 'down', 300,
+        'down', 300, 'right',
+        
+        'face_left', '!',
+        
+        'face_right', 'Z', 0, 'fork',
+        
+        'face_up', 200, 'up', 200, 'up', 200, 'right', 200,
+        'face_down',
+        'fork!' ]
     }
     ,
     {
-      name: "New toy",
+      name: "More experiments",
       ascii: ["#D######",
-              "#c,,,w,#",
-              "#,...w,#",
-              "#,...L,#",
-              "#,...w,#",
+              "#cLw,,,#",
+              "#,....,#",
+              "#,....,#",
+              "#,2..W,#",
               "#,,,,,,#"],
-      on_start: [
-        600, 'face_left', '!',
-        'left', 200, 'up', 200, 'up', 200, 'left', 200, 'left', 200,
-        'kiss', 1000,
-        'face_right', 300, 'right', 300, 'right',
-        'face_left', '!',
+      on_kiss: [ 0, 'ask-fork', 'give' ],
+      on_fork: [ '<3',
+        'down', 300, 'right', 300, 'right', 300, 'up', 300,
+        'face_left', 'left', 'left', 'face_down',
         
-        'face_down', 200, 'down', 200, 'down', 200, 'right', 200,
-        'face_down', 'Z', 0, 'fork', 1000,
-        'face_right', 200, 'right', 200, 'up', 200, 'up', 200, 'face_left',
-        'left', 'left', 'left', 'face_right',
-        'right', 200, 'right', 200, 'right', 200,
-        'down', 200, 'face_left',
-        'left', 'left', 'left', 'left',
-        'player_?', '!',
-        
-        'face_right', 200,
-        'right', 200, 'right', 200, 'right', 200, 'right', 200,
-        'down', 200, 'down', 200, 'face_left',
-        'left', 'left', 'left',
-        'up', 200, 'face_left', '!',
-        'left', 200, 'face_down', 'Z', 0, 'fork', 1000,
-        'face_left', '!',
-        
-        'left', 200, 'left', 200, 'left', 200, 'left', 200, 'up',
-        '?', 'give',
-        'face_down', 200, 'down', 200, 'down', 200, 'face_right',
-        'right', 'right', 'right',
-        'face_up', 200, 'up', 200, 'up', 200, 'up', 200, 'face_down',
-        'fork!'],
+        'player_face_left', 'player_?', '!',
+        'hint' ],
+      on_solved: [ 'fork!' ],
       on_unfork: [
         '<3',
-        'left', 300, 'left', 300, 'left', 300, 'face_up', 'open',
+        'left', 300, 'face_up', 'open',
         'face_right', 300, 'right', 300, 'face_down',
         'door?']
     }
@@ -76,12 +68,6 @@ var World = {
               "....#...",
               "....#,gG"],
       on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
-      on_solved: [
-        '?',
-        'face_right', 300, 'right', 300, 'face_up', 1000,
-        'face_down', 'door!',
-        'face_up', 300, 'up', 300, 'right', 300, 'up', 300, 'up', 300,
-        'leave' ],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
@@ -118,10 +104,8 @@ var World = {
               "###.###",
               "##.w.##",
               "##w.w##",
-              "#Lc.?.#"],
-      position_animations: {
-        "3,2": [0, 'face_up', 'fork?']
-      },
+              "#Lc.?.#",
+              "#.....#"],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,

@@ -24,6 +24,10 @@ Tile.bad_floor = Tile.create(',', {
     sprite_class : 'floor-tile',
     is_floor     : true
 });
+Tile.future_hint = Tile.create('2', {
+    sprite_class : 'floor-tile',
+    is_floor     : true
+});
 Tile.wall = Tile.create('#', {
     sprite_class : 'wall-tile',
     solid        : true
@@ -116,13 +120,12 @@ Tile.block        = Tile.create('w', {
     solid        : true,
     moveable     : true
 });
-Tile.block_with_fork = Tile.create('W', {
-    sprite_class : 'wooden-block-sprite',
+Tile.block_with_hint = Tile.create('W', {
+    sprite_class : 'hint-block-sprite',
     solid        : true,
-    forked       : 'forked',
     moveable     : true
 });
-Tile.block        = Tile.create('?', {
+Tile.hint         = Tile.create('?', {
     sprite_class : 'forked-block-hint-sprite',
     hint         : true
 });

@@ -27,7 +27,7 @@ var Buttons = {
     
     return {
       solved: function() {
-        return (active_buttons == button_count);
+        return (button_count > 0 && active_buttons == button_count);
       },
       process_events: function(room) {
         // remember how things were
