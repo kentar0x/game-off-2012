@@ -220,7 +220,11 @@ $(function () {
     },
     'reminder': function() {
       if (!has_forked) {
-        lover_says('press-z');
+        window.setTimeout(function() {
+          if (!has_forked) {
+            lover_says('press-z');
+          }
+        }, 1000);
       }
     },
     'door?': function() {

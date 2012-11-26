@@ -36,8 +36,8 @@ var World = {
         'face_down',
         'fork!' ],
       position_animations: {
-        '5,5': ['reminder'],
-        '6,4': ['reminder']
+        '5,5': [0, 'reminder'],
+        '6,4': [0, 'reminder']
       },
       on_unfork: [ 'face_left', '<3' ]
     }
@@ -52,8 +52,8 @@ var World = {
               "#,,,,,,#"],
       on_kiss: [ 0, 'ask-fork', 'give' ],
       position_animations: {
-        '5,3': ['reminder'],
-        '4,4': ['reminder']
+        '5,3': [0, 'reminder'],
+        '4,4': [0, 'reminder']
       },
       on_fork: [ '<3',
         'down', 300, 'right', 300, 'right', 300, 'up', 300,
