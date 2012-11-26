@@ -103,10 +103,12 @@ var World = {
       ascii: ["###d###",
               "###.###",
               "##.w.##",
-              "##w.w##",
-              "#Lc.?.#",
-              "#.....#"],
-      on_kiss: [ 0, 'ask-fork', 'give' ]
+              "##w.W##",
+              "#Lc...#",
+              "#...2.#"],
+      on_kiss: [ 0, 'ask-fork', 'give' ],
+      on_fork: [ 'hint' ],
+      on_solved: [ 'fork!' ]
     }
     ,
     {
