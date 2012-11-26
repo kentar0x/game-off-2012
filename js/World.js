@@ -3,6 +3,7 @@
 var World = {
   levels: [
     {
+      name: "Move using the arrow keys",
       ascii: ["#####d##",
               "#......#",
               "#......#",
