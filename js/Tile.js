@@ -16,6 +16,10 @@ var Tile = {
 Tile.empty = Tile.create('', {
     sprite_class : 'empty-tile'
 });
+Tile.no_floor = Tile.create(' ', {
+    sprite_class : 'empty-tile',
+    is_floor     : true
+});
 Tile.floor = Tile.create('.', {
     sprite_class : 'floor-tile',
     is_floor     : true
