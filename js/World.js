@@ -211,7 +211,7 @@ var World = {
     }
     ,
     {
-      name: "The spider &mdash; 9 / 20",
+      name: "The pirate &mdash; 9 / 20",
       ascii: ["##D##",
               ".....",
               ".w.w.",
@@ -233,7 +233,7 @@ var World = {
     }
     ,
     {
-      name: "10 / 20",
+      name: "Sneaking in &mdash; 10 / 20",
       ascii: ["#d###",
               ".....",
               "###.#",
@@ -243,14 +243,14 @@ var World = {
     }
     ,
     {
-      name: "11 / 20",
+      name: "Double lock &mdash; 11 / 20",
       ascii: ["#D###..",
               "..GGgg.",
               "....C.."]
     }
     ,
     {
-      name: "12 / 20",
+      name: "Trapped gem &mdash; 12 / 20",
       ascii: ["#####D#",
               "..w.w.#",
               "C.Gg..#",
@@ -269,7 +269,7 @@ var World = {
     }
     ,
     {
-      name: "14 / 20",
+      name: "Round herring &mdash; 14 / 20",
       ascii: ["####D#",
               "#....#",
               "#CgwG#",
@@ -297,7 +297,7 @@ var World = {
     }
     ,
     {
-      name: "The spider (hard version) &mdash; 17 / 20",
+      name: "The pirate (hard version) &mdash; 17 / 20",
       ascii: ["###D###",
               "..w.w..",
               ".wgwGw.",
@@ -388,7 +388,7 @@ var World = {
     }
     ,
     { // second visit
-      name: "The spider &mdash; 9 / 20",
+      name: "The pirate &mdash; 9 / 20",
       ascii: ["##d##",
               "w.w..",
               ".wLw.",
