@@ -38,7 +38,7 @@
               observed_moves.add(tile_change);
             });
             room.moves.each(function (move) {
-              if (move.new_pos !== move.old_pos || move.dir) {
+              if (move.new_pos !== move.old_pos || move.dir || move.start_shaking) {
                 observed_moves.add(move);
               }
             });

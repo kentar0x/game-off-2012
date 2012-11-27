@@ -441,7 +441,11 @@ $(function () {
   }
   
   function process_replay_move(move) {
-    foreground_animations.then_wait_for(std_delay).then(function() {
+    if (move.new_pos !== move.old_pos) {
+      foreground_animations.then_wait_for(std_delay);
+    }
+    
+    foreground_animations.then(function() {
       var r = room();
       var delta = Pos.distance_between(move.old_pos, move.new_pos);
       
@@ -694,7 +698,7 @@ $(function () {
       } else {
         if (block) {
           if (fork_in_block) {
-            block.shaking = true;
+            room().shake_moveable(block);
             update_moveable(block);
           }
           
@@ -859,7 +863,7 @@ $(function () {
       has_forked = true;
       
       if (fork_in_block) {
-        forked_block.shaking = true;
+        room().shake_moveable(forked_block);
         update_moveable(forked_block);
       }
       

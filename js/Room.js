@@ -100,6 +100,22 @@ var Room = {
       update_moveable: function (moveable) {
         this.force_move(moveable, moveable.pos);
       },
+      shake_moveable: function(moveable) {
+        if (!moveable.shaking) {
+          moveable.shaking = true;
+          
+          // remember the change
+          moves.add({
+            start_shaking: true,
+            moveable: moveable,
+            dir: moveable.dir,
+            old_pos: moveable.pos,
+            new_pos: moveable.pos,
+            old_floor: moveable.floor,
+            new_floor: moveable.floor
+          });
+        }
+      },
       insert_moveable: function (pos, moveable) {
         if (moveable.tile.player) player = this.player = moveable;
         if (moveable.tile.lover) lover = this.lover = moveable;
