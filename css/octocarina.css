@@ -163,6 +163,9 @@ h1 {
 .hint-block-sprite {
   background-position: -5555px;
 }
+.hint-spot-sprite {
+  background-position: -5656px;
+}
 
 /* based on http://www.cssreset.com/css3-webkit-animation-shake-links/ */
 @-webkit-keyframes spaceboots {

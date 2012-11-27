@@ -39,6 +39,7 @@ var Scene = {
     container.prepend(element);
     
     var queue = ActionQueue.create();
+    var hints = EventQueue.create();
     return {
       queue: queue,
       
@@ -89,6 +90,18 @@ var Scene = {
         this.move_to(410);
       },
       
+      add_hint: function(pos, hint) {
+        hint_layer.sprite_at(pos).change_tile(hint);
+        
+        hints.add(pos);
+      },
+      clear_hints: function() {
+        hints.each(function(pos) {
+          hint_layer.sprite_at(pos).change_tile(Tile.empty);
+        });
+        
+        hints.clear();
+      },
       process_events: function(room) {
         room.tile_changes.each(function(tile_change) {
           var pos = tile_change.pos;

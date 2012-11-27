@@ -405,7 +405,9 @@ $(function () {
         process_replay_moves(forkedBlock.moves_to_replay);
       }).then_wait_for(std_delay)
         .then(function() {
-        theatre.current_scene().lighten();
+        var s = theatre.current_scene();
+        s.lighten();
+        s.clear_hints();
       });
     }
     
@@ -700,6 +702,10 @@ $(function () {
           if (fork_in_block) {
             room().shake_moveable(block);
             update_moveable(block);
+            
+            if (block === forked_block) {
+              theatre.current_scene().add_hint(block.pos, Tile.hint_spot);
+            }
           }
           
           push_moveable(r.player, dx, dy);

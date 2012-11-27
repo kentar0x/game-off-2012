@@ -134,6 +134,10 @@ Tile.hint         = Tile.create('?', {
     is_hint      : true,
     hint         : true
 });
+Tile.hint_spot    = Tile.create('', {
+    sprite_class : 'hint-spot-sprite',
+    is_hint      : true
+});
 Tile.block_with_spork = Tile.create('s', {
     sprite_class : 'green-block-sprite',
     solid        : true,
