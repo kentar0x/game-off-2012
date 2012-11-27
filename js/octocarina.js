@@ -428,6 +428,7 @@ $(function () {
         if (move.dir) {
           move.moveable.dir = move.dir;
         }
+        move.moveable.shaking = false;
         
         room().move(move.moveable, delta.x, delta.y);
       }
@@ -692,6 +693,11 @@ $(function () {
         kiss(r.player, r.lover);
       } else {
         if (block) {
+          if (fork_in_block) {
+            block.shaking = true;
+            update_moveable(block);
+          }
+          
           push_moveable(r.player, dx, dy);
         }
         
@@ -851,6 +857,11 @@ $(function () {
     
     if (use_fork(p)) {
       has_forked = true;
+      
+      if (fork_in_block) {
+        forked_block.shaking = true;
+        update_moveable(forked_block);
+      }
       
       if (fork_in_block && forked_block.tile === Tile.block_with_hint) {
         animate('fork', World.load_on_fork(level));

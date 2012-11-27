@@ -21,6 +21,7 @@ var Sprite = {
     var say = null;
     var forked = null;
     var leaving = false;
+    var shaking = false;
     var pushing = false;
     var dying = false;
     var holder = false;
@@ -42,6 +43,10 @@ var Sprite = {
         if (leaving) {
           element.removeClass("under-door");
           leaving = false;
+        }
+        if (shaking) {
+          element.removeClass("shake");
+          shaking = false;
         }
         if (pushing) {
           element.removeClass("pushing");
@@ -78,6 +83,10 @@ var Sprite = {
         if (new_moveable.floor == Tile.open_door) {
           leaving = true;
           element.addClass("under-door");
+        }
+        if (new_moveable.shaking) {
+          shaking = true;
+          element.addClass("shake");
         }
         if (new_moveable.pushing) {
           pushing = true;
