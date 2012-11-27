@@ -13,7 +13,7 @@ The game is self-contained; you don't need to read any of the explanations below
 
 This is a puzzle game in which you carry a fork, push blocks, and go back in time.
 
-In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. **Important**! You do *not* not to understand the previous sentence in order to have fun playing the game.
+In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. **Important**! You do *not* need to understand the previous sentence in order to have fun playing the game.
 
 
 ## Art Credits
