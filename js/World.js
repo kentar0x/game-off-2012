@@ -78,7 +78,7 @@ var World = {
               ".cL..#..",
               "....#...",
               "....#,gG"],
-      on_start: [ 1000, 'face_left', 'kiss', 'kiss', 'face_down', '<3' ],
+      on_start: [ 1000, 'face_left', 'kiss', 'face_down', '<3' ],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
