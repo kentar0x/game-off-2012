@@ -715,6 +715,10 @@ $(function () {
           r.move_player(dx, dy);
           process_events();
           
+          if (fork_in_block && block === forked_block) {
+            theatre.current_scene().add_hint(block.pos, Tile.hint_spot);
+          }
+          
           if (block && block.floor === Tile.bad_floor && !fork_in_block) {
             foreground_animations.wait_for(std_delay, function() {
               lover_says('r-question');
