@@ -941,10 +941,14 @@ $(function () {
     {
     	currentLevel = parseInt(window.localStorage['currentLevel']);
     }
-    play_from_level(currentLevel);
+    if (currentLevel > World.index_of_last_level()) {
+      play_from_level(World.index_of_last_level());
+    } else {
+      play_from_level(currentLevel);
+    }
   }
   function begin_puzzles(e) {
-    play_from_level(27);
+    play_from_level(World.index_of_first_bonus());
   }
 
   function create_splash() {

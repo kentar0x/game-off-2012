@@ -342,6 +342,7 @@ var World = {
               ".......",
               ".C.....",
               "...F..."],
+      last_level: true,
       on_start: [
         0, 'hidden',
         0, 'octo_up', 0, 'octo_up', 0, 'octo_up', 0, 'octo_up',
@@ -440,6 +441,7 @@ var World = {
     ,
     {
       name: "The ring (easy version) &mdash; 1 / 3",
+      bonus_level: true,
       ascii: ["##D##",
               "R...G",
               ".rwg.",
@@ -450,6 +452,7 @@ var World = {
     ,
     {
       name: "The ring (hard version) &mdash; 2 / 3",
+      bonus_level: true,
       ascii: ["##D##",
               "G...R",
               ".rwg.",
@@ -460,15 +463,40 @@ var World = {
     ,
     {
       name: "The ring (very hard version) &mdash; 3 / 3",
+      bonus_level: true,
       ascii: ["##D##",
               "O...B",
-              ".rwg.",
+              ".wwg.",
               ".w.w.",
               ".bwo.",
               "G.C.."]
     }
   ],
   
+  index_of_last_level: function() {
+    if (!this.last_level) {
+      for(var i=0; i<this.levels.length; ++i) {
+        if (this.levels[i].last_level) {
+          this.last_level = i;
+          break;
+        }
+      }
+    }
+    
+    return this.last_level;
+  },
+  index_of_first_bonus: function() {
+    if (!this.first_bonus) {
+      for(var i=0; i<this.levels.length; ++i) {
+        if (this.levels[i].bonus_level) {
+          this.first_bonus = i;
+          break;
+        }
+      }
+    }
+    
+    return this.first_bonus;
+  },
   load_room: function(index) {
     var data = this.levels[index];
     
