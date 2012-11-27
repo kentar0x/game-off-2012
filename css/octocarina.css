@@ -77,6 +77,7 @@ h1 {
   
   /* http://stackoverflow.com/questions/6953497/webkit-transform-overwrites-z-index-ordering-in-chrome-13 */
   -webkit-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
 }
 .preloader {
   display: none;
@@ -159,7 +160,7 @@ h1 {
   background-position: -5555px;
 }
 
-/* http://www.cssreset.com/css3-webkit-animation-shake-links/ */
+/* based on http://www.cssreset.com/css3-webkit-animation-shake-links/ */
 @-webkit-keyframes spaceboots {
         0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
         10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
@@ -173,12 +174,31 @@ h1 {
         90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
         100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
 }
+@-moz-keyframes spaceboots {
+        0% { -moz-transform: translate(2px, 1px) rotate(0deg); }
+        10% { -moz-transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { -moz-transform: translate(-3px, 0px) rotate(1deg); }
+        30% { -moz-transform: translate(0px, 2px) rotate(0deg); }
+        40% { -moz-transform: translate(1px, -1px) rotate(1deg); }
+        50% { -moz-transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { -moz-transform: translate(-3px, 1px) rotate(0deg); }
+        70% { -moz-transform: translate(2px, 1px) rotate(-1deg); }
+        80% { -moz-transform: translate(-1px, -1px) rotate(1deg); }
+        90% { -moz-transform: translate(2px, 2px) rotate(0deg); }
+        100% { -moz-transform: translate(1px, -2px) rotate(-1deg); }
+}
 .shake {
         -webkit-animation-name: spaceboots;
         -webkit-animation-duration: 0.8s;
         -webkit-transform-origin:50% 50%;
         -webkit-animation-iteration-count: infinite;
         -webkit-animation-timing-function: linear;
+        
+        -moz-animation-name: spaceboots;
+        -moz-animation-duration: 0.8s;
+        -moz-transform-origin:50% 50%;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: linear;
 }
 
 
