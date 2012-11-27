@@ -926,20 +926,22 @@ $(function () {
 
   function play_from_level(index) {
     toplevel_container.addClass('well').empty();
-	console.log("index :" + index);
     load_level(index);
     keyHandler = handleKey;
   }
   function begin(e) {
-	//set the level to start
-	currentLevel = 0;
-	if (window.localStorage && window.localStorage['currentLevel'])
-	{
-		currentLevel = parseInt(window.localStorage['currentLevel']);
-	}
-    play_from_level(currentLevel);
+    play_from_level(0);
     
     if (e == Keycode.D) debug = true;
+  }
+  function resume(e) {
+    //set the level to start
+    currentLevel = 0;
+    if (window.localStorage && window.localStorage['currentLevel'])
+    {
+    	currentLevel = parseInt(window.localStorage['currentLevel']);
+    }
+    play_from_level(currentLevel);
   }
   function begin_puzzles(e) {
     play_from_level(27);
@@ -953,10 +955,14 @@ $(function () {
     return splash;
   }
   
+  function create_single_button() {
+    return $('<div id="begin" class="btn btn-success"/>').text('Wield the Master Fork');
+  }
   function create_begin_button() {
-    return $('<div id="begin" class="btn btn-success"/>').text(unlocked_puzzles
-                                                               ? 'Play from the beginning'
-                                                               : 'Wield the Master Fork');
+    return $('<div id="begin" class="btn btn-success"/>').text('Play from the beginning');
+  }
+  function create_resume_button() {
+    return $('<div id="resume" class="btn btn-success"/>').text('Resume game');
   }
   function create_puzzle_button() {
     return $('<div id="begin-puzzles" class="btn btn-success"/>').text('Bonus Levels ('+unlocked_puzzles+'/3)');
@@ -965,14 +971,33 @@ $(function () {
   function load_splash() {
     var splash = create_splash();
     
-    splash.append(create_begin_button());
+    var resume_button = null;
+    var puzzle_button = null;
+    
+    if (window.localStorage && window.localStorage['currentLevel']) {
+      resume_button = create_resume_button();
+    }
     if (unlocked_puzzles) {
-      splash.append(create_puzzle_button());
+      puzzle_button = create_puzzle_button();
+    }
+    
+    if (resume_button || puzzle_button) {
+      splash.append(create_begin_button());
+    } else {
+      splash.append(create_single_button());
+    }
+      
+    if (resume_button) {
+      splash.append(resume_button);
+    }
+    if (unlocked_puzzles) {
+      splash.append(puzzle_button);
     }
     
     toplevel_container.removeClass('well').empty().append(splash);
     
     $('#begin').click(begin);
+    $('#resume').click(resume);
     $('#begin-puzzles').click(begin_puzzles);
     
     keyHandler = begin;
