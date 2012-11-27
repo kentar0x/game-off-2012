@@ -60,6 +60,10 @@ h1 {
   position: relative;
   top: 40px; /* 1*40px stacking height */
 }
+.hint-layer {
+  margin-bottom: -480px; /* 6*80px depth */
+  top: 80px;
+}
 .layer-line
 {
 	width: 3000px;

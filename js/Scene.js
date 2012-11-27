@@ -28,6 +28,10 @@ var Scene = {
       }
     });
     
+    // add the hint layer
+    var hint_tiles = this.create_hints(room);
+    var hint_layer = Layer.create(element, hint_tiles, room, 'hint-layer');
+    
     // add color filters on the very top, to tint the entire scene
     var dark_filter = this.create_filter(element, 'dark');
     var light_filter = this.create_filter(element, 'light');
@@ -91,6 +95,7 @@ var Scene = {
           var tile = tile_change.new_tile;
           var solid_sprite = solid_layer.sprite_at(pos);
           var floor_sprite = floor_layer.sprite_at(pos);
+          var hint_sprite = hint_layer.sprite_at(pos);
           var moveable = room.moveable_at(pos);
           
           if (moveable) {
@@ -101,6 +106,9 @@ var Scene = {
           } else if (tile.is_floor) {
             solid_sprite.change_tile(Tile.empty);
             floor_sprite.change_tile(tile);
+          } else if (tile.is_hint) {
+            solid_sprite.change_tile(Tile.empty);
+            hint_sprite.change_tile(tile);
           } else {
             solid_sprite.change_tile(tile);
             floor_sprite.change_tile(Tile.floor);
@@ -149,11 +157,22 @@ var Scene = {
       }
     });
   },
+  create_hints: function(room) {
+    return Table.create(room.size, function(pos) {
+      var tile = room.floor_tile_at(pos);
+      
+      if (tile.is_hint) {
+        return tile;
+      } else {
+        return Tile.empty;
+      }
+    });
+  },
   extract_tiles: function(room) {
     return Table.create(room.size, function(pos) {
       var tile = room.tile_at(pos)
       
-      if (tile.is_floor) {
+      if (tile.is_floor || tile.is_hint) {
         return Tile.empty;
       } else {
         return tile;

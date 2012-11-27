@@ -3,8 +3,9 @@
 // on top of which is another Layer containing the actual obstacles.
 
 var Layer = {
-  create: function(container, tiles, room) {
+  create: function(container, tiles, room, extra_class) {
     var element = $('<div class="layer"/>');
+    if (extra_class) element.addClass(extra_class);
     container.append(element);
     
     var spriteIndex = 0;

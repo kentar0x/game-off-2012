@@ -131,6 +131,7 @@ Tile.block_with_hint = Tile.create('W', {
 });
 Tile.hint         = Tile.create('?', {
     sprite_class : 'forked-block-hint-sprite',
+    is_hint      : true,
     hint         : true
 });
 Tile.block_with_spork = Tile.create('s', {
