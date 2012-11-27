@@ -13,6 +13,10 @@ $(function () {
   var forked_block = null;
   var display_events = false;
   var unlocked_puzzles = 0;
+  if (window.localStorage && window.localStorage['unlocked_puzzles']) {
+    unlocked_puzzles = window.localStorage['unlocked_puzzles'];
+  }
+  
 
   var foreground_animations = ActionQueue.create();
   var std_delay = 600;
@@ -344,6 +348,10 @@ $(function () {
       show_thanks();
       if (!unlocked_puzzles) {
         unlocked_puzzles = 3;
+	if (window.localStorage)
+	{
+		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
+	}
         show_congratulations();
       }
     },
