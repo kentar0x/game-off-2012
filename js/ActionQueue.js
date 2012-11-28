@@ -26,6 +26,7 @@ var ActionQueue = {
   create: function() {
     var paused = false;
     var nested = false;
+    var fast_forward = false;
     var queue = [];
     
     return {
@@ -58,6 +59,9 @@ var ActionQueue = {
           }
         }
         nested = false;
+        if (!paused) {
+          fast_forward = false;
+        }
       },
       
       enqueue: function(body) {
@@ -111,6 +115,7 @@ var ActionQueue = {
         // either wait for another queue of for time to pass.
         if ($.isNumeric(other_queue)) {
           var delay = other_queue;
+          if (fast_forward && delay > fast_forward) delay = fast_forward;
           window.setTimeout(resume, delay);
         } else {
           other_queue.enqueue(resume);
@@ -136,6 +141,11 @@ var ActionQueue = {
         }
       },
       
+      fast_forward: function(forced_delay) {
+        if (!this.is_empty()) {
+          fast_forward = forced_delay;
+        }
+      },
       clear: function() {
         queue = [];
         this.resume();

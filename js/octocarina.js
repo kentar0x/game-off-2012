@@ -901,6 +901,7 @@ $(function () {
 
 
   var keyHandler;
+  var debug_delay = false;
   function handleKey(key) {
     // return false for keys which don't mess with the browser state,
     // this will allow browser commands like Cmd+R to work.
@@ -934,6 +935,10 @@ $(function () {
         
         //case Keycode.tab: next_room(); break
       }
+    } else {
+      switch (key) {
+        case Keycode.R: foreground_animations.fast_forward(50);
+      }
     }
     
     if (debug) {
@@ -944,14 +949,16 @@ $(function () {
         case Keycode.O: --level; break;
         case Keycode.P: ++level; break;
       }
+      if (level < 0) level = 0;
       
-      var new_level = level;
-      if (new_level < 0) new_level = 0;
-      
-      if (new_level != old_level) {
-        foreground_animations.clear();
-        Theatre.queue.clear();
-        load_level(new_level);
+      if (level != old_level && !debug_delay) {
+        debug_delay = true;
+        window.setTimeout(function() {
+          foreground_animations.enqueue(function() {
+            debug_delay = false;
+            load_level(level);
+          }).fast_forward(10);
+        }, 1000);
       }
     }
 
