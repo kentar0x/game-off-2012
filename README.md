@@ -21,6 +21,13 @@ In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-
 ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot2.png) 
 
 
+## Controls
+
+You can use the arrow keys, WASD, or HJKL.  
+To use the fork, you can use Z, X, F, Ctrl, or Space.  
+To skip animations or restart a level, you can use R or Esc.
+
+
 ## FAQ: What does the fork do??
 
 If you are having a hard time understanding what the fork does, don't worry, you're not alone! Not being able to understand what the fork does was such a frequent occurence with beta testers that a majority of the development time had to be dedicated to making the mechanic easier to understand.
