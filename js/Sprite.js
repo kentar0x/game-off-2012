@@ -31,6 +31,11 @@ var Sprite = {
     return {
       element: element,
       change_tile: function(new_tile) {
+        if (tile === Tile.hint_spot && new_tile !== Tile.empty) {
+          // special case: don't remove the hint spots too easily
+          return;
+        }
+        
         element.removeClass(tile.sprite_class);
         if (say) {
           element.removeClass("say").removeClass(say);
