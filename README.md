@@ -6,40 +6,35 @@
 
 ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot2.png) 
 
-The game is self-contained; you don't need to read any of the explanations below to figure out how to play. In theory. If you get stuck, it might helpt to read the "What does the fork do??" section below.
+The game is self-contained; you don't need to read any of the explanations below to figure out how to play.
+
+If you get stuck, it might help to read the sections below.
 
 
 ## Game mechanic: Revert changes, replay changes
 
 This is a puzzle game in which you carry a fork, push blocks, and go back in time.
 
-In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. **Important**! You do *not* need to understand the previous sentence in order to have fun playing the game.
+In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. In plain-English-speak, see below.
 
 
 ## What does the fork do??
 
-If you are having a hard time understanding what the fork does, don't worry, you're not alone! I spent the *majority* of the development time trying to make the mechanic easier to understand, but many of our beta testers still couldn't figure it out.
+If you are having a hard time understanding what the fork does, don't worry, you're not alone! Not being able to understand what the fork does was such a frequent occurence with beta testers that a majority of the development time had to be dedicated to making the mechanic easier to understand.
 
-Here is a step-by-step guide on using the fork.
+In short, the fork rolls back all actions performed since the fork was stabbed, then replays those actions which affected the stabbed block. Let's go through an example level.
 
-1.  Face towards a block and press Z to stab it into the block.
-1.  Push that block somewhere else.
-1.  Push another block.
-1.  Go back to the first block and use Z to pick up the fork.
+1.  Fork the block.  
+    ![](img/README/explanation1.png)
+1.  Push a few blocks as illustrated. This blocks the door, but don't worry, this is going to get reverted.  
+    ![](img/README/explanation2.png)
+1.  Pick up the fork. All the blocks rewind to the position they had in step 1...  
+    ![](img/README/explanation3.png)
+1.  ...and then the forked block repeats its movements.  
+    ![](img/README/explanation4.png)
+1.  The blocks are now in a much better arrangement, allowing you to leave the room!  
+    ![](img/README/explanation5.png)
 
-After you do this, the following happens.
-
-1.  All the actions which were performed since the block was stabbed are undone.
-1.  From those actions, those which involved moving the stabbed block are redone.
-
-One puzzle-solving strategy you can use this mechanic for is as follows.
-
-1.  Decide which block you want to move. Stab it.
-1.  Move the other blocks out of your way.
-1.  Move the stabbed block to its target location.
-1.  Pick up the fork.
-
-The important part about this strategy is that in step 2, it doesn't matter which block you move and where you move them, because their movements will be reverted anyway.
 
 ## Art Credits
 
