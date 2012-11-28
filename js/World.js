@@ -93,48 +93,36 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
-      name: "Mistake &mdash; 2 / 20",
-      ascii: ["   #####",
-              "  #..#D#",
-              "###..o.#",
-              "....##.#",
-              ".L.w....",
-              ".c.O####"],
+    { // lover makes a mistake
+      name: "Big pyramid &mdash; 2 / 20",
+      ascii: ["###d###",
+              "###.###",
+              "##.w.##",
+              "#.w.w.#",
+              ".w.w.w.",
+              "wcwLw.w"],
       on_start: [
-        0, 'face_right', 300,
-        'right', 300, 'up', 300, 'right', 300, 'up', 300,
-        'right', 'right',
-        'face_up', 'face_right', 1000,
-        'face_left', 'left', 'left', 'face_down',
-        'R?'],
+        0, 'face_up', 300,
+        'up', 'left', 'up', 1000,
+        'face_right', 300, 'face_up', 'face_right', 1000,
+        'face_down', 'R?'],
       on_reset: [ 'skip' ],
       on_kiss: [ 0, 'R?' ]
     }
     ,
     {
-      name: "Mistake &mdash; 2 / 20",
-      ascii: ["   #####",
-              "  #..#D#",
-              "###..o,#",
-              "....##.#",
-              ".L.w....",
-              ".c.O####"],
+      name: "Big pyramid &mdash; 2 / 20",
+      ascii: ["###d###",
+              "###.###",
+              "##.w.##",
+              "#.w.w.#",
+              ".w.w.w.",
+              "wcwLw.w"],
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
     {
-      name: "Small wall &mdash; 3 / 20",
-      ascii: ["########",
-              ".L.w.#d#",
-              ".c.w...#",
-              "...w.###",
-              "########"],
-      on_kiss: [ 0, 'ask-fork', 'give' ]
-    }
-    ,
-    {
-      name: "Small pyramid &mdash; 4 / 20",
+      name: "Small pyramid &mdash; 3 / 20",
       ascii: ["###d###",
               "###.###",
               "##.w.##",
@@ -147,7 +135,28 @@ var World = {
     }
     ,
     {
-      name: "Medium walls &mdash; 5 / 20",
+      name: "Locked door &mdash; 4 / 20",
+      ascii: ["   #####",
+              "  #..#D#",
+              "###..o,#",
+              "....##.#",
+              ".L.w....",
+              ".c.O####"],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
+    }
+    ,
+    {
+      name: "Small wall &mdash; 5 / 20",
+      ascii: ["########",
+              ".L.w.#d#",
+              ".c.w...#",
+              "...w.###",
+              "########"],
+      on_kiss: [ 0, 'ask-fork', 'give' ]
+    }
+    ,
+    {
+      name: "Medium walls &mdash; 6 / 20",
       ascii: ["#d######",
               ".....,..",
               "####www#",
@@ -157,7 +166,7 @@ var World = {
     }
     ,
     {
-      name: "The gate &mdash; 6 / 20",
+      name: "The gate &mdash; 7 / 20",
       ascii: ["#.w.####",
               "c.w.####",
               "LgwG##D#",
@@ -176,7 +185,7 @@ var World = {
     }
     ,
     {
-      name: "The gate &mdash; 6 / 20",
+      name: "The gate &mdash; 7 / 20",
       ascii: ["#.w.####",
               "c.w.####",
               ".gwG##D#",
@@ -190,7 +199,7 @@ var World = {
     }
     ,
     {
-      name: "Big walls &mdash; 7 / 20",
+      name: "Big walls &mdash; 8 / 20",
       ascii: ["#######d",
               ".w.w.w..",
               ".w.w.wL.",
@@ -202,7 +211,7 @@ var World = {
     }
     ,
     {
-      name: "Convoluted block-exchange protocol &mdash; 8 / 20",
+      name: "Convoluted block-exchange protocol &mdash; 9 / 20",
       ascii: ["#####D#",
               "c..#...",
               ".#.#...",
@@ -211,7 +220,7 @@ var World = {
     }
     ,
     {
-      name: "The pirate &mdash; 9 / 20",
+      name: "The pirate &mdash; 10 / 20",
       ascii: ["##D##",
               ".....",
               ".w.w.",
@@ -233,7 +242,7 @@ var World = {
     }
     ,
     {
-      name: "Sneaking in &mdash; 10 / 20",
+      name: "Sneaking in &mdash; 11 / 20",
       ascii: ["#d###",
               ".....",
               "###.#",
@@ -243,29 +252,19 @@ var World = {
     }
     ,
     {
-      name: "Double lock &mdash; 11 / 20",
+      name: "Double lock &mdash; 12 / 20",
       ascii: ["#D###..",
               "..GGgg.",
               "....C.."]
     }
     ,
     {
-      name: "Trapped gem &mdash; 12 / 20",
+      name: "Trapped gem &mdash; 13 / 20",
       ascii: ["#####D#",
               "..w.w.#",
               "C.Gg..#",
               "..w.w.#",
               "#######"]
-    }
-    ,
-    {
-      name: "Big pyramid &mdash; 13 / 20",
-      ascii: ["###d###",
-              "###.###",
-              "##.w.##",
-              "#.w.w.#",
-              ".w.w.w.",
-              "w.wCw.w"]
     }
     ,
     {
