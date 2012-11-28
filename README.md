@@ -25,15 +25,15 @@ If you are having a hard time understanding what the fork does, don't worry, you
 In short, the fork rolls back all actions performed since the fork was stabbed, then replays those actions which affected the stabbed block. Let's go through an example level.
 
 1.  Fork the block.  
-    ![](img/README/explanation1.png)
+    ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/explanation1.png)
 1.  Push a few blocks as illustrated. This blocks the door, but don't worry, this is going to get reverted.  
-    ![](img/README/explanation2.png)
+    ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/explanation2.png)
 1.  Pick up the fork. All the blocks rewind to the position they had in step 1...  
-    ![](img/README/explanation3.png)
+    ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/explanation3.png)
 1.  ...and then the forked block repeats its movements.  
-    ![](img/README/explanation4.png)
+    ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/explanation4.png)
 1.  The blocks are now in a much better arrangement, allowing you to leave the room!  
-    ![](img/README/explanation5.png)
+    ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/explanation5.png)
 
 
 ## Art Credits
