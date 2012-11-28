@@ -6,7 +6,7 @@
 
 The game is self-contained; you don't need to read any of the explanations below to figure out how to play.
 
-If you get stuck, it might help to read the sections below.
+If you get stuck, it might help to read the FAQ below.
 
 
 ## Game mechanic: Revert changes, replay changes
