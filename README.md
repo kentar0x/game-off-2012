@@ -42,7 +42,7 @@ In short, the fork rolls back all actions performed since the fork was stabbed, 
 ## Art Credits
 
 I am using PlanetCute, a [free tileset](http://www.lostgarden.com/2007/05/dancs-miraculously-flexible-game.html) generously offered by Daniel Cook for the express purpose of *not* making yet another Sokoban clone. Which this game kind of is, before you start using the Master Fork. Sorry, Danc! Anyway, [his blog](http://www.lostgarden.com/) is a great source of insight for independent games developers.  
-![](http://lunar.lostgarden.com/uploaded_images/BlockRPGMockup-772331.jpg)
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/planetcute.jpg)
 
 This little octopus fellow also makes an appearance. It's actually a piece of jewelry created by <a href="http://doctor-gus.deviantart.com/">Doctor-Gus</a>, an artist who makes jewelry out of forks! So awesome!  
-![](http://fc08.deviantart.net/fs71/i/2011/328/8/1/oculum_indignus_by_doctor_gus-d4h5xd0.jpg)
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/doctorgus.jpg)
