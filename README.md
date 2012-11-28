@@ -4,8 +4,6 @@
 
 ### Click [here](http://gelisam.com/octocarina) to play!
 
-![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot2.png) 
-
 The game is self-contained; you don't need to read any of the explanations below to figure out how to play.
 
 If you get stuck, it might help to read the sections below.
@@ -18,7 +16,12 @@ This is a puzzle game in which you carry a fork, push blocks, and go back in tim
 In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. In plain-English-speak, see below.
 
 
-## What does the fork do??
+## Screenshots
+
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot1.png) ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/screenshot2.png) 
+
+
+## FAQ: What does the fork do??
 
 If you are having a hard time understanding what the fork does, don't worry, you're not alone! Not being able to understand what the fork does was such a frequent occurence with beta testers that a majority of the development time had to be dedicated to making the mechanic easier to understand.
 
