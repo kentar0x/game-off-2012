@@ -202,3 +202,6 @@ Tile.player_shadow = Tile.create('', {
 Tile.lover_shadow = Tile.create('', {
     sprite_class : 'lover-shadow'
 });
+Tile.forktopus_shadow = Tile.create('', {
+    sprite_class : 'forktopus-shadow'
+});

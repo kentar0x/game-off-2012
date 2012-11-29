@@ -196,6 +196,7 @@ var Room = {
         
         if (tile.forked) {
           moveable.forked = tile.forked;
+          if (!tile.holder) moveable.shaking = true;
         }
         
         return moveable;

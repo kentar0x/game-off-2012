@@ -44,6 +44,8 @@ var Shadows = {
       return Tile.lover_shadow;
     } else if (tile.color) {
       return Tile.gem_shadow;
+    } else if (tile.forktopus) {
+      return Tile.forktopus_shadow;
     } else {
       return Tile.block_shadow;
     }

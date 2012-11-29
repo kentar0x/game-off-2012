@@ -175,6 +175,9 @@ h1 {
 .lover-shadow {
   background-position: -6060px;
 }
+.forktopus-shadow {
+  background-position: -6161px;
+}
 
 /* based on http://www.cssreset.com/css3-webkit-animation-shake-links/ */
 @-webkit-keyframes spaceboots {
