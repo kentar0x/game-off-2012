@@ -5,6 +5,7 @@ $(function () {
   var level = 0;
   var multiroom = null;
   var multibuttons = null;
+  var shadows = null;
   var forkedBlock = null;
   var theatre = Theatre.empty();
   var completed_animations = {};
@@ -388,6 +389,7 @@ $(function () {
 
   function process_events() {
     multibuttons.process_events(multiroom);
+    shadows.process_events(multiroom, theatre.current_scene());
     forkedBlock.process_events(multiroom);
     if (display_events) theatre.process_events(multiroom);
     multiroom.clear_events();
@@ -484,6 +486,7 @@ $(function () {
 
       var r = room();
       multibuttons = Multibuttons.create(r);
+      shadows = Shadows.create(r);
       forkedBlock = ForkedBlock.create(r);
 
       if (r.player) r.player.dir = Pos.create(0, 1);
@@ -704,7 +707,7 @@ $(function () {
             update_moveable(block);
             
             if (block === forked_block) {
-              theatre.current_scene().add_hint(block.pos, Tile.hint_spot);
+              theatre.current_scene().add_hint_spot(block.pos);
             }
           }
           
@@ -716,7 +719,7 @@ $(function () {
           process_events();
           
           if (fork_in_block && block === forked_block) {
-            theatre.current_scene().add_hint(block.pos, Tile.hint_spot);
+            theatre.current_scene().add_hint_spot(block.pos);
           }
           
           if (block && block.floor === Tile.bad_floor && !fork_in_block) {

@@ -31,11 +31,6 @@ var Sprite = {
     return {
       element: element,
       change_tile: function(new_tile) {
-        if (tile === Tile.hint_spot && new_tile !== Tile.empty) {
-          // special case: don't remove the hint spots too easily
-          return;
-        }
-        
         element.removeClass(tile.sprite_class);
         if (say) {
           element.removeClass("say").removeClass(say);
@@ -65,6 +60,13 @@ var Sprite = {
         tile = new_tile;
         
         element.addClass(tile.sprite_class)
+      },
+      set_spotted: function(spotted) {
+        if (spotted) {
+          element.addClass("spotted");
+        } else {
+          element.removeClass("spotted");
+        }
       },
       change_moveable: function(new_moveable) {
         if (dir) {

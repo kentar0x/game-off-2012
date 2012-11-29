@@ -163,8 +163,17 @@ h1 {
 .hint-block-sprite {
   background-position: -5555px;
 }
-.hint-spot-sprite {
-  background-position: -5656px;
+.block-shadow {
+  background-position: -5757px;
+}
+.gem-shadow {
+  background-position: -5858px;
+}
+.player-shadow {
+  background-position: -5959px;
+}
+.lover-shadow {
+  background-position: -6060px;
 }
 
 /* based on http://www.cssreset.com/css3-webkit-animation-shake-links/ */
@@ -250,6 +259,17 @@ h1 {
   display: inline-block;
   margin-right: -1px; /* 1px border */
   margin-bottom: -91px; /* 90px height + 1px border */
+}
+.spotted:after {
+  content: "";
+  width: 101px; /* 100px width + 1px border */
+  height: 171px; /* 80px depth + 90px height + 1px border */
+  background-image: url('../img/sprites.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: -1px; /* 1px border */
+  margin-bottom: -91px; /* 90px height + 1px border */
+  background-position: -5656px;
 }
 
 

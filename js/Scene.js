@@ -90,6 +90,11 @@ var Scene = {
         this.move_to(410);
       },
       
+      add_hint_spot: function(pos) {
+        hint_layer.sprite_at(pos).set_spotted(true);
+        
+        hints.add(pos);
+      },
       add_hint: function(pos, hint) {
         hint_layer.sprite_at(pos).change_tile(hint);
         
@@ -97,7 +102,9 @@ var Scene = {
       },
       clear_hints: function() {
         hints.each(function(pos) {
-          hint_layer.sprite_at(pos).change_tile(Tile.empty);
+          var hint_sprite = hint_layer.sprite_at(pos);
+          hint_sprite.change_tile(Tile.empty);
+          hint_sprite.set_spotted(false);
         });
         
         hints.clear();

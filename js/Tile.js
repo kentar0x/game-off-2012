@@ -189,3 +189,16 @@ Tile.forktopus = Tile.create('F', {
     character    : true,
     moveable     : true
 });
+
+Tile.block_shadow = Tile.create('', {
+    sprite_class : 'block-shadow'
+});
+Tile.gem_shadow = Tile.create('', {
+    sprite_class : 'gem-shadow'
+});
+Tile.player_shadow = Tile.create('', {
+    sprite_class : 'player-shadow'
+});
+Tile.lover_shadow = Tile.create('', {
+    sprite_class : 'lover-shadow'
+});
