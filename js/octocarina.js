@@ -74,6 +74,9 @@ $(function () {
     'unhidden': function() {
       display_events = true;
     },
+    'update_forked_block': function() {
+      update_moveable(forked_block);
+    },
     
     'octo_left': function() {
       room().move_forktopus(-1, 0);

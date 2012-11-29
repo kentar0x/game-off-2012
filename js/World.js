@@ -366,6 +366,7 @@ var World = {
         0, 'octo_left', 0, 'octo_right', 0, 'octo_left', 0, 'octo_right',
         0, 'octo_left', 0, 'octo_right', 0, 'octo_left', 0, 'octo_right',
         0, 'unhidden',
+        0, 'update_forked_block',
         'player_up', 'player_up'],
       on_spork: [
         0, 'face_left', 'drop', 'face_up', 'fork',
