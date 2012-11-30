@@ -13,7 +13,7 @@ If you get stuck, it might help to read the FAQ below.
 
 This is a puzzle game in which you carry a fork, push blocks, and go back in time.
 
-In git-speak, the Master Fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. In plain-English-speak, see below.
+In git-speak, the fork allows you to work on a tempory branch, to cherry-pick a subset of the block pushes you perform inside that branch, then to rebase those changes onto the master branch. In plain-English-speak, see below.
 
 
 ## Screenshots
@@ -48,7 +48,7 @@ In short, the fork rolls back all actions performed since the fork was stabbed, 
 
 ## Art Credits
 
-I am using PlanetCute, a [free tileset](http://www.lostgarden.com/2007/05/dancs-miraculously-flexible-game.html) generously offered by Daniel Cook for the express purpose of *not* making yet another Sokoban clone. Which this game kind of is, before you start using the Master Fork. Sorry, Danc! Anyway, [his blog](http://www.lostgarden.com/) is a great source of insight for independent games developers.  
+I am using PlanetCute, a [free tileset](http://www.lostgarden.com/2007/05/dancs-miraculously-flexible-game.html) generously offered by Daniel Cook for the express purpose of *not* making yet another Sokoban clone. Which this game kind of is, before you start using the fork. Sorry, Danc! Anyway, [his blog](http://www.lostgarden.com/) is a great source of insight for independent games developers.  
 ![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/planetcute.jpg)
 
 This little octopus fellow also makes an appearance. It's actually a piece of jewelry created by <a href="http://doctor-gus.deviantart.com/">Doctor-Gus</a>, an artist who makes jewelry out of forks! So awesome!  

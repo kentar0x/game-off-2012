@@ -1013,7 +1013,7 @@ $(function () {
   }
   
   function create_single_button() {
-    return $('<div id="begin" class="btn btn-success"/>').text('Wield the Master Fork');
+    return $('<div id="begin" class="btn btn-success"/>').text('Play now');
   }
   function create_begin_button() {
     return $('<div id="begin" class="btn btn-success"/>').text('Play from the beginning');
