@@ -128,6 +128,11 @@ $(function () {
       update_moveable(forktopus);
       process_events();
     },
+    'octo_disappear': function() {
+      var r = room();
+      r.remove_moveable(r.forktopus);
+      process_events();
+    },
     'S_appear': function() {
       var p = Moveable.create(Tile.player_with_spork);
       p.dir = Pos.create(1, 0);
@@ -338,7 +343,7 @@ $(function () {
       f.floor = Tile.blood;
       process_events();
     },
-    'die': function() {
+    'octo_dies': function() {
       var f = room().forktopus;
       for(var i=0; i<5; ++i) {
         foreground_animations.enqueue(function() {
@@ -357,6 +362,29 @@ $(function () {
         update_moveable(f);
       }).then_wait_for(1000).enqueue(function() {
         room().remove_moveable(f);
+      });
+    },
+    'lover_dies': function() {
+      var l = lover();
+      for(var i=0; i<5; ++i) {
+        foreground_animations.enqueue(function() {
+          l.tile = Tile.empty;
+          l.forked = false;
+          update_moveable(l);
+        }).then_wait_for(100).enqueue(function() {
+          l.tile = Tile.lover;
+          l.forked = true;
+          update_moveable(l);
+        }).then_wait_for(100);
+      }
+      foreground_animations.enqueue(function() {
+        l.dying = 'dying';
+        update_moveable(l);
+      }).then_wait_for(3000).enqueue(function() {
+        l.floor = Tile.fork;
+        update_moveable(l);
+      }).then_wait_for(1000).enqueue(function() {
+        room().remove_moveable(l);
       });
     },
     'saved': function() {
