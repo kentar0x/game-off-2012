@@ -300,7 +300,11 @@ $(function () {
     'check_trap': function() {
       var y = room().forktopus.pos.y;
       if (y == 9) {
-        level = World.index_of_bad_ending();
+        if (unlocked_puzzles) {
+          level = World.index_of_bad_ending();
+        } else {
+          level = World.index_of_long_ending();
+        }
       } else if (y < 4) {
         animate('trapped', World.load_on_trapped(level));
         level = World.index_of_best_ending();
@@ -414,7 +418,29 @@ $(function () {
     'the_end': function() {
       hide_room();
       show_thanks();
-      if (!unlocked_puzzles) {
+    },
+    'unlock1': function() {
+      if (unlocked_puzzles < 1) {
+        unlocked_puzzles = 1;
+	if (window.localStorage)
+	{
+		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
+	}
+        show_congratulations();
+      }
+    },
+    'unlock2': function() {
+      if (unlocked_puzzles < 2) {
+        unlocked_puzzles = 2;
+	if (window.localStorage)
+	{
+		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
+	}
+        show_congratulations();
+      }
+    },
+    'unlock3': function() {
+      if (unlocked_puzzles < 3) {
         unlocked_puzzles = 3;
 	if (window.localStorage)
 	{
@@ -591,10 +617,14 @@ $(function () {
 	{
 		window.localStorage['currentLevel'] = index;
 	}
-    load_level(index);
-    
-    if (_gaq) {
-      _gaq.push(['_trackEvent', 'Levels', 'Begin', 'Level ' + index]);
+    if (index < World.index_of_first_bonus() + unlocked_puzzles) {
+      load_level(index);
+      
+      if (_gaq) {
+        _gaq.push(['_trackEvent', 'Levels', 'Begin', 'Level ' + index]);
+      }
+    } else {
+      load_splash();
     }
   }
   
@@ -1085,7 +1115,8 @@ $(function () {
     return $('<div id="begin" class="btn btn-success"/>').text('Play from the beginning');
   }
   function create_resume_button() {
-    return $('<div id="resume" class="btn btn-success"/>').text('Resume game');
+    return $('<div id="resume" class="btn btn-success"/>').text(unlocked_puzzles ? 'Try a different ending'
+                                                                                 : 'Resume game');
   }
   function create_puzzle_button() {
     return $('<div id="begin-puzzles" class="btn btn-success"/>').text('Bonus Levels ('+unlocked_puzzles+'/3)');

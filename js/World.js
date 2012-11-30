@@ -398,7 +398,7 @@ var World = {
     ,
     { // second visit
       name: "9 / 20",
-      bad_ending: true,
+      long_ending: true,
       ascii: ["#####D#",
               "S..#...",
               ".#.#...",
@@ -444,7 +444,7 @@ var World = {
         'player_right', 'player_right', 'player_down', 'player_right',
         'pick', 'open', 'face_up', 1500,
         'player_up', 'player_up', 'player_up', 'player_up', 'leave',
-        'the_end'
+        'the_end', 'unlock1'
       ]
     }
     ,
@@ -478,7 +478,7 @@ var World = {
         'player_right', 'player_right', 'player_down', 'player_right',
         'pick', 'open', 'player_face_up', 1500,
         'player_up', 'player_up', 'player_up', 'player_up', 'leave',
-        'the_end'
+        'the_end', 'unlock2'
       ]
     }
     ,
@@ -501,7 +501,7 @@ var World = {
         'credits',
         'show',
         'face_left', 'spork?',
-        'the_end'
+        'the_end', 'unlock3'
       ]
     }
     ,
@@ -554,6 +554,9 @@ var World = {
   },
   index_of_first_bonus: function() {
     return this.index_of_special_level('first_bonus');
+  },
+  index_of_long_ending: function() {
+    return this.index_of_special_level('long_ending');
   },
   index_of_bad_ending: function() {
     return this.index_of_special_level('bad_ending');
