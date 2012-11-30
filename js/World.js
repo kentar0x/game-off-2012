@@ -381,6 +381,7 @@ var World = {
     ,
     { // second visit
       name: "8 / 20",
+      bad_ending: true,
       ascii: ["#####D#",
               "S..#...",
               ".#.#...",
@@ -402,7 +403,7 @@ var World = {
         'face_right', 'right', 500, 'face_up', 300, 'up', 300, 'leave']
     }
     ,
-    { // something terrible, avoided
+    { // something terrible, explained
       ascii: ["###D######",
               "..........",
               "..........",
@@ -439,9 +440,75 @@ var World = {
       ]
     }
     ,
+    { // something terrible, avoided
+      ascii: ["###D######",
+              "..........",
+              "..........",
+              "L.........",
+              ".......g.."],
+      good_ending: true,
+      on_start: [
+        'face_right', 'right', 'right', 'right', 'face_up',
+        'up', 500, 'up', 1500, 'door?',
+        'face_down', 500, 'down', 500, 'down', 500,
+        'down',
+        'face_right', 'right', 300, 'right', 300,
+        'right',
+        '?', 2000,
+        'open', 'octo_appear', 'close', 1200,
+        'octo_down', 1200, 'octo_down', 1200, 'octo_down', 2000,
+        'octo_right', 1200, 'octo_right', 1200,
+        'S_appear',
+        'octo_face_left', 'spork!', 'face_left', 1200,
+        'octo_left', 1200,
+        'left', 300, 'left', 400, 'stab', 'die', 2000,
+        'face_up', 0, 'player_right', 300,
+        'up', 0, 'player_right', 300,
+        'face_left', 0, 'player_right',
+        'saved', 0, '<3', 0, 'saved_end', 2000,
+        'face_right', 'both_right', 'both_right',
+        'both_right', 'both_right', 'both_right',
+        'credits',
+        'c_appear',
+        'show',
+        'player_right', 'player_right', 'player_down', 'player_right',
+        'pick', 'open', 'face_up', 1500,
+        'player_up', 'player_up', 'player_up', 'player_up', 'leave',
+        'the_end'
+      ]
+    }
+    ,
+    { // nothing terrible has ever happened
+      ascii: ["###D######",
+              "..........",
+              "..........",
+              "L.........",
+              ".......g.."],
+      best_ending: true,
+      on_start: [
+        'face_right', 'right', 'right', 'right', 'face_up',
+        'up', 500, 'up', 1500, 'door?',
+        'face_down', 500, 'down', 500, 'down', 500,
+        'down',
+        'face_right', 'right', 300, 'right', 300,
+        'right',
+        '?', 2000,
+        'S_appear',
+        'face_up', 0, 'player_right', 300,
+        'up', 0, 'player_right', 300,
+        'face_left', 0, 'player_right',
+        'saved', 0, '<3', 0, 'saved_end', 1000,
+        'player_face_down', 0, 'face_down', 0,
+        'credits',
+        'show',
+        'face_left', '?',
+        'the_end'
+      ]
+    }
+    ,
     {
       name: "Bonus Level &mdash; 1 / 3",
-      bonus_level: true,
+      first_bonus: true,
       ascii: ["##D##",
               "R...G",
               ".rwg.",
@@ -452,7 +519,6 @@ var World = {
     ,
     {
       name: "Bonus Level &mdash; 2 / 3",
-      bonus_level: true,
       ascii: ["##D##",
               "G...R",
               ".rwg.",
@@ -463,7 +529,6 @@ var World = {
     ,
     {
       name: "Bonus Level &mdash; 3 / 3",
-      bonus_level: true,
       ascii: ["##D##",
               "O...B",
               ".wwg.",
@@ -473,29 +538,32 @@ var World = {
     }
   ],
   
-  index_of_last_level: function() {
-    if (!this.last_level) {
+  index_of_special_level: function(feature) {
+    if (!this[feature]) {
       for(var i=0; i<this.levels.length; ++i) {
-        if (this.levels[i].last_level) {
-          this.last_level = i;
+        if (this.levels[i][feature]) {
+          this[feature] = i;
           break;
         }
       }
     }
     
-    return this.last_level;
+    return this[feature];
+  },
+  index_of_last_level: function() {
+    return this.index_of_special_level('last_level');
   },
   index_of_first_bonus: function() {
-    if (!this.first_bonus) {
-      for(var i=0; i<this.levels.length; ++i) {
-        if (this.levels[i].bonus_level) {
-          this.first_bonus = i;
-          break;
-        }
-      }
-    }
-    
-    return this.first_bonus;
+    return this.index_of_special_level('first_bonus');
+  },
+  index_of_bad_ending: function() {
+    return this.index_of_special_level('bad_ending');
+  },
+  index_of_good_ending: function() {
+    return this.index_of_special_level('good_ending');
+  },
+  index_of_best_ending: function() {
+    return this.index_of_special_level('best_ending');
   },
   load_room: function(index) {
     var data = this.levels[index];

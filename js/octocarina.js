@@ -289,13 +289,16 @@ $(function () {
     'check_trap': function() {
       var y = room().forktopus.pos.y;
       if (y == 9) {
-        console.log('bad ending');
+        level = World.index_of_bad_ending();
       } else if (y < 4) {
-        console.log('best ending');
         animate('trapped', World.load_on_trapped(level));
+        level = World.index_of_best_ending();
       } else {
-        console.log('good ending');
+        level = World.index_of_good_ending();
       }
+      
+      // so that skip goes to the correct level
+      --level;
     },
     
     'pick': function() {
