@@ -94,16 +94,17 @@ $(function () {
       room().move_forktopus(0, 1);
       process_events();
     },
-    'octo_center': function() {
+    'octo_escape': function() {
       var r = room();
       var f = r.forktopus;
       if (f.pos.x < 5) {
         room().move_forktopus(1, 0);
-        process_events();
       } else if (f.pos.x > 5) {
         room().move_forktopus(-1, 0);
-        process_events();
+      } else {
+        room().move_forktopus(0, 1);
       }
+      process_events();
     },
     'octo_spork': function() {
       var f = room().forktopus;
@@ -260,7 +261,7 @@ $(function () {
       lover_says('question');
     },
     '!': function() {
-      lover_says('exclam');
+      moveable_says(room().lover || room().forktopus, 'exclam');
     },
     'R?': function() {
       lover_says('r-question');
@@ -284,6 +285,17 @@ $(function () {
     },
     'level_up': function() {
       ++level;
+    },
+    'check_trap': function() {
+      var y = room().forktopus.pos.y;
+      if (y == 9) {
+        console.log('bad ending');
+      } else if (y < 4) {
+        console.log('best ending');
+        animate('trapped', World.load_on_trapped(level));
+      } else {
+        console.log('good ending');
+      }
     },
     
     'pick': function() {

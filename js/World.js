@@ -368,11 +368,14 @@ var World = {
       on_spork: [
         0, 'fork',
         'octo_face_left', 'octo_face_right', 'spork!',
-        'octo_center', 600, 'octo_down', 600, 'octo_center', 600, 'octo_down', 600,
-        'octo_center', 600, 'octo_down', 600, 'octo_center', 600, 'octo_down', 600,
-        'octo_center', 600, 'octo_down', 600, 'octo_center', 600, 'octo_down', 600,
-        'octo_down',
+        'octo_escape', 600, 'octo_escape', 600,
+        'octo_escape', 600, 'octo_escape', 600,
+        'octo_escape', 600, 'octo_escape', 600,
+        'octo_down', 'check_trap',
         'skip'
+      ],
+      on_trapped: [
+        'octo_face_left', 'octo_face_right', '!'
       ]
     }
     ,
@@ -550,6 +553,9 @@ var World = {
   },
   load_on_reset: function(index) {
     return this.load_animation(index, 'on_reset');
+  },
+  load_on_trapped: function(index) {
+    return this.load_animation(index, 'on_trapped');
   },
   load_position_animations: function(index) {
     var data = this.levels[index];
