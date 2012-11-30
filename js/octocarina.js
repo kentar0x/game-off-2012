@@ -125,12 +125,15 @@ $(function () {
       var forktopus = Moveable.create(Tile.forktopus);
       forktopus.dir = Pos.create(0, 1);
       room().insert_moveable(Pos.create(3, 1), forktopus);
-      update_moveable(forktopus);
       process_events();
     },
     'octo_disappear': function() {
       var r = room();
       r.remove_moveable(r.forktopus);
+      process_events();
+    },
+    'lover_disappear': function() {
+      room().remove_moveable(lover());
       process_events();
     },
     'S_appear': function() {
@@ -179,7 +182,7 @@ $(function () {
     },
     
     'leave': function() {
-      if (player().floor === Tile.open_door) {
+      if (player() && player().floor === Tile.open_door) {
         room().remove_moveable(player());
       } else if (lover().floor === Tile.open_door) {
         room().remove_moveable(lover());
@@ -490,6 +493,8 @@ $(function () {
     foreground_animations.enqueue(function() {
       if (move.new_tile) {
         room().change_tile(move.pos, move.old_tile);
+      } else if (move.insert) {
+        room().remove_moveable(move.moveable);
       } else {
         var delta = Pos.distance_between(move.new_pos, move.old_pos);
         

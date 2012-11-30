@@ -23,8 +23,12 @@ var Shadows = {
         if (fork_in_block) {
           multiroom.each_room(function (index, room) {
             room.moves.each(function(move) {
-              if (move.old_pos.x != move.new_pos.x ||
-                  move.old_pos.y != move.new_pos.y) {
+              if (move.insert) {
+                // don't add a shadow to the objects which appeared
+                // during the fork's scope
+                already_displayed[move.moveable.id] = true;
+              } else if (move.old_pos.x != move.new_pos.x ||
+                         move.old_pos.y != move.new_pos.y) {
                 if (!move.moveable.forked && !already_displayed[move.moveable.id]) {
                   already_displayed[move.moveable.id] = true;
                   

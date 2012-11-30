@@ -122,6 +122,15 @@ var Room = {
         if (moveable.tile.forktopus) forktopus = this.forktopus = moveable;
         
         moveables.insert(pos, moveable);
+        moves.add({
+          insert: true,
+          moveable: moveable,
+          dir: moveable.dir,
+          old_pos: moveable.pos,
+          new_pos: moveable.pos,
+          old_floor: moveable.floor,
+          new_floor: moveable.floor
+        });
         this.update_moveable(moveable);
       },
       remove_moveable: function (moveable) {
