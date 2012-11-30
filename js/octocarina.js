@@ -94,6 +94,17 @@ $(function () {
       room().move_forktopus(0, 1);
       process_events();
     },
+    'octo_center': function() {
+      var r = room();
+      var f = r.forktopus;
+      if (f.pos.x < 5) {
+        room().move_forktopus(1, 0);
+        process_events();
+      } else if (f.pos.x > 5) {
+        room().move_forktopus(-1, 0);
+        process_events();
+      }
+    },
     'octo_spork': function() {
       var f = room().forktopus;
       f.forked = 'sporked';
@@ -155,6 +166,10 @@ $(function () {
     },
     'player_face_down': function() {
       change_player_dir(0, 1);
+    },
+    'player_flip': function() {
+      var dir = player().dir;
+      change_player_dir(-dir.x, -dir.y);
     },
     
     'leave': function() {

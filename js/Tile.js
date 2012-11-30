@@ -18,6 +18,7 @@ Tile.empty = Tile.create('', {
 });
 Tile.no_floor = Tile.create(' ', {
     sprite_class : 'empty-tile',
+    solid        : true,
     is_floor     : true
 });
 Tile.floor = Tile.create('.', {
