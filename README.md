@@ -1,6 +1,6 @@
-# Octocarina of time
+# Push and Fork, having fun with time
 
-![](https://raw.github.com/Octocarina/game-off-2012/master/img/README/octocat-link-small.png) 
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/splash.png) 
 
 ### Click [here](http://gelisam.com/octocarina) to play!
 
