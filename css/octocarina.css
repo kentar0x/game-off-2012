@@ -156,6 +156,9 @@ h1 {
 .forktopus.left {
   background-position: -4646px;
 }
+.forktopus.up {
+  background-position: -6262px;
+}
 .forked-block-hint-sprite {
   background-position: -4848px;
 }
@@ -341,6 +344,13 @@ h1 {
 }
 .holder.sporked.up:before {
   background-position: -4242px;
+}
+
+.forktopus.sporked {
+  background-position: -6363px;
+}
+.forktopus.sporked:before {
+  background-position: 101px;
 }
 
 .pushing.right:after {

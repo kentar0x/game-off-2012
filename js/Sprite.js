@@ -107,7 +107,7 @@ var Sprite = {
             element.transition({opacity: 1}, 0);
           }
         }
-        if (new_moveable.tile.holder) {
+        if (new_moveable.tile.holder && new_moveable.tile !== Tile.forktopus_with_spork) {
           holder = true;
           element.addClass("holder");
         }

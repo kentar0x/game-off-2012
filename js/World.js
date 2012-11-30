@@ -207,6 +207,23 @@ var World = {
         'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
     }
     ,
+    { // Foreshadowing
+      ascii: ["   #...#",
+              "   ..g..",
+              "## .....",
+              "..   .  ",
+              "...o...o",
+              "........",
+              "........",
+              "........",
+              "........",
+              ".....F.."],
+      on_start: [
+        'octo_up', 800, 'octo_up', 800, 'octo_up', 800, 'octo_up', 800,
+        'octo_up', 800, 'octo_up', 800, 'octo_up', 800,
+        'octo_spork', 800, 'skip' ]
+    }
+    ,
     {
       name: "9 / 20",
       ascii: ["#####D#",
@@ -380,7 +397,7 @@ var World = {
     }
     ,
     { // second visit
-      name: "8 / 20",
+      name: "9 / 20",
       bad_ending: true,
       ascii: ["#####D#",
               "S..#...",
@@ -390,7 +407,7 @@ var World = {
     }
     ,
     { // second visit
-      name: "9 / 20",
+      name: "10 / 20",
       ascii: ["##d##",
               "w.w..",
               ".wLw.",

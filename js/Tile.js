@@ -183,11 +183,20 @@ Tile.dropped_fork = Tile.create('', {
     sprite_class : 'dropped-fork',
     is_floor     : true
 });
-Tile.forktopus = Tile.create('F', {
+Tile.forktopus = Tile.create('', {
     sprite_class : 'forktopus',
     forktopus    : true,
     solid        : true,
     character    : true,
+    moveable     : true
+});
+Tile.forktopus_with_spork = Tile.create('F', {
+    sprite_class : 'forktopus',
+    forktopus    : true,
+    solid        : true,
+    forked       : 'sporked',
+    character    : true,
+    holder       : true,
     moveable     : true
 });
 
