@@ -1007,7 +1007,7 @@ $(function () {
   function create_splash() {
     var splash = $('<div id="splash"/>');
     
-    splash.append($('<img class="splash-img" src="img/README/octocat-link-big.jpg" alt="Octocat"/>'));
+    splash.append($('<img class="splash-img" src="img/splash.png" alt="Push and Fork, having fun with time"/>'));
     
     return splash;
   }
