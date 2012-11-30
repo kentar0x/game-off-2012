@@ -272,6 +272,9 @@ $(function () {
     'fork!': function() {
       lover_says('fork-exclam');
     },
+    'spork?': function() {
+      lover_says('spork-question');
+    },
     'spork!': function() {
       moveable_says(room().forktopus, 'spork-exclam');
     },
