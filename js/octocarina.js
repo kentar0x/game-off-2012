@@ -426,8 +426,8 @@ $(function () {
 	{
 		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
 	}
-        show_congratulations();
       }
+      show_congratulations("You have unlocked a bonus level. To unlock more, try to slow down the monster somehow.");
     },
     'unlock2': function() {
       if (unlocked_puzzles < 2) {
@@ -436,8 +436,8 @@ $(function () {
 	{
 		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
 	}
-        show_congratulations();
       }
+      show_congratulations("You have unlocked another bonus level. For the last ending, do you think you could trap the monster somehow?");
     },
     'unlock3': function() {
       if (unlocked_puzzles < 3) {
@@ -446,8 +446,8 @@ $(function () {
 	{
 		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
 	}
-        show_congratulations();
       }
+      show_congratulations("You have unlocked the last bonus level. Good luck!");
     },
     
     'dummy': null
@@ -673,9 +673,10 @@ $(function () {
       keyHandler = hide_congratulations;
     });
   }
-  function show_congratulations() {
+  function show_congratulations(message) {
     foreground_animations.enqueue_async(function(resume) {
       var congratulations = $('#congratulations');
+      congratulations.children(".message").text(message);
       congratulations.transition({opacity: 0}, 0);
       $('#thanks').after(congratulations);
       
@@ -1115,7 +1116,7 @@ $(function () {
     return $('<div id="begin" class="btn btn-success"/>').text('Play from the beginning');
   }
   function create_resume_button() {
-    return $('<div id="resume" class="btn btn-success"/>').text(unlocked_puzzles ? 'Try a different ending'
+    return $('<div id="resume" class="btn btn-success"/>').text(unlocked_puzzles ? 'Aim for a different ending'
                                                                                  : 'Resume game');
   }
   function create_puzzle_button() {
