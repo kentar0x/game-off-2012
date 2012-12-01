@@ -449,6 +449,16 @@ $(function () {
       }
       show_congratulations("You have unlocked the last bonus level. Good luck!");
     },
+    'unlock4': function() {
+      if (unlocked_puzzles < 4) {
+        unlocked_puzzles = 4;
+	if (window.localStorage)
+	{
+		window.localStorage['unlocked_puzzles'] = unlocked_puzzles;
+	}
+      }
+      show_congratulations("You really are a master of the spork.");
+    },
     
     'dummy': null
   };
@@ -1104,7 +1114,11 @@ $(function () {
   function create_splash() {
     var splash = $('<div id="splash"/>');
     
-    splash.append($('<img class="splash-img" src="img/splash.png" alt="Push and Fork, having fun with time"/>'));
+    var img = 'splash.png';
+    if (unlocked_puzzles >= 4) {
+      img = 'splash2.png';
+    }
+    splash.append($('<img class="splash-img" src="img/'+img+'" alt="Push and Fork, having fun with time"/>'));
     
     return splash;
   }
@@ -1116,11 +1130,14 @@ $(function () {
     return $('<div id="begin" class="btn btn-success"/>').text('Play from the beginning');
   }
   function create_resume_button() {
-    return $('<div id="resume" class="btn btn-success"/>').text(unlocked_puzzles ? 'Aim for a different ending'
-                                                                                 : 'Resume game');
+    var endings_remain = (unlocked_puzzles > 0 && unlocked_puzzles < 3);
+    return $('<div id="resume" class="btn btn-success"/>').text(endings_remain ? 'Aim for a different ending'
+                                                                               : 'Resume game');
   }
   function create_puzzle_button() {
-    return $('<div id="begin-puzzles" class="btn btn-success"/>').text('Bonus Levels ('+unlocked_puzzles+'/3)');
+    var puzzles = unlocked_puzzles;
+    if (puzzles > 3) puzzles = 3;
+    return $('<div id="begin-puzzles" class="btn btn-success"/>').text('Bonus Levels ('+puzzles+'/3)');
   }
   
   function load_splash() {

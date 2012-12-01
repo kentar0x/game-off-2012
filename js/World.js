@@ -528,12 +528,13 @@ var World = {
     ,
     {
       name: "Bonus Level &mdash; 3 / 3",
-      ascii: ["##D##",
+      ascii: ["#####",
               "O...B",
               ".wwg.",
               ".w.w.",
               ".bwo.",
-              "G.S.."]
+              "G.S.."],
+      on_solved: [ 'credits', 'the_end', 'unlock4' ]
     }
   ],
   
