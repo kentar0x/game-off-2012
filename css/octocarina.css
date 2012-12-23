@@ -484,3 +484,15 @@ h1 {
   color: white;
   text-align: center;
 }
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  height: 2em;
+  color: #aaa;
+  z-index: -1;
+}
+#footer a:link {color: #888;}
+#footer a:visited {color: #888;}
+#footer a:hover {color: #ccc;}
+#footer a:active {color: #ccc;}
