@@ -2,7 +2,7 @@
 
 var World = {
   levels: [
-    {
+    { // Level 0
       name: "Move using the arrow keys",
       ascii: ["#####d##",
               "#......#",
@@ -12,7 +12,7 @@ var World = {
               "########"]
     }
     ,
-    {
+    { // Level 1
       ascii: ["#D##.###",
               ".c.#.###",
               "...#.#d#",
@@ -41,7 +41,7 @@ var World = {
       on_unfork: [ 'face_left', '<3' ]
     }
     ,
-    {
+    { // Level 2
       ascii: ["#D######",
               "#cLw,,,#",
               "#,....,#",
@@ -68,7 +68,7 @@ var World = {
         'door?']
     }
     ,
-    {
+    { // Level 3
       ascii: ["####D###",
               "###.....",
               "###...#.",
@@ -79,7 +79,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 4
       name: "1 / 25",
       ascii: ["     #d#",
               "     #.#",
@@ -90,7 +90,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    { // lover makes a mistake
+    { // Level 5 -- lover makes a mistake
       name: "2 / 25",
       ascii: ["###d###",
               "###.###",
@@ -107,7 +107,7 @@ var World = {
       on_kiss: [ 0, 'R?' ]
     }
     ,
-    {
+    { // Level 6
       name: "2 / 25",
       ascii: ["###d###",
               "###.###",
@@ -118,7 +118,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 7
       name: "3 / 25",
       ascii: ["###d###",
               "###.###",
@@ -131,7 +131,7 @@ var World = {
       on_solved: [ 'fork!' ]
     }
     ,
-    {
+    { // Level 8
       name: "4 / 25",
       ascii: ["   #####",
               "  #..#D#",
@@ -142,7 +142,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 9
       name: "5 / 25",
       ascii: ["########",
               ".L.w.#d#",
@@ -152,7 +152,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 10
       name: "6 / 25",
       ascii: ["#d######",
               ".....,..",
@@ -162,7 +162,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 11
       name: "7 / 25",
       ascii: ["#.w.####",
               "c.w.####",
@@ -181,7 +181,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 12
       name: "7 / 25",
       ascii: ["#.w.####",
               "c.w.####",
@@ -195,7 +195,7 @@ var World = {
       on_kiss: [ 0, 'ask-fork', 'give' ]
     }
     ,
-    {
+    { // Level 13
       name: "8 / 25",
       ascii: ["#######d",
               ".w.w.w..",
@@ -207,7 +207,7 @@ var World = {
         'face_right', 300, 'right', 300, 'up', 300, 'up', 300, 'leave' ]
     }
     ,
-    { // Foreshadowing
+    { // Level 14 -- Foreshadowing
       ascii: ["   #...#",
               "   ..g..",
               "## .....",
@@ -224,7 +224,7 @@ var World = {
         'octo_spork', 800, 'skip' ]
     }
     ,
-    {
+    { // Level 15
       name: "9 / 25",
       ascii: ["#####D#",
               "c..#...",
@@ -233,7 +233,7 @@ var World = {
               "...#..."]
     }
     ,
-    {
+    { // Level 16
       name: "10 / 25",
       ascii: ["##D##",
               ".....",
@@ -243,7 +243,7 @@ var World = {
               "..c.."]
     }
     ,
-    { // something terrible has happened
+    { // Level 17 -- something terrible has happened
       name: "",
       ascii: ["###D######",
               "..#.#...;;",
@@ -255,7 +255,7 @@ var World = {
       }
     }
     ,
-    {
+    { // Level 18
       name: "11 / 25",
       ascii: ["#d###",
               ".....",
@@ -265,21 +265,21 @@ var World = {
               "..C.."]
     }
     ,
-    {
+    { // Level 19
       name: "12 / 25",
       ascii: ["#D###..",
               "..GGgg.",
               "....C.."]
     }
     ,
-    {
+    { // Level 20
       name: "13 / 25",
       ascii: ["#####D#",
               "C..w..#",
               ".Gg..##"]
     }
     ,
-    {
+    { // Level 21
       name: "14 / 25",
       ascii: ["#####D",
               "C..#..",
@@ -288,7 +288,7 @@ var World = {
               "...#.."]
     }
     ,
-    {
+    { // Level 22
       name: "15 / 25",
       ascii: ["###D#",
               "#CB.#",
@@ -297,7 +297,7 @@ var World = {
               "#.O.#"]
     }
     ,
-    {
+    { // Level 23
       name: "16 / 25",
       ascii: ["#####D#",
               "..w.w.#",
@@ -306,7 +306,7 @@ var World = {
               "#######"]
     }
     ,
-    {
+    { // Level 24
       name: "17 / 25",
       ascii: ["####D#",
               "#....#",
@@ -316,7 +316,7 @@ var World = {
               "#....#"]
     }
     ,
-    {
+    { // Level 25
       name: "18 / 25",
       ascii: ["...####",
               ".C.####",
@@ -326,7 +326,7 @@ var World = {
               "......."]
     }
     ,
-    {
+    { // Level 26
       name: "19 / 25",
       ascii: ["#D####",
               "#.C.##",
@@ -334,7 +334,7 @@ var World = {
               "###.##"]
     }
     ,
-    {
+    { // Level 27
       name: "20 / 25",
       ascii: ["###D#",
               "#...#",
@@ -344,7 +344,7 @@ var World = {
               "#CG.#"]
     }
     ,
-    {
+    { // Level 28
       name: "21 / 25",
       ascii: [" ###D#",
               " Gg..#",
@@ -352,7 +352,7 @@ var World = {
               " Gg..#"]
     }
     ,
-    {
+    { // Level 29
       name: "22 / 25",
       ascii: ["#.w.###",
               "..w.###",
@@ -361,7 +361,7 @@ var World = {
               "#.w...#"]
     }
     ,
-    {
+    { // Level 30
       name: "23 / 25",
       ascii: ["###D###",
               "..w.w..",
@@ -370,7 +370,7 @@ var World = {
               "...C..."]
     }
     ,
-    {
+    { // Level 31
       name: "24 / 25",
       ascii: ["###D##",
               "..Rr..",
@@ -378,7 +378,7 @@ var World = {
               "..gG.."]
     }
     ,
-    {
+    { // Level 32
       name: "25 / 25",
       ascii: ["###D###",
               "###.###",
@@ -388,7 +388,7 @@ var World = {
               "##.C.##"]
     }
     ,
-    { // The lair
+    { // Level 33 -- The lair
       ascii: ["   #...#",
               "   ..g..",
               "## .....",
@@ -440,7 +440,7 @@ var World = {
       ]
     }
     ,
-    { // second visit
+    { // Level 34 -- second visit
       name: "9 / 25",
       long_ending: true,
       ascii: ["#####D#",
@@ -450,7 +450,7 @@ var World = {
               "...#..."]
     }
     ,
-    { // second visit
+    { // Level 35 -- second visit
       name: "10 / 25",
       ascii: ["##d##",
               "w.w..",
@@ -464,7 +464,7 @@ var World = {
         'face_right', 'right', 500, 'face_up', 300, 'up', 300, 'leave']
     }
     ,
-    { // something terrible, explained
+    { // Level 36 -- something terrible, explained
       ascii: ["###D######",
               "..#.#.....",
               "..........",
@@ -492,7 +492,7 @@ var World = {
       ]
     }
     ,
-    { // something terrible, avoided
+    { // Level 37 -- something terrible, avoided
       ascii: ["###D######",
               "..#.#.....",
               "..........",
@@ -526,7 +526,7 @@ var World = {
       ]
     }
     ,
-    { // nothing terrible has ever happened
+    { // Level 38 -- nothing terrible has ever happened
       ascii: ["###D######",
               "..#.#.....",
               "..........",
@@ -549,7 +549,7 @@ var World = {
       ]
     }
     ,
-    {
+    { // Level 39
       name: "Bonus Level &mdash; 1 / 3",
       first_bonus: true,
       ascii: ["##D##",
@@ -560,7 +560,7 @@ var World = {
               "B.S.O"]
     }
     ,
-    {
+    { // Level 40
       name: "Bonus Level &mdash; 2 / 3",
       ascii: ["##D##",
               "G...R",
@@ -570,7 +570,7 @@ var World = {
               "O.S.B"]
     }
     ,
-    {
+    { // Level 41
       name: "Bonus Level &mdash; 3 / 3",
       ascii: ["#####",
               "O...B",

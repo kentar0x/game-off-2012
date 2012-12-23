@@ -15,7 +15,7 @@ $(function () {
   var display_events = false;
   var unlocked_puzzles = 0;
   if (window.localStorage && window.localStorage['unlocked_puzzles']) {
-    unlocked_puzzles = window.localStorage['unlocked_puzzles'];
+    unlocked_puzzles = parseInt(window.localStorage['unlocked_puzzles']);
   }
   
 
