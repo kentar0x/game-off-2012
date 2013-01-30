@@ -1,10 +1,8 @@
 # Push and Fork, having fun with time
 
-![](https://raw.github.com/Octocarina/game-off-2012/master/img/splash.png) 
-
-### Click [here](http://gelisam.com/octocarina) to play!
-
 This is a puzzle game in which you carry a fork, push blocks, and go back in time.
+### Click [here](http://gelisam.com/octocarina) to play!
+![](https://raw.github.com/Octocarina/game-off-2012/master/img/splash.png) 
 
 
 ## FAQ: What does the fork do??
